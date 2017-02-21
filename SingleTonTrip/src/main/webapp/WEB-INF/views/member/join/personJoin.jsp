@@ -7,13 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/">
+	<form>
 		<div>
 			아이디:
 			<input type="text"/>
 		</div>
 		<div>
-			비밀번호:
+			비밀번호
 			<input type="password"/>
 		</div>
 		<div>
@@ -29,15 +29,14 @@
 			<input type="text"/>
 		</div>
 		<div>
-			사업자번호:
+			생일:
 			<input type="text"/>
 		</div>
 		<div>
-			주소:
-			<input type="text"/>
+			성별:
+			<input type="radio" name="gender" value="남"/><span>남</span>
+			<input type="radio" name="gender" value="여"/><span>여</span>
 		</div>
-		
-
 	</form>
 </body>
 </html>
