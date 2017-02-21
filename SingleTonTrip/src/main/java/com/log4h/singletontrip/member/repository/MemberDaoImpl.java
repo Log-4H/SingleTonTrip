@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.log4h.singletontrip.member.domain.Member;
+import com.log4h.singletontrip.member.domain.LoginVo;
 
 @Repository
 public class MemberDaoImpl implements MemberDao{
@@ -17,7 +17,7 @@ public class MemberDaoImpl implements MemberDao{
 
 	//로그인처리 (DB SELECT)
 	@Override
-	public Member login(Map<String, String> map) {
+	public LoginVo login(Map<String, String> map) {
 		return sqlSession.selectOne(MEMBER_NS+"login", map);
 	}
 

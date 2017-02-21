@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="memberLogin" method="post">
+<form action="login" method="post">
 	아이디 : <input type="text" id="loginId" name="loginId">
 	패스워드 : <input type="password" id="loginPw" name="loginPw">
 	<button type="submit">Login</button>

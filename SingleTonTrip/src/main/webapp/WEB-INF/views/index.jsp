@@ -8,6 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:if test="${sessionId eq null }">
+<a href="login">로그인</a><br>
+</c:if>
+<c:if test="${sessionId ne null }">
+<a href="logout">로그아웃</a><br>
+</c:if>
+
+
 세션아이디 : ${sessionId} <br>
 세션이름 : ${sessionNm }	<br>
 세션레벨 :${sessionLevel }	<br>
