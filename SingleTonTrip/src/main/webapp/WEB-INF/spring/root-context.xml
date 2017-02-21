@@ -11,7 +11,7 @@
 	<!-- DB 연결 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/rexolua" />
+		<property name="url" value="jdbc:mysql://rexolua.cafe24.com:3306/rexolua" />
 		<property name="username" value="rexolua" />
 		<property name="password" value="singletone1!" />
 	</bean>
@@ -24,17 +24,17 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:com/log4h/singletontrip/a/example/ExampleMapper.xml</value>
-				<value>classpath:com/log4h/singletontrip/ad/AdMapper.xml</value>
-				<value>classpath:com/log4h/singletontrip/admin/AdminMapper.xml</value>
-				<value>classpath:com/log4h/singletontrip/board/BoardMapper.xml</value>
-				<value>classpath:com/log4h/singletontrip/evaluation/EvaluationMapper.xml</value>
-				<value>classpath:com/log4h/singletontrip/member/MemberMapper.xml</value>
-				<value>classpath:com/log4h/singletontrip/mileage/MileageMapper.xml</value>
-				<value>classpath:com/log4h/singletontrip/page/PageMapper.xml</value>
-				<value>classpath:com/log4h/singletontrip/report/ReportMapper.xml</value>
-				<value>classpath:com/log4h/singletontrip/reserve/ReserveMapper.xml</value>
-				<value>classpath:com/log4h/singletontrip/room/RoomMapper.xml</value>
-				<value>classpath:com/log4h/singletontrip/trip/TripMapper.xml</value>
+				<value>classpath:com/log4h/singletontrip/ad/repository/AdMapper.xml</value>
+				<value>classpath:com/log4h/singletontrip/admin/repository/AdminMapper.xml</value>
+				<value>classpath:com/log4h/singletontrip/board/repository/BoardMapper.xml</value>
+				<value>classpath:com/log4h/singletontrip/evaluation/repository/EvaluationMapper.xml</value>
+				<value>classpath:com/log4h/singletontrip/member/repository/MemberMapper.xml</value>
+				<value>classpath:com/log4h/singletontrip/mileage/repository/MileageMapper.xml</value>
+				<value>classpath:com/log4h/singletontrip/page/repository/PageMapper.xml</value>
+				<value>classpath:com/log4h/singletontrip/report/repository/ReportMapper.xml</value>
+				<value>classpath:com/log4h/singletontrip/reserve/repository/ReserveMapper.xml</value>
+				<value>classpath:com/log4h/singletontrip/room/repository/RoomMapper.xml</value>
+				<value>classpath:com/log4h/singletontrip/trip/repository/TripMapper.xml</value>
 			</list>
 		</property>
 	</bean>
