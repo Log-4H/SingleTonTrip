@@ -8,42 +8,42 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/companyJoin" method="post">
+	<form action="companyJoin" method="post">
 	<input type="hidden" name="memberLevel" value="${memberLevel }">
 		<div>
 			아이디:
-			<input type="text"/>
+			<input type="text" name="memberId"/>
 		</div>
 		<div>
 			비밀번호:
-			<input type="password"/>
+			<input type="password" name="memberPw"/>
 		</div>
 		<div>
 			이름:
-			<input type="text"/>
+			<input type="text" name="memberNm"/>
 		</div>
 		<div>
 			전화번호:
-			<input type="text"/>
+			<input type="text" name="memberPhone"/>
 		</div>
 		<div>
 			이메일:
-			<input type="text"/>
+			<input type="text" name="memberEmail"/>
 		</div>
 		<div>
 			사업자번호:
-			<input type="text"/>
+			<input type="text" name="companyCrd"/>
 		</div>
 		<div>
 			분류:
-			<input type="radio" name="type" value="1"/><span>호텔</span>
-			<input type="radio" name="type" value="2"/><span>모텔</span>
-			<input type="radio" name="type" value="3"/><span>펜션</span>
-			<input type="radio" name="type" value="4"/><span>게스트하우스</span>
+			<input type="radio" name="companyTypeCd" value="1"/><span>호텔</span>
+			<input type="radio" name="companyTypeCd" value="2"/><span>모텔</span>
+			<input type="radio" name="companyTypeCd" value="3"/><span>펜션</span>
+			<input type="radio" name="companyTypeCd" value="4"/><span>게스트하우스</span>
 		</div>
 		<div>
 			주소:
-			<input type="text"/>
+			<input type="text" name="companyAddress"/>
 		</div>
 		<div><input type="submit" value="회원가입"></div>
 	</form>
