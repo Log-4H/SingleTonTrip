@@ -66,15 +66,15 @@ public class MemberController {
 	//개인회원 가입 폼 요청
 	@RequestMapping(value="personJoin", method=RequestMethod.GET)
 	public ModelAndView personJoin(@RequestParam(value="memberLevel") int memberLevel){
-		System.out.println(memberLevel);
 		ModelAndView mv = new ModelAndView("member/join/personJoin");
+		mv.addObject("memberLevel", memberLevel);
 		return mv;	
 	}
 	//업체 가입 폼 요청
 	@RequestMapping(value="companyJoin", method=RequestMethod.GET)
 	public ModelAndView companyJoin(@RequestParam(value="memberLevel") int memberLevel){
-		System.out.println(memberLevel);
 		ModelAndView mv = new ModelAndView("member/join/companyJoin");
+		mv.addObject("memberLevel", memberLevel);
 		return mv;	
 	}
 }

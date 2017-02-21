@@ -8,6 +8,7 @@
 </head>
 <body>
 	<form action="/personJoin" method="post">
+		<input type="hidden" name="memberLevel" value="${memberLevel }">
 		<div>
 			아이디:
 			<input type="text"/>
