@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/">
+	<form action="/companyJoin" method="post">
 		<div>
 			아이디:
 			<input type="text"/>
@@ -36,8 +36,7 @@
 			주소:
 			<input type="text"/>
 		</div>
-		
-
+		<div><input type="submit" value="회원가입"></div>
 	</form>
 </body>
 </html>

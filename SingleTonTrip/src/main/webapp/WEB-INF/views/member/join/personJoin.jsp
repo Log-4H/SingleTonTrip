@@ -7,13 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form>
+	<form action="/personJoin" method="post">
 		<div>
 			아이디:
 			<input type="text"/>
 		</div>
 		<div>
-			비밀번호
+			비밀번호:
 			<input type="password"/>
 		</div>
 		<div>
@@ -34,9 +34,10 @@
 		</div>
 		<div>
 			성별:
-			<input type="radio" name="gender" value="남"/><span>남</span>
-			<input type="radio" name="gender" value="여"/><span>여</span>
+			<input type="radio" name="gender" value="M"><span>남</span>
+			<input type="radio" name="gender" value="F"><span>여</span>
 		</div>
+		<div><input type="submit" value="회원가입"></div>
 	</form>
 </body>
 </html>
