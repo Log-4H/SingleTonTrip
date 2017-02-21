@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="testMapper">
+<!-- 
+	mapper 이름 잘 정하기
+	가독성 좋게 query 문 tab으로 잘 정리하자
+ -->
+<insert id="insertExample" parameterType="com.log4h.singletontrip.a.example.ExampleVo">
+	INSERT INTO table
+		(
+			table_no,
+			table_name
+		)
+		VALUES
+		(
+			#{tableNo},
+			#{tableName}
+		)
+</insert>
+
+<select id="selectExample" parameterType="int" resultType="com.log4h.singletontrip.a.example.ExampleVo">
+	SELECT 
+		table_no,
+		table_name
+	FROM
+		table
+	WHERE
+		table_no = #{tableNo}
+</select>
+
+</mapper>
