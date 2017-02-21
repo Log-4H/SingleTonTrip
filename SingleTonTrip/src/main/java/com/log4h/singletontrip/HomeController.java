@@ -13,4 +13,14 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("index");
 		return mv;
 	}
+	@RequestMapping(value="main", method=RequestMethod.GET)
+	public ModelAndView main(){
+		ModelAndView mv = new ModelAndView("main");
+		return mv;
+	}
+	@RequestMapping(value="post", method=RequestMethod.GET)
+	public ModelAndView post(){
+		ModelAndView mv = new ModelAndView("post");
+		return mv;
+	}
 }
