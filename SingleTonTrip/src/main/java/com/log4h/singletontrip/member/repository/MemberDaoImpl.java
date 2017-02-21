@@ -6,7 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.log4h.singletontrip.member.domain.CompanyVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
+import com.log4h.singletontrip.member.domain.PersonVo;
 
 @Repository
 public class MemberDaoImpl implements MemberDao{
@@ -20,5 +22,28 @@ public class MemberDaoImpl implements MemberDao{
 	public LoginVo login(Map<String, String> map) {
 		return sqlSession.selectOne(MEMBER_NS+"login", map);
 	}
+	//개인회원가입
+	@Override
+	public int personMemberJoin(PersonVo personVo) {
+		return  sqlSession.insert(MEMBER_NS+"personMemberJoin", personVo);
+	}
+	//업체회원가입
+	@Override
+	public int companyMemberJoin(CompanyVo companyVo) {
+		return  sqlSession.insert(MEMBER_NS+"companyMemberJoin", companyVo);
+	}
+	//개인테이블에 추가 데이터 삽입
+	@Override
+	public int personJoin(PersonVo personVo) {
+		return sqlSession.insert(MEMBER_NS+"personJoin", personVo);
+	}
+	//업체 테이블에 추가 데이터 삽입
+	@Override
+	public int companyJoin(CompanyVo companyVo) {
+		return sqlSession.insert(MEMBER_NS+"companyJoin", companyVo);
+	}
+
+
+
 
 }

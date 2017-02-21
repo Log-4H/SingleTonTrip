@@ -7,13 +7,13 @@ public class PersonVo {
 	private String memberNm;
 	private String memberPhone;
 	private String memberEmail;
-	private String personBirth;
-	private String personGender;
 	private int memberReportCount;
 	private String memberRegDate;
 	private int actStateCd;
 	private String memberDropDate;
 	private String memberDropReason;
+	private String personBirth;
+	private String personGender;
 	public String getMemberId() {
 		return memberId;
 	}
@@ -92,4 +92,8 @@ public class PersonVo {
 	public void setPersonGender(String personGender) {
 		this.personGender = personGender;
 	}
+	
+
+
+	
 }

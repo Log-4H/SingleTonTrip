@@ -16,4 +16,77 @@
 	AND
 		member_pw = #{loginPw}
 </select>
+
+<insert id="personMemberJoin" parameterType="com.log4h.singletontrip.member.domain.PersonVo">
+	INSERT INTO tb_member(
+		member_id,
+		member_level,
+		member_pw,
+		member_nm,
+		member_phone,
+		member_email,
+		member_reg_date
+		)
+	VALUE(
+		#{memberId},
+		#{memberLevel},
+		#{memberPw},
+		#{memberNm},
+		#{memberPhone},
+		#{memberEmail},
+		
+		now()		
+		)
+</insert>
+
+<insert id="companyMemberJoin" parameterType="com.log4h.singletontrip.member.domain.CompanyVo">
+	INSERT INTO tb_member(
+		member_id,
+		member_level,
+		member_pw,
+		member_nm,
+		member_phone,
+		member_email,
+		member_reg_date
+		)
+	VALUE(
+		#{memberId},
+		#{memberLevel},
+		#{memberPw},
+		#{memberNm},
+		#{memberPhone},
+		#{memberEmail},
+		
+		now()		
+		)
+</insert>
+
+<insert id="personJoin" parameterType="com.log4h.singletontrip.member.domain.PersonVo">
+	INSERT INTO tb_person(
+		person_id,
+		person_birth,
+		person_gender
+		)
+	VALUE(
+		#{memberId},
+		#{personBirth},
+		#{personGender}
+		)
+</insert>
+
+<insert id="companyJoin" parameterType="com.log4h.singletontrip.member.domain.CompanyVo">
+	INSERT INTO tb_company(
+		company_id,
+		company_crd,
+		company_type_cd,
+		company_address
+		)
+	VALUE(
+		#{memberId},
+		#{companyCrd},
+		#{companyTypeCd},
+		#{companyAddress}
+		)
+</insert>
+
 </mapper>

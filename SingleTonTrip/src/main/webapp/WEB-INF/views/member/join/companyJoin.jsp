@@ -35,6 +35,13 @@
 			<input type="text"/>
 		</div>
 		<div>
+			분류:
+			<input type="radio" name="type" value="1"/><span>호텔</span>
+			<input type="radio" name="type" value="2"/><span>모텔</span>
+			<input type="radio" name="type" value="3"/><span>펜션</span>
+			<input type="radio" name="type" value="4"/><span>게스트하우스</span>
+		</div>
+		<div>
 			주소:
 			<input type="text"/>
 		</div>

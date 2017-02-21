@@ -10,6 +10,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.log4h.singletontrip.member.domain.LoginVo;
+import com.log4h.singletontrip.member.domain.PersonVo;
 import com.log4h.singletontrip.member.service.MemberService;
 
 @SessionAttributes({"sessionId", "sessionNm", "sessionLevel"})
@@ -75,6 +76,20 @@ public class MemberController {
 	public ModelAndView companyJoin(@RequestParam(value="memberLevel") int memberLevel){
 		ModelAndView mv = new ModelAndView("member/join/companyJoin");
 		mv.addObject("memberLevel", memberLevel);
+		return mv;	
+	}
+	
+	//개인회원 가입 처리
+	@RequestMapping(value="personJoin", method=RequestMethod.POST)
+	public ModelAndView personJoin(PersonVo personVo){
+		System.out.println(personVo);
+		ModelAndView mv = new ModelAndView();
+		int result = memberService.personJoin(personVo);
+		if(result>0){
+			mv.setViewName("index");
+		}else{
+			mv.setViewName("error");
+		}
 		return mv;	
 	}
 }
