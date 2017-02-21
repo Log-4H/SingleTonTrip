@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h2>업체약관 입니당</h2>
+약관 동의 하시겠습니까?
+<a href="companyJoin?memberLevel=${memberLevel}">Yes</a>
 </body>
 </html>

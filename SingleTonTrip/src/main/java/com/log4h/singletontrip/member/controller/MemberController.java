@@ -45,4 +45,36 @@ public class MemberController {
 		status.setComplete();
 		return mv;	
 	}
+	//개인 & 회원 선택 폼
+	@RequestMapping(value="joinBegin", method=RequestMethod.GET)
+	public ModelAndView joinBegin(){
+		ModelAndView mv = new ModelAndView("member/join/joinBegin");
+		return mv;	
+	}
+	//개인 & 회원 선택 처리
+	@RequestMapping(value="joinBegin", method=RequestMethod.POST)
+	public ModelAndView joinBegin(@RequestParam(value="memberLevel") int memberLevel){
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("memberLevel", memberLevel);
+		if(memberLevel==2){
+			mv.setViewName("member/join/companyTerms");
+		}else{
+			mv.setViewName("member/join/personTerms");
+		}
+		return mv;	
+	}
+	//개인회원 가입 폼 요청
+	@RequestMapping(value="personJoin", method=RequestMethod.GET)
+	public ModelAndView personJoin(@RequestParam(value="memberLevel") int memberLevel){
+		System.out.println(memberLevel);
+		ModelAndView mv = new ModelAndView("member/join/personJoin");
+		return mv;	
+	}
+	//업체 가입 폼 요청
+	@RequestMapping(value="companyJoin", method=RequestMethod.GET)
+	public ModelAndView companyJoin(@RequestParam(value="memberLevel") int memberLevel){
+		System.out.println(memberLevel);
+		ModelAndView mv = new ModelAndView("member/join/companyJoin");
+		return mv;	
+	}
 }
