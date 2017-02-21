@@ -68,7 +68,7 @@ public class ExampleController {
 	public ModelAndView selectExample(
 			@RequestParam(value="a") int a){
 		//ModelAndView 객체 생성
-		ModelAndView mv = new ModelAndView("example/exampleSelect");
+		ModelAndView mv = new ModelAndView();
 		//Service를 호출하여 exampleVO 객체에 담는다.
 		ExampleVo exampleVO = exampleService.selectExample(a);
 		//.jsp로 데이터를 보내기 위해 ModelAndView에 exampleVO를 담는다.
