@@ -13,6 +13,7 @@ public class CompanyVo {
 	private int memberReportCount;
 	private String memberRegDate;
 	private int actStateCd;
+	private String actStateNm;
 	private String memberDropDate;
 	private String memberDropReason;
 	public int getCompanyTypeCd() {
@@ -87,6 +88,12 @@ public class CompanyVo {
 	}
 	public void setActStateCd(int actStateCd) {
 		this.actStateCd = actStateCd;
+	}
+	public String getActStateNm() {
+		return actStateNm;
+	}
+	public void setActStateNm(String actStateNm) {
+		this.actStateNm = actStateNm;
 	}
 	public String getMemberDropDate() {
 		return memberDropDate;

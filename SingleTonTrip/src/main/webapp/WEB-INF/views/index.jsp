@@ -14,10 +14,16 @@
 <c:if test="${sessionId ne null }">
 <a href="logout">로그아웃</a><br>
 </c:if>
+
 <a href="joinBegin">회원가입</a><br>
+<a href="personList">개인회원리스트</a><br>
+<a href="companyList">업체회원리스트</a><br>
+
 
 세션아이디 : ${sessionId} <br>
 세션이름 : ${sessionNm }	<br>
 세션레벨 :${sessionLevel }	<br>
+
+
 </body>
 </html>

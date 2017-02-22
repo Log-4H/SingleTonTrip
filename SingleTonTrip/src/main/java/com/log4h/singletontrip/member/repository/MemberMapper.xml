@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberMapper">
+<!-- 로그인 -->
 <select id="login" parameterType="map" resultType="com.log4h.singletontrip.member.domain.LoginVo">
 	SELECT 
 		member_id,
@@ -17,6 +18,7 @@
 		member_pw = #{loginPw}
 </select>
 
+<!-- 개인회원가입 -->
 <insert id="personMemberJoin" parameterType="com.log4h.singletontrip.member.domain.PersonVo">
 	INSERT INTO tb_member(
 		member_id,
@@ -39,6 +41,7 @@
 		)
 </insert>
 
+<!-- 업체회원가입 -->
 <insert id="companyMemberJoin" parameterType="com.log4h.singletontrip.member.domain.CompanyVo">
 	INSERT INTO tb_member(
 		member_id,
@@ -61,6 +64,7 @@
 		)
 </insert>
 
+<!-- 개인테이블에 추가 데이터 삽입 -->
 <insert id="personJoin" parameterType="com.log4h.singletontrip.member.domain.PersonVo">
 	INSERT INTO tb_person(
 		person_id,
@@ -74,6 +78,7 @@
 		)
 </insert>
 
+<!-- 업체테이블에 추가 데이터 삽입 -->
 <insert id="companyJoin" parameterType="com.log4h.singletontrip.member.domain.CompanyVo">
 	INSERT INTO tb_company(
 		company_id,
@@ -89,4 +94,52 @@
 		)
 </insert>
 
+<!-- 개인회원 총 카운트 -->
+<select id="personTotalCount" parameterType="Map" resultType="int">
+	SELECT
+		COUNT(*)
+	FROM
+		tb_member m
+	JOIN
+		tb_person p
+	ON 
+		m.member_id = p.person_id
+	JOIN 
+		tb_act_state a
+	ON 
+		m.act_state_cd = a.act_state_cd
+	<if test="selectValue != null and selectValue !=''">
+	WHERE
+		${selectOption} LIKE '%${selectValue}%'
+	</if>
+
+</select>
+
+<!-- 개인회원리스트 -->
+<select id="personList" parameterType="Map" resultType="com.log4h.singletontrip.member.domain.PersonVo">
+	SELECT
+		m.member_id,
+		m.member_nm,
+		m.member_phone,
+		m.member_email,
+		p.person_birth,
+		p.person_gender,
+		a.act_state_nm
+	FROM
+		tb_member m
+	JOIN
+		tb_person p
+	ON 
+		m.member_id = p.person_id
+	JOIN 
+		tb_act_state a
+	ON 
+		m.act_state_cd = a.act_state_cd	
+	<if test="selectValue != null and selectValue !=''">
+	WHERE
+		${selectOption} LIKE '%${selectValue}%'
+	</if>
+	ORDER BY m.member_reg_date
+	DESC LIMIT #{beginRow}, #{pagePerRow}
+</select>
 </mapper>

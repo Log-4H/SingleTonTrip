@@ -1,5 +1,7 @@
 package com.log4h.singletontrip.member.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -83,13 +85,12 @@ public class MemberController {
 	//개인회원 가입 처리
 	@RequestMapping(value="personJoin", method=RequestMethod.POST)
 	public ModelAndView personJoin(PersonVo personVo){
-		System.out.println(personVo);
 		ModelAndView mv = new ModelAndView();
 		int result = memberService.personJoin(personVo);
 		if(result>0){
 			mv.setViewName("index");
 		}else{
-			mv.setViewName("error");
+			mv.setViewName("error/error");
 		}
 		return mv;	
 	}
@@ -97,14 +98,34 @@ public class MemberController {
 	//업체회원 가입 처리
 	@RequestMapping(value="companyJoin", method=RequestMethod.POST)
 	public ModelAndView companyJoin(CompanyVo companyVo){
-		System.out.println(companyVo);
 		ModelAndView mv = new ModelAndView();
 		int result = memberService.companyJoin(companyVo);
 		if(result>0){
 			mv.setViewName("index");
 		}else{
-			mv.setViewName("error");
+			mv.setViewName("error/error");
 		}
 		return mv;	
 	}
+	
+	//개인회원리스트
+	@RequestMapping(value="personList", method=RequestMethod.GET)
+	public ModelAndView personList(
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage,
+			@RequestParam(value="selectOption", required=false) String selectOption,
+			@RequestParam(value="selectValue", required=false) String selectValue
+			){
+		Map<String, Object> map = memberService.personList(currentPage, selectOption, selectValue);
+		ModelAndView mv = new ModelAndView("member/list/personList");
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("selectOption", selectOption);
+		mv.addObject("selectValue", selectValue);
+		mv.addObject("personList", map.get("personList"));
+		mv.addObject("startPage", map.get("startPage"));
+		mv.addObject("pageSize", map.get("pageSize"));
+		mv.addObject("endPage", map.get("endPage"));
+		mv.addObject("lastPage", map.get("lastPage"));
+		return mv;	
+	}
+	//업체회원리스트
 }

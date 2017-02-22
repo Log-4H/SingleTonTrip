@@ -1,6 +1,8 @@
 package com.log4h.singletontrip.member.service;
 
+import java.awt.print.Book;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import com.log4h.singletontrip.member.domain.CompanyVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
 import com.log4h.singletontrip.member.domain.PersonVo;
 import com.log4h.singletontrip.member.repository.MemberDao;
+import com.log4h.singletontrip.util.Paging;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -50,5 +53,21 @@ public class MemberServiceImpl implements MemberService{
 			companyResult = memberDao.companyJoin(companyVo);
 		}
 		return companyResult;
+	}
+	//개인회원리스트
+	@Override
+	public Map<String, Object> personList(int currentPage, String selectOption,
+			String selectValue) {
+		Map<String, Object> totalCountMap = new HashMap<String, Object>();
+		totalCountMap.put("selectOption", selectOption);
+		totalCountMap.put("selectValue", selectValue);
+        int personTotalCount = memberDao.personTotalCount(totalCountMap);
+        Paging paging = new Paging();
+        Map<String, Object> map = paging.pagingMethod(currentPage, personTotalCount);
+        map.put("selectOption", selectOption);
+        map.put("selectValue", selectValue);
+        List<PersonVo> personList = memberDao.personList(map);
+        map.put("personList", personList);
+		return map;
 	}
 }

@@ -10,6 +10,7 @@ public class PersonVo {
 	private int memberReportCount;
 	private String memberRegDate;
 	private int actStateCd;
+	private String actStateNm;
 	private String memberDropDate;
 	private String memberDropReason;
 	private String personBirth;
@@ -68,6 +69,12 @@ public class PersonVo {
 	public void setActStateCd(int actStateCd) {
 		this.actStateCd = actStateCd;
 	}
+	public String getActStateNm() {
+		return actStateNm;
+	}
+	public void setActStateNm(String actStateNm) {
+		this.actStateNm = actStateNm;
+	}
 	public String getMemberDropDate() {
 		return memberDropDate;
 	}
@@ -92,8 +99,5 @@ public class PersonVo {
 	public void setPersonGender(String personGender) {
 		this.personGender = personGender;
 	}
-	
 
-
-	
 }

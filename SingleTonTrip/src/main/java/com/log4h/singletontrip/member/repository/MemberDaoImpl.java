@@ -1,5 +1,6 @@
 package com.log4h.singletontrip.member.repository;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -42,8 +43,14 @@ public class MemberDaoImpl implements MemberDao{
 	public int companyJoin(CompanyVo companyVo) {
 		return sqlSession.insert(MEMBER_NS+"companyJoin", companyVo);
 	}
-
-
-
-
+	//개인회원 총카운트
+	@Override
+	public int personTotalCount(Map<String, Object> map) {
+		return sqlSession.selectOne(MEMBER_NS+"personTotalCount", map);
+	}
+	//개인회원 리스트
+	@Override
+	public List<PersonVo> personList(Map<String, Object> map) {
+		return sqlSession.selectList(MEMBER_NS+"personList", map);
+	}
 }
