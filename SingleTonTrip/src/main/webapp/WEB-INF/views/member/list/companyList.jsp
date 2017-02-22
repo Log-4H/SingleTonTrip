@@ -35,7 +35,7 @@
 		<tbody>
 			<c:forEach items="${companyList}" var="c">
 			<tr>
-				<td>${c.memberId}</td>
+				<td><a href="<c:url value='companyDetail?memberId=${c.memberId}'/> ">${c.memberId}</a></td>
 				<td>${c.memberNm}</td>
 				<td>${c.memberPhone}</td>
 				<td>${c.memberEmail}</td>

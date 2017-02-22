@@ -26,4 +26,8 @@ public interface MemberDao {
 	public int companyTotalCount(Map<String, Object> map);
 	//업체회원 리스트
 	public List<CompanyVo> companyList(Map<String,Object> map);
+	//개인회원 상세보기
+	public PersonVo personDetail(String memberId);
+	//업체회원 상세보기
+	public CompanyVo companyDetail(String memberId);
 }

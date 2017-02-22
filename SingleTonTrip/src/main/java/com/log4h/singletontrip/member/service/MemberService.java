@@ -17,4 +17,8 @@ public interface MemberService {
 	public Map<String, Object> personList(int currentPage, String selectOption, String selectValue);
 	//업체회원리스트
 	public Map<String, Object> companyList(int currentPage, String selectOption, String selectValue);
+	//개인회원 상세보기
+	public PersonVo personDetail(String memberId);
+	//업체회원 상세보기
+	public CompanyVo companyDetail(String memberId);
 }

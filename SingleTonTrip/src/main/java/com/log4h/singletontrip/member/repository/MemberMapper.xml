@@ -187,4 +187,68 @@
 	ORDER BY m.member_reg_date
 	DESC LIMIT #{beginRow}, #{pagePerRow}
 </select>
+
+<!-- 개인회원상세보기 -->
+<select id="personDetail" parameterType="String" resultType="com.log4h.singletontrip.member.domain.PersonVo">
+	SELECT
+		m.member_id,
+		m.member_nm,
+		m.member_phone,
+		m.member_email,
+		m.member_report_count,
+		p.person_birth,
+		p.person_gender,
+		p.person_total_mileage,
+		t.trip_state_nm,
+		a.act_state_nm
+	FROM
+		tb_member m
+	JOIN
+		tb_person p
+	ON 
+		m.member_id = p.person_id
+	JOIN 
+		tb_act_state a
+	ON 
+		m.act_state_cd = a.act_state_cd
+	JOIN
+		tb_trip_state t
+	ON 
+		p.trip_state_cd = t.trip_state_cd
+	WHERE
+		member_id=#{memberId}
+</select>
+
+<!-- 업체회원상세보기 -->
+<select id="companyDetail" parameterType="String" resultType="com.log4h.singletontrip.member.domain.CompanyVo">
+	SELECT
+		m.member_id,
+		m.member_nm,
+		m.member_phone,
+		m.member_email,
+		m.member_report_count,
+		c.company_crd,
+		t.company_type_nm,
+		c.company_address,
+		a.act_state_nm
+	FROM
+		tb_member m
+	JOIN
+		tb_company c
+	ON 
+		m.member_id = c.company_id
+	JOIN 
+		tb_company_type t
+	ON 
+		c.company_type_cd = t.company_type_cd	
+	JOIN 
+		tb_act_state a
+	ON 
+		m.act_state_cd = a.act_state_cd
+	WHERE
+		member_id=#{memberId}
+</select>
+
+
+
 </mapper>

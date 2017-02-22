@@ -15,6 +15,27 @@ public class PersonVo {
 	private String memberDropReason;
 	private String personBirth;
 	private String personGender;
+	private String tripStateCd;
+	private String tripStateNm;
+	private String personTotalMileage;
+	public String getTripStateCd() {
+		return tripStateCd;
+	}
+	public void setTripStateCd(String tripStateCd) {
+		this.tripStateCd = tripStateCd;
+	}
+	public String getTripStateNm() {
+		return tripStateNm;
+	}
+	public void setTripStateNm(String tripStateNm) {
+		this.tripStateNm = tripStateNm;
+	}
+	public String getPersonTotalMileage() {
+		return personTotalMileage;
+	}
+	public void setPersonTotalMileage(String personTotalMileage) {
+		this.personTotalMileage = personTotalMileage;
+	}
 	public String getMemberId() {
 		return memberId;
 	}
@@ -98,6 +119,16 @@ public class PersonVo {
 	}
 	public void setPersonGender(String personGender) {
 		this.personGender = personGender;
+	}
+	@Override
+	public String toString() {
+		return "PersonVo [memberId=" + memberId + ", memberLevel=" + memberLevel + ", memberPw=" + memberPw
+				+ ", memberNm=" + memberNm + ", memberPhone=" + memberPhone + ", memberEmail=" + memberEmail
+				+ ", memberReportCount=" + memberReportCount + ", memberRegDate=" + memberRegDate + ", actStateCd="
+				+ actStateCd + ", actStateNm=" + actStateNm + ", memberDropDate=" + memberDropDate
+				+ ", memberDropReason=" + memberDropReason + ", personBirth=" + personBirth + ", personGender="
+				+ personGender + ", tripStateCd=" + tripStateCd + ", tripStateNm=" + tripStateNm
+				+ ", personTotalMileage=" + personTotalMileage + "]";
 	}
 
 }

@@ -63,4 +63,14 @@ public class MemberDaoImpl implements MemberDao{
 	public List<CompanyVo> companyList(Map<String, Object> map) {
 		return sqlSession.selectList(MEMBER_NS+"companyList", map);
 	}
+	//개인회원상세보기
+	@Override
+	public PersonVo personDetail(String memberId) {
+		return sqlSession.selectOne(MEMBER_NS+"personDetail", memberId);
+	}
+	//업체회원상세보기
+	@Override
+	public CompanyVo companyDetail(String memberId) {
+		return sqlSession.selectOne(MEMBER_NS+"companyDetail", memberId);
+	}
 }

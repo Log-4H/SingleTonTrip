@@ -12,6 +12,7 @@ import com.log4h.singletontrip.member.domain.CompanyVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
 import com.log4h.singletontrip.member.domain.PersonVo;
 import com.log4h.singletontrip.member.repository.MemberDao;
+import com.log4h.singletontrip.member.repository.MemberDaoImpl;
 import com.log4h.singletontrip.util.Paging;
 
 @Service
@@ -83,5 +84,17 @@ public class MemberServiceImpl implements MemberService{
         List<CompanyVo> companyList = memberDao.companyList(map);
         map.put("companyList", companyList);
 		return map;
+	}
+	//개인회원상세보기
+	@Override
+	public PersonVo personDetail(String memberId) {
+		
+		return memberDao.personDetail(memberId);
+	}
+	//업체회원상세보기
+	@Override
+	public CompanyVo companyDetail(String memberId) {
+		
+		return memberDao.companyDetail(memberId);
 	}
 }

@@ -113,6 +113,15 @@ public class CompanyVo {
 	public void setMemberDropReason(String memberDropReason) {
 		this.memberDropReason = memberDropReason;
 	}
+	@Override
+	public String toString() {
+		return "CompanyVo [memberId=" + memberId + ", memberLevel=" + memberLevel + ", memberPw=" + memberPw
+				+ ", memberNm=" + memberNm + ", memberPhone=" + memberPhone + ", memberEmail=" + memberEmail
+				+ ", companyCrd=" + companyCrd + ", companyTypeCd=" + companyTypeCd + ", companyTypeNm=" + companyTypeNm
+				+ ", companyAddress=" + companyAddress + ", memberReportCount=" + memberReportCount + ", memberRegDate="
+				+ memberRegDate + ", actStateCd=" + actStateCd + ", actStateNm=" + actStateNm + ", memberDropDate="
+				+ memberDropDate + ", memberDropReason=" + memberDropReason + "]";
+	}
 
 
 }
