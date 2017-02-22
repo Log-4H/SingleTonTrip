@@ -19,6 +19,9 @@
 <a href="personList">개인회원리스트</a><br>
 <a href="companyList">업체회원리스트</a><br>
 
+<c:if test="${sessionId ne null }">
+<a href="person/postList">포스트</a><br>
+</c:if>
 
 세션아이디 : ${sessionId} <br>
 세션이름 : ${sessionNm }	<br>
