@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mileageMapper">
-
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.log4h.singletontrip.mileage.repository.mileageMapper">
+	<select id="mileageTotalCount" parameterType="String" resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM
+			tb_mileage
+		WHERE
+			person_id = #{memberId}
+		
+	</select>
+	
+	
+	<select id="mileageList" parameterType="Map" resultType ="com.log4h.singletontrip.mileage.domain.MileageVo">
+		SELECT 
+			mileage_no,
+			person_id,
+			mileage_cate_cd,
+			mileage_use_price,
+			mileage_use_date
+		FROM
+			tb_mileage
+		WHERE 
+			person_id = 'person1'
+		ORDER BY mileage_use_date
+		DESC LIMIT #{beginRow}, #{pagePerRow}
+	</select>
 </mapper>
