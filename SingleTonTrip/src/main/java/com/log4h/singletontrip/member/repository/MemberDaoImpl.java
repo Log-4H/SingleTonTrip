@@ -53,4 +53,14 @@ public class MemberDaoImpl implements MemberDao{
 	public List<PersonVo> personList(Map<String, Object> map) {
 		return sqlSession.selectList(MEMBER_NS+"personList", map);
 	}
+	//업체회원 총카운트
+	@Override
+	public int companyTotalCount(Map<String, Object> map) {
+		return sqlSession.selectOne(MEMBER_NS+"companyTotalCount", map);
+	}
+	//업체회원 리스트
+	@Override
+	public List<CompanyVo> companyList(Map<String, Object> map) {
+		return sqlSession.selectList(MEMBER_NS+"companyList", map);
+	}
 }

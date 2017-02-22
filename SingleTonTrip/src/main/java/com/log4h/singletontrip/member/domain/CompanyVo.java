@@ -9,6 +9,7 @@ public class CompanyVo {
 	private String memberEmail;
 	private int companyCrd;
 	private int companyTypeCd;
+	private String companyTypeNm;
 	private String companyAddress;
 	private int memberReportCount;
 	private String memberRegDate;
@@ -16,13 +17,6 @@ public class CompanyVo {
 	private String actStateNm;
 	private String memberDropDate;
 	private String memberDropReason;
-	public int getCompanyTypeCd() {
-		return companyTypeCd;
-	}
-	public void setCompanyTypeCd(int companyTypeCd) {
-		this.companyTypeCd = companyTypeCd;
-	}
-	
 	public String getMemberId() {
 		return memberId;
 	}
@@ -64,6 +58,18 @@ public class CompanyVo {
 	}
 	public void setCompanyCrd(int companyCrd) {
 		this.companyCrd = companyCrd;
+	}
+	public int getCompanyTypeCd() {
+		return companyTypeCd;
+	}
+	public void setCompanyTypeCd(int companyTypeCd) {
+		this.companyTypeCd = companyTypeCd;
+	}
+	public String getCompanyTypeNm() {
+		return companyTypeNm;
+	}
+	public void setCompanyTypeNm(String companyTypeNm) {
+		this.companyTypeNm = companyTypeNm;
 	}
 	public String getCompanyAddress() {
 		return companyAddress;
@@ -107,5 +113,6 @@ public class CompanyVo {
 	public void setMemberDropReason(String memberDropReason) {
 		this.memberDropReason = memberDropReason;
 	}
+
 
 }

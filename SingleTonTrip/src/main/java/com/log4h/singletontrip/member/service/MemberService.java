@@ -15,4 +15,6 @@ public interface MemberService {
 	public int companyJoin(CompanyVo companyVo);
 	//개인회원리스트
 	public Map<String, Object> personList(int currentPage, String selectOption, String selectValue);
+	//업체회원리스트
+	public Map<String, Object> companyList(int currentPage, String selectOption, String selectValue);
 }

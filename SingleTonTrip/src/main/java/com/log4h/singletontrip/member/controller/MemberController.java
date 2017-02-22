@@ -94,7 +94,6 @@ public class MemberController {
 		}
 		return mv;	
 	}
-	
 	//업체회원 가입 처리
 	@RequestMapping(value="companyJoin", method=RequestMethod.POST)
 	public ModelAndView companyJoin(CompanyVo companyVo){
@@ -107,7 +106,6 @@ public class MemberController {
 		}
 		return mv;	
 	}
-	
 	//개인회원리스트
 	@RequestMapping(value="personList", method=RequestMethod.GET)
 	public ModelAndView personList(
@@ -128,4 +126,22 @@ public class MemberController {
 		return mv;	
 	}
 	//업체회원리스트
+	@RequestMapping(value="companyList", method=RequestMethod.GET)
+	public ModelAndView companyList(
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage,
+			@RequestParam(value="selectOption", required=false) String selectOption,
+			@RequestParam(value="selectValue", required=false) String selectValue
+			){
+		Map<String, Object> map = memberService.companyList(currentPage, selectOption, selectValue);
+		ModelAndView mv = new ModelAndView("member/list/companyList");
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("selectOption", selectOption);
+		mv.addObject("selectValue", selectValue);
+		mv.addObject("companyList", map.get("companyList"));
+		mv.addObject("startPage", map.get("startPage"));
+		mv.addObject("pageSize", map.get("pageSize"));
+		mv.addObject("endPage", map.get("endPage"));
+		mv.addObject("lastPage", map.get("lastPage"));
+		return mv;	
+	}
 }

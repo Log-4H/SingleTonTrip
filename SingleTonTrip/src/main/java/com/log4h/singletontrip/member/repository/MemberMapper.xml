@@ -104,10 +104,6 @@
 		tb_person p
 	ON 
 		m.member_id = p.person_id
-	JOIN 
-		tb_act_state a
-	ON 
-		m.act_state_cd = a.act_state_cd
 	<if test="selectValue != null and selectValue !=''">
 	WHERE
 		${selectOption} LIKE '%${selectValue}%'
@@ -131,6 +127,55 @@
 		tb_person p
 	ON 
 		m.member_id = p.person_id
+	JOIN 
+		tb_act_state a
+	ON 
+		m.act_state_cd = a.act_state_cd	
+	<if test="selectValue != null and selectValue !=''">
+	WHERE
+		${selectOption} LIKE '%${selectValue}%'
+	</if>
+	ORDER BY m.member_reg_date
+	DESC LIMIT #{beginRow}, #{pagePerRow}
+</select>
+
+<!-- 업체회원 총 카운트 -->
+<select id="companyTotalCount" parameterType="Map" resultType="int">
+	SELECT
+		COUNT(*)
+	FROM
+		tb_member m
+	JOIN
+		tb_company c
+	ON 
+		m.member_id = c.company_id
+	<if test="selectValue != null and selectValue !=''">
+	WHERE
+		${selectOption} LIKE '%${selectValue}%'
+	</if>
+
+</select>
+
+<!-- 업체회원리스트 -->
+<select id="companyList" parameterType="Map" resultType="com.log4h.singletontrip.member.domain.CompanyVo">
+	SELECT
+		m.member_id,
+		m.member_nm,
+		m.member_phone,
+		m.member_email,
+		c.company_crd,
+		t.company_type_nm,
+		a.act_state_nm
+	FROM
+		tb_member m
+	JOIN
+		tb_company c
+	ON 
+		m.member_id = c.company_id
+	JOIN 
+		tb_company_type t
+	ON 
+		c.company_type_cd = t.company_type_cd	
 	JOIN 
 		tb_act_state a
 	ON 

@@ -70,4 +70,19 @@ public class MemberServiceImpl implements MemberService{
         map.put("personList", personList);
 		return map;
 	}
+	//업체회원리스트
+	@Override
+	public Map<String, Object> companyList(int currentPage, String selectOption, String selectValue) {
+		Map<String, Object> totalCountMap = new HashMap<String, Object>();
+		totalCountMap.put("selectOption", selectOption);
+		totalCountMap.put("selectValue", selectValue);
+        int companyTotalCount = memberDao.companyTotalCount(totalCountMap);
+        Paging paging = new Paging();
+        Map<String, Object> map = paging.pagingMethod(currentPage, companyTotalCount);
+        map.put("selectOption", selectOption);
+        map.put("selectValue", selectValue);
+        List<CompanyVo> companyList = memberDao.companyList(map);
+        map.put("companyList", companyList);
+		return map;
+	}
 }
