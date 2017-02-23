@@ -1,29 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.log4h.singletontrip.mileage.repository.mileageMapper">
-	<select id="mileageTotalCount" parameterType="String" resultType="int">
+<mapper namespace="mileageMapper">
+	
+	<!-- 마일리지 리스트 행의 수 -->
+	<select id="mileageTotalCount" parameterType="Map" resultType="int">
 		SELECT 
-			COUNT(*)
-		FROM
-			tb_mileage
-		WHERE
-			person_id = #{memberId}
-		
+			count(*)			
+		FROM 
+			tb_mileage m
+		JOIN 
+			tb_mileage_cate mct
+		ON 
+			m.mileage_cate_cd = mct.mileage_cate_cd
+		<if test="selectOption != 0">
+		<where>	 
+			<if test="selectValue != null and selectValue !=''">
+				m.person_id LIKE '%${selectValue}%'
+				AND mct.mileage_state = ${selectOption}
+			</if>
+			<if test="selectValue == null and selectValue ==''">
+				m.person_id = ${memberId}
+			</if>
+		</where>
+		</if>		
 	</select>
 	
 	
 	<select id="mileageList" parameterType="Map" resultType ="com.log4h.singletontrip.mileage.domain.MileageVo">
 		SELECT 
-			mileage_no as 'mileageNo',
-			person_id as 'person.memberId',
-			mileage_cate_cd as 'mileageCate.mileageCateCd',
-			mileage_use_price as 'mileageUsePrice',
-			mileage_use_date as 'mileageUseDate'
-		FROM
-			tb_mileage
-		WHERE 
-			person_id = 'person1'
-		ORDER BY mileage_use_date
-		DESC LIMIT #{beginRow}, #{pagePerRow}
+			m.person_id as 'person.memberId', 
+			m.mileage_use_price as 'mileageUsePrice', 
+			m.mileage_use_date as 'mileageUseDate',
+			
+			p.person_total_mileage 'person.personTotalMileage',
+			
+			mct.mileage_cate_nm 'mileageCateNm', 
+			mct.mileage_cate_price 'mileageCatePrice'
+			
+		FROM 
+			tb_mileage m
+		JOIN 
+			tb_person p	
+		ON 
+			m.person_id = p.person_id
+		JOIN 
+			tb_mileage_cate mct
+		ON 
+			m.mileage_cate_cd = mct.mileage_cate_cd
+		<if test="selectOption != null and selectOption !='' ">
+			<where>		
+			<if test="selectValue != null and selectValue !=''">
+				m.person_id LIKE '%${selectValue}%'
+				AND mct.mileage_state = ${selectOption}
+			</if>
+			<if test="selectValue == null and selectValue ==''">
+				m.person_id = ${memberId}
+			</if>
+			</where>
+		</if>		
+		ORDER BY 
+			m.mileage_use_date
+		DESC LIMIT 
+			#{beginRow}, #{pagePerRow}
+		
 	</select>
 </mapper>

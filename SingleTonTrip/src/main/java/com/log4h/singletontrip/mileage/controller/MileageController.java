@@ -25,17 +25,28 @@ public class MileageController {
 	
 	// 마일리지 리스트
 	@RequestMapping(value="mileageList", method=RequestMethod.GET)
-	public ModelAndView mileageList(@ModelAttribute("sessionId") String memberId,
-			@RequestParam(value="currentPage", defaultValue="1") int currentPage
+	public ModelAndView mileageList(
+			@ModelAttribute("sessionId") String memberId,
+			@ModelAttribute("sessionLevel") int memberLevel,
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage,
+			@RequestParam(value="selectOption", defaultValue="0") int selectOption,
+			@RequestParam(value="selectValue", required=false) String selectValue
 			){
-		logger.debug(" >>>>>>> mileageList <<<<<<< ");
 		
-		Map<String, Object> map = mileageService.mileageList(currentPage, memberId);
-		logger.info(" >>>>>>> mileageList에서 리턴 받는 map : {} <<<<<<< ",map);
+		logger.debug(" >>>>>>> mileageList 실행 <<<<<<< ");
+		
+		logger.debug(" >>>>>>> memberId : {} \n memberLevel : {} \n",memberId, memberLevel);
+		logger.debug(" >>>>>>> currentPage : {} \n selectOption : {} \n ",currentPage, selectOption);
+		logger.debug(" >>>>>>> selectValue : {}  ",selectValue);
+		
+		Map<String, Object> map = mileageService.mileageList(currentPage,memberId, memberLevel, selectOption, selectValue);
+		logger.debug(" >>>>>>> mileageList에서 리턴 받는 map : \n {} <<<<<<< ",map);
 		
 		//ModelAndView 객체 생성
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("currentPage", currentPage);
+		mv.addObject("selectOption", selectOption);
+		mv.addObject("selectValue", selectValue);
 		mv.addObject("returnMileageList", map.get("returnMileageList"));
 		mv.addObject("startPage", map.get("startPage"));
 		mv.addObject("pageSize", map.get("pageSize"));
