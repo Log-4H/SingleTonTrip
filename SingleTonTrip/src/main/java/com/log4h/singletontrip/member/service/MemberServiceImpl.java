@@ -97,4 +97,14 @@ public class MemberServiceImpl implements MemberService{
 		
 		return memberDao.companyDetail(memberId);
 	}
+	//회원탈퇴처리
+	@Override
+	public int memberDrop(String memberId, String memberPw) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberId", memberId);
+		map.put("memberPw", memberPw);
+
+		return memberDao.memberDrop(map);
+	}
+
 }

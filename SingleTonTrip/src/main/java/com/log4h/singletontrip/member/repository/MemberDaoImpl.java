@@ -73,4 +73,10 @@ public class MemberDaoImpl implements MemberDao{
 	public CompanyVo companyDetail(String memberId) {
 		return sqlSession.selectOne(MEMBER_NS+"companyDetail", memberId);
 	}
+	//회원탈퇴처리
+	@Override
+	public int memberDrop(Map<String, Object> map) {
+		return sqlSession.update(MEMBER_NS+"memberDrop", map);
+	}
+	
 }
