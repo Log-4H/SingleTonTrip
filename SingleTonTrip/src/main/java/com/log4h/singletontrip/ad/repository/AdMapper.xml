@@ -2,6 +2,52 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="adMapper">
-
+<mapper namespace="com.log4h.singletontrip.ad.repository.AdMapper">
+<!-- 광고 신청 폼에 리스트 뿌리기 -->
+<select id="selectAdPrice"
+		resultType="com.log4h.singletontrip.ad.domain.AdPriceVo">
+	SELECT
+		ad_price_cd as adPriceCd,
+		ad_price_detail as adPriceDetail,
+		ad_price_perday as adPricePerday,
+		ad_price_amount as adPriceAmount,
+		ad_price_total as adPriceTotal
+	FROM
+		tb_ad_price
+</select>
+<!-- 광고 신청 목록 -->
+<select id="selectAdApplyList"
+		resultType="com.log4h.singletontrip.ad.domain.AdVo">
+	SELECT
+		ad_no as adNo,
+		company_id as companyId,
+		ad_content as adContent,
+		ad_apply_date as adApplyDate,
+		approve_state_cd as approveStateCd
+	FROM
+		tb_ad
+</select>
+<!-- 광고 신청 등록 -->
+<insert id="adApply" parameterType="com.log4h.singletontrip.ad.domain.AdVo">
+	INSERT INTO tb_ad 
+		(
+			company_id,
+			ad_price_cd, 
+			ad_content, 
+			ad_total_amount,
+			ad_total_price, 
+			ad_apply_date
+		) 
+	SELECT
+			#{companyId},
+			ad_price_cd, 
+			ad_price_detail, 
+			ad_price_amount, 
+			ad_price_total, 
+			now() 
+	FROM 
+			tb_ad_price 
+	WHERE 
+			ad_price_cd = #{adPriceCd}
+</insert>
 </mapper>
