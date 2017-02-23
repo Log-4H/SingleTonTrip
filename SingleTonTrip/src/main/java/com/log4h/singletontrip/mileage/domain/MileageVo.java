@@ -5,7 +5,31 @@ import com.log4h.singletontrip.member.domain.PersonVo;
 public class MileageVo {
 	private int mileageNo;
 	private PersonVo person;
+	/* * * * * * * * * * * * * * * * *
+	 * private String memberId;
+	 * private int memberLevel;
+	 * private String memberPw;
+	 * private String memberNm;
+	 * private String memberPhone;
+	 * private String memberEmail;
+	 * private int memberReportCount;
+	 * private String memberRegDate;
+	 * private int actStateCd;
+	 * private String actStateNm;
+	 * private String memberDropDate;
+	 * private String memberDropReason;
+	 * private String personBirth;
+	 * private String personGender;
+	 * private String tripStateCd;
+	 * private String tripStateNm;
+	 * private String personTotalMileage; 
+	 *  * * * *  * * * *  * * * *  * * * */
 	private MileageCateVo mileageCate;
+	/* *
+	 * private int mileageCateCd;
+	 * private int mileageCateNm;
+	 * private int mileageCatePrice;
+	 * */
 	private int mileageUsePrice;
 	private String mileageUseDate;
 	

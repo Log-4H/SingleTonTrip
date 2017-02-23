@@ -23,4 +23,9 @@ public class LoginVo {
 	public void setMemberNm(String memberNm) {
 		this.memberNm = memberNm;
 	}
+	@Override
+	public String toString() {
+		return "LoginVo \n[memberId=" + memberId + ", memberLevel=" + memberLevel + ", memberNm=" + memberNm + "]";
+	}
+	
 }

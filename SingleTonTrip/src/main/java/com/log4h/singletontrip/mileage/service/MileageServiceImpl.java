@@ -1,5 +1,6 @@
 package com.log4h.singletontrip.mileage.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.log4h.singletontrip.member.domain.LoginVo;
 import com.log4h.singletontrip.mileage.domain.MileageVo;
 import com.log4h.singletontrip.mileage.repository.MileageDao;
 import com.log4h.singletontrip.util.Paging;
@@ -18,20 +20,31 @@ public class MileageServiceImpl implements MileageService{
 	
 	@Autowired
 	private MileageDao mileageDao;
+	
+	// 마일리지 리스트
 
 	@Override
-	public Map<String, Object> mileageList(int currentPage, String memberId) {
-		logger.info("mileageList currentPage 값 {}, memberId 값 {}",currentPage,memberId );
+	public Map<String, Object> mileageList(int currentPage, String memberId, int memberLevel, int selectOption, String selectValue) {
+		logger.debug("\n >>>>>>> mileageList <<<<<<<");
 		
-		int mileageTotalCount = mileageDao.mileageTotalCount(memberId);
-		logger.info(" mileageList mileageTotalCount 값 {} ",mileageTotalCount);
+		Map<String, Object> totalCountMap = new HashMap<String, Object>();
+		totalCountMap.put("memberId", memberId);
+		totalCountMap.put("selectOption", selectOption);
+		totalCountMap.put("selectValue", selectValue);
 		
-		
+		logger.debug("\n >>>>>>> totalCountMap : {} ", totalCountMap);
+		// 마일리지의 행의 수를 가져온다
+		int mileageTotalCount = mileageDao.mileageTotalCount(totalCountMap);
+		logger.debug("\n >>>>>>> mileageList mileageTotalCount 값 {} ",mileageTotalCount);
 		
 		Paging paging = new Paging();
-        Map<String, Object> map = paging.pagingMethod(currentPage, mileageTotalCount);
-        map.put("memberId", memberId);
         
+		Map<String, Object> map = paging.pagingMethod(currentPage, mileageTotalCount);
+		map.put("selectOption", selectOption);
+	    map.put("selectValue", selectValue);
+	    map.put("memberId", memberId);
+	    
+	 // 마일리지 리스트를 가져온다
         List<MileageVo> returnMileageList = mileageDao.mileageList(map);
         map.put("returnMileageList", returnMileageList);
 		return map;
