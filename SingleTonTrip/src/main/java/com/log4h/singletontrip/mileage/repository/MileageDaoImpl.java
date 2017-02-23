@@ -22,12 +22,13 @@ public class MileageDaoImpl implements MileageDao{
 
 	@Override
 	public int mileageTotalCount(String memberId) {
+		logger.debug(" mileageTotalCount strat . . . ");
 		return sqlSession.selectOne(MILEAGE_NS+"mileageTotalCount", memberId);
 		}
 
 	@Override
 	public List<MileageVo> mileageList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
+		logger.info(" mileageList strat . . . ");
 		return sqlSession.selectList(MILEAGE_NS+"mileageList", map);
 	}
 

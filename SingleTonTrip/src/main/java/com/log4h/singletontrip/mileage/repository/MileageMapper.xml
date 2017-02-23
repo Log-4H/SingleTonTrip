@@ -14,11 +14,11 @@
 	
 	<select id="mileageList" parameterType="Map" resultType ="com.log4h.singletontrip.mileage.domain.MileageVo">
 		SELECT 
-			mileage_no,
-			person_id,
-			mileage_cate_cd,
-			mileage_use_price,
-			mileage_use_date
+			mileage_no as 'mileageNo',
+			person_id as 'person.memberId',
+			mileage_cate_cd as 'mileageCate.mileageCateCd',
+			mileage_use_price as 'mileageUsePrice',
+			mileage_use_date as 'mileageUseDate'
 		FROM
 			tb_mileage
 		WHERE 

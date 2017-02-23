@@ -41,7 +41,7 @@ public class MileageVo {
 	}
 	@Override
 	public String toString() {
-		return "EmptyVo [mileageNo=" + mileageNo + ", person=" + person + ", mileageCate=" + mileageCate
+		return "MileageVo \n[mileageNo=" + mileageNo + ", person=" + person + ", mileageCate=" + mileageCate
 				+ ", mileageUsePrice=" + mileageUsePrice + ", mileageUseDate=" + mileageUseDate + "]";
 	}
 	

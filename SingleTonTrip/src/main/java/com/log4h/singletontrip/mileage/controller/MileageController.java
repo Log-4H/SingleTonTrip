@@ -2,12 +2,11 @@ package com.log4h.singletontrip.mileage.controller;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,17 +25,17 @@ public class MileageController {
 	
 	// 마일리지 리스트
 	@RequestMapping(value="mileageList", method=RequestMethod.GET)
-	public ModelAndView mileageList(HttpSession session, 
+	public ModelAndView mileageList(@ModelAttribute("sessionId") String memberId,
 			@RequestParam(value="currentPage", defaultValue="1") int currentPage
 			){
-		logger.info(" >>>>>>> mileageList <<<<<<< ");
-		String memberId = (String) session.getAttribute("sessionId");
+		logger.debug(" >>>>>>> mileageList <<<<<<< ");
 		
 		Map<String, Object> map = mileageService.mileageList(currentPage, memberId);
+		logger.info(" >>>>>>> mileageList에서 리턴 받는 map : {} <<<<<<< ",map);
+		
 		//ModelAndView 객체 생성
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("currentPage", currentPage);
-	
 		mv.addObject("returnMileageList", map.get("returnMileageList"));
 		mv.addObject("startPage", map.get("startPage"));
 		mv.addObject("pageSize", map.get("pageSize"));

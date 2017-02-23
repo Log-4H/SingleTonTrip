@@ -21,10 +21,13 @@ public class MileageServiceImpl implements MileageService{
 
 	@Override
 	public Map<String, Object> mileageList(int currentPage, String memberId) {
-		logger.debug("mileageList currentPage 값 {}, memberId 값 {}",currentPage,memberId );
+		logger.info("mileageList currentPage 값 {}, memberId 값 {}",currentPage,memberId );
 		
 		int mileageTotalCount = mileageDao.mileageTotalCount(memberId);
-        
+		logger.info(" mileageList mileageTotalCount 값 {} ",mileageTotalCount);
+		
+		
+		
 		Paging paging = new Paging();
         Map<String, Object> map = paging.pagingMethod(currentPage, mileageTotalCount);
         map.put("memberId", memberId);
