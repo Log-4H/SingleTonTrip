@@ -249,6 +249,18 @@
 		member_id=#{memberId}
 </select>
 
-
+<!-- 회원탈퇴처리 -->
+<update id="memberDrop" parameterType="Map">
+	UPDATE
+		tb_member
+	SET
+		act_state_cd='6',
+		member_drop_date=now(),
+		member_drop_reason='test'
+	WHERE
+		member_id= #{memberId}
+	AND
+		member_pw= #{memberPw}
+</update>
 
 </mapper>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,6 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<form action="memberDrop" method="post">
+		<div>비밀번호 확인</div>
+		<div><input type="password" name="memberPw"/></div>
+		<div><input type="hidden" name="memberId" value="${memberId}"/></div>
+		<input type="submit" value="삭제하기"/>
+	</form>
 </body>
 </html>

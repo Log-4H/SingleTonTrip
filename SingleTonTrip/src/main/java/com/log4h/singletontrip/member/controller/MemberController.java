@@ -161,4 +161,22 @@ public class MemberController {
 		mv.addObject("companyVo" , memberService.companyDetail(memberId));
 		return mv;
 	}
+	//개인&업체회원탈퇴처리페이지이동
+	@RequestMapping(value="memberDrop", method=RequestMethod.GET)
+	public ModelAndView memberDrop(
+			@RequestParam(value="memberId") String memberId){
+		ModelAndView mv = new ModelAndView("member/drop/memberDrop");
+		mv.addObject("memberId", memberId);
+		return mv;
+	}
+
+	//개인&업체회원탈퇴처리
+	@RequestMapping(value="memberDrop", method=RequestMethod.POST)
+	public ModelAndView memberDrop(
+			@RequestParam(value="memberId") String memberId,
+			@RequestParam(value="memberPw") String memberPw){
+		memberService.memberDrop(memberId, memberPw);
+		ModelAndView mv = new ModelAndView("redirect:index");
+		return mv;
+	}
 }
