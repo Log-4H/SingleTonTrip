@@ -2,6 +2,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="/WEB-INF/views/module/top.jsp"></c:import>
 <script>
+$(document).on('click', '#postAddBtn', function(){
+	var formData = new FormData($("#postAddForm")[0]);
+	var html = ""
+	$.ajax({
+		url : "postAdd",
+		type : "POST",
+		data : formData,
+		dataType : "json",
+		contentType: false,
+        processData: false,
+        cache: false,
+		success : function(data) {
+			var postList = data.postList;
+			html = postAppend(postList);
+			$("#postList").empty();
+			$("#postList").append(html);
+		}
+	})
+});
+
 $(document).on('click', '#addList', function(){
 	var beginRow = $('#beginRow').attr('value');
 	beginRow = Number(beginRow);
@@ -14,28 +34,32 @@ $(document).on('click', '#addList', function(){
 		success : function(data) {
 			$('#beginRow').val(beginRow+5);
 			var postList = data.postList;
-			$.each(postList, function(key, item) {
-				html+="<div class='w3-container w3-card-2 w3-white w3-round w3-margin'><br>";
-				html+="<span class='w3-right w3-opacity'>"+item.postRegDate+"</span>";
-				html+="<h4>"+item.postTitle+"</h4><br>";
-				html+="<hr class='w3-clear'>";
-				html+="<p>"+item.postContent+"</p>";
-				if(item.postImg!=null){
-					html+="<div class='w3-row-padding' style='margin:0 -16px'>";
-					html+="<div class='w3-half'>";
-					html+="<img src='<c:url value='/images/"+item.postImg+"'/>' style='width:100%' class='w3-margin-bottom'>";
-					html+="</div>";
-					html+="</div>";
-				}
-				html+="<button type='button' class='w3-btn w3-theme-d2 w3-margin-bottom'><i class='fa fa-comment'></i>  Comment</button> ";
-				html+="</div>";
-				})
+			html = postAppend(postList);
 			$("#scrollPost").append(html);
 		}
 	})
 });
-	
-	
+function postAppend(postList){
+	var html = "";
+	$.each(postList, function(key, item) {
+		html+="<div class='w3-container w3-card-2 w3-white w3-round w3-margin'><br>";
+		html+="<span class='w3-right w3-opacity'>"+item.postRegDate+"</span>";
+		html+="<h4>"+item.postTitle+"</h4><br>";
+		html+="<hr class='w3-clear'>";
+		html+="<p>"+item.postContent+"</p>";
+		if(item.postImg!=null){
+			html+="<div class='w3-row-padding' style='margin:0 -16px'>";
+			html+="<div class='w3-half'>";
+			html+="<img src='<c:url value='/images/"+item.postImg+"'/>' style='width:100%' class='w3-margin-bottom'>";
+			html+="</div>";
+			html+="</div>";
+		}
+		html+="<button type='button' class='w3-btn w3-theme-d2 w3-margin-bottom'><i class='fa fa-comment'></i>  Comment</button> ";
+		html+="</div>";
+		})
+	return html;
+}
+
 </script>
 <!-- Page Container -->
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
@@ -130,32 +154,41 @@ $(document).on('click', '#addList', function(){
     
     <!-- Middle Column -->
     <div class="w3-col m7">
-    
+    <div class="w3-row-padding">
+    <ul class="nav nav-tabs">
+  <li class="active"><a href="#home" data-toggle="tab" aria-expanded="false">Home</a></li>
+  <li class=""><a href="#home" data-toggle="tab" aria-expanded="false">Home</a></li>
+  <li class=""><a href="#home" data-toggle="tab" aria-expanded="false">Home</a></li>
+  <li class=""><a href="#profile" data-toggle="tab" aria-expanded="true">Profile</a></li> 
+</ul>
+</div>
     <input type="hidden" id="beginRow" name="beginRow" value="5">
     
     
-    <form enctype="multipart/form-data" action="postAdd" method="post">
+    
       <div class="w3-row-padding">
         <div class="w3-col m12">
           <div class="w3-card-2 w3-round w3-white">
             <div class="w3-container w3-padding">
               <h6 class="w3-opacity">포스트 등록</h6>
+              <form enctype="multipart/form-data" id="postAddForm">
                <input type="text" class="form-control" id="postTitle" name="postTitle" placeholder="title">
                <hr class="w3-clear">
                <textarea class="form-control" rows="3" id="postContent" name="postContent" style="resize:none;" placeholder="content"></textarea>
                <hr class="w3-clear">
                이미지 등록<input type="file" name="imgFile"><br>
-              <button type="submit" class="w3-btn w3-theme"><i class="fa fa-pencil"></i>  Post</button> 
+                 </form>
+              <button class="w3-btn w3-theme" id="postAddBtn"><i class="fa fa-pencil"></i>  Post</button> 
             </div>
           </div>
         </div>
       </div>
-      </form>
+    
       
       
       
       
-      
+      <div id="postList">
       <c:forEach items="${postList}" var="p">
       <div class="w3-container w3-card-2 w3-white w3-round w3-margin"><br>
         <span class="w3-right w3-opacity">${p.postRegDate }</span>
@@ -174,7 +207,7 @@ $(document).on('click', '#addList', function(){
         
       </div>
       </c:forEach>
-       
+      </div>
        <div id="scrollPost">
        
        </div>

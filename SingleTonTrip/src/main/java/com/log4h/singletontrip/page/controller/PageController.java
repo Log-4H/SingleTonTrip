@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.log4h.singletontrip.page.domain.PostVo;
@@ -31,10 +32,10 @@ public class PageController {
 		return mv;	
 	}
 	
-	//포스트 리스트
+	//포스트 리스트 추가
 	@RequestMapping(value="person/postAddList", method=RequestMethod.POST)
 	public ModelAndView postAddList(@ModelAttribute("sessionId") String memberId,
-			@RequestParam(value="beginRow", defaultValue="1") int beginRow){
+			@RequestParam(value="beginRow") int beginRow){
 		List<PostVo> postList = pageService.postList(memberId, beginRow);
 		ModelAndView mv = new ModelAndView("jsonView");
 		mv.addObject("postList", postList);
@@ -43,16 +44,21 @@ public class PageController {
 	
 	//포스트 등록
 	@RequestMapping(value="person/postAdd", method=RequestMethod.POST)
-	public ModelAndView postAdd(PostVo postVo,
+	public ModelAndView postAdd(MultipartHttpServletRequest multi,
 			@ModelAttribute("sessionId") String memberId,
-			@RequestParam(value="imgFile", required=false) MultipartFile imgFile){
+			@RequestParam(value="beginRow", defaultValue="0") int beginRow){
+		ModelAndView mv = new ModelAndView("jsonView");
+		PostVo postVo = new PostVo();
+		String postTitle = multi.getParameter("postTitle");
+		String postContent = multi.getParameter("postContent");
+		postVo.setPostTitle(postTitle);
+		postVo.setPostContent(postContent);
 		postVo.setMemberId(memberId);
+		MultipartFile imgFile = multi.getFile("imgFile");
 		int result = pageService.postAdd(postVo, imgFile);
-		ModelAndView mv = new ModelAndView();
 		if(result>0){
-			mv.setViewName("redirect:postList");
-		}else{
-			mv.setViewName("error");
+			List<PostVo> postList = pageService.postList(memberId, beginRow);
+			mv.addObject("postList", postList);
 		}
 		return mv;	
 	}
