@@ -1,6 +1,7 @@
 package com.log4h.singletontrip.page.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class PageDaoImpl implements PageDao{
 	
 	//포스트리스트
 	@Override
-	public List<PostVo> postList(String memberId) {
-		return sqlSession.selectList(PAGE_NS+"postList", memberId);
+	public List<PostVo> postList(Map<String, Object> map) {
+		return sqlSession.selectList(PAGE_NS+"postList", map);
 	}
 	
 	//포스트등록
