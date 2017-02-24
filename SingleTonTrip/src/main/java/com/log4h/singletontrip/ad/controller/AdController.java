@@ -1,10 +1,11 @@
 package com.log4h.singletontrip.ad.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,6 @@ import com.log4h.singletontrip.ad.service.AdService;
 
 @Controller
 public class AdController {
-	Logger logger;
 	/*
 	 * 모든 메소드의 리턴타입은 ModelAndView 로한다 (String 타입 x)
 	 * 
@@ -47,12 +47,12 @@ public class AdController {
 	}
 	
 	// 광고 신청 리스트
-	@RequestMapping(value="adAppllyList")
+	@RequestMapping(value="adApplyList")
 	public ModelAndView adAppllyList(){
 		ModelAndView mv = new ModelAndView();
 		List<AdVo> adApplyList = adService.selectAdApplyList();
 		mv.addObject("adApplyList",adApplyList);
-		mv.setViewName("advertisement/adAppllyList");
+		mv.setViewName("advertisement/adApplyList");
 		
 		return mv;
 	}
@@ -75,7 +75,19 @@ public class AdController {
 		String companyId = (String) request.getSession().getAttribute("sessionId");
 		adVo.setCompanyId(companyId);
 		adService.adApply(adVo);
-		mv.setViewName("redirect:adAppllyList");
+		mv.setViewName("redirect:payAdd");
+		return mv;
+	}
+	
+	// 결제 폼
+	@RequestMapping(value="payAdd", method=RequestMethod.GET)
+	public ModelAndView payAdd(HttpServletRequest request,AdVo adVo){
+		ModelAndView mv = new ModelAndView();
+		String companyId = (String) request.getSession().getAttribute("sessionId");
+		Map<String,Object>map = adService.paymentList(companyId);
+		mv.addObject("total",map.get("total"));
+		mv.addObject("paymentList",map.get("paymentList"));
+		mv.setViewName("payment/payAdd");
 		
 		return mv;
 	}

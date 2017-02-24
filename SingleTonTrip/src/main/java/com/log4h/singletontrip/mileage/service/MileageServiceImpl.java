@@ -22,17 +22,19 @@ public class MileageServiceImpl implements MileageService{
 	private MileageDao mileageDao;
 	
 	// 마일리지 리스트
-
 	@Override
-	public Map<String, Object> mileageList(int currentPage, String memberId, int memberLevel, int selectOption, String selectValue) {
+	public Map<String, Object> mileageList(int currentPage, LoginVo login, int selectOption, String selectValue) {
 		logger.debug("\n >>>>>>> mileageList <<<<<<<");
+
+		logger.debug("\n >>>>>>> login 값 {}", login);
+		logger.debug("\n >>>>>>> selectOption 값 {} ", selectOption);
+		logger.debug("\n >>>>>>> selectValue 값 {} ", selectValue);
 		
 		Map<String, Object> totalCountMap = new HashMap<String, Object>();
-		totalCountMap.put("memberId", memberId);
 		totalCountMap.put("selectOption", selectOption);
 		totalCountMap.put("selectValue", selectValue);
+		totalCountMap.put("login", login);
 		
-		logger.debug("\n >>>>>>> totalCountMap : {} ", totalCountMap);
 		// 마일리지의 행의 수를 가져온다
 		int mileageTotalCount = mileageDao.mileageTotalCount(totalCountMap);
 		logger.debug("\n >>>>>>> mileageList mileageTotalCount 값 {} ",mileageTotalCount);
@@ -42,16 +44,12 @@ public class MileageServiceImpl implements MileageService{
 		Map<String, Object> map = paging.pagingMethod(currentPage, mileageTotalCount);
 		map.put("selectOption", selectOption);
 	    map.put("selectValue", selectValue);
-	    map.put("memberId", memberId);
+	    map.put("login", login);
 	    
-	 // 마일리지 리스트를 가져온다
-        List<MileageVo> returnMileageList = mileageDao.mileageList(map);
-        map.put("returnMileageList", returnMileageList);
-		return map;
+	    // 마일리지 리스트를 가져온다
+	    List<MileageVo> returnMileageList = mileageDao.mileageList(map);
+	    map.put("returnMileageList", returnMileageList);
+	    return map;
 	}
-
-
-
-
 	
 }

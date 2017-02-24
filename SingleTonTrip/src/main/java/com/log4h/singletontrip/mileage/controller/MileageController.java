@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.log4h.singletontrip.member.domain.LoginVo;
 import com.log4h.singletontrip.mileage.service.MileageService;
 
 @Controller
@@ -26,20 +27,22 @@ public class MileageController {
 	// 마일리지 리스트
 	@RequestMapping(value="mileageList", method=RequestMethod.GET)
 	public ModelAndView mileageList(
-			@ModelAttribute("sessionId") String memberId,
-			@ModelAttribute("sessionLevel") int memberLevel,
+			@ModelAttribute("sessionId") String sessionId,
+			@ModelAttribute("sessionLevel") int sessionLevel,
 			@RequestParam(value="currentPage", defaultValue="1") int currentPage,
 			@RequestParam(value="selectOption", defaultValue="0") int selectOption,
 			@RequestParam(value="selectValue", required=false) String selectValue
 			){
-		
 		logger.debug(" >>>>>>> mileageList 실행 <<<<<<< ");
 		
-		logger.debug(" >>>>>>> memberId : {} \n memberLevel : {} \n",memberId, memberLevel);
+		logger.debug(" >>>>>>> memberId : {} \n memberLevel : {} \n",sessionId, sessionLevel);
 		logger.debug(" >>>>>>> currentPage : {} \n selectOption : {} \n ",currentPage, selectOption);
 		logger.debug(" >>>>>>> selectValue : {}  ",selectValue);
-		
-		Map<String, Object> map = mileageService.mileageList(currentPage,memberId, memberLevel, selectOption, selectValue);
+		LoginVo login = new LoginVo();
+		login.setMemberId(sessionId);
+		login.setMemberLevel(sessionLevel);
+				
+		Map<String, Object>map = mileageService.mileageList(currentPage,login, selectOption, selectValue);
 		logger.debug(" >>>>>>> mileageList에서 리턴 받는 map : \n {} <<<<<<< ",map);
 		
 		//ModelAndView 객체 생성
