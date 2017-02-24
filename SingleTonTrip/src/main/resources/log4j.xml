@@ -12,10 +12,7 @@
 	
 	<!-- Application Loggers -->
 	<logger name="com.log4h.singletontrip">
-		<level value="info"/>
-	</logger>
-	<logger name="com.log4h.singletontrip.member.controller">
-		<level value="debug"/>
+		<level value="debug" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->

@@ -29,8 +29,6 @@ public class MemberController {
 	@RequestMapping(value="login", method=RequestMethod.GET)
 	public ModelAndView login(){
 		ModelAndView mv = new ModelAndView("member/login/memberLogin");
-		logger.debug("debug test...");
-		logger.info("info test...");
 		return mv;	
 	}
 

@@ -12,56 +12,75 @@
 			tb_mileage_cate mct
 		ON 
 			m.mileage_cate_cd = mct.mileage_cate_cd
-		<if test="selectOption != 0">
-		<where>	 
-			<if test="selectValue != null and selectValue !=''">
-				m.person_id LIKE '%${selectValue}%'
-				AND mct.mileage_state = ${selectOption}
-			</if>
-			<if test="selectValue == null and selectValue ==''">
-				m.person_id = ${memberId}
-			</if>
-		</where>
-		</if>		
+		<choose>
+			<when test="login.memberLevel == 1">
+				<if test="selectOption != 0">
+					WHERE
+					mct.mileage_state = ${selectOption}
+				</if>
+					
+				<if test ="selectValue != null and selectValue !='' ">
+					AND
+						m.person_id LIKE '%${selectValue}%'		
+				</if>
+			</when>
+			<otherwise>
+				WHERE
+					m.person_id = #{login.memberId}
+				<if test="selectOption != 0">
+					AND
+						mct.mileage_state = ${selectOption}
+				</if>
+			</otherwise>
+		</choose>
 	</select>
 	
 	
 	<select id="mileageList" parameterType="Map" resultType ="com.log4h.singletontrip.mileage.domain.MileageVo">
-		SELECT 
+		SELECT
 			m.person_id as 'person.memberId', 
 			m.mileage_use_price as 'mileageUsePrice', 
 			m.mileage_use_date as 'mileageUseDate',
 			
-			p.person_total_mileage 'person.personTotalMileage',
+			mct.mileage_state as 'mileageCate.mileageState', 
+			mct.mileage_cate_nm as 'mileageCate.mileageCateNm', 
+			mct.mileage_cate_price as 'mileageCate.mileageCatePrice',
 			
-			mct.mileage_cate_nm 'mileageCateNm', 
-			mct.mileage_cate_price 'mileageCatePrice'
-			
+			p.person_total_mileage as 'person.personTotalMileage'	
 		FROM 
 			tb_mileage m
-		JOIN 
-			tb_person p	
-		ON 
-			m.person_id = p.person_id
 		JOIN 
 			tb_mileage_cate mct
 		ON 
 			m.mileage_cate_cd = mct.mileage_cate_cd
-		<if test="selectOption != null and selectOption !='' ">
-			<where>		
-			<if test="selectValue != null and selectValue !=''">
-				m.person_id LIKE '%${selectValue}%'
-				AND mct.mileage_state = ${selectOption}
-			</if>
-			<if test="selectValue == null and selectValue ==''">
-				m.person_id = ${memberId}
-			</if>
-			</where>
-		</if>		
+		JOIN 
+			tb_person p	
+		ON 
+			m.person_id = p.person_id
+			
+		<choose>
+			<when test="login.memberLevel == 1">
+				<if test="selectOption != 0">
+					WHERE
+					 mct.mileage_state = ${selectOption}
+				</if>
+				<if test ="selectValue != null and selectValue !='' ">
+					AND
+						m.person_id LIKE '%${selectValue}%'		
+				</if>
+			</when>
+			<otherwise>
+				WHERE
+					m.person_id = #{login.memberId}
+				<if test="selectOption != 0">
+					AND
+						mct.mileage_state = ${selectOption}
+				</if>
+			</otherwise>
+		</choose>
 		ORDER BY 
 			m.mileage_use_date
 		DESC LIMIT 
 			#{beginRow}, #{pagePerRow}
-		
 	</select>
 </mapper>

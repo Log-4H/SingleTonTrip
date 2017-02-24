@@ -17,7 +17,7 @@ public class PersonVo {
 	private String personGender;
 	private String tripStateCd;
 	private String tripStateNm;
-	private String personTotalMileage;
+	private int personTotalMileage;
 	public String getTripStateCd() {
 		return tripStateCd;
 	}
@@ -30,10 +30,10 @@ public class PersonVo {
 	public void setTripStateNm(String tripStateNm) {
 		this.tripStateNm = tripStateNm;
 	}
-	public String getPersonTotalMileage() {
+	public int getPersonTotalMileage() {
 		return personTotalMileage;
 	}
-	public void setPersonTotalMileage(String personTotalMileage) {
+	public void setPersonTotalMileage(int personTotalMileage) {
 		this.personTotalMileage = personTotalMileage;
 	}
 	public String getMemberId() {

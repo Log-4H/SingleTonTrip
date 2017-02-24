@@ -6,7 +6,6 @@ import com.log4h.singletontrip.member.domain.LoginVo;
 
 public interface MileageService {
 
-	Map<String, Object> mileageList(int currentPage, String memberId, int memberLevel, int selectOption,
-			String selectValue);
+	Map<String, Object> mileageList(int currentPage, LoginVo login, int selectOption, String selectValue);
 
 }
