@@ -2,16 +2,16 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.log4h.singletontrip.ad.repository.AdMapper">
+<mapper namespace="AdMapper">
 <!-- 광고 신청 폼에 리스트 뿌리기 -->
 <select id="selectAdPrice"
 		resultType="com.log4h.singletontrip.ad.domain.AdPriceVo">
 	SELECT
-		ad_price_cd as adPriceCd,
-		ad_price_detail as adPriceDetail,
-		ad_price_perday as adPricePerday,
-		ad_price_amount as adPriceAmount,
-		ad_price_total as adPriceTotal
+		ad_price_cd,
+		ad_price_detail,
+		ad_price_perday,
+		ad_price_amount,
+		ad_price_total
 	FROM
 		tb_ad_price
 </select>
@@ -19,16 +19,16 @@
 <select id="selectAdApplyList"
 		resultType="com.log4h.singletontrip.ad.domain.AdVo">
 	SELECT
-		ad_no as adNo,
-		company_id as companyId,
-		ad_content as adContent,
-		ad_apply_date as adApplyDate,
-		approve_state_cd as approveStateCd
+		ad_no,
+		company_id,
+		ad_content,
+		ad_apply_date,
+		approve_state_cd
 	FROM
 		tb_ad
 </select>
 <!-- 광고 신청 등록 -->
-<insert id="adApply" parameterType="com.log4h.singletontrip.ad.domain.AdVo">
+<insert id="adApply" parameterType="com.log4h.singletontrip.ad.domain.AdVo" useGeneratedKeys="true"  keyProperty="adNo" >
 	INSERT INTO tb_ad 
 		(
 			company_id,
@@ -50,4 +50,47 @@
 	WHERE 
 			ad_price_cd = #{adPriceCd}
 </insert>
+<!-- 광고 신청 등록 -->
+<insert id="adApplyPayment" parameterType="com.log4h.singletontrip.ad.domain.AdVo">
+	INSERT INTO tb_payment
+		(
+			member_id,
+			payment_cate_cd,
+			payment_target_no,
+			payment_total_price, 
+			payment_apply_date
+		) 
+	SELECT
+			company_id,
+			2, 
+			#{adNo}, 
+			ad_total_price, 
+			ad_apply_date 
+	FROM 
+			tb_ad
+	WHERE 
+			ad_no = #{adNo}
+</insert>
+<!-- 결제 목록 가져오기 -->
+<select id="paymentList"
+		resultType="com.log4h.singletontrip.ad.domain.AdVo">
+	SELECT
+		ad_no,
+		ad_content,
+		ad_total_price
+	FROM
+		tb_ad
+	WHERE
+		company_id = #{companyId}
+</select>
+<!-- 결제 목록들의 합계 구하기 -->
+<select id="totalPrice"
+		resultType="int">
+	SELECT 
+		SUM(ad_total_price) 
+	FROM 
+		tb_ad
+	WHERE 
+		company_id = #{companyId}
+</select>
 </mapper>
