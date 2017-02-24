@@ -8,6 +8,12 @@
 <title>광고 신청 리스트</title>
 </head>
 <body>
+<c:if test="${sessionLevel eq null || sessionLevel ne '1'}">
+<script type="text/javascript">
+	alert('관리자 전용 페이지 입니다');
+</script>
+<% response.sendRedirect("index"); %>
+</c:if>
 <h1>신청 리스트</h1>
 <table border="1">
  	<tr>
@@ -18,7 +24,7 @@
  		<th>상태</th>
  		<th>여부</th>
  	</tr>
- <c:forEach var="a" items="${adApplyList}">
+<c:forEach var="a" items="${adApplyList}">
  	<tr>
  		<td>${a.adNo}</td>
  		<td>${a.companyId}</td>

@@ -80,8 +80,14 @@
 		ad_total_price
 	FROM
 		tb_ad
+	JOIN
+		tb_payment
 	WHERE
 		company_id = #{companyId}
+	AND
+		tb_payment.payment_state_cd=1
+	GROUP BY 
+		ad_no
 </select>
 <!-- 결제 목록들의 합계 구하기 -->
 <select id="totalPrice"
