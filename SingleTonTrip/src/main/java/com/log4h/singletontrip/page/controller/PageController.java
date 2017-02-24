@@ -1,6 +1,7 @@
 package com.log4h.singletontrip.page.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.log4h.singletontrip.page.domain.PostCommentVo;
 import com.log4h.singletontrip.page.domain.PostVo;
 import com.log4h.singletontrip.page.service.PageService;
 
@@ -26,22 +28,22 @@ public class PageController {
 	@RequestMapping(value="person/postList", method=RequestMethod.GET)
 	public ModelAndView postList(@ModelAttribute("sessionId") String memberId,
 			@RequestParam(value="beginRow", defaultValue="0") int beginRow){
-		List<PostVo> postList = pageService.postList(memberId, beginRow);
 		ModelAndView mv = new ModelAndView("person/post/postList");
-		mv.addObject("postList", postList);
+		Map<String, Object> map = pageService.postList(memberId, beginRow);
+		mv.addObject("postList", map.get("postList"));
+		mv.addObject("postCommentList", map.get("postCommentList"));
 		return mv;	
 	}
-	
 	//포스트 리스트 추가
 	@RequestMapping(value="person/postAddList", method=RequestMethod.POST)
 	public ModelAndView postAddList(@ModelAttribute("sessionId") String memberId,
 			@RequestParam(value="beginRow") int beginRow){
-		List<PostVo> postList = pageService.postList(memberId, beginRow);
 		ModelAndView mv = new ModelAndView("jsonView");
-		mv.addObject("postList", postList);
-		return mv;	
+		Map<String, Object> map = pageService.postList(memberId, beginRow);
+		mv.addObject("postList", map.get("postList"));
+		mv.addObject("postCommentList", map.get("postCommentList"));
+		return mv;
 	}
-	
 	//포스트 등록
 	@RequestMapping(value="person/postAdd", method=RequestMethod.POST)
 	public ModelAndView postAdd(MultipartHttpServletRequest multi,
@@ -57,9 +59,22 @@ public class PageController {
 		MultipartFile imgFile = multi.getFile("imgFile");
 		int result = pageService.postAdd(postVo, imgFile);
 		if(result>0){
-			List<PostVo> postList = pageService.postList(memberId, beginRow);
-			mv.addObject("postList", postList);
+			Map<String, Object> map = pageService.postList(memberId, beginRow);
+			mv.addObject("postList", map.get("postList"));
+			mv.addObject("postCommentList", map.get("postCommentList"));
 		}
 		return mv;	
+	}
+	
+	//댓글 등록
+	@RequestMapping(value="person/postCommentAdd", method=RequestMethod.POST)
+	public ModelAndView postCommentAdd(@ModelAttribute("sessionId") String memberId,
+			@RequestParam(value="postNo") int postNo,
+			@RequestParam(value="postCommentContent") String postCommentContent){
+		System.out.println(postNo);
+		ModelAndView mv = new ModelAndView("jsonView");
+		List<PostCommentVo> commentList= pageService.postCommentAdd(postNo, memberId, postCommentContent);
+		mv.addObject("commentList", commentList);
+		return mv;
 	}
 }

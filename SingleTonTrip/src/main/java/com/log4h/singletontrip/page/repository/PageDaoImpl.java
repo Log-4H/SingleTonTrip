@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.log4h.singletontrip.page.domain.PostCommentVo;
 import com.log4h.singletontrip.page.domain.PostVo;
 
 @Repository
@@ -26,5 +27,16 @@ public class PageDaoImpl implements PageDao{
 	@Override
 	public int postInsert(PostVo postVo) {
 		return sqlSession.insert(PAGE_NS+"postInsert", postVo);
+	}
+	
+	//포스트 댓글리스트
+	@Override
+	public List<PostCommentVo> postCommentList(Map<String, Object> map) {
+		return sqlSession.selectList(PAGE_NS+"postCommentList", map);
+	}
+	//포스트 댓글 등록
+	@Override
+	public int postCommentInsert(PostCommentVo postCommentVo) {
+		return sqlSession.insert(PAGE_NS+"postCommentInsert", postCommentVo);
 	}
 }
