@@ -19,58 +19,67 @@
 <body>
 	<!--navbar-->
 	<nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-				<span class="icon-bar"></span> 
-				<span class="icon-bar"></span> 
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#myPage">Trip</a>
-		</div>
-		<form class="navbar-form navbar-left">
-			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Search">
-				<div class="input-group-btn">
-					<button class="btn btn-default" type="submit">
-						<i class="glyphicon glyphicon-search"></i>
-					</button>
-				</div>
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#myPage">Trip</a>
 			</div>
-		</form>
-		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#band">호스팅하기</a></li>
-				<li><a href="#tour">여행</a></li>
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">메세지 
-						<span class="badge">3</span>
-					</a>
+			<form class="navbar-form navbar-left">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Search">
+					<div class="input-group-btn">
+						<button class="btn btn-default" type="submit">
+							<i class="glyphicon glyphicon-search"></i>
+						</button>
+					</div>
+				</div>
+			</form>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="#band">호스팅하기</a>
+					</li>
+					<li>
+						<a href="#tour">여행</a>
+					</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							메세지 
+							<span class="badge">3</span>
+						</a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Merchandise</a></li>
 							<li><a href="#">Extras</a></li>
 							<li><a href="#">Media</a></li>
 						</ul>
-						<li>
-							<a href="#contact">도움말</a>
-						</li>
-						<li>
-							<a href="#">
-								<span class="glyphicon glyphicon-user"></span>
-								회원가입
-							</a>
-						</li>
-						<li>
-							<a href="#" id="myBtn">
-								<span class="glyphicon glyphicon-log-in"></span> 
-								로그인
-							</a>
-						</li>
-			</ul>
+					<li>
+						<a href="#contact">도움말</a>
+					</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#"> 
+							<span class="glyphicon glyphicon-user"></span>
+							내정보
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="mileageList">mileage</a></li>
+							<li><a href="#">Extras</a></li>
+							<li><a href="#">Media</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#" id="myBtn"> 
+							<span class="glyphicon glyphicon-log-in"></span> 
+							로그인
+						</a>
+					</li>
+				</ul>
+			</div>
 		</div>
-	</div>
 	</nav>
-	
+
 	<!-- First Parallax Image with Logo Text -->
 	<div class="bgimg w3-display-container w3-opacity-min" id="home">
 		<div
@@ -97,18 +106,16 @@
 				<div class="modal-body" style="padding: 40px 50px;">
 					<form role="form">
 						<div class="form-group">
-							<label for="usrname">
-								<span class="glyphicon glyphicon-user"></span> 
-								아이디
-							</label>
-							<input type="text" class="form-control" id="usrname" placeholder="Enter id">
+							<label for="usrname"> <span
+								class="glyphicon glyphicon-user"></span> 아이디
+							</label> <input type="text" class="form-control" id="usrname"
+								placeholder="Enter id">
 						</div>
 						<div class="form-group">
-							<label for="psw">
-								<span class="glyphicon glyphicon-eye-open"></span> 
-								비밀번호
-							</label> 
-							<input type="password" class="form-control" id="psw" placeholder="Enter password">
+							<label for="psw"> <span
+								class="glyphicon glyphicon-eye-open"></span> 비밀번호
+							</label> <input type="password" class="form-control" id="psw"
+								placeholder="Enter password">
 						</div>
 						<div class="checkbox">
 							<label><input type="checkbox" value="">아이디저장</label>
@@ -119,7 +126,8 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
+					<button type="submit" class="btn btn-danger btn-default pull-left"
+						data-dismiss="modal">
 						<span class="glyphicon glyphicon-remove"></span> 취소
 					</button>
 					<p>
