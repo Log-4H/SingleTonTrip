@@ -85,9 +85,28 @@ public class AdController {
 		ModelAndView mv = new ModelAndView();
 		String companyId = (String) request.getSession().getAttribute("sessionId");
 		Map<String,Object>map = adService.paymentList(companyId);
-		mv.addObject("total",map.get("total"));
+		int total = (int) map.get("total");
+		mv.addObject("total",total);
 		mv.addObject("paymentList",map.get("paymentList"));
 		mv.setViewName("payment/payAdd");
+		
+		return mv;
+	}
+	
+	// 결제
+	@RequestMapping(value="payment", method=RequestMethod.POST)
+	public ModelAndView payment(HttpServletRequest request){
+		ModelAndView mv = new ModelAndView();
+		Map<String,Object>map = new HashMap<String,Object>();
+		String companyId = (String) request.getSession().getAttribute("sessionId");
+		int total = Integer.parseInt(request.getParameter("total"));
+		int mileage = Integer.parseInt(request.getParameter("mileage"));
+		map.put("companyId", companyId);
+		map.put("total", total);
+		map.put("mileage", mileage);
+		adService.payment(map);
+		mv.setViewName("redirect:payAdd");
+		
 		
 		return mv;
 	}

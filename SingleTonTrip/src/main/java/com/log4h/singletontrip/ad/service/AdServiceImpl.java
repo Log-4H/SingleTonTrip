@@ -53,4 +53,8 @@ public class AdServiceImpl implements AdService{
 		map.put("total", adDao.totalPrice(companyId));
 		return map;
 	}
+	
+	public int payment(Map<String,Object>map){
+		return adDao.payment(map);
+	}
 }

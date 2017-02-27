@@ -12,4 +12,5 @@ public interface AdService {
 	public int adApply(AdVo adVo);
 	public List<AdVo> selectAdApplyList();
 	public Map<String,Object> paymentList(String companyId);
+	public int payment(Map<String,Object>map);
 }
