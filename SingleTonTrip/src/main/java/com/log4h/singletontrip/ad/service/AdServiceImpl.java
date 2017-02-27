@@ -54,6 +54,8 @@ public class AdServiceImpl implements AdService{
 		return map;
 	}
 	
+	// 결제
+	@Override
 	public int payment(Map<String,Object>map){
 		return adDao.payment(map);
 	}
