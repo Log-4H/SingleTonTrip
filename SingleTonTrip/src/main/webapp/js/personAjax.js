@@ -1,13 +1,3 @@
-$(document).on('click', '#postView', function(){
-	alert("test");
-})
-$(document).on('click', '#epilogueView', function(){
-	alert("test");
-})
-$(document).on('click', '#tripView', function(){
-	alert("test");
-})
-
 $(document).on('click', '.commentAddBtn', function(){
 	var id = $(this).attr('value');
 	var formId = "commentAddForm" + id;
@@ -80,9 +70,10 @@ function postAppend(postList, postCommentList){
 		html+="<hr class='w3-clear'>";
 		html+="<p>"+item.postContent+"</p>";
 		if(item.postImg!=null){
+			var postImg = "../images/" + item.postImg;
 			html+="<div class='w3-row-padding' style='margin:0 -16px'>";
 			html+="<div class='w3-half'>";
-			html+="<img src='<c:url value='/images/"+item.postImg+"'/>' style='width:100%' class='w3-margin-bottom'>";
+			html+="<img src='"+postImg+"' style='width: 100%' class='w3-margin-bottom'>";
 			html+="</div>";
 			html+="</div>";
 		}

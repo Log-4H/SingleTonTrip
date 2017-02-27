@@ -73,17 +73,13 @@
 						</div>
 					</c:forEach>
 				</div>
-				<div id="scrollPost">
-				
-				</div>
+				<div id="scrollPost"></div>
 
 				<button type="button" class="btn btn-primary" id="addList">더보기</button>
 			</div>
 
 
-			<div class="tab-pane fade" id="trip">
-			
-			</div>
+			<div class="tab-pane fade" id="trip"></div>
 		</div>
 	</div>
 </div>
