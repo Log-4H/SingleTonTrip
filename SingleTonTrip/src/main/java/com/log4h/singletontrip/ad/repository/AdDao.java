@@ -1,6 +1,7 @@
 package com.log4h.singletontrip.ad.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import com.log4h.singletontrip.ad.domain.AdPriceVo;
 import com.log4h.singletontrip.ad.domain.AdVo;
@@ -13,4 +14,5 @@ public interface AdDao {
 	public int adApplyPayment(int adNo);
 	public List<AdVo> paymentList(String companyId);
 	public int totalPrice(String companyId);
+	public int payment(Map<String,Object>map);
 }

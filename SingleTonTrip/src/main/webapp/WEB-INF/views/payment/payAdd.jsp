@@ -19,7 +19,7 @@ function btnClick() {
 </script>
 </head>
 <body>
-	<form action="" method="post">
+	<form action="payment" method="post">
 		<table border=1>
 			<tr>
 				<th>결제 내용</th>
@@ -30,15 +30,15 @@ function btnClick() {
 				<tr>
 					<td>${list.adContent}</td>
 					<td>${list.adTotalPrice}</td>
-					<td><a href="#"><button name="adNo" value="${list.adNo}">취소</button></a></td>			
+					<td><a href="deletePayList"><button name="adNo" value="${list.adNo}">취소</button></a></td>			
 				</tr>
 			</c:forEach>
 		</table>
-		합계: 	<input type="text" id="total" value="${total}"><br>
+		합계: 	<input type="text" id="total" name="total" value="${total}"><br>
 		마일리지 : <input type="text" id="mileage" name="mileage" value="">
 				<input type="hidden" id="operation" value="-">
-				<input type="button" class="minus" onclick='btnClick();return false;' value="적용"><br>
-		결제금액 :	<div id="price" name="price">${total}</div>
+				<input type="button" onclick='btnClick();return false;' value="적용"><br>
+		결제금액 :	<div id="price">${total}</div>
 				<input type="submit" value="결제">
 	</form>
 </body>

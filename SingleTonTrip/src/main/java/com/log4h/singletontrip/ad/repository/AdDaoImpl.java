@@ -1,6 +1,7 @@
 package com.log4h.singletontrip.ad.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,12 @@ public class AdDaoImpl implements AdDao{
 	@Override
 	public int totalPrice(String companyId){
 		return sqlSession.selectOne(AD_NS+"totalPrice",companyId);
+	}
+	
+	// 결제
+	@Override
+	public int payment(Map<String,Object>map){
+		return sqlSession.update(AD_NS+"payment",map);
 	}
 	
 }
