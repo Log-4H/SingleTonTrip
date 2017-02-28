@@ -15,6 +15,7 @@
 <% response.sendRedirect("index"); %>
 </c:if>
 <h1>신청 리스트</h1>
+<h3><a href="index">홈</a></h3>
 <c:choose>
 	<c:when test="${sessionLevel == 1 || sessionLevel eq null}">
 		<table border="1">

@@ -31,6 +31,8 @@
 		tb_payment
 	ON
 		payment_target_no = ad_no
+	WHERE
+		approve_state_cd = 1
 	<if test="memberLevel == 2">
 		WHERE member_id = #{memberId}
 	</if>

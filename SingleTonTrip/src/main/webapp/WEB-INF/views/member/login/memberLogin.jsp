@@ -9,8 +9,8 @@
 </head>
 <body>
 <form action="login" method="post">
-	아이디 : <input type="text" id="loginId" name="loginId">
-	패스워드 : <input type="password" id="loginPw" name="loginPw">
+	아이디 : <input type="text" id="loginId" name="loginId" value="person1">
+	패스워드 : <input type="password" id="loginPw" name="loginPw" value="person1">
 	<button type="submit">Login</button>
 </form>
 </body>

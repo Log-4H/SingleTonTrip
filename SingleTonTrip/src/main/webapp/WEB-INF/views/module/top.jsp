@@ -25,7 +25,7 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#myPage">Trip</a>
+				<a class="navbar-brand" href="#test">Trip</a>
 			</div>
 			<form class="navbar-form navbar-left">
 				<div class="input-group">

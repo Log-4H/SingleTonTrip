@@ -1,7 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardMapper">
+	<insert id="faqAdd" parameterType="com.log4h.singletontrip.board.domain.BoardVo">
+		INSERT INTO tb_board
+		(
+		member_id,
+		board_cate_cd,
+		board_title,
+		board_content,
+		board_reg_date
+		)
+		VALUES
+		(
+		#{memberId},
+		#{boardCate.boardCateCd},
+		#{boardTitle},
+		#{boardContent},
+		NOW()
+		)
+	</insert>
+	<select id="findFaqCate" resultType="com.log4h.singletontrip.board.domain.BoardCateVo">
+		SELECT
+		*
+		FROM
+		tb_board_cate
+	</select>
+	
+	<!-- FAQ SELECT -->
+	<select id="faqList" parameterType="int" resultType="com.log4h.singletontrip.board.domain.BoardVo">
+		SELECT
+			board_no,
+			board_cate_cd,
+			board_title,
+			board_content,
+			board_view_count
+		FROM
+			tb_board b
+		WHERE
+			b.board_cate_cd = #{boardCateCd}
+	</select>
 
 </mapper>
