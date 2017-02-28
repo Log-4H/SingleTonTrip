@@ -12,10 +12,13 @@ public interface PageService {
 	public List<PostVo> postList(String memberId, int lastPostRow);
 	//포스트 등록
 	public int postAdd(PostVo postVo, MultipartFile imgFile);
+	//포스트 보기
+	public PostVo postView(int postNo);
 	//댓글 리스트
 	public List<PostCommentVo> postCommentList(int postNo, String memberId, int lastCommentRow);
 	//댓글 등록
 	public int postCommentAdd(int postNo, String memberId, String postCommentContent);
 	//포스트 댓글 삭제
 	public int postcommentDelete(int postCommentNo);
+	
 }

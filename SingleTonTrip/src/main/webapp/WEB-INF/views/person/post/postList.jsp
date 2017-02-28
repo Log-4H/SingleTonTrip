@@ -2,8 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/WEB-INF/views/person/personModule/left.jsp"></c:import>
+
 <!-- Middle Column -->
 <div class="w3-col m7">
+
 	<div class="w3-row-padding">
 		<ul id="myTab" class="nav nav-tabs">
 			<li class="nav active"><a href="#post" data-toggle="tab">Post</a></li>
@@ -34,23 +36,14 @@
 						</div>
 					</div>
 				</div>
-
+				<c:import url="./postModify.jsp"></c:import>
 				<div id="postList">
 					<c:forEach items="${postList}" var="p">
 						<div class="w3-container w3-card-2 w3-white w3-round w3-margin">
 							<br>
-							<span class="w3-right w3-opacity">${p.postRegDate }</span>
+							<span class="w3-right w3-opacity">${p.postRegDate}</span><br>
 							<span class="w3-right w3-opacity">
-							<div class="dropdown">
-								<button class="btn btn-primary dropdown-toggle" type="button"
-									data-toggle="dropdown">
-									Dropdown Example <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a href="#">수정</a></li>
-									<li><a href="#">삭제</a></li>
-								</ul>
-							</div>
+							<button type="button" class="btn btn-info btn-lg" onclick="modifyModalShow(${p.postNo})">수정</button>
 							</span>
 							<h4>${p.postTitle}</h4>
 							<br>

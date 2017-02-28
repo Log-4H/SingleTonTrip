@@ -69,4 +69,9 @@ public class PageServiceImpl implements PageService{
 		return pageDao.postCommentDelete(postCommentNo);
 	}
 
+	//포스트 보기
+	@Override
+	public PostVo postView(int postNo) {
+		return pageDao.postView(postNo);
+	}
 }

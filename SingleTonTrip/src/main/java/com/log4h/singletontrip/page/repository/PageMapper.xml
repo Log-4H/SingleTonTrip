@@ -45,6 +45,22 @@
 	)
 </insert>
 
+<!-- 포스트 보기 -->
+<select id="postView" parameterType="int" resultType="com.log4h.singletontrip.page.domain.PostVo">
+	SELECT
+		post_no,
+		member_id,
+		post_title,
+		post_content,
+		post_img,
+		post_reg_date,
+		post_view_count
+	FROM
+		tb_post
+	WHERE
+		post_no = #{postNo}
+</select>
+
 <!-- 포스트 댓글 등록 -->
 <insert id="postCommentInsert" parameterType="com.log4h.singletontrip.page.domain.PostCommentVo">
 	INSERT INTO tb_post_comment(

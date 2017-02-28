@@ -95,4 +95,14 @@ public class PageController {
 		mv.addObject("postCommentList", postCommentList);
 		return mv;
 	}
+	
+	//포스트 조회
+	@RequestMapping(value="person/postView", method=RequestMethod.POST)
+	public ModelAndView postCommentDelete(@ModelAttribute("sessionId") String memberId,
+			@RequestParam(value="postNo") int postNo){
+		ModelAndView mv = new ModelAndView("jsonView");
+		PostVo post = pageService.postView(postNo);
+		mv.addObject("post", post);
+		return mv;
+	}
 }

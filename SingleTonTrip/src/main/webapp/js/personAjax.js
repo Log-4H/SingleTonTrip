@@ -1,24 +1,57 @@
-//댓글 삭제
-$(document).on('click', '.commentDelete', function(){
-	var postCommentNo = $(this).attr('value');
-	var postNo = $(this).attr('postno');
-	var divId = "commentList" + postNo;
-	var lastCommentRow = $('#'+'lastCommentRow'+postNo).attr('value');
-	lastCommentRow = Number(lastCommentRow);
+//포스트 등록
+$(document).on('click', '#postAddBtn', function(){
+	var formData = new FormData($("#postAddForm")[0]);
 	$.ajax({
-		url : "postCommentDelete",
+		url : "postAdd",
 		type : "POST",
-		data : {postNo : postNo, postCommentNo : postCommentNo, lastCommentRow : lastCommentRow},
+		data : formData,
 		dataType : "json",
+		contentType: false,
+        processData: false,
+        cache: false,
 		success : function(data) {
-			var postCommentList = data.postCommentList;
-			html = postCommentAppend(postNo, postCommentList);
-			$("#"+divId).empty();
-			$("#"+divId).append(html);
-			$("#flag"+postNo).val("open");
+			var postList = data.postList;
+			html = postAppend(postList);
+			$("#postList").empty();
+			$("#postList").append(html);
 		}
 	})
 });
+
+//포스트 더보기
+$(document).on('click', '#addList', function(){
+	var lastPostRow = $('#lastPostRow').attr('value');
+	lastPostRow = Number(lastPostRow);
+	var html = "";
+	$.ajax({
+		url : "postList",
+		type : "POST",
+		data : {lastPostRow : lastPostRow},
+		dataType : "json",
+		success : function(data) {
+			$('#lastPostRow').val(lastPostRow+5);
+			var postList = data.postList;
+			html = postAppend(postList);
+			$("#postList").empty();
+			$("#postList").append(html);
+		}
+	})
+});
+//포스트 수정 modal
+function modifyModalShow(postNo){
+	$.ajax({
+		url : "postView",
+		type : "POST",
+		data : {postNo : postNo},
+		dataType : "json",
+		success : function(data) {
+			var post = data.post;
+			$("#title").html(post.postTitle);
+		    $("#content").html(post.postContent);
+		    $("#modifyModal").modal('show');
+		}
+	})
+}
 
 //댓글 리스트 보기
 $(document).on('click', '.commentListBtn', function(){
@@ -91,46 +124,28 @@ $(document).on('click', '.commentAddBtn', function(){
 	})
 });
 
-
-//포스트 등록
-$(document).on('click', '#postAddBtn', function(){
-	var formData = new FormData($("#postAddForm")[0]);
+//댓글 삭제
+$(document).on('click', '.commentDelete', function(){
+	var postCommentNo = $(this).attr('value');
+	var postNo = $(this).attr('postno');
+	var divId = "commentList" + postNo;
+	var lastCommentRow = $('#'+'lastCommentRow'+postNo).attr('value');
+	lastCommentRow = Number(lastCommentRow);
 	$.ajax({
-		url : "postAdd",
+		url : "postCommentDelete",
 		type : "POST",
-		data : formData,
+		data : {postNo : postNo, postCommentNo : postCommentNo, lastCommentRow : lastCommentRow},
 		dataType : "json",
-		contentType: false,
-        processData: false,
-        cache: false,
 		success : function(data) {
-			var postList = data.postList;
-			html = postAppend(postList);
-			$("#postList").empty();
-			$("#postList").append(html);
+			var postCommentList = data.postCommentList;
+			html = postCommentAppend(postNo, postCommentList);
+			$("#"+divId).empty();
+			$("#"+divId).append(html);
+			$("#flag"+postNo).val("open");
 		}
 	})
 });
 
-//포스트 더보기
-$(document).on('click', '#addList', function(){
-	var lastPostRow = $('#lastPostRow').attr('value');
-	lastPostRow = Number(lastPostRow);
-	var html = "";
-	$.ajax({
-		url : "postList",
-		type : "POST",
-		data : {lastPostRow : lastPostRow},
-		dataType : "json",
-		success : function(data) {
-			$('#lastPostRow').val(lastPostRow+5);
-			var postList = data.postList;
-			html = postAppend(postList);
-			$("#postList").empty();
-			$("#postList").append(html);
-		}
-	})
-});
 
 //포스트 html추가
 function postAppend(postList){
