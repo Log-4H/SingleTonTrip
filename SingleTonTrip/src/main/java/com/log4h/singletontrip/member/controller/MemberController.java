@@ -41,7 +41,7 @@ public class MemberController {
         email.setSubject(subject);
         email.setContent(content);
         mailService.SendEmail(email);
-        mv.setViewName("index");
+        mv.setViewName("redirect:index");
         return mv;
 	}
 	
