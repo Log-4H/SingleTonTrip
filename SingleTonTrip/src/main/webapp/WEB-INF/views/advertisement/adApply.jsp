@@ -8,9 +8,9 @@
 <title>광고 신청</title>
 </head>
 <body>
-<c:if test="${sessionLevel eq null || sessionLevel ne '2'}">
+<c:if test="${sessionLevel eq null || sessionLevel ne '1' && sessionLevel ne '2'}">
 <script type="text/javascript">
-	alert('관리자 전용 페이지 입니다');
+	alert('업체 전용 페이지 입니다');
 </script>
 <% response.sendRedirect("index"); %>
 </c:if>

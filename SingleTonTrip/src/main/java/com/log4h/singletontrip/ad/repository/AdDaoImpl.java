@@ -37,6 +37,12 @@ public class AdDaoImpl implements AdDao{
 		return sqlSession.selectList(AD_NS+"selectAdApplyList",loginVo);
 	}
 	
+	// 광고 신청 승인
+	@Override
+	public int adApprove(Map<String,Object>map){
+		return sqlSession.update(AD_NS+"adApprove",map);
+	}
+	
 	// 등록이 성공적으로 이루어지면 결제테이블에도 등록
 	@Override
 	public int adApplyPayment(int adNo){
@@ -49,13 +55,13 @@ public class AdDaoImpl implements AdDao{
 		return sqlSession.selectList(AD_NS+"paymentList",companyId);
 	}
 	
-	// 광고 등록 목록에서 삭제
+	// 광고 신청 목록에서 삭제
 	@Override
 	public int deleteAdApplyList(int adNo){
 		return sqlSession.delete(AD_NS+"deleteAdApplyList",adNo);
 	}
 	
-	// 광고 등록 목록에서 삭제 후 결제목록에서도 삭제
+	// 광고 신청 목록에서 삭제 후 결제목록에서도 삭제
 	@Override
 	public int deletePayAdList(int adNo){
 		return sqlSession.delete(AD_NS+"deletePayAdList",adNo);

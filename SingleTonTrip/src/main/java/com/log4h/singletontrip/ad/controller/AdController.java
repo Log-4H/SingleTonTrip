@@ -42,6 +42,7 @@ public class AdController {
 	@Autowired
 	private AdService adService;
 	
+	// 광고 등록 폼(승인시)
 	@RequestMapping(value="adAdd")
 	public ModelAndView adAdd(){
 		ModelAndView mv = new ModelAndView();
@@ -63,6 +64,21 @@ public class AdController {
 		List<AdVo> adApplyList = adService.selectAdApplyList(loginVo);
 		mv.addObject("adApplyList",adApplyList);
 		mv.setViewName("advertisement/adApplyList");
+		
+		return mv;
+	}
+	
+	// 광고 신청 승인
+	@RequestMapping(value="adApprove")
+	public ModelAndView adApprove(HttpServletRequest request,int adNo){
+		Map<String,Object>map = new HashMap<String,Object>();
+		String adminId = (String) request.getSession().getAttribute("sessionId");
+		map.put("adminId", adminId);
+		map.put("adNo", adNo);
+		adService.adApprove(map);
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:adApplyList");
 		
 		return mv;
 	}

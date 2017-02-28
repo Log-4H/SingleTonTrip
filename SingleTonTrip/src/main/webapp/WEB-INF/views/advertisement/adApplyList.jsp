@@ -16,7 +16,7 @@
 </c:if>
 <h1>신청 리스트</h1>
 <c:choose>
-	<c:when test="${sessionLevel == 1}">
+	<c:when test="${sessionLevel == 1 || sessionLevel eq null}">
 		<table border="1">
 		 	<tr>
 		 		<th>번호</th>
@@ -35,12 +35,13 @@
 		 		<td>${a.adApplyDate}</td>
 		 		<td>${a.paymentFinishDate}</td>
 		 		<td>${a.approveStateCd}</td>
-		 		<td><a href="#">승인</a>/<a href="#">거절</a></td>
+		 		<td><a href="adApprove?adNo=${a.adNo}">승인</a>/<a href="#">거절</a></td>
 		 	</tr>
 		</c:forEach>
+		</table>
 	</c:when>
 	<c:otherwise>
-				<table border="1">
+		<table border="1">
 		 	<tr>
 		 		<th>번호</th>
 		 		<th>신청자</th>
@@ -59,8 +60,8 @@
 		 		<td>${a.approveStateCd}</td>
 		 	</tr>
 		</c:forEach>
+		</table>
 	</c:otherwise>
 </c:choose>
-</table>
 </body>
 </html>

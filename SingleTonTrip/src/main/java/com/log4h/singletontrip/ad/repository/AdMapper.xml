@@ -32,9 +32,21 @@
 	ON
 		payment_target_no = ad_no
 	<if test="memberLevel == 2">
-		WHERE member_id=#{memberId}
+		WHERE member_id = #{memberId}
 	</if>
 </select>
+<!-- 광고 신청 목록에서 승인 -->
+<update id="adApprove" parameterType="map">
+	UPDATE
+		tb_ad
+	SET
+		approve_state_cd = 2,
+		ad_reg_date = now(),
+		ad_end_date = ADDDATE(now(), INTERVAL ad_total_amount DAY),
+		admin_id = #{adminId}
+	WHERE
+		ad_no = #{adNo}
+</update>
 <!-- 광고 신청 등록 -->
 <insert id="adApply" parameterType="com.log4h.singletontrip.ad.domain.AdVo" useGeneratedKeys="true"  keyProperty="adNo" >
 	INSERT INTO tb_ad 
@@ -90,12 +102,12 @@
 		tb_ad
 	JOIN
 		tb_payment
+	ON
+		member_id = company_id
 	WHERE
-		company_id = #{companyId}
+		member_id = #{companyId}
 	AND
 		payment_state_cd=1
-	GROUP BY 
-		ad_no
 </select>
 <!-- 결제 목록들의 합계 구하기 -->
 <select id="totalPrice"
@@ -109,7 +121,7 @@
 	AND
 		payment_state_cd=1
 </select>
-<!-- 광고 등록 목록에서 삭제 -->
+<!-- 광고 신청 목록에서 삭제 -->
 <delete id="deleteAdApplyList" parameterType="com.log4h.singletontrip.ad.domain.AdVo">
 	DELETE 
 	FROM
@@ -117,7 +129,7 @@
 	WHERE
 		ad_no = #{adNo}
 </delete>
-<!-- 광고 등록 목록에서 삭제 후 결제 등록 목록에서도 삭제 -->
+<!-- 광고 신청 목록에서 삭제 후 결제 등록 목록에서도 삭제 -->
 <delete id="deletePayAdList" parameterType="com.log4h.singletontrip.ad.domain.AdVo">
 	DELETE
 	FROM

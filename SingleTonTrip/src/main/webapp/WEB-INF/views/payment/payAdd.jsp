@@ -32,7 +32,7 @@ function btnClick() {
 					<tr>
 						<td>${list.adContent}</td>
 						<td>${list.adTotalPrice}</td>
-						<td><a href="deletePayList"><button name="adNo" value="${list.adNo}">취소</button></a></td>			
+						<td><a href=""><button type="button">취소</button></a></td>			
 					</tr>
 				</c:forEach>
 			</table>

@@ -45,6 +45,12 @@ public class AdServiceImpl implements AdService{
 		return adDao.selectAdApplyList(loginVo);
 	}
 	
+	// 광고 신청 승인
+	@Override
+	public int adApprove(Map<String,Object>map){
+		return adDao.adApprove(map);
+	}
+	
 	// 결제 할 목록, 목록의 합계 가져오기
 	@Override
 	public Map<String,Object> paymentList(String companyId){
@@ -55,13 +61,13 @@ public class AdServiceImpl implements AdService{
 		return map;
 	}
 	
-	// 광고 등록 목록에서 삭제
+	// 광고 신청 목록에서 삭제
 	@Transactional
 	@Override
 	public int deleteAdApplyList(int adNo){
 		int deletePay = 0;
 		int deletePayAdListResult = adDao.deleteAdApplyList(adNo);
-		// 광고 등록 목록에서 삭제 후 결제목록에서도 삭제
+		// 광고 신청 목록에서 삭제 후 결제목록에서도 삭제
 		if(deletePayAdListResult > 0){
 			adDao.deletePayAdList(adNo);
 		}

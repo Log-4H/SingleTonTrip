@@ -18,4 +18,5 @@ public interface AdDao {
 	public int paymentAd(Map<String,Object>map);
 	public int deleteAdApplyList(int adNo);
 	public int deletePayAdList(int adNo);
+	public int adApprove(Map<String,Object>map);
 }

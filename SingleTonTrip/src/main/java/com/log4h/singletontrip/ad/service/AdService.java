@@ -15,4 +15,5 @@ public interface AdService {
 	public Map<String,Object> paymentList(String companyId);
 	public int paymentAd(Map<String,Object>map);
 	public int deleteAdApplyList(int adNo);
+	public int adApprove(Map<String,Object>map);
 }
