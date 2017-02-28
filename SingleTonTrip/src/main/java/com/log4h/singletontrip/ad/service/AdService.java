@@ -13,5 +13,6 @@ public interface AdService {
 	public int adApply(AdVo adVo);
 	public List<AdVo> selectAdApplyList(LoginVo loginVo);
 	public Map<String,Object> paymentList(String companyId);
-	public int payment(Map<String,Object>map);
+	public int paymentAd(Map<String,Object>map);
+	public int deleteAdApplyList(int adNo);
 }

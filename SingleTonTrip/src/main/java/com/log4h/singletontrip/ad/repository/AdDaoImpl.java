@@ -49,6 +49,18 @@ public class AdDaoImpl implements AdDao{
 		return sqlSession.selectList(AD_NS+"paymentList",companyId);
 	}
 	
+	// 광고 등록 목록에서 삭제
+	@Override
+	public int deleteAdApplyList(int adNo){
+		return sqlSession.delete(AD_NS+"deleteAdApplyList",adNo);
+	}
+	
+	// 광고 등록 목록에서 삭제 후 결제목록에서도 삭제
+	@Override
+	public int deletePayAdList(int adNo){
+		return sqlSession.delete(AD_NS+"deletePayAdList",adNo);
+	}
+	
 	// 결제 할 목록들의 합계 구하기
 	@Override
 	public int totalPrice(String companyId){
@@ -57,7 +69,7 @@ public class AdDaoImpl implements AdDao{
 	
 	// 결제
 	@Override
-	public int payment(Map<String,Object>map){
+	public int paymentAd(Map<String,Object>map){
 		return sqlSession.update(AD_NS+"payment",map);
 	}
 	

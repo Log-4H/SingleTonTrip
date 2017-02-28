@@ -109,8 +109,24 @@
 	AND
 		payment_state_cd=1
 </select>
+<!-- 광고 등록 목록에서 삭제 -->
+<delete id="deleteAdApplyList" parameterType="com.log4h.singletontrip.ad.domain.AdVo">
+	DELETE 
+	FROM
+		tb_ad
+	WHERE
+		ad_no = #{adNo}
+</delete>
+<!-- 광고 등록 목록에서 삭제 후 결제 등록 목록에서도 삭제 -->
+<delete id="deletePayAdList" parameterType="com.log4h.singletontrip.ad.domain.AdVo">
+	DELETE
+	FROM
+		tb_payment
+	WHERE
+		payment_target_no = #{adNo}
+</delete>
 <!-- 결제 -->
-<update id="payment" parameterType="map">
+<update id="paymentAd" parameterType="map">
 	UPDATE
 		tb_payment
 	SET

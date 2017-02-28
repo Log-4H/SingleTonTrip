@@ -104,7 +104,7 @@ public class AdController {
 	}
 	
 	// 결제
-	@RequestMapping(value="payment", method=RequestMethod.POST)
+	@RequestMapping(value="paymentAd", method=RequestMethod.POST)
 	public ModelAndView payment(HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
 		Map<String,Object>map = new HashMap<String,Object>();
@@ -112,7 +112,7 @@ public class AdController {
 		int total = Integer.parseInt(request.getParameter("total"));
 		map.put("companyId", companyId);
 		map.put("total", total);
-		adService.payment(map);
+		adService.paymentAd(map);
 		mv.setViewName("redirect:payAdd");
 		
 		
@@ -120,10 +120,11 @@ public class AdController {
 	}
 	
 	// 결제 목록에서 삭제
-	@RequestMapping(value="deletePayList")
+	@RequestMapping(value="deleteAdApplyList")
 	public ModelAndView deletePayList(int adNo){
 		ModelAndView mv = new ModelAndView();
-		
+		adService.deleteAdApplyList(adNo);
+		mv.setViewName("redirect:payAdd");
 		
 		return mv;
 	}

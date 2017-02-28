@@ -21,7 +21,7 @@ function btnClick() {
 <body>
 <c:choose>
 	<c:when test="${sessionLevel == 3}">
-		<form action="payment" method="post">
+		<form action="" method="post">
 			<table border=1>
 				<tr>
 					<th>결제 내용</th>
@@ -45,7 +45,7 @@ function btnClick() {
 		</form>
 	</c:when>
 	<c:otherwise>
-		<form action="payment" method="post">
+		<form action="paymentAd" method="post">
 			<table border=1>
 				<tr>
 					<th>결제 내용</th>
@@ -56,7 +56,7 @@ function btnClick() {
 					<tr>
 						<td>${list.adContent}</td>
 						<td>${list.adTotalPrice}</td>
-						<td><a href="deletePayList"><button name="adNo" value="${list.adNo}">취소</button></a></td>			
+						<td><a href="deleteAdApplyList?adNo=${list.adNo}"><button type="button">취소</button></a></td>			
 					</tr>
 				</c:forEach>
 			</table>

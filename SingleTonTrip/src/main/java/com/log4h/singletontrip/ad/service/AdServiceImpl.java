@@ -55,9 +55,22 @@ public class AdServiceImpl implements AdService{
 		return map;
 	}
 	
-	// 결제
+	// 광고 등록 목록에서 삭제
+	@Transactional
 	@Override
-	public int payment(Map<String,Object>map){
-		return adDao.payment(map);
+	public int deleteAdApplyList(int adNo){
+		int deletePay = 0;
+		int deletePayAdListResult = adDao.deleteAdApplyList(adNo);
+		// 광고 등록 목록에서 삭제 후 결제목록에서도 삭제
+		if(deletePayAdListResult > 0){
+			adDao.deletePayAdList(adNo);
+		}
+		return deletePay;
+	}
+	
+	// 광고 결제
+	@Override
+	public int paymentAd(Map<String,Object>map){
+		return adDao.paymentAd(map);
 	}
 }
