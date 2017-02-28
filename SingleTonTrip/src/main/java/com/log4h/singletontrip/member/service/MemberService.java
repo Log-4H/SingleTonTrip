@@ -22,5 +22,9 @@ public interface MemberService {
 	//업체회원 상세보기
 	public CompanyVo companyDetail(String memberId);
 	//회원탈퇴처리
-	public int memberDrop(String memberId, String memberPw); 
+	public int memberDrop(String memberId, String memberPw);
+	//개인회원정보수정
+	public int personModify(PersonVo personVo);
+	//업체회원정보수정
+	public int companyModify(CompanyVo companyVo);
 }

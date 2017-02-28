@@ -3,6 +3,7 @@ package com.log4h.singletontrip.member.domain;
 public class CompanyVo {
 	private String memberId;
 	private int memberLevel;
+	private String newPw;
 	private String memberPw;
 	private String memberNm;
 	private String memberPhone;
@@ -112,6 +113,13 @@ public class CompanyVo {
 	}
 	public void setMemberDropReason(String memberDropReason) {
 		this.memberDropReason = memberDropReason;
+	}
+	
+	public String getNewPw() {
+		return newPw;
+	}
+	public void setNewPw(String newPw) {
+		this.newPw = newPw;
 	}
 	@Override
 	public String toString() {

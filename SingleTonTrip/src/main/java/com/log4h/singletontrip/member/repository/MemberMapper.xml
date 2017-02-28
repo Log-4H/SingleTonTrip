@@ -263,4 +263,43 @@
 		member_pw= #{memberPw}
 </update>
 
+<!-- 개인회원정보수정 -->
+<update id="personModify" parameterType="com.log4h.singletontrip.member.domain.PersonVo">
+	UPDATE
+		tb_member, tb_person
+	SET
+		member_nm=#{memberNm},
+		member_phone=#{memberPhone},
+		member_email=#{memberEmail},
+		person_birth=#{personBirth},
+		person_gender=#{personGender}
+	<if test="newPw != null and newPw !=''">
+		,member_pw=#{newPw}
+	</if>
+	WHERE
+		member_id=#{memberId}
+	AND
+		member_pw=#{memberPw}
+</update>
+
+<!-- 업체회원정보수정 -->
+<update id="companyModify" parameterType="com.log4h.singletontrip.member.domain.CompanyVo">
+	UPDATE
+		tb_member, tb_company
+	SET
+		member_nm=#{memberNm},
+		member_phone=#{memberPhone},
+		member_email=#{memberEmail},
+		company_type=#{companyType},
+		company_crd=#{companyCrd},
+		company_Address_=#{companyAddress}
+	<if test="newPw != null and newPw !=''">
+		,member_pw#{newPw}
+	</if>
+	WHERE
+		member_id=#{memberId}
+	AND
+		member_pw=#{memberPw}
+</update>
+
 </mapper>

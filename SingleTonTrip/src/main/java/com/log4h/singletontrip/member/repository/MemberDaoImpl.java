@@ -78,5 +78,15 @@ public class MemberDaoImpl implements MemberDao{
 	public int memberDrop(Map<String, Object> map) {
 		return sqlSession.update(MEMBER_NS+"memberDrop", map);
 	}
+	//개인회원정보수정
+	@Override
+	public int personModify(PersonVo personVo) {
+		return sqlSession.update(MEMBER_NS+"personModify", personVo);
+	}
+	//업체회원정보수정
+	@Override
+	public int companyModify(CompanyVo companyVo) {
+		return sqlSession.update(MEMBER_NS+"companyModify", companyVo);
+	}
 	
 }

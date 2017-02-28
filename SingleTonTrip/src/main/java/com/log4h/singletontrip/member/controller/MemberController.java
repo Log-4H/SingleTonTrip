@@ -181,4 +181,48 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView("redirect:index");
 		return mv;
 	}
+	
+	//개인회원정보수정화면요청
+	@RequestMapping(value="personModify",method=RequestMethod.GET)
+	public ModelAndView personModify(PersonVo personVo,
+			@RequestParam(value="memberId") String memberId){
+		ModelAndView mv = new ModelAndView("member/modify/personModify");
+		mv.addObject("personVo" , memberService.personDetail(memberId));
+		return mv;
+	}
+
+	//업체회원정보수정화면요청
+	@RequestMapping(value="companyModify",method=RequestMethod.GET)
+	public ModelAndView companyModify(CompanyVo companyVo,
+			@RequestParam(value="memberId") String memberId){
+		ModelAndView mv = new ModelAndView("member/modify/companyModify");
+		mv.addObject("companyVo" , memberService.companyDetail(memberId));
+		return mv;
+	}
+	
+	//개인회원정보수정
+	@RequestMapping(value="personModify",method=RequestMethod.POST)
+	public ModelAndView personModify(PersonVo personVo){
+		ModelAndView mv = new ModelAndView();
+		int result = memberService.personModify(personVo);
+		if(result>0){
+			mv.setViewName("redirect:personList");
+		}else{
+			mv.setViewName("redirect:error");
+		}
+		return mv;
+	}
+	
+	//업체회원정보수정
+	@RequestMapping(value="companyModify",method=RequestMethod.POST)
+	public ModelAndView companyModify(CompanyVo companyVo){
+		ModelAndView mv = new ModelAndView();
+		int result = memberService.companyModify(companyVo);
+		if(result>0){
+			mv.setViewName("redirect:companyList");
+		}else{
+			mv.setViewName("redirect:error");
+		}
+		return mv;
+	}
 }

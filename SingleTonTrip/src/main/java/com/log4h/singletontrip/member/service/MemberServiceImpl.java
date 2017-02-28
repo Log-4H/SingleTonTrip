@@ -12,7 +12,6 @@ import com.log4h.singletontrip.member.domain.CompanyVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
 import com.log4h.singletontrip.member.domain.PersonVo;
 import com.log4h.singletontrip.member.repository.MemberDao;
-import com.log4h.singletontrip.member.repository.MemberDaoImpl;
 import com.log4h.singletontrip.util.Paging;
 
 @Service
@@ -105,6 +104,18 @@ public class MemberServiceImpl implements MemberService{
 		map.put("memberPw", memberPw);
 
 		return memberDao.memberDrop(map);
+	}
+	//개인회원정보수정
+	@Override
+	public int personModify(PersonVo personVo) {
+		
+		return memberDao.personModify(personVo);
+	}
+	//업체회원정보수정
+	@Override
+	public int companyModify(CompanyVo companyVo) {
+		
+		return memberDao.companyModify(companyVo);
 	}
 
 }

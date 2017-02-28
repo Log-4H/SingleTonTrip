@@ -32,6 +32,7 @@
 		<div>TRIPSTATE</div>
 		<div><input type="text" name="tripStateNm" value="${personVo.tripStateNm}" readonly="readonly"/></div>
 		<div><a href="<c:url value='memberDrop?memberId=${personVo.memberId}'/> ">삭제하기</a></div>
+		<div><a href="<c:url value='personModify?memberId=${personVo.memberId}'/> ">수정하기</a></div>
 	</form>
 </body>
 </html>

@@ -4,6 +4,7 @@ public class PersonVo {
 	private String memberId;
 	private int memberLevel;
 	private String memberPw;
+	private String newPw;
 	private String memberNm;
 	private String memberPhone;
 	private String memberEmail;
@@ -119,6 +120,12 @@ public class PersonVo {
 	}
 	public void setPersonGender(String personGender) {
 		this.personGender = personGender;
+	}
+	public String getNewPw() {
+		return newPw;
+	}
+	public void setNewPw(String newPw) {
+		this.newPw = newPw;
 	}
 	@Override
 	public String toString() {

@@ -32,4 +32,8 @@ public interface MemberDao {
 	public CompanyVo companyDetail(String memberId);
 	//회원탈퇴처리
 	public int memberDrop(Map<String, Object> map);
+	//개인회원정보수정
+	public int personModify(PersonVo personVo);
+	//업체회원정보수정
+	public int companyModify(CompanyVo companyVo);
 }
