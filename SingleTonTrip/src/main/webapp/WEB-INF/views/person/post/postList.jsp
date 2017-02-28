@@ -40,16 +40,18 @@
 						<div class="w3-container w3-card-2 w3-white w3-round w3-margin">
 							<br>
 							<span class="w3-right w3-opacity">${p.postRegDate }</span>
+							<span class="w3-right w3-opacity">
 							<div class="dropdown">
 								<button class="btn btn-primary dropdown-toggle" type="button"
 									data-toggle="dropdown">
 									Dropdown Example <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
-									<li><a href="#">HTML</a></li>
-									<li><a href="#">CSS</a></li>
+									<li><a href="#">수정</a></li>
+									<li><a href="#">삭제</a></li>
 								</ul>
 							</div>
+							</span>
 							<h4>${p.postTitle}</h4>
 							<br>
 							<hr class="w3-clear">

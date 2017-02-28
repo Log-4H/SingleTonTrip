@@ -17,7 +17,7 @@ import com.log4h.singletontrip.page.domain.PostCommentVo;
 import com.log4h.singletontrip.page.domain.PostVo;
 import com.log4h.singletontrip.page.service.PageService;
 
-@SessionAttributes({"sessionId", "sessionLibrary"})
+@SessionAttributes({"sessionId", "sessionNm", "sessionLevel"})
 @Controller
 public class PageController {
 
