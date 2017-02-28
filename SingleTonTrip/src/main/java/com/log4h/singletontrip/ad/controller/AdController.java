@@ -110,12 +110,19 @@ public class AdController {
 		Map<String,Object>map = new HashMap<String,Object>();
 		String companyId = (String) request.getSession().getAttribute("sessionId");
 		int total = Integer.parseInt(request.getParameter("total"));
-		int mileage = Integer.parseInt(request.getParameter("mileage"));
 		map.put("companyId", companyId);
 		map.put("total", total);
-		map.put("mileage", mileage);
 		adService.payment(map);
 		mv.setViewName("redirect:payAdd");
+		
+		
+		return mv;
+	}
+	
+	// 결제 목록에서 삭제
+	@RequestMapping(value="deletePayList")
+	public ModelAndView deletePayList(int adNo){
+		ModelAndView mv = new ModelAndView();
 		
 		
 		return mv;
