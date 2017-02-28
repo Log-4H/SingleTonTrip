@@ -8,32 +8,59 @@
 <title>광고 신청 리스트</title>
 </head>
 <body>
-<c:if test="${sessionLevel eq null || sessionLevel ne '1'}">
+<c:if test="${sessionLevel eq null || sessionLevel ne '1' && sessionLevel ne '2'}">
 <script type="text/javascript">
 	alert('관리자 전용 페이지 입니다');
 </script>
 <% response.sendRedirect("index"); %>
 </c:if>
 <h1>신청 리스트</h1>
-<table border="1">
- 	<tr>
- 		<th>번호</th>
- 		<th>신청자</th>
- 		<th>내용</th>
- 		<th>신청일</th>
- 		<th>상태</th>
- 		<th>여부</th>
- 	</tr>
-<c:forEach var="a" items="${adApplyList}">
- 	<tr>
- 		<td>${a.adNo}</td>
- 		<td>${a.companyId}</td>
- 		<td>${a.adContent}</td>
- 		<td>${a.adApplyDate}</td>
- 		<td>${a.approveStateCd}</td>
- 		<td><a href="#">승인</a>/<a href="#">거절</a></td>
- 	</tr>
-</c:forEach>
+<c:choose>
+	<c:when test="${sessionLevel == 1}">
+		<table border="1">
+		 	<tr>
+		 		<th>번호</th>
+		 		<th>신청자</th>
+		 		<th>내용</th>
+		 		<th>신청일</th>
+		 		<th>결제일</th>
+		 		<th>상태</th>
+		 		<th>여부</th>
+		 	</tr>
+		<c:forEach var="a" items="${adApplyList}">
+		 	<tr>
+		 		<td>${a.adNo}</td>
+		 		<td>${a.companyId}</td>
+		 		<td>${a.adContent}</td>
+		 		<td>${a.adApplyDate}</td>
+		 		<td>${a.paymentFinishDate}</td>
+		 		<td>${a.approveStateCd}</td>
+		 		<td><a href="#">승인</a>/<a href="#">거절</a></td>
+		 	</tr>
+		</c:forEach>
+	</c:when>
+	<c:otherwise>
+				<table border="1">
+		 	<tr>
+		 		<th>번호</th>
+		 		<th>신청자</th>
+		 		<th>내용</th>
+		 		<th>신청일</th>
+		 		<th>결제일</th>
+		 		<th>상태</th>
+		 	</tr>
+		<c:forEach var="a" items="${adApplyList}">
+		 	<tr>
+		 		<td>${a.adNo}</td>
+		 		<td>${a.companyId}</td>
+		 		<td>${a.adContent}</td>
+		 		<td>${a.adApplyDate}</td>
+		 		<td>${a.paymentFinishDate}</td>
+		 		<td>${a.approveStateCd}</td>
+		 	</tr>
+		</c:forEach>
+	</c:otherwise>
+</c:choose>
 </table>
 </body>
 </html>

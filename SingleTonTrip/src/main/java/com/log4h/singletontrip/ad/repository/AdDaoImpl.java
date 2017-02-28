@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.log4h.singletontrip.ad.domain.AdPriceVo;
 import com.log4h.singletontrip.ad.domain.AdVo;
+import com.log4h.singletontrip.member.domain.LoginVo;
 
 @Repository
 public class AdDaoImpl implements AdDao{
@@ -32,8 +33,8 @@ public class AdDaoImpl implements AdDao{
 	
 	// 광고 신청 리스트 가져오기
 	@Override
-	public List<AdVo> selectAdApplyList(){
-		return sqlSession.selectList(AD_NS+"selectAdApplyList");
+	public List<AdVo> selectAdApplyList(LoginVo loginVo){
+		return sqlSession.selectList(AD_NS+"selectAdApplyList",loginVo);
 	}
 	
 	// 등록이 성공적으로 이루어지면 결제테이블에도 등록

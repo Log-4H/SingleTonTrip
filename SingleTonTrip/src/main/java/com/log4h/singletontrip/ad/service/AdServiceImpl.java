@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.log4h.singletontrip.ad.domain.AdPriceVo;
 import com.log4h.singletontrip.ad.domain.AdVo;
 import com.log4h.singletontrip.ad.repository.AdDao;
+import com.log4h.singletontrip.member.domain.LoginVo;
 
 @Service
 public class AdServiceImpl implements AdService{
@@ -40,8 +41,8 @@ public class AdServiceImpl implements AdService{
 	
 	// 광고 신청 리스트 가져오기
 	@Override
-	public List<AdVo> selectAdApplyList(){
-		return adDao.selectAdApplyList();
+	public List<AdVo> selectAdApplyList(LoginVo loginVo){
+		return adDao.selectAdApplyList(loginVo);
 	}
 	
 	// 결제 할 목록, 목록의 합계 가져오기

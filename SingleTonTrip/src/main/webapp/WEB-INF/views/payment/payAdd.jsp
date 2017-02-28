@@ -19,27 +19,52 @@ function btnClick() {
 </script>
 </head>
 <body>
-	<form action="payment" method="post">
-		<table border=1>
-			<tr>
-				<th>결제 내용</th>
-				<th>가격</th>
-				<th>취소</th>
-			</tr>
-			<c:forEach var="list" items="${paymentList}">
+<c:choose>
+	<c:when test="${sessionLevel == 3}">
+		<form action="payment" method="post">
+			<table border=1>
 				<tr>
-					<td>${list.adContent}</td>
-					<td>${list.adTotalPrice}</td>
-					<td><a href="deletePayList"><button name="adNo" value="${list.adNo}">취소</button></a></td>			
+					<th>결제 내용</th>
+					<th>가격</th>
+					<th>취소</th>
 				</tr>
-			</c:forEach>
-		</table>
-		합계: 	<input type="text" id="total" name="total" value="${total}"><br>
-		마일리지 : <input type="text" id="mileage" name="mileage" value="">
-				<input type="hidden" id="operation" value="-">
-				<input type="button" onclick='btnClick();return false;' value="적용"><br>
-		결제금액 :	<div id="price">${total}</div>
-				<input type="submit" value="결제">
-	</form>
+				<c:forEach var="list" items="${paymentList}">
+					<tr>
+						<td>${list.adContent}</td>
+						<td>${list.adTotalPrice}</td>
+						<td><a href="deletePayList"><button name="adNo" value="${list.adNo}">취소</button></a></td>			
+					</tr>
+				</c:forEach>
+			</table>
+			합계: 	<input type="text" id="total" name="total" value="${total}"><br>
+			마일리지 : <input type="text" id="mileage" name="mileage" value="">
+					<input type="hidden" id="operation" value="-">
+					<input type="button" onclick='btnClick();return false;' value="적용"> *사용 마일리지가 없으면 0을 입력해주세요.<br>
+			결제금액 :	<div id="price">${total}</div>
+					<input type="submit" value="결제">
+		</form>
+	</c:when>
+	<c:otherwise>
+		<form action="payment" method="post">
+			<table border=1>
+				<tr>
+					<th>결제 내용</th>
+					<th>가격</th>
+					<th>취소</th>
+				</tr>
+				<c:forEach var="list" items="${paymentList}">
+					<tr>
+						<td>${list.adContent}</td>
+						<td>${list.adTotalPrice}</td>
+						<td><a href="deletePayList"><button name="adNo" value="${list.adNo}">취소</button></a></td>			
+					</tr>
+				</c:forEach>
+			</table>
+			합계: 	<input type="text" id="total" name="total" value="${total}"><br>
+			결제금액 :	<div id="price">${total}</div>
+					<input type="submit" value="결제">
+		</form>
+	</c:otherwise>
+</c:choose>
 </body>
 </html>

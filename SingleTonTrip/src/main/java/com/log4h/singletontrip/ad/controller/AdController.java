@@ -8,15 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.log4h.singletontrip.ad.domain.AdPriceVo;
 import com.log4h.singletontrip.ad.domain.AdVo;
 import com.log4h.singletontrip.ad.service.AdService;
+import com.log4h.singletontrip.member.domain.LoginVo;
 
 @Controller
+@SessionAttributes({"sessionId", "sessionNm", "sessionLevel"})
 public class AdController {
 	/*
 	 * 모든 메소드의 리턴타입은 ModelAndView 로한다 (String 타입 x)
@@ -48,9 +52,15 @@ public class AdController {
 	
 	// 광고 신청 리스트
 	@RequestMapping(value="adApplyList")
-	public ModelAndView adAppllyList(){
+	public ModelAndView adAppllyList(
+			@ModelAttribute("sessionId") String sessionId,
+			@ModelAttribute("sessionLevel") int sessionLevel){
+		LoginVo loginVo = new LoginVo();
+		loginVo.setMemberId(sessionId);
+		loginVo.setMemberLevel(sessionLevel);
+		
 		ModelAndView mv = new ModelAndView();
-		List<AdVo> adApplyList = adService.selectAdApplyList();
+		List<AdVo> adApplyList = adService.selectAdApplyList(loginVo);
 		mv.addObject("adApplyList",adApplyList);
 		mv.setViewName("advertisement/adApplyList");
 		

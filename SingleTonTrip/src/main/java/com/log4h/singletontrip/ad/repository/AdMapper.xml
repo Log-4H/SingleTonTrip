@@ -16,16 +16,24 @@
 		tb_ad_price
 </select>
 <!-- 광고 신청 목록 -->
-<select id="selectAdApplyList"
+<select id="selectAdApplyList" parameterType="com.log4h.singletontrip.member.domain.LoginVo"
 		resultType="com.log4h.singletontrip.ad.domain.AdVo">
 	SELECT
 		ad_no,
 		company_id,
 		ad_content,
 		ad_apply_date,
-		approve_state_cd
+		approve_state_cd,
+		payment_finish_date
 	FROM
 		tb_ad
+	JOIN
+		tb_payment
+	ON
+		payment_target_no = ad_no
+	<if test="memberLevel == 2">
+		WHERE member_id=#{memberId}
+	</if>
 </select>
 <!-- 광고 신청 등록 -->
 <insert id="adApply" parameterType="com.log4h.singletontrip.ad.domain.AdVo" useGeneratedKeys="true"  keyProperty="adNo" >
@@ -83,7 +91,7 @@
 	JOIN
 		tb_payment
 	WHERE
-		member_id = #{companyId}
+		company_id = #{companyId}
 	AND
 		payment_state_cd=1
 	GROUP BY 
@@ -93,7 +101,7 @@
 <select id="totalPrice"
 		resultType="int" >
 	SELECT 
-		SUM(payment_total_price) 
+		COALESCE(SUM(payment_total_price),0) 
 	FROM 
 		tb_payment
 	WHERE 
@@ -107,8 +115,7 @@
 		tb_payment
 	SET
 		payment_state_cd=2,
-		payment_use_mileage=#{mileage},
-		payment_price=#{total}-#{mileage},
+		payment_price=#{total},
 		payment_finish_date=now()
 	WHERE
 		member_id=#{companyId}
