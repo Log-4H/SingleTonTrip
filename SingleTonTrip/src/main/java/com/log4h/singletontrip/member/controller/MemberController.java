@@ -14,8 +14,10 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.log4h.singletontrip.member.domain.CompanyVo;
+import com.log4h.singletontrip.member.domain.Email;
 import com.log4h.singletontrip.member.domain.LoginVo;
 import com.log4h.singletontrip.member.domain.PersonVo;
+import com.log4h.singletontrip.member.service.MailService;
 import com.log4h.singletontrip.member.service.MemberService;
 
 @SessionAttributes({"sessionId", "sessionNm", "sessionLevel"})
@@ -24,6 +26,24 @@ public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+    private MailService mailService;
+	
+	//메일서비스
+	@RequestMapping("send")
+    public ModelAndView sendEmail() throws Exception {
+		ModelAndView mv = new ModelAndView();
+        Email email = new Email();
+        String reciver = "ymw0608@naver.com";
+        String subject = "이메일 제목";
+        String content = "이메일 내용입니다.";    
+        email.setReciver(reciver);
+        email.setSubject(subject);
+        email.setContent(content);
+        mailService.SendEmail(email);
+        mv.setViewName("index");
+        return mv;
+	}
 	
 	//로그인 폼 요청
 	@RequestMapping(value="login", method=RequestMethod.GET)

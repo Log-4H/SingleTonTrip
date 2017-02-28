@@ -25,6 +25,12 @@
 <a href="person/postList">포스트</a><br>
 </c:if>
 
+
+
+<a href="send">이메일전송</a><br>
+
+
+
 세션아이디 : ${sessionId} <br>
 세션이름 : ${sessionNm }	<br>
 세션레벨 :${sessionLevel}	<br>

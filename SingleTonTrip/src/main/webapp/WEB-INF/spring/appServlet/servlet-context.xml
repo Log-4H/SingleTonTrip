@@ -18,11 +18,11 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<!-- mapping 된 클래스를 모두 가로챈다 -->
-			<mvc:mapping path="/person/*"/>
+			<mvc:mapping path="/person/*" />
 			<!-- 해당 path는 인터셉트 하지않는다 -->
-			<mvc:exclude-mapping path="/index"/>
-			<mvc:exclude-mapping path="/main"/>
-			<mvc:exclude-mapping path="/post"/>
+			<mvc:exclude-mapping path="/index" />
+			<mvc:exclude-mapping path="/main" />
+			<mvc:exclude-mapping path="/post" />
 			<!-- 로그인체크 인터셉터 클래스 -->
 			<bean class="com.log4h.singletontrip.util.SessionInterceptor" />
 		</mvc:interceptor>
@@ -32,16 +32,20 @@
 
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 	<mvc:resources location="/img/" mapping="/img/**" />
-    <mvc:resources location="/css/" mapping="/css/**" />
-    <mvc:resources location="/js/" mapping="/js/**" />
-	
+	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/js/" mapping="/js/**" />
 
-	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0" />
-	
+
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"
+		p:order="0" />
+
 	<!-- jsonView -->
-	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
-	
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="1">
+	<bean id="jsonView"
+		class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:order="1">
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
@@ -52,13 +56,26 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	<tx:annotation-driven />
-	
+
 	<task:annotation-driven />
 
 	<!-- MultipartResolver -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
-		
+
 	<context:component-scan base-package="com.log4h.singletontrip" />
+	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="ymw0608@gmail.com" />
+		<property name="password" value="1Rhkdcns!@" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+
 
 </beans>
