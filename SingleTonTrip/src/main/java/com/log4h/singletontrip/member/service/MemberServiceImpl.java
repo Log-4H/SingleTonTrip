@@ -118,4 +118,12 @@ public class MemberServiceImpl implements MemberService{
 		
 		return memberDao.companyModify(companyVo);
 	}
+	//친구신청
+	@Override
+	public int friendAdd(String memberId, String friendId) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberId", memberId);
+		map.put("friendId", friendId);
+		return memberDao.friendAdd(map);
+	}
 }

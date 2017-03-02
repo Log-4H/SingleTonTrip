@@ -340,5 +340,45 @@
 		member_id=#{memberId}
 </update>
 
+<!-- 친구신청 -->
+<insert id="friendAdd" parameterType="Map">
+	INSERT INTO tb_friend
+		(
+		member_id,
+		friend_id,
+		approve_state_cd,
+		friend_apply_date
+		)
+	VALUE
+		(
+		#{memberId},
+		#{friendId},
+		1,
+		now()
+		)
+	
+</insert>
+<!-- 친구요청리스트 -->
+<select id="friendList" parameterType="Map" resultType="com.log4h.singletontrip.member.domain.MemberVo">
+	SELECT
+		 f.member_id,
+		 m.member_nm,
+		 a.approve_state_nm
+	FROM
+		tb_friend f
+	JOIN
+		tb_approve_state a
+	ON
+		f.approve_state_cd = a.approve_state_cd
+	JOIN
+		tb_member m
+	ON
+		f.member_id = m.member_id
+	WHERE
+		f.friend_id=#{memberId} 
+	AND
+		f.approve_state_cd='1'
+</select>
+
 
 </mapper>

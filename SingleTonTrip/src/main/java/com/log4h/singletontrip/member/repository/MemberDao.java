@@ -43,4 +43,6 @@ public interface MemberDao {
 	public FindVo memberPwFind(Map<String, Object> map);
 	//랜덤비밀번호 업데이트
 	public int memberPwUpdate(Map<String, Object> map);
+	//친구신청
+	public int friendAdd(Map<String, Object> map);
 }

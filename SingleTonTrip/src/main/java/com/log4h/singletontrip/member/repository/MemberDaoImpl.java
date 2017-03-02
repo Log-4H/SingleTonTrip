@@ -104,4 +104,10 @@ public class MemberDaoImpl implements MemberDao{
 	public int memberPwUpdate(Map<String, Object> map) {
 		return sqlSession.update(MEMBER_NS+"memberPwUpdate", map);
 	}
+	//친구신청
+	@Override
+	public int friendAdd(Map<String, Object> map) {
+ 
+		return sqlSession.insert(MEMBER_NS+"friendAdd", map);
+	}
 }

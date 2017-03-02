@@ -30,6 +30,7 @@
 				<td>Birth</td>
 				<td>Gender</td>
 				<td>Act State</td>
+				<td>친구신청</td>				
 			</tr>
 		</thead>
 		<tbody>
@@ -41,7 +42,8 @@
 				<td>${p.memberEmail}</td>
 				<td>${p.personBirth}</td>
 				<td>${p.personGender}</td>
-				<td>${p.actStateNm}</td>		
+				<td>${p.actStateNm}</td>
+				<td><a href="<c:url value='friendAdd?memberId=${p.memberId}'/> ">신청하기</a></td>				
 			</tr>
 			</c:forEach>
 		</tbody>

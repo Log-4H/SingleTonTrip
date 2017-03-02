@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -273,6 +274,41 @@ public class MemberController {
 		int result = mailService.SendPw(memberNm, memberEmail, memberId);
 		if(result>0){
 			mv.setViewName("redirect:index");
+		}else{
+			mv.setViewName("redirect:error");
+		}
+		return mv;
+	}
+	//친구페이지
+	@RequestMapping(value="friend", method=RequestMethod.GET)
+	public ModelAndView friend(){
+		ModelAndView mv = new ModelAndView();
+		return mv;
+	}
+	//친구신청
+	@RequestMapping(value="friendAdd", method=RequestMethod.GET)
+	public ModelAndView friendAdd(
+			@ModelAttribute("sessionId")String memberId,
+			@RequestParam(value="memberId")String friendId){
+		ModelAndView mv = new ModelAndView();
+		int result = memberService.friendAdd(memberId, friendId);
+		if(result>0){
+			mv.setViewName("friend/friendList");
+		}else{
+			mv.setViewName("redirect:error");
+		}
+		return mv;
+		
+	}
+	//친구요청리스트
+	@RequestMapping(value="friendList", method=RequestMethod.GET)
+	public ModelAndView friendList(
+			@ModelAttribute("sessionId")String memberId,
+			@RequestParam(value="memberId")String friendId){
+		ModelAndView mv = new ModelAndView();
+		int result =  
+		if(result>0){
+			mv.setViewName("friend/friendList");
 		}else{
 			mv.setViewName("redirect:error");
 		}

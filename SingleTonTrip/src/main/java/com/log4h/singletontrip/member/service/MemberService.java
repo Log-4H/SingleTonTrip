@@ -28,4 +28,6 @@ public interface MemberService {
 	public int personModify(PersonVo personVo);
 	//업체회원정보수정
 	public int companyModify(CompanyVo companyVo);
+	//친구신청
+	public int friendAdd(String memberId,String friendId);
 	}
