@@ -20,6 +20,7 @@
 <a href="companyList">업체회원리스트</a><br>
 <a href="adApply">광고 신청</a><br>
 <a href="adApplyList">광고 신청 리스트</a><br>
+<a href="adList">광고 리스트</a><br>
 
 <c:if test="${sessionId ne null }">
 <a href="person/postList">포스트</a><br>

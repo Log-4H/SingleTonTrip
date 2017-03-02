@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.log4h.singletontrip.ad.domain.AdPriceVo;
@@ -79,6 +81,29 @@ public class AdController {
 
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:adApplyList");
+		
+		return mv;
+	}
+	
+	//  광고 리스트
+	@RequestMapping(value="adList")
+	public ModelAndView adList(){
+		ModelAndView mv = new ModelAndView();
+		List<AdVo> adList = adService.selectAdList();
+		mv.addObject("adList", adList);
+		mv.setViewName("advertisement/adList");
+		
+		return mv;
+	}
+	
+	// 광고 리스트에서 이미지 파일 업로드
+	@RequestMapping(value="imgUpload", method=RequestMethod.POST)
+	public ModelAndView imgUpload(MultipartHttpServletRequest multi, AdVo adVo){
+		ModelAndView mv = new ModelAndView();
+		MultipartFile imgFile = multi.getFile("imgFile");
+		adService.adImgUpload(adVo, imgFile);
+		mv.setViewName("redirect:adList");
+		
 		
 		return mv;
 	}

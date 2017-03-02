@@ -43,6 +43,18 @@ public class AdDaoImpl implements AdDao{
 		return sqlSession.update(AD_NS+"adApprove",map);
 	}
 	
+	// 광고 이미지 등록
+	@Override
+	public int adImgUpload(AdVo adVo){
+		return sqlSession.update(AD_NS+"adImgUpload",adVo);
+	}
+	
+	// 광고 리스트
+	@Override
+	public List<AdVo> selectAdList(){
+		return sqlSession.selectList(AD_NS+"selectAdList");
+	}
+	
 	// 등록이 성공적으로 이루어지면 결제테이블에도 등록
 	@Override
 	public int adApplyPayment(int adNo){

@@ -7,11 +7,13 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.log4h.singletontrip.ad.domain.AdPriceVo;
 import com.log4h.singletontrip.ad.domain.AdVo;
 import com.log4h.singletontrip.ad.repository.AdDao;
 import com.log4h.singletontrip.member.domain.LoginVo;
+import com.log4h.singletontrip.util.ImageUpload;
 
 @Service
 public class AdServiceImpl implements AdService{
@@ -49,6 +51,24 @@ public class AdServiceImpl implements AdService{
 	@Override
 	public int adApprove(Map<String,Object>map){
 		return adDao.adApprove(map);
+	}
+	
+	// 광고 이미지 등록
+	@Override
+	public int adImgUpload(AdVo adVo, MultipartFile imgFile){
+		ImageUpload imageUpload = new ImageUpload();
+		String adImg = imageUpload.uploadImage(imgFile);
+		if(adImg!=null){
+			adVo.setAdImg(adImg);
+		}
+		int result = adDao.adImgUpload(adVo);
+		return result;
+	}
+	
+	// 광고 리스트
+	@Override
+	public List<AdVo> selectAdList(){
+		return adDao.selectAdList();
 	}
 	
 	// 결제 할 목록, 목록의 합계 가져오기

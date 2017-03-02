@@ -49,6 +49,31 @@
 	WHERE
 		ad_no = #{adNo}
 </update>
+<!-- 광고 리스트 가져오기 -->
+<select id="selectAdList"
+		resultType="com.log4h.singletontrip.ad.domain.AdVo">
+	SELECT
+		ad_no,
+		company_id,
+		ad_content,
+		ad_img,
+		ad_reg_date,
+		ad_end_date,
+		admin_id
+	FROM
+		tb_ad
+	WHERE
+		approve_state_cd=2
+</select>
+<!-- 광고 리스트에서 이미지파일 업로드 -->
+<update id="adImgUpload" parameterType="com.log4h.singletontrip.ad.domain.AdVo">
+	UPDATE
+		tb_ad
+	SET
+		ad_img = #{adImg}
+	WHERE 
+		ad_no = #{adNo}
+</update>
 <!-- 광고 신청 등록 -->
 <insert id="adApply" parameterType="com.log4h.singletontrip.ad.domain.AdVo" useGeneratedKeys="true"  keyProperty="adNo" >
 	INSERT INTO tb_ad 
