@@ -11,7 +11,7 @@ public class ImageUpload {
 	public String uploadImage(MultipartFile imgFile){
 
 		//cafe24 절대 경로  /home/hosting_users/본인ID/www/디렉토리
-		String realPath = "D:\\TeamProject\\repository\\SingleTonTrip\\src\\main\\webapp\\images\\";
+		String realPath = "D:\\TeamProject\\git\\SingleTonTrip\\SingleTonTrip\\src\\main\\webapp\\images\\";
 		String uploadPath = null;
 		String imgName = null;
 		String extension = null;

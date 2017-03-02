@@ -27,7 +27,9 @@
 									<textarea class="form-control" rows="3" id="postContent"
 										name="postContent" style="resize: none;" placeholder="content"></textarea>
 									<hr class="w3-clear">
-									이미지 등록<input type="file" name="imgFile"><br>
+									이미지 등록<input type="file" name="imgFile" accept="image/gif, image/jpg, image/png, image/jpeg" onchange="fileInfo(this)"><br>
+									<div id="inputImg">
+									</div>
 								</form>
 								<button class="w3-btn w3-theme" id="postAddBtn">
 									<i class="fa fa-pencil"></i>  Post
