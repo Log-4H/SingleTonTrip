@@ -43,7 +43,7 @@
 							<br>
 							<span class="w3-right w3-opacity">${p.postRegDate}</span><br>
 							<span class="w3-right w3-opacity">
-							<button type="button" class="btn btn-info btn-lg" onclick="modifyModalShow(${p.postNo})">수정</button>
+							<button type="button" class="btn btn-primary" onclick="modifyModalShow(${p.postNo})">수정</button>
 							</span>
 							<h4>${p.postTitle}</h4>
 							<br>
