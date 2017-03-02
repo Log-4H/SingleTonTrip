@@ -85,6 +85,21 @@ public class AdController {
 		return mv;
 	}
 	
+	// 광고 신청 거절
+	@RequestMapping(value="adRefuse")
+	public ModelAndView adRefuse(HttpServletRequest request,int adNo){
+		Map<String,Object>map = new HashMap<String,Object>();
+		String adminId = (String) request.getSession().getAttribute("sessionId");
+		map.put("adminId", adminId);
+		map.put("adNo", adNo);
+		adService.adRefuse(map);
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:adApplyList");
+		
+		return mv;
+	}
+	
 	//  광고 리스트
 	@RequestMapping(value="adList")
 	public ModelAndView adList(){

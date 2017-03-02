@@ -18,6 +18,7 @@ public interface AdService {
 	public int paymentAd(Map<String,Object>map);
 	public int deleteAdApplyList(int adNo);
 	public int adApprove(Map<String,Object>map);
+	public int adRefuse(Map<String,Object>map);
 	public List<AdVo> selectAdList();
 	public int adImgUpload(AdVo adVo, MultipartFile imgFile);
 }

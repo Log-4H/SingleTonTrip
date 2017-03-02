@@ -53,6 +53,12 @@ public class AdServiceImpl implements AdService{
 		return adDao.adApprove(map);
 	}
 	
+	// 광고 신청 거절
+	@Override
+	public int adRefuse(Map<String,Object>map){
+		return adDao.adRefuse(map);
+	}
+	
 	// 광고 이미지 등록
 	@Override
 	public int adImgUpload(AdVo adVo, MultipartFile imgFile){

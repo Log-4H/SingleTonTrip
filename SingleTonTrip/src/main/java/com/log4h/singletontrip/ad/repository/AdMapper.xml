@@ -49,6 +49,16 @@
 	WHERE
 		ad_no = #{adNo}
 </update>
+<!-- 광고 신청 목록에서 거절 -->
+<update id="adRefuse" parameterType="map">
+	UPDATE
+		tb_ad
+	SET
+		approve_state_cd = 3,
+		admin_id = #{adminId}
+	WHERE
+		ad_no = #{adNo}
+</update>
 <!-- 광고 리스트 가져오기 -->
 <select id="selectAdList"
 		resultType="com.log4h.singletontrip.ad.domain.AdVo">

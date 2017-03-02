@@ -36,7 +36,7 @@
 		 		<td>${a.adApplyDate}</td>
 		 		<td>${a.paymentFinishDate}</td>
 		 		<td>${a.approveStateCd}</td>
-		 		<td><a href="adApprove?adNo=${a.adNo}">승인</a>/<a href="#">거절</a></td>
+		 		<td><a href="adApprove?adNo=${a.adNo}">승인</a>/<a href="adRefuse?adNo=${a.adNo}">거절</a></td>
 		 	</tr>
 		</c:forEach>
 		</table>

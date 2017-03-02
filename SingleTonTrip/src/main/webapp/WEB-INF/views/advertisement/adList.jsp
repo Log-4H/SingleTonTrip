@@ -14,7 +14,7 @@
 </script>
 <% response.sendRedirect("index"); %>
 </c:if>
-
+<h3><a href="index">홈</a></h3>
 <table border=1>
 	<tr>
 		<th>신청자</th>
@@ -28,7 +28,7 @@
 		<tr>
 			<td>${a.companyId}</td>
 			<td>${a.adContent}</td>
-			<td>${a.adImg}</td>
+			<td><a href="<%=request.getContextPath() %>/images/${a.adImg}" target="_blank">${a.adImg}</a></td>
 			<td>${a.adRegDate}~${a.adEndDate}</td>
 			<td>${a.adminId}</td>
 			<td>
