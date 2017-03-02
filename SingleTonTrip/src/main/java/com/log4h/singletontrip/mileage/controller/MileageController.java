@@ -42,7 +42,7 @@ public class MileageController {
 		login.setMemberId(sessionId);
 		login.setMemberLevel(sessionLevel);
 				
-		Map<String, Object>map = mileageService.mileageList(currentPage,login, selectOption, selectValue);
+		Map<String, Object> map = mileageService.mileageList(currentPage,login, selectOption, selectValue);
 		logger.debug(" >>>>>>> mileageList에서 리턴 받는 map : \n {} <<<<<<< ",map);
 		
 		//ModelAndView 객체 생성

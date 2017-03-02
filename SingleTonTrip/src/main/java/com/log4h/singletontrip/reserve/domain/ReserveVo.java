@@ -5,13 +5,13 @@ import com.log4h.singletontrip.room.domain.RoomVo;
 
 public class ReserveVo {
 
-	private int reserveNo;
-	private RoomVo room;
-	private PersonVo person;
-	private String reserveStayDay;
-	private String reserveCheckinDate;
-	private String reserveCheckoutDate;
-	private PaymentStateVo paymentState;
+	private int reserveNo;						/* 예약번호 */
+	private RoomVo room;						/* 방(방번호, 컴퍼니,  */
+	private PersonVo person;						/*  */
+	private String reserveStayDay;				/*  */
+	private String reserveCheckinDate;			/*  */
+	private String reserveCheckoutDate;			/*  */
+	private PaymentStateVo paymentState;		/*  */
 	public int getReserveNo() {
 		return reserveNo;
 	}

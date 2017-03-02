@@ -4,7 +4,7 @@ import com.log4h.singletontrip.member.domain.LoginVo;
 
 public class PaymentVo {
 	private int paymentNo;
-	private int adminId;
+	private String adminId;
 	private LoginVo login;
 	private PaymentCateVo paymentCate;
 	private int paymentTargetNo;
@@ -22,10 +22,10 @@ public class PaymentVo {
 	public void setPaymentNo(int paymentNo) {
 		this.paymentNo = paymentNo;
 	}
-	public int getAdminId() {
+	public String getAdminId() {
 		return adminId;
 	}
-	public void setAdminId(int adminId) {
+	public void setAdminId(String adminId) {
 		this.adminId = adminId;
 	}
 	public LoginVo getLogin() {

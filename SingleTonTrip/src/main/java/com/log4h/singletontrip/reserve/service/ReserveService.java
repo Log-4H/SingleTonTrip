@@ -1,5 +1,11 @@
 package com.log4h.singletontrip.reserve.service;
 
+import java.util.Map;
+
+import com.log4h.singletontrip.member.domain.LoginVo;
+
 public interface ReserveService {
+
+	Map<String, Object> getReserveList(int currentPage, LoginVo login, int selectOption, String selectValue);
 
 }

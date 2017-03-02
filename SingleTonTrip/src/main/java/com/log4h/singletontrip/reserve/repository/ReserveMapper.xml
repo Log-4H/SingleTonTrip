@@ -1,7 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reserveMapper">
-
+	<select id="getTotalCount" parameterType="Map" resultType="int">
+		SELECT 
+			COUNT(*)			
+		FROM 
+			tb_reserve rsv
+		JOIN 
+			tb_room r
+		JOIN 
+			tb_payment_state pmst
+		JOIN 
+			tb_company cp
+		JOIN 
+			tb_member perm
+		JOIN 
+			tb_payment pm
+		JOIN 
+			tb_member comm
+		ON 
+			rsv.room_no = r.room_no
+		AND 
+			rsv.payment_state_cd = pmst.payment_state_cd
+		AND
+			r.company_id = cp.company_id
+		AND
+			rsv.person_id = perm.member_id
+		AND
+			rsv.reserve_no = pm.payment_target_no
+		AND 
+			comm.member_id = r.company_id
+		
+	
+	</select>
+	<select id="getReserveList" parameterType="Map" resultType="HashMap">
+		SELECT 
+			rsv.reserve_no as 'reserveVo.reserveNo',  
+			rsv.reserve_stay_day as 'reserveVo.reserveStayDay', 
+			rsv.reserve_checkin_date as 'reserveVo.reserveCheckIn', 
+			rsv.reserve_checkout_date as 'reserveVo.reserveCheckOut', 
+		
+			r.room_nm as 'reserveVo.room.roomNm',
+			r.room_normal_price as 'reserveVo.room.roomNormalPrice',
+			r.room_holiday_price as 'reserveVo.room.roomHolidayPrice',
+			
+			pmst.payment_state_nm as 'reserveVo.paymentState.paymentStateNm',
+			
+			cp.company_address as 'reserveVo.room.company.companyAddress',
+		
+			perm.member_nm as 'reserveVo.person.memberNm',
+			perm.member_phone as 'reserveVo.person.memberPhone',
+			
+			pm.payment_use_mileage as 'paymentVo.paymentUseMileage',
+			pm.payment_price as 'paymentVo.paymentPrice',
+			
+			comm.member_nm as 'reserveVo.room.company.memberNm'
+			
+		FROM tb_reserve rsv
+		JOIN tb_room r
+		JOIN tb_payment_state pmst
+		JOIN tb_company cp
+		JOIN tb_member perm
+		JOIN tb_payment pm
+		JOIN tb_member comm
+		ON 
+			rsv.room_no = r.room_no
+		AND 
+			rsv.payment_state_cd = pmst.payment_state_cd
+		AND
+			r.company_id = cp.company_id
+		AND
+			rsv.person_id = perm.member_id
+		AND
+			rsv.reserve_no = pm.payment_target_no
+		AND 
+			comm.member_id = r.company_id
+			
+	</select>
 </mapper>
