@@ -6,6 +6,7 @@
 		<div class="modal-content">
 		<form enctype="multipart/form-data" id="postModifyForm">
 		<input type="hidden" name="postModifyNo" id="postModifyNo" value="">
+		<input type="hidden" class="lastPostRow" name="lastPostRow" value="5">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
@@ -16,9 +17,8 @@
 			</div>
 			<div class="modal-body">
 			
-			<textarea class="form-control" rows="5" id="postModifyContent"
-										name="postModifyContent" style="resize: none;"></textarea>
-			이미지 등록<input type="file" name="imgFile" accept="image/gif, image/jpg, image/png, image/jpeg" onchange="fileModalInfo(this)"><br>
+			<textarea class="form-control" rows="5" id="postModifyContent" name="postModifyContent" style="resize: none;"></textarea>
+			이미지 등록<input type="file" id="modalImgFile" name="imgFile" accept="image/gif, image/jpg, image/png, image/jpeg" onchange="fileModalInfo(this)"><br>
 			<div id="postModalImg">
 			
 			</div>	

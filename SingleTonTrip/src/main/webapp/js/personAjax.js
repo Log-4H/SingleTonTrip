@@ -5,11 +5,8 @@ function fileInfo(f){
 	var reader = new FileReader();
 	reader.onload = function(rst){
 		var html ="";
-		html+="<div class='w3-row-padding' style='margin:0 -16px'>";
-		html+="<div class='w3-half'>";
-		html+="<img src='"+ rst.target.result +"' style='width: 100%' class='w3-margin-bottom'>";
-		html+="</div>";
-		html+="</div>";
+		html+="<button type='button' id='postImgDelete'>이미지 삭제</button>";
+		html+= postImgAppend(rst.target.result);
 		$("#postInputImg").append(html);
 	}
 	reader.readAsDataURL(file[0]); 
@@ -22,11 +19,7 @@ function fileModalInfo(f){
 	var reader = new FileReader();
 	reader.onload = function(rst){
 		var html ="";
-		html+="<div class='w3-row-padding' style='margin:0 -16px'>";
-		html+="<div class='w3-half'>";
-		html+="<img src='"+ rst.target.result +"' style='width: 100%' class='w3-margin-bottom'>";
-		html+="</div>";
-		html+="</div>";
+		html = postImgAppend(rst.target.result);
 		$("#postModalImg").append(html);
 	}
 	reader.readAsDataURL(file[0]); 
@@ -54,8 +47,10 @@ $(document).on('click', '#postAddBtn', function(){
 
 //포스트 더보기
 $(document).on('click', '#addList', function(){
-	var lastPostRow = $('#lastPostRow').attr('value');
+	var lastPostRow = $('.lastPostRow').attr('value');
 	lastPostRow = Number(lastPostRow);
+	lastPostRow += 5;
+	console.log(lastPostRow);
 	var html = "";
 	$.ajax({
 		url : "postList",
@@ -63,7 +58,7 @@ $(document).on('click', '#addList', function(){
 		data : {lastPostRow : lastPostRow},
 		dataType : "json",
 		success : function(data) {
-			$('#lastPostRow').val(lastPostRow+5);
+			$('.lastPostRow').val(lastPostRow);
 			var postList = data.postList;
 			html = postAppend(postList);
 			$("#postList").empty();
@@ -81,26 +76,30 @@ function postModifyModalShow(postNo){
 		dataType : "json",
 		success : function(data) {
 			var post = data.post;
-			console.log(post);
+			console.log(post.postContent);
 			$("#postModifyTitle").val(post.postTitle);
 			$("#postModifyNo").val(post.postNo);
 		    $("#postModifyContent").html(post.postContent);
 		    $("#postModifyModal").modal('show');
 		    if(post.postImg!=null){
 		    	var html ="";
-				html+="<div class='w3-row-padding' style='margin:0 -16px'>";
-				html+="<div class='w3-half'>";
-				html+="<img src='../images/"+post.postImg+"' style='width: 100%' class='w3-margin-bottom'>";
-				html+="</div>";
-				html+="</div>";
+		    	html= postImgAppend("../images/"+post.postImg);
 				$("#postModalImg").append(html);
 			}
 		    
 		}
 	})
 }
+//포스트등록 이미지 삭제
+$(document).on('click', '#postImgDelete', function(){
+	var postImgFile = $('#postImgFile');
+	postImgFile.replaceWith(postImgFile.val('').clone(true));
+	$("#postInputImg").empty();
+});
+
 //포스트 수정
 $(document).on('click', '#postModifyBtn', function(){
+	var lastPostRow = $('.lastPostRow').attr('value');
 	var formData = new FormData($("#postModifyForm")[0]);
 	var html = ""
 	$.ajax({
@@ -270,5 +269,16 @@ function postCommentAppend(postNo, postCommentList){
 	})
 	html+="</tbody>";
 	html+="</table>";
+	return html;
+}
+
+//포스트 이미지 html추가
+function postImgAppend(img){
+	var html ="";
+	html+="<div class='w3-row-padding' style='margin:0 -16px'>";
+	html+="<div class='w3-half'>";
+	html+="<img src='"+ img +"' style='width: 100%' class='w3-margin-bottom'>";
+	html+="</div>";
+	html+="</div>";
 	return html;
 }

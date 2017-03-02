@@ -89,7 +89,7 @@ public class PageServiceImpl implements PageService{
 		afterImg = imageUpload.uploadImage(imgFile);
 		postVo.setPostNo(postNo);
 		postVo.setPostTitle(postTitle);
-		postVo.setPostContent(postContent.replaceAll("\r\n", "<br>"));	
+		postVo.setPostContent(postContent.replaceAll("\r\n", "<br>"));
 		if(afterImg!=null){
 			postVo.setPostImg(afterImg);
 			if(beforeImg!=null){

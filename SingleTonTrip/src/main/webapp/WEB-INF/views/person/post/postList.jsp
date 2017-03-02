@@ -14,7 +14,7 @@
 		</ul>
 		<div id="myTabContent" class="tab-content">
 			<div class="tab-pane fade in active" id="post">
-				<input type="hidden" id="lastPostRow" name="lastPostRow" value="10">
+				<input type="hidden" class="lastPostRow" name="lastPostRow" value="10">
 				<div class="w3-row-padding">
 					<div class="w3-col m12">
 						<div class="w3-card-2 w3-round w3-white">
@@ -27,7 +27,7 @@
 									<textarea class="form-control" rows="3" id="postContent"
 										name="postContent" style="resize: none;" placeholder="content"></textarea>
 									<hr class="w3-clear">
-									이미지 등록<input type="file" name="imgFile" accept="image/gif, image/jpg, image/png, image/jpeg" onchange="fileInfo(this)"><br>
+									이미지 등록<input type="file" id="postImgFile" name="imgFile" accept="image/gif, image/jpg, image/png, image/jpeg" onchange="fileInfo(this)"><br>
 									<div id="postInputImg">
 									</div>
 								</form>
