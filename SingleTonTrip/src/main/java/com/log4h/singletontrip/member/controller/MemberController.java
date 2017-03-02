@@ -14,7 +14,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.log4h.singletontrip.member.domain.CompanyVo;
-import com.log4h.singletontrip.member.domain.Email;
 import com.log4h.singletontrip.member.domain.LoginVo;
 import com.log4h.singletontrip.member.domain.PersonVo;
 import com.log4h.singletontrip.member.service.MailService;
@@ -26,24 +25,9 @@ public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	@Autowired
 	private MemberService memberService;
+	
 	@Autowired
     private MailService mailService;
-	
-	//메일서비스
-	@RequestMapping("send")
-    public ModelAndView sendEmail() throws Exception {
-		ModelAndView mv = new ModelAndView();
-        Email email = new Email();
-        String reciver = "ymw0608@naver.com";
-        String subject = "이메일 제목";
-        String content = "이메일 내용입니다.";    
-        email.setReciver(reciver);
-        email.setSubject(subject);
-        email.setContent(content);
-        mailService.SendEmail(email);
-        mv.setViewName("redirect:index");
-        return mv;
-	}
 	
 	//로그인 폼 요청
 	@RequestMapping(value="login", method=RequestMethod.GET)
@@ -183,7 +167,7 @@ public class MemberController {
 		mv.addObject("companyVo" , memberService.companyDetail(memberId));
 		return mv;
 	}
-	//개인&업체회원탈퇴처리페이지이동
+	//개인&업체회원탈퇴처리화면요청
 	@RequestMapping(value="memberDrop", method=RequestMethod.GET)
 	public ModelAndView memberDrop(
 			@RequestParam(value="memberId") String memberId){
@@ -244,5 +228,55 @@ public class MemberController {
 			mv.setViewName("redirect:error");
 		}
 		return mv;
+	}
+	
+	//아이디찾기화면요청
+	@RequestMapping(value="memberIdFind", method=RequestMethod.GET)
+	public ModelAndView memberIdFind(){
+		ModelAndView mv = new ModelAndView("member/find/idFind");
+		return mv;
+		
+	}
+	
+	//아이디찾기
+	@RequestMapping(value="memberIdFind", method=RequestMethod.POST)
+	public ModelAndView memberIdFind(
+			@RequestParam(value="memberNm")String memberNm,
+			@RequestParam(value="memberEmail")String memberEmail){
+		ModelAndView mv = new ModelAndView();
+		int result = mailService.SendId(memberNm, memberEmail);
+		if(result>0){
+			mv.setViewName("redirect:index");
+		}else{
+			mv.setViewName("redirect:error");
+		}
+		return mv;
+		
+	}
+	
+	//비밀번호찾기화면요청
+	@RequestMapping(value="memberPwFind", method=RequestMethod.GET)
+	public ModelAndView memberPwFind(){
+		ModelAndView mv = new ModelAndView("member/find/pwFind");
+		
+		return mv;
+		
+	}
+	
+	//비밀번호찾기
+	@RequestMapping(value="memberPwFind", method=RequestMethod.POST)
+	public ModelAndView memberPwFind(
+			@RequestParam(value="memberNm")String memberNm,
+			@RequestParam(value="memberEmail")String memberEmail,
+			@RequestParam(value="memberId")String memberId){	
+		ModelAndView mv = new ModelAndView();
+		int result = mailService.SendPw(memberNm, memberEmail, memberId);
+		if(result>0){
+			mv.setViewName("redirect:index");
+		}else{
+			mv.setViewName("redirect:error");
+		}
+		return mv;
+		
 	}
 }

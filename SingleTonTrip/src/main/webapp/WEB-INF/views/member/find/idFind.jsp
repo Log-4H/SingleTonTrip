@@ -7,6 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h3>아이디 찾기</h3>
+	<div>
+		<form action="memberIdFind" method="post">
+			<div>이름<input type="text" name="memberNm"/></div>
+			<div>E-MAIL<input type="text" name="memberEmail"/></div>
+			<div><input type="submit"/></div>
+		</form>
+	</div>
 </body>
 </html>

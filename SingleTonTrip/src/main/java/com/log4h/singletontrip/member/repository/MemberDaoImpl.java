@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.log4h.singletontrip.member.domain.CompanyVo;
+import com.log4h.singletontrip.member.domain.FindVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
 import com.log4h.singletontrip.member.domain.PersonVo;
 
@@ -88,5 +89,19 @@ public class MemberDaoImpl implements MemberDao{
 	public int companyModify(CompanyVo companyVo) {
 		return sqlSession.update(MEMBER_NS+"companyModify", companyVo);
 	}
-	
+	//아이디찾기
+	@Override
+	public FindVo memberIdFind(Map<String, Object> map) {
+		return sqlSession.selectOne(MEMBER_NS+"memberIdFind", map);
+	}
+	//비밀번호찾기
+	@Override
+	public FindVo memberPwFind(Map<String, Object> map) {
+		return sqlSession.selectOne(MEMBER_NS+"memberPwFind", map);
+	}
+	//랜덤비밀번호 업데이트
+	@Override
+	public int memberPwUpdate(Map<String, Object> map) {
+		return sqlSession.update(MEMBER_NS+"memberPwUpdate", map);
+	}
 }

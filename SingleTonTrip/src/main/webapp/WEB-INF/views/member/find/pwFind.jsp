@@ -7,6 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h3>비밀번호 찾기</h3>
+	<div>
+		<form action="memberPwFind" method="post">
+			<div>이름<input type="text" name="memberNm"/></div>
+			<div>아이디<input type="text" name="memberId"/></div>
+			<div>E-MAIL<input type="text" name="memberEmail"/></div>
+			<div><input type="submit"/></div>
+		</form>
+	</div>
 </body>
 </html>

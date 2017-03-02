@@ -14,7 +14,8 @@
 <c:if test="${sessionId ne null }">
 <a href="logout">로그아웃</a><br>
 </c:if>
-
+<a href="memberIdFind">아이디찾기</a><br>
+<a href="memberPwFind">비밀번호찾기</a><br>
 <a href="joinBegin">회원가입</a><br>
 <a href="personList">개인회원리스트</a><br>
 <a href="companyList">업체회원리스트</a><br>

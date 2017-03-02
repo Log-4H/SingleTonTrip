@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.log4h.singletontrip.member.domain.CompanyVo;
+import com.log4h.singletontrip.member.domain.FindVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
 import com.log4h.singletontrip.member.domain.PersonVo;
 import com.log4h.singletontrip.member.repository.MemberDao;
@@ -117,5 +118,4 @@ public class MemberServiceImpl implements MemberService{
 		
 		return memberDao.companyModify(companyVo);
 	}
-
 }

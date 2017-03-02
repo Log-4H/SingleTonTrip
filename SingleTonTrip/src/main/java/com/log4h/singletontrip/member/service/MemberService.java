@@ -3,6 +3,7 @@ package com.log4h.singletontrip.member.service;
 import java.util.Map;
 
 import com.log4h.singletontrip.member.domain.CompanyVo;
+import com.log4h.singletontrip.member.domain.FindVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
 import com.log4h.singletontrip.member.domain.PersonVo;
 
@@ -27,4 +28,4 @@ public interface MemberService {
 	public int personModify(PersonVo personVo);
 	//업체회원정보수정
 	public int companyModify(CompanyVo companyVo);
-}
+	}
