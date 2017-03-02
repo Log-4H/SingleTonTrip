@@ -74,4 +74,29 @@ public class PageServiceImpl implements PageService{
 	public PostVo postView(int postNo) {
 		return pageDao.postView(postNo);
 	}
+
+	//포스트 업데이트
+	@Override
+	public int postModify(int postNo, String postTitle, String postContent, MultipartFile imgFile) {
+		String beforeImg = null;
+		String afterImg = null;
+		PostVo postVo = new PostVo();
+		postVo = pageDao.postView(postNo);
+		if(postVo.getPostImg()!=null){
+			beforeImg = postVo.getPostImg();
+		}
+		ImageUpload imageUpload = new ImageUpload();
+		afterImg = imageUpload.uploadImage(imgFile);
+		postVo.setPostNo(postNo);
+		postVo.setPostTitle(postTitle);
+		postVo.setPostContent(postContent.replaceAll("\r\n", "<br>"));	
+		if(afterImg!=null){
+			postVo.setPostImg(afterImg);
+			if(beforeImg!=null){
+				imageUpload.deleteImage(beforeImg);
+			}
+		}
+		int result = pageDao.postUpdate(postVo);
+		return result;
+	}
 }

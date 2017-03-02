@@ -61,6 +61,21 @@
 		post_no = #{postNo}
 </select>
 
+<!-- 포스트 수정 -->
+<update id="postUpdate" parameterType="com.log4h.singletontrip.page.domain.PostVo">
+	UPDATE 
+		tb_post
+	SET
+		post_title = #{postTitle},
+		post_content = #{postContent},
+		post_modify_date = now()
+		<if test="postImg != null and postImg !=''">
+		,post_img = #{postImg}
+		</if>
+	WHERE	
+		post_no = #{postNo}	
+</update>
+
 <!-- 포스트 댓글 등록 -->
 <insert id="postCommentInsert" parameterType="com.log4h.singletontrip.page.domain.PostCommentVo">
 	INSERT INTO tb_post_comment(

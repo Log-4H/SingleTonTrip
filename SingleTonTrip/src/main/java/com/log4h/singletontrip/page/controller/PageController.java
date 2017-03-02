@@ -59,6 +59,23 @@ public class PageController {
 		}
 		return mv;	
 	}
+	//포스트 등록
+	@RequestMapping(value="person/postModify", method=RequestMethod.POST)
+	public ModelAndView postModify(MultipartHttpServletRequest multi,
+			@ModelAttribute("sessionId") String memberId,
+			@RequestParam(value="lastPostRow", defaultValue="5") int lastPostRow){
+		ModelAndView mv = new ModelAndView("jsonView");
+		int postNo = Integer.parseInt(multi.getParameter("postModifyNo"));
+		String postTitle = multi.getParameter("postModifyTitle");
+		String postContent = multi.getParameter("postModifyContent");
+		MultipartFile imgFile = multi.getFile("imgFile");
+		int result = pageService.postModify(postNo, postTitle, postContent, imgFile);
+		if(result>0){
+			List<PostVo> postList= pageService.postList(memberId, lastPostRow);
+			mv.addObject("postList", postList);
+		}
+		return mv;	
+	}
 	
 	//댓글 리스트
 	@RequestMapping(value="person/postCommentList", method=RequestMethod.POST)

@@ -1,33 +1,33 @@
 //이미지 미리보기
 function fileInfo(f){
-	$("#inputImg").empty();
+	$("#postInputImg").empty();
 	var file = f.files; 
 	var reader = new FileReader();
 	reader.onload = function(rst){
 		var html ="";
 		html+="<div class='w3-row-padding' style='margin:0 -16px'>";
 		html+="<div class='w3-half'>";
-		html+="<img src='"+ rst.target.result +"' id='inputImg' style='width: 100%' class='w3-margin-bottom'>";
+		html+="<img src='"+ rst.target.result +"' style='width: 100%' class='w3-margin-bottom'>";
 		html+="</div>";
 		html+="</div>";
-		$("#inputImg").append(html);
+		$("#postInputImg").append(html);
 	}
 	reader.readAsDataURL(file[0]); 
 }
 
 //modal 이미지 미리보기
 function fileModalInfo(f){
-	$("#modalImg").empty();
+	$("#postModalImg").empty();
 	var file = f.files; 
 	var reader = new FileReader();
 	reader.onload = function(rst){
 		var html ="";
 		html+="<div class='w3-row-padding' style='margin:0 -16px'>";
 		html+="<div class='w3-half'>";
-		html+="<img src='"+ rst.target.result +"' id='modalImg' style='width: 100%' class='w3-margin-bottom'>";
+		html+="<img src='"+ rst.target.result +"' style='width: 100%' class='w3-margin-bottom'>";
 		html+="</div>";
 		html+="</div>";
-		$("#modalImg").append(html);
+		$("#postModalImg").append(html);
 	}
 	reader.readAsDataURL(file[0]); 
 }
@@ -72,8 +72,8 @@ $(document).on('click', '#addList', function(){
 	})
 });
 //포스트 수정 modal
-function modifyModalShow(postNo){
-	$("#modalImg").empty();
+function postModifyModalShow(postNo){
+	$("#postModalImg").empty();
 	$.ajax({
 		url : "postView",
 		type : "POST",
@@ -82,47 +82,42 @@ function modifyModalShow(postNo){
 		success : function(data) {
 			var post = data.post;
 			console.log(post);
-			$("#modifyTitle").val(post.postTitle);
-			$("#modifyPostBtn").val(post.postNo);
-		    $("#modifyContent").html(post.postContent);
-		    $("#modifyModal").modal('show');
+			$("#postModifyTitle").val(post.postTitle);
+			$("#postModifyNo").val(post.postNo);
+		    $("#postModifyContent").html(post.postContent);
+		    $("#postModifyModal").modal('show');
 		    if(post.postImg!=null){
 		    	var html ="";
 				html+="<div class='w3-row-padding' style='margin:0 -16px'>";
 				html+="<div class='w3-half'>";
-				html+="<img src='../images/"+post.postImg+"' id='modalImg' style='width: 100%' class='w3-margin-bottom'>";
+				html+="<img src='../images/"+post.postImg+"' style='width: 100%' class='w3-margin-bottom'>";
 				html+="</div>";
 				html+="</div>";
-				$("#modalImg").append(html);
+				$("#postModalImg").append(html);
 			}
 		    
 		}
 	})
 }
 //포스트 수정
-$(document).on('click', '.modifyPost', function(){
-	var postNo = $(this).attr('value');
-	var flag = $("#flag"+postNo).attr('value');
-	var divId = "commentList" + postNo;
+$(document).on('click', '#postModifyBtn', function(){
+	var formData = new FormData($("#postModifyForm")[0]);
 	var html = ""
-	if(flag=='close'){
 	$.ajax({
-		url : "postCommentList",
+		url : "postModify",
 		type : "POST",
-		data : {postNo : postNo},
+		data : formData,
 		dataType : "json",
+		contentType: false,
+        processData: false,
+        cache: false,
 		success : function(data) {
-			var postCommentList = data.postCommentList;
-			html = postCommentAppend(postNo, postCommentList);
-			$("#"+divId).empty();
-			$("#"+divId).append(html);
-			$("#flag"+postNo).val("open");
-			}
+			var postList = data.postList;
+			html = postAppend(postList);
+			$("#postList").empty();
+			$("#postList").append(html);
+		}
 	})
-	}else{
-		$("#"+divId).empty();
-		$("#flag"+postNo).val("close");
-	}
 });
 
 //댓글 리스트 보기
@@ -226,7 +221,7 @@ function postAppend(postList){
 		html+="<div class='w3-container w3-card-2 w3-white w3-round w3-margin'><br>";
 		html+="<span class='w3-right w3-opacity'>"+item.postRegDate+"</span><br>";
 		html+="<span class='w3-right w3-opacity'>";
-		html+="<button type='button' class='btn btn-primary' onclick='modifyModalShow("+item.postNo+")'>수정</button>";
+		html+="<button type='button' class='btn btn-primary' onclick='postModifyModalShow("+item.postNo+")'>수정</button>";
 		html+="</span>";
 		html+="<h4>"+item.postTitle+"</h4><br>";
 		html+="<hr class='w3-clear'>";

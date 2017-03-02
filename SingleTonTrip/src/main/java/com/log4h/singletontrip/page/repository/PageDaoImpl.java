@@ -48,4 +48,9 @@ public class PageDaoImpl implements PageDao{
 	public PostVo postView(int postNo) {
 		return sqlSession.selectOne(PAGE_NS+"postView", postNo);
 	}
+	//포스트 업데이트
+	@Override
+	public int postUpdate(PostVo postVo) {
+		return sqlSession.update(PAGE_NS+"postUpdate", postVo);
+	}
 }

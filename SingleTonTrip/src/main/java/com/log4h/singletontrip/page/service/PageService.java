@@ -20,5 +20,7 @@ public interface PageService {
 	public int postCommentAdd(int postNo, String memberId, String postCommentContent);
 	//포스트 댓글 삭제
 	public int postcommentDelete(int postCommentNo);
+	//포스트 업데이트
+	public int postModify(int postNo, String postTitle, String postContent, MultipartFile imgFile);
 	
 }

@@ -19,4 +19,6 @@ public interface PageDao {
 	public int postCommentDelete(int postCommentNo);
 	//포스트 보기
 	public PostVo postView(int postNo);
+	//포스트 업데이트
+	public int postUpdate(PostVo postVo);
 }

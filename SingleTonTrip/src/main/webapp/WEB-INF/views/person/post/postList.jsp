@@ -28,7 +28,7 @@
 										name="postContent" style="resize: none;" placeholder="content"></textarea>
 									<hr class="w3-clear">
 									이미지 등록<input type="file" name="imgFile" accept="image/gif, image/jpg, image/png, image/jpeg" onchange="fileInfo(this)"><br>
-									<div id="inputImg">
+									<div id="postInputImg">
 									</div>
 								</form>
 								<button class="w3-btn w3-theme" id="postAddBtn">
@@ -45,7 +45,7 @@
 							<br>
 							<span class="w3-right w3-opacity">${p.postRegDate}</span><br>
 							<span class="w3-right w3-opacity">
-							<button type="button" class="btn btn-primary" onclick="modifyModalShow(${p.postNo})">수정</button>
+							<button type="button" class="btn btn-primary" onclick="postModifyModalShow(${p.postNo})">수정</button>
 							</span>
 							<h4>${p.postTitle}</h4>
 							<br>
