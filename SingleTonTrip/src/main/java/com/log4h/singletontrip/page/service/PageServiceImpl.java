@@ -99,4 +99,21 @@ public class PageServiceImpl implements PageService{
 		int result = pageDao.postUpdate(postVo);
 		return result;
 	}
+	//포스트 삭제
+	@Override
+	public int postDelete(int postNo) {
+		int result = pageDao.postDelete(postNo);
+		if(result>0){
+			String beforeImg = null;
+			PostVo postVo = new PostVo();
+			postVo = pageDao.postView(postNo);
+			if(postVo.getPostImg()!=null){
+				beforeImg = postVo.getPostImg();
+				ImageUpload imageUpload = new ImageUpload();
+				imageUpload.deleteImage(beforeImg);
+			}
+		}
+		return result;
+	}
+
 }

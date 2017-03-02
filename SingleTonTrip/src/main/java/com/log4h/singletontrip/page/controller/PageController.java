@@ -59,7 +59,7 @@ public class PageController {
 		}
 		return mv;	
 	}
-	//포스트 등록
+	//포스트 수정
 	@RequestMapping(value="person/postModify", method=RequestMethod.POST)
 	public ModelAndView postModify(MultipartHttpServletRequest multi,
 			@ModelAttribute("sessionId") String memberId,
@@ -70,6 +70,19 @@ public class PageController {
 		String postContent = multi.getParameter("postModifyContent");
 		MultipartFile imgFile = multi.getFile("imgFile");
 		int result = pageService.postModify(postNo, postTitle, postContent, imgFile);
+		if(result>0){
+			List<PostVo> postList= pageService.postList(memberId, lastPostRow);
+			mv.addObject("postList", postList);
+		}
+		return mv;	
+	}
+	//포스트 삭제
+	@RequestMapping(value="person/postDelete", method=RequestMethod.POST)
+	public ModelAndView postDelete(@ModelAttribute("sessionId") String memberId,
+			@RequestParam(value="lastPostRow", defaultValue="5") int lastPostRow,
+			@RequestParam(value="postNo") int postNo){
+		ModelAndView mv = new ModelAndView("jsonView");
+		int result = pageService.postDelete(postNo);
 		if(result>0){
 			List<PostVo> postList= pageService.postList(memberId, lastPostRow);
 			mv.addObject("postList", postList);

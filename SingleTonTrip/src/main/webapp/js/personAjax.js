@@ -44,6 +44,12 @@ $(document).on('click', '#postAddBtn', function(){
 		}
 	})
 });
+//포스트등록 이미지 삭제
+$(document).on('click', '#postImgDelete', function(){
+	var postImgFile = $('#postImgFile');
+	postImgFile.replaceWith(postImgFile.val('').clone(true));
+	$("#postInputImg").empty();
+});
 
 //포스트 더보기
 $(document).on('click', '#addList', function(){
@@ -79,7 +85,7 @@ function postModifyModalShow(postNo){
 			console.log(post.postContent);
 			$("#postModifyTitle").val(post.postTitle);
 			$("#postModifyNo").val(post.postNo);
-		    $("#postModifyContent").html(post.postContent);
+		    $("#postModifyContent").val(post.postContent);
 		    $("#postModifyModal").modal('show');
 		    if(post.postImg!=null){
 		    	var html ="";
@@ -89,13 +95,7 @@ function postModifyModalShow(postNo){
 		    
 		}
 	})
-}
-//포스트등록 이미지 삭제
-$(document).on('click', '#postImgDelete', function(){
-	var postImgFile = $('#postImgFile');
-	postImgFile.replaceWith(postImgFile.val('').clone(true));
-	$("#postInputImg").empty();
-});
+};
 
 //포스트 수정
 $(document).on('click', '#postModifyBtn', function(){
@@ -110,6 +110,30 @@ $(document).on('click', '#postModifyBtn', function(){
 		contentType: false,
         processData: false,
         cache: false,
+		success : function(data) {
+			var postList = data.postList;
+			html = postAppend(postList);
+			$("#postList").empty();
+			$("#postList").append(html);
+		}
+	})
+});
+
+//포스트 삭제 modal
+function postDeleteModalShow(postNo){
+	$("#postDeleteNo").val(postNo);
+	$("#postDeleteModal").modal('show');
+};
+
+//포스트 삭제
+$(document).on('click', '#postDeleteBtn', function(){
+	var lastPostRow = $('.lastPostRow').attr('value');
+	var postNo = $('#postDeleteNo').val();
+	$.ajax({
+		url : "postDelete",
+		type : "POST",
+		data : {postNo : postNo, lastPostRow : lastPostRow},
+		dataType : "json",
 		success : function(data) {
 			var postList = data.postList;
 			html = postAppend(postList);
@@ -221,6 +245,7 @@ function postAppend(postList){
 		html+="<span class='w3-right w3-opacity'>"+item.postRegDate+"</span><br>";
 		html+="<span class='w3-right w3-opacity'>";
 		html+="<button type='button' class='btn btn-primary' onclick='postModifyModalShow("+item.postNo+")'>수정</button>";
+		html+="<button type='button' class='btn btn-primary' onclick='postDeleteModalShow("+item.postNo+")'>삭제</button>";
 		html+="</span>";
 		html+="<h4>"+item.postTitle+"</h4><br>";
 		html+="<hr class='w3-clear'>";

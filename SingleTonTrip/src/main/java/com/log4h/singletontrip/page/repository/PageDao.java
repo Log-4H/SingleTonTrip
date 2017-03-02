@@ -21,4 +21,6 @@ public interface PageDao {
 	public PostVo postView(int postNo);
 	//포스트 업데이트
 	public int postUpdate(PostVo postVo);
+	//포스트 삭제
+	public int postDelete(int postNo);
 }

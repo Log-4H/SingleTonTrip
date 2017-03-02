@@ -53,4 +53,9 @@ public class PageDaoImpl implements PageDao{
 	public int postUpdate(PostVo postVo) {
 		return sqlSession.update(PAGE_NS+"postUpdate", postVo);
 	}
+	//포스트 삭제
+	@Override
+	public int postDelete(int postNo) {
+		return sqlSession.delete(PAGE_NS+"postDelete", postNo);
+	}
 }

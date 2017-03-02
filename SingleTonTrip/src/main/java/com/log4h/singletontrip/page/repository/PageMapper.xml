@@ -75,6 +75,15 @@
 	WHERE	
 		post_no = #{postNo}	
 </update>
+<!-- 포스트 삭제 -->
+<update id="postDelete" parameterType="int">
+	UPDATE 
+		tb_post
+	SET
+		post_delete_date = now()
+	WHERE	
+		post_no = #{postNo}	
+</update>
 
 <!-- 포스트 댓글 등록 -->
 <insert id="postCommentInsert" parameterType="com.log4h.singletontrip.page.domain.PostCommentVo">
