@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="./personModule/left.jsp"></c:import>
-<c:import url="./post/postModify.jsp"></c:import>
-<c:import url="./post/postDelete.jsp"></c:import>
 <!-- Middle Column -->
 <div class="w3-col m7">
 	<div class="w3-row-padding">

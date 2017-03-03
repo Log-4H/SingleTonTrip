@@ -24,4 +24,13 @@ public class TripServiceImpl implements TripService{
 		List<TripVo> tripList = tripDao.tripList(map);
 		return tripList;
 	}
+	//여행상세보기
+	@Override
+	public TripVo tripView(String memberId, int tripNo) {
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("memberId", memberId);
+		map.put("tripNo", tripNo);
+		TripVo trip = tripDao.tripView(map);
+		return trip;
+	}
 }

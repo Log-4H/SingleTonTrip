@@ -21,4 +21,9 @@ public class TripDaoImpl implements TripDao{
 	public List<TripVo> tripList(Map<String, Object> map) {
 		return sqlSession.selectList(TRIP_NS+"tripList", map);
 	}
+	//여행상세보기
+	@Override
+	public TripVo tripView(Map<String, Object> map) {
+		return sqlSession.selectOne(TRIP_NS+"tripList", map);
+	}
 }

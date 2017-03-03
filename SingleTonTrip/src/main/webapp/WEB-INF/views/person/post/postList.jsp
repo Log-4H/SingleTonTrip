@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:import url="./post/postModify.jsp"></c:import>
+<c:import url="./post/postDelete.jsp"></c:import>
 <div class="tab-pane fade in active" id="post">
 	<input type="hidden" class="lastPostRow" name="lastPostRow" value="10">
+	<div class="w3-container w3-card-2 w3-white w3-round w3-margin"><br>
 	<c:import url="./post/postAdd.jsp"></c:import>
 	<div id="postList">
 		<c:forEach items="${postList}" var="p">
@@ -37,6 +40,10 @@
 			</div>
 		</c:forEach>
 	</div>
-
+	<div align="center">
 	<button type="button" class="btn btn-primary" id="addList">더보기</button>
+	</div>
+	<br>
+	</div>
+	
 </div>

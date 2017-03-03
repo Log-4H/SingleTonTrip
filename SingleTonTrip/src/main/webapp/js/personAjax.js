@@ -56,10 +56,9 @@ $(document).on('click', '#addList', function(){
 	var lastPostRow = $('.lastPostRow').attr('value');
 	lastPostRow = Number(lastPostRow);
 	lastPostRow += 5;
-	console.log(lastPostRow);
 	var html = "";
 	$.ajax({
-		url : "postList",
+		url : "personMain",
 		type : "POST",
 		data : {lastPostRow : lastPostRow},
 		dataType : "json",
@@ -82,7 +81,6 @@ function postModifyModalShow(postNo){
 		dataType : "json",
 		success : function(data) {
 			var post = data.post;
-			console.log(post.postContent);
 			$("#postModifyTitle").val(post.postTitle);
 			$("#postModifyNo").val(post.postNo);
 		    $("#postModifyContent").val(post.postContent);
@@ -326,6 +324,37 @@ $(document).on('click', '#tripTab', function(){
 		}
 	})
 });
+//여행 상세보기 modal
+function tripDetailModalShow(tripNo){
+	$.ajax({
+		url : "tripView",
+		type : "POST",
+		data : {tripNo : tripNo},
+		dataType : "json",
+		success : function(data) {
+			var trip = data.trip;
+			var tripRecruitState ="";
+			if(trip.recruitStateCd==1){
+				tripRecruitState = "<span class='label label-success'>"+trip.recruitStateNm+"</span>";
+			}else if(trip.recruitStateCd==2){
+				tripRecruitState = "<span class='label label-warning'>"+trip.recruitStateNm+"</span>";
+			}else if(trip.recruitStateCd==3){
+				tripRecruitState = "<span class='label label-danger'>"+trip.recruitStateNm+"</span>";
+			}
+			$("#tripDetailTitle").html(tripRecruitState + trip.tripTitle);
+			$("#tripDetailThemeNm").html(trip.tripThemeNm);
+			$("#tripDetailRegionDoSi").html(trip.regionDo + trip.regionSi);
+			$("#tripDetailContent").html(trip.tripContent);
+			$("#tripDetailMemberCount").html(trip.tripPresentMember + " / " + trip.tripMaxMember);
+			$("#tripDetailDate").html(trip.tripStartDate +" ~ "+ trip.tripEndDate);
+			$("#tripDetailPrice").html(trip.tripPerPrice + " / " + trip.tripTotalPrice);
+			$("#tripDetailRecruitDate").html(trip.tripRecruitStartDate+" ~ "+trip.tripRecruitEndDate);
+			$("#tripDetailTag").html(trip.tripTag);
+			$("#tripDetailModal").modal('show');
+		    
+		}
+	})
+};
 
 //여행 html추가
 function tripAppend(tripList){
@@ -337,16 +366,24 @@ function tripAppend(tripList){
 		html+="<button type='button' class='btn btn-primary'>수정</button>";
 		html+="<button type='button' class='btn btn-primary'>삭제</button>";
 		html+="</span>";
+		if(item.recruitStateCd==1){
+			html+="<span class='label label-success'>";
+		}else if(item.recruitStateCd==2){
+			html+="<span class='label label-warning'>";
+		}else if(item.recruitStateCd==3){
+			html+="<span class='label label-danger'>";
+		}
+		html+=item.recruitStateNm;
+		html+="</span>";
 		html+="<h4>"+item.tripTitle+"</h4><br>";
 		html+="<hr class='w3-clear'>";
 		html+="<p>"+item.tripThemeNm+"</p>";
 		html+="<p>"+item.regionDo +" "+ item.regionSi+"</p>";
-		html+="<p>"+item.recruitStateNm+"</p>";
 		html+="<hr class='w3-clear'>";
 		html+="<p>"+item.tripContent+"</p>";
 		html+="<hr class='w3-clear'>";
-		html+="<button type='button' class='w3-btn w3-theme-d2 w3-margin-bottom'><i class='fa fa-comment'></i>  상세보기</button> ";
-		html+="</div>";
+		html+="<button type='button' class='w3-btn w3-theme-d2 w3-margin-bottom' onclick='tripDetailModalShow("+item.tripNo+")'>";
+		html+="<i class='fa fa-comment'></i>  상세보기</button> ";
 		html+="</div>";
 		})
 		return html;

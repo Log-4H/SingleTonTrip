@@ -20,13 +20,22 @@ public class TripController {
 	@Autowired
 	private TripService tripService;
 	
-	//포스트 리스트
+	//여행 리스트
 	@RequestMapping(value="person/tripList")
 	public ModelAndView tripList(@ModelAttribute("sessionId") String memberId,
 			@RequestParam(value="lastTripRow", defaultValue="5") int lastTripRow){
 		ModelAndView mv = new ModelAndView("jsonView");
 		List<TripVo> tripList= tripService.tripList(memberId, lastTripRow);
 		mv.addObject("tripList", tripList);
-		return mv;
+		return mv;	
+	}
+	//여행 상세보기
+	@RequestMapping(value="person/tripView")
+	public ModelAndView tripView(@ModelAttribute("sessionId") String memberId,
+			@RequestParam(value="tripNo") int tripNo){
+		ModelAndView mv = new ModelAndView("jsonView");
+		TripVo trip= tripService.tripView(memberId, tripNo);
+		mv.addObject("trip", trip);
+		return mv;	
 	}
 }
