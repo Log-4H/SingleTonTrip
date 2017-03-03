@@ -14,7 +14,8 @@
 </script>
 <% response.sendRedirect("index"); %>
 </c:if>
-<form action="adApply" method="post">
+<h3><a href="index">홈</a></h3>
+<form action="adApply" method="post" enctype="multipart/form-data">
 	<fieldset>
 		<legend>단가 목록</legend>
 		<table>
@@ -27,7 +28,7 @@
 			</tr>
 		<c:forEach var="ad" items="${adPrice}">
 			<tr>
-				<td><input type="checkbox" name="adPriceCd" value="${ad.adPriceCd}"></td>
+				<td><input type="radio" name="adPriceCd" value="${ad.adPriceCd}"></td>
 				<td>${ad.adPriceDetail}</td>
 				<td>${ad.adPricePerday}</td>
 				<td>${ad.adPriceAmount}</td>
@@ -36,6 +37,7 @@
 		</c:forEach>
 		</table>
 	</fieldset>
+	<input type="file" name="imgFile">
 	<input type="submit" value="신청">
 </form>
 </body>

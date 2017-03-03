@@ -51,18 +51,16 @@ function btnClick() {
 					<th>결제 내용</th>
 					<th>가격</th>
 					<th>취소</th>
-					<th>이미지 등록</th>
 				</tr>
 				<c:forEach var="list" items="${paymentList}">
 					<tr>
 						<td>${list.adContent}</td>
 						<td>${list.adTotalPrice}</td>
 						<td><a href="deleteAdApplyList?adNo=${list.adNo}"><button type="button">취소</button></a></td>
-						<td><input type="file" name="imgFile"><input type="hidden" name="adNo" value="${list.adNo}"></td>	
 					</tr>
 				</c:forEach>
 			</table>
-			합계: 	<input type="text" id="total" name="total" value="${total}"><br>
+			합계: 	<input type="text" id="total" name="total" value="${total}" readonly><br>
 			결제금액 :	<div id="price">${total}</div>
 					<input type="submit" value="결제">
 		</form>

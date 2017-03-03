@@ -30,8 +30,11 @@ public class AdServiceImpl implements AdService{
 	// 광고 신청 등록
 	@Transactional
 	@Override
-	public int adApply(AdVo adVo){
+	public int adApply(AdVo adVo, MultipartFile imgFile){
 		int paymentAddResult = 0;
+		ImageUpload imageUpload = new ImageUpload();
+		String adImg = imageUpload.uploadImage(imgFile);
+		adVo.setAdImg(adImg);
 		int adApplyResult = adDao.adApply(adVo);
 		// 등록이 성공적으로 이루어지면 결제테이블에도 등록
 		if(adApplyResult >0){
@@ -59,7 +62,7 @@ public class AdServiceImpl implements AdService{
 		return adDao.adRefuse(map);
 	}
 	
-	// 광고 이미지 등록
+	// 광고 이미지 등록(수정)
 	@Override
 	public int adImgUpload(AdVo adVo, MultipartFile imgFile){
 		ImageUpload imageUpload = new ImageUpload();

@@ -12,7 +12,7 @@ import com.log4h.singletontrip.member.domain.LoginVo;
 
 public interface AdService {
 	public List<AdPriceVo> selectAdPrice();
-	public int adApply(AdVo adVo);
+	public int adApply(AdVo adVo,MultipartFile imgFile);
 	public List<AdVo> selectAdApplyList(LoginVo loginVo);
 	public Map<String,Object> paymentList(String companyId);
 	public int paymentAd(Map<String,Object>map);

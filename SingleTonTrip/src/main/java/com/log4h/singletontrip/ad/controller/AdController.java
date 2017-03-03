@@ -44,14 +44,6 @@ public class AdController {
 	@Autowired
 	private AdService adService;
 	
-	// 광고 등록 폼(승인시)
-	@RequestMapping(value="adAdd")
-	public ModelAndView adAdd(){
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("advertisement/adAdd");
-		
-		return mv;
-	}
 	
 	// 광고 신청 리스트
 	@RequestMapping(value="adApplyList")
@@ -136,12 +128,14 @@ public class AdController {
 	
 	// 광고 신청 등록
 	@RequestMapping(value="adApply", method=RequestMethod.POST)
-	public ModelAndView adApply(HttpServletRequest request,AdVo adVo){
+	public ModelAndView adApply(HttpServletRequest request,AdVo adVo,
+								MultipartHttpServletRequest multi){
 		ModelAndView mv = new ModelAndView();
+		MultipartFile imgFile = multi.getFile("imgFile");
 		String companyId = (String) request.getSession().getAttribute("sessionId");
 		adVo.setCompanyId(companyId);
-		adService.adApply(adVo);
-		mv.setViewName("redirect:payAdd");
+		adService.adApply(adVo,imgFile);
+		mv.setViewName("payment/payAdd");
 		return mv;
 	}
 	
@@ -161,11 +155,8 @@ public class AdController {
 	
 	// 결제
 	@RequestMapping(value="paymentAd", method=RequestMethod.POST)
-	public ModelAndView payment(HttpServletRequest request,
-			MultipartHttpServletRequest multi, AdVo adVo){
+	public ModelAndView payment(HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
-		MultipartFile imgFile = multi.getFile("imgFile");
-		adService.adImgUpload(adVo, imgFile);
 		Map<String,Object>map = new HashMap<String,Object>();
 		String companyId = (String) request.getSession().getAttribute("sessionId");
 		int total = Integer.parseInt(request.getParameter("total"));

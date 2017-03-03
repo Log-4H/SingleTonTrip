@@ -17,7 +17,7 @@
 <h1>신청 리스트</h1>
 <h3><a href="index">홈</a></h3>
 <c:choose>
-	<c:when test="${sessionLevel == 1 || sessionLevel eq null}">
+	<c:when test="${sessionLevel == 1}">
 		<table border="1">
 		 	<tr>
 		 		<th>번호</th>
