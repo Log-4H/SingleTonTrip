@@ -306,7 +306,7 @@ public class MemberController {
 			@ModelAttribute("sessionId")String memberId,
 			@RequestParam(value="memberId")String friendId){
 		ModelAndView mv = new ModelAndView();
-		int result =  
+		int result =  0;
 		if(result>0){
 			mv.setViewName("friend/friendList");
 		}else{
