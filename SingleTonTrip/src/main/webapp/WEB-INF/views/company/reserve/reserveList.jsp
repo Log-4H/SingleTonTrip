@@ -10,43 +10,48 @@
 						<div class="w3-container w3-padding">
 							<h3 class="w3-opacity">예약 내역</h3>
 							<hr class="w3-clear">
-							<c:forEach begin="1" end="10" step="1" var="i">
+							<c:forEach items="${map.returnList}" var="i" varStatus="status">
+							
+							
+							
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										<h4 class="panel-title">
-											<a data-toggle="collapse" href="#collapse${i}">
+											<a data-toggle="collapse" href="#collapse${status.index}">
+											
 												<div class="row">
 													<div class="col-xs-12 col-sm-6 col-md-8" align="center">
-														<h4 class="w3-opacity">제목(컴퍼니 이름)</h4>
+														<h4 class="w3-opacity">${i.reserveVo.room.company.memberNm}</h4>
 													</div>
 													<div class="clearfix visible-xs"></div>
 													<div class="col-xs-6 col-md-2">
-														<h6 class="w3-opacity">숙박(1박)</h6>
+														<h6 class="w3-opacity">${i.reserveVo.reserveStayDay}일</h6>
 													</div>
 													<div class="col-xs-6 col-md-2">
-														<h6 class="w3-opacity">대기중</h6>
+														<h6 class="w3-opacity">${i.reserveVo.paymentState.paymentStateNm}</h6>
 													</div>
 												</div>
 											</a>
 										</h4>
 									</div>
-									<div id="collapse${i}" class="panel-collapse collapse">
+									<div id="collapse${status.index}" class="panel-collapse collapse">
 										<br />
 										<div class="row">
-											<div class="col-md-5 col-md-offset-2">전주 덕진동 워너비
-												눈누날ㄹ라라랄라라</div>
-											<div class="col-md-3 col-md-offset-2 " align="center">DELUXE
-												501</div>
+											<div class="col-md-5 col-md-offset-2">${i.reserveVo.room.company.companyAddress}</div>
+											<div class="col-md-3 col-md-offset-2 " align="center">${i.reserveVo.room.roomNm}</div>
 										</div>
 										<div class="row">
-											<div class="col-md-3 col-md-offset-2">예약일</div>
+											<div class="col-md-3 col-md-offset-2">예약일 : ${i.paymentVo.paymentFinishDate }</div>
 											<div class="col-md-2 col-md-offset-2 " align="right">판매가</div>
-											<div class="col-md-2" align="right">600,000</div>
+											<div class="col-md-2" align="right">${i.reserveVo.room.roomNormalPrice }</div>
 										</div>
 										<div class="row">
-											<div class="col-md-3 col-md-offset-2">입실 :
-												2017.12.21(금)</div>
-											<div class="col-md-6 col-sm-3">퇴실 : 2017.12.21(금)</div>
+											<div class="col-md-3 col-md-offset-2">
+												입실 : ${i.reserveVo.reserveCheckIn}
+											</div>
+											<div class="col-md-6 col-sm-3">
+												퇴실 : ${i.reserveVo.reserveCheckOut}
+											</div>
 										</div>
 
 										<div class="panel-body"></div>

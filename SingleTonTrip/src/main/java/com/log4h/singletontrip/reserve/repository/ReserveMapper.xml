@@ -30,7 +30,19 @@
 			rsv.reserve_no = pm.payment_target_no
 		AND 
 			comm.member_id = r.company_id
-		
+		<choose>
+			<when test="login.memberLevel == 3">
+					
+				WHERE
+					rsv.person_id = #{login.memberId}
+			</when>
+			<when test="login.memberLevel == 2">
+				WHERE 
+					cp.company_id = #{login.memberId}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
 	
 	</select>
 	<select id="getReserveList" parameterType="Map" resultType="HashMap">
@@ -39,7 +51,7 @@
 			rsv.reserve_stay_day as 'reserveVo.reserveStayDay', 
 			rsv.reserve_checkin_date as 'reserveVo.reserveCheckIn', 
 			rsv.reserve_checkout_date as 'reserveVo.reserveCheckOut', 
-		
+			
 			r.room_nm as 'reserveVo.room.roomNm',
 			r.room_normal_price as 'reserveVo.room.roomNormalPrice',
 			r.room_holiday_price as 'reserveVo.room.roomHolidayPrice',
@@ -53,6 +65,7 @@
 			
 			pm.payment_use_mileage as 'paymentVo.paymentUseMileage',
 			pm.payment_price as 'paymentVo.paymentPrice',
+			pm.payment_finish_date as 'paymentVo.paymentFinishDate',
 			
 			comm.member_nm as 'reserveVo.room.company.memberNm'
 			
@@ -75,6 +88,19 @@
 			rsv.reserve_no = pm.payment_target_no
 		AND 
 			comm.member_id = r.company_id
+		<choose>
+			<when test="login.memberLevel == 3">
+					
+				WHERE
+					rsv.person_id = #{login.memberId}
+			</when>
+			<when test="login.memberLevel == 2">
+				WHERE 
+					cp.company_id = #{login.memberId}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
 			
 	</select>
 </mapper>

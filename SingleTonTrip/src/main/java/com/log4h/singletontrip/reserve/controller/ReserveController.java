@@ -26,7 +26,7 @@ public class ReserveController {
 	
 	@RequestMapping(value="/reserve/reserveList",method=RequestMethod.GET)
 	public ModelAndView reserveList(
-			@ModelAttribute("seesionId") String sessionId,
+			@ModelAttribute("sessionId") String sessionId,
 			@ModelAttribute("sessionLevel") int sessionLevel,
 			@RequestParam(value="currentPage", defaultValue="1") int currentPage,
 			@RequestParam(value="selectOption", defaultValue="0") int selectOption,
@@ -37,14 +37,12 @@ public class ReserveController {
 		LoginVo login = new LoginVo();
 		login.setMemberId(sessionId);
 		login.setMemberLevel(sessionLevel);
+		logger.debug("login에 담긴 값 : {} ", login);
 		
 		Map<String, Object> getMap = reserveService.getReserveList(currentPage,login, selectOption, selectValue);
 		logger.debug(" >>>>>>> getReserveList에서 리턴 받는 map : \n {} <<<<<<< ",getMap);
 		
-		
-		
-		
-		
+		mv.addObject("map", getMap);
 		
 		mv.setViewName("company/reserve/reserveList");
 		

@@ -41,10 +41,10 @@ public class ReserveServiceImpl implements ReserveService{
 	    map.put("selectValue", selectValue);
 	    map.put("login", login);
 	    
-	    // 마일리지 리스트를 가져온다
-	    List<Object> retrunList = reserveDao.getReserveList(map);
-	    logger.debug("\n >>>>>>> getReserveList retrunMap 값 {} ",retrunList);
-	    map.put("retrunMap", retrunList);
+	    // 예약 리스트를 가져온다
+	    List<Object> returnList = reserveDao.getReserveList(map);
+	    logger.debug("\n >>>>>>> getReserveList retrunMap 값 {} ",returnList);
+	    map.put("returnList", returnList);
 	    return map;
 	}
 }
