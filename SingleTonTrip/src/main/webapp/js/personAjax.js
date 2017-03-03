@@ -308,19 +308,46 @@ function postImgAppend(img){
 	return html;
 }
 
-//탭 클릭 이벤트
+//여행탭 클릭시 여행리스트 호출
 $(document).on('click', '#tripTab', function(){
+	var lastTripRow = $('#lastTripRow').attr('value');
+	lastTripRow = Number(lastTripRow);
 	$.ajax({
-		url : "postList",
+		url : "tripList",
 		type : "POST",
-		data : {lastPostRow : lastPostRow},
+		data : {lastTripRow : lastTripRow},
 		dataType : "json",
 		success : function(data) {
-			$('.lastPostRow').val(lastPostRow);
-			var postList = data.postList;
-			html = postAppend(postList);
-			$("#postList").empty();
-			$("#postList").append(html);
+			var html = "";
+			var tripList = data.tripList;
+			html = tripAppend(tripList);
+			$("#tripList").empty();
+			$("#tripList").append(html);
 		}
 	})
 });
+
+//여행 html추가
+function tripAppend(tripList){
+	var html = "";
+	$.each(tripList, function(key, item) {
+		html+="<div class='w3-container w3-card-2 w3-white w3-round w3-margin'><br>";
+		html+="<span class='w3-right w3-opacity'>"+item.tripRegDate+"</span><br>";
+		html+="<span class='w3-right w3-opacity'>";
+		html+="<button type='button' class='btn btn-primary'>수정</button>";
+		html+="<button type='button' class='btn btn-primary'>삭제</button>";
+		html+="</span>";
+		html+="<h4>"+item.tripTitle+"</h4><br>";
+		html+="<hr class='w3-clear'>";
+		html+="<p>"+item.tripThemeNm+"</p>";
+		html+="<p>"+item.regionDo +" "+ item.regionSi+"</p>";
+		html+="<p>"+item.recruitStateNm+"</p>";
+		html+="<hr class='w3-clear'>";
+		html+="<p>"+item.tripContent+"</p>";
+		html+="<hr class='w3-clear'>";
+		html+="<button type='button' class='w3-btn w3-theme-d2 w3-margin-bottom'><i class='fa fa-comment'></i>  상세보기</button> ";
+		html+="</div>";
+		html+="</div>";
+		})
+		return html;
+}
