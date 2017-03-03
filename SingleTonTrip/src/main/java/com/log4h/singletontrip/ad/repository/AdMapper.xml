@@ -22,6 +22,7 @@
 		ad_no,
 		company_id,
 		ad_content,
+		ad_img,
 		ad_apply_date,
 		approve_state_cd,
 		payment_finish_date
@@ -52,12 +53,17 @@
 <!-- 광고 신청 목록에서 거절 -->
 <update id="adRefuse" parameterType="map">
 	UPDATE
-		tb_ad
+		tb_ad a 
+	JOIN
+		tb_payment b
+	ON
+		a.ad_no = b.payment_target_no
 	SET
-		approve_state_cd = 3,
-		admin_id = #{adminId}
+		a.approve_state_cd = 3,
+		a.admin_id = #{adminId},
+		b.payment_state_cd = 3
 	WHERE
-		ad_no = #{adNo}
+		a.ad_no = #{adNo}
 </update>
 <!-- 광고 리스트 가져오기 -->
 <select id="selectAdList"
@@ -74,6 +80,16 @@
 		tb_ad
 	WHERE
 		approve_state_cd=2
+</select>
+<!-- 광고 이미지 파일 검색 -->
+<select id="selectAdImg" parameterType="com.log4h.singletontrip.ad.domain.AdVo"
+		resultType="String">
+	SELECT
+		ad_img
+	FROM
+		tb_ad
+	WHERE
+		ad_no = #{adNo}
 </select>
 <!-- 광고 리스트에서 이미지파일 업로드 -->
 <update id="adImgUpload" parameterType="com.log4h.singletontrip.ad.domain.AdVo">
@@ -145,6 +161,10 @@
 		member_id = #{companyId}
 	AND
 		payment_state_cd=1
+	AND
+		approve_state_cd=1
+	GROUP BY
+		ad_no
 </select>
 <!-- 결제 목록들의 합계 구하기 -->
 <select id="totalPrice"

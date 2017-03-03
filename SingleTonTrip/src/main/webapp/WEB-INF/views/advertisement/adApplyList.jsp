@@ -23,6 +23,7 @@
 		 		<th>번호</th>
 		 		<th>신청자</th>
 		 		<th>내용</th>
+		 		<th>이미지파일</th>
 		 		<th>신청일</th>
 		 		<th>결제일</th>
 		 		<th>상태</th>
@@ -33,6 +34,7 @@
 		 		<td>${a.adNo}</td>
 		 		<td>${a.companyId}</td>
 		 		<td>${a.adContent}</td>
+		 		<td><a href="<%=request.getContextPath() %>/images/${a.adImg}" target="_blank">${a.adImg}</a></td>
 		 		<td>${a.adApplyDate}</td>
 		 		<td>${a.paymentFinishDate}</td>
 		 		<td>${a.approveStateCd}</td>
@@ -47,6 +49,7 @@
 		 		<th>번호</th>
 		 		<th>신청자</th>
 		 		<th>내용</th>
+		 		<th>이미지파일</th>
 		 		<th>신청일</th>
 		 		<th>결제일</th>
 		 		<th>상태</th>
@@ -56,6 +59,7 @@
 		 		<td>${a.adNo}</td>
 		 		<td>${a.companyId}</td>
 		 		<td>${a.adContent}</td>
+		 		<td><a href="<%=request.getContextPath() %>/images/${a.adImg}" target="_blank">${a.adImg}</a></td>
 		 		<td>${a.adApplyDate}</td>
 		 		<td>${a.paymentFinishDate}</td>
 		 		<td>${a.approveStateCd}</td>

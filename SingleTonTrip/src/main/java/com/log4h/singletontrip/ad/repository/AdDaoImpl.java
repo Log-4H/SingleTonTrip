@@ -55,6 +55,12 @@ public class AdDaoImpl implements AdDao{
 		return sqlSession.update(AD_NS+"adImgUpload",adVo);
 	}
 	
+	// 광고 이미지 있는지
+	@Override
+	public String selectAdImg(AdVo adVo){
+		return sqlSession.selectOne(AD_NS+"selectAdImg",adVo);
+	}
+	
 	// 광고 리스트
 	@Override
 	public List<AdVo> selectAdList(){
@@ -94,7 +100,7 @@ public class AdDaoImpl implements AdDao{
 	// 결제
 	@Override
 	public int paymentAd(Map<String,Object>map){
-		return sqlSession.update(AD_NS+"payment",map);
+		return sqlSession.update(AD_NS+"paymentAd",map);
 	}
 	
 }

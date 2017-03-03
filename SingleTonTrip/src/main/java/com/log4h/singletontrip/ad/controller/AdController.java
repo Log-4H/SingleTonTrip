@@ -100,7 +100,7 @@ public class AdController {
 		return mv;
 	}
 	
-	//  광고 리스트
+	// 광고 리스트
 	@RequestMapping(value="adList")
 	public ModelAndView adList(){
 		ModelAndView mv = new ModelAndView();
@@ -161,8 +161,11 @@ public class AdController {
 	
 	// 결제
 	@RequestMapping(value="paymentAd", method=RequestMethod.POST)
-	public ModelAndView payment(HttpServletRequest request){
+	public ModelAndView payment(HttpServletRequest request,
+			MultipartHttpServletRequest multi, AdVo adVo){
 		ModelAndView mv = new ModelAndView();
+		MultipartFile imgFile = multi.getFile("imgFile");
+		adService.adImgUpload(adVo, imgFile);
 		Map<String,Object>map = new HashMap<String,Object>();
 		String companyId = (String) request.getSession().getAttribute("sessionId");
 		int total = Integer.parseInt(request.getParameter("total"));

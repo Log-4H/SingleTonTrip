@@ -22,4 +22,5 @@ public interface AdDao {
 	public int adRefuse(Map<String,Object>map);
 	public List<AdVo> selectAdList();
 	public int adImgUpload(AdVo adVo);
+	public String selectAdImg(AdVo adVo);
 }

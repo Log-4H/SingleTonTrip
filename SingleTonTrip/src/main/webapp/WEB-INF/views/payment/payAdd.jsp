@@ -45,18 +45,20 @@ function btnClick() {
 		</form>
 	</c:when>
 	<c:otherwise>
-		<form action="paymentAd" method="post">
+		<form action="paymentAd" method="post" enctype="multipart/form-data">
 			<table border=1>
 				<tr>
 					<th>결제 내용</th>
 					<th>가격</th>
 					<th>취소</th>
+					<th>이미지 등록</th>
 				</tr>
 				<c:forEach var="list" items="${paymentList}">
 					<tr>
 						<td>${list.adContent}</td>
 						<td>${list.adTotalPrice}</td>
-						<td><a href="deleteAdApplyList?adNo=${list.adNo}"><button type="button">취소</button></a></td>			
+						<td><a href="deleteAdApplyList?adNo=${list.adNo}"><button type="button">취소</button></a></td>
+						<td><input type="file" name="imgFile"><input type="hidden" name="adNo" value="${list.adNo}"></td>	
 					</tr>
 				</c:forEach>
 			</table>

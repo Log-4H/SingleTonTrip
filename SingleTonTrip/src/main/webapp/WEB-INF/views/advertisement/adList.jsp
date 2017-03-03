@@ -15,6 +15,7 @@
 <% response.sendRedirect("index"); %>
 </c:if>
 <h3><a href="index">홈</a></h3>
+*선택파일 없이 등록버튼을 누르면 파일이 삭제 됩니다.
 <table border=1>
 	<tr>
 		<th>신청자</th>

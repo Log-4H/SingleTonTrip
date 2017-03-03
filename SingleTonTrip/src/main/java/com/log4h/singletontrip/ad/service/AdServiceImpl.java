@@ -64,11 +64,14 @@ public class AdServiceImpl implements AdService{
 	public int adImgUpload(AdVo adVo, MultipartFile imgFile){
 		ImageUpload imageUpload = new ImageUpload();
 		String adImg = imageUpload.uploadImage(imgFile);
-		if(adImg!=null){
+		String beforeImg = adDao.selectAdImg(adVo);
+		if(beforeImg == null && adImg != null){
+			adVo.setAdImg(adImg);
+		} else if (beforeImg != null && adImg != null || adImg == null && adImg == ""){
+			imageUpload.deleteImage(beforeImg);
 			adVo.setAdImg(adImg);
 		}
-		int result = adDao.adImgUpload(adVo);
-		return result;
+		return adDao.adImgUpload(adVo);
 	}
 	
 	// 광고 리스트
