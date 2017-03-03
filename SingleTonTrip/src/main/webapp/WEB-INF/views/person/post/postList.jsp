@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="tab-pane fade in active" id="post">
 	<input type="hidden" class="lastPostRow" name="lastPostRow" value="10">
-	<c:import url="./postAdd.jsp"></c:import>
+	<c:import url="./post/postAdd.jsp"></c:import>
 	<div id="postList">
 		<c:forEach items="${postList}" var="p">
 			<div class="w3-container w3-card-2 w3-white w3-round w3-margin">
