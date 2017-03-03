@@ -307,3 +307,20 @@ function postImgAppend(img){
 	html+="</div>";
 	return html;
 }
+
+//탭 클릭 이벤트
+$(document).on('click', '#tripTab', function(){
+	$.ajax({
+		url : "postList",
+		type : "POST",
+		data : {lastPostRow : lastPostRow},
+		dataType : "json",
+		success : function(data) {
+			$('.lastPostRow').val(lastPostRow);
+			var postList = data.postList;
+			html = postAppend(postList);
+			$("#postList").empty();
+			$("#postList").append(html);
+		}
+	})
+});

@@ -7,11 +7,11 @@
 <!-- Middle Column -->
 <div class="w3-col m7">
 	<div class="w3-row-padding">
-		<ul id="myTab" class="nav nav-tabs">
+		<ul id="personTab" class="nav nav-tabs">
 			<li class="nav active"><a href="#post" data-toggle="tab">Post</a></li>
-			<li class="nav"><a href="#trip" data-toggle="tab">Trip</a></li>
+			<li class="nav" id="tripTab"><a href="#trip" data-toggle="tab">Trip</a></li>
 		</ul>
-		<div id="myTabContent" class="tab-content">
+		<div id="personTabContent" class="tab-content">
 			<c:import url="./post/postList.jsp"></c:import>
 			<c:import url="./trip/tripList.jsp"></c:import>
 		</div>

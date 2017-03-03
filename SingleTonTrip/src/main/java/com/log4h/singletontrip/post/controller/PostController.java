@@ -1,4 +1,4 @@
-package com.log4h.singletontrip.page.controller;
+package com.log4h.singletontrip.post.controller;
 
 import java.util.List;
 
@@ -13,23 +13,23 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.log4h.singletontrip.page.domain.PostCommentVo;
-import com.log4h.singletontrip.page.domain.PostVo;
-import com.log4h.singletontrip.page.service.PageService;
+import com.log4h.singletontrip.post.domain.PostCommentVo;
+import com.log4h.singletontrip.post.domain.PostVo;
+import com.log4h.singletontrip.post.service.PostService;
 
 @SessionAttributes({"sessionId", "sessionNm", "sessionLevel"})
 @Controller
-public class PageController {
+public class PostController {
 
 	@Autowired
-	private PageService pageService;
+	private PostService postService;
 	
 	//포스트 리스트
 	@RequestMapping(value="person/personMain")
 	public ModelAndView postList(@ModelAttribute("sessionId") String memberId,
 			@RequestParam(value="lastPostRow", defaultValue="5") int lastPostRow){
 		ModelAndView mv = new ModelAndView();
-		List<PostVo> postList= pageService.postList(memberId, lastPostRow);
+		List<PostVo> postList= postService.postList(memberId, lastPostRow);
 		mv.addObject("postList", postList);
 		if(lastPostRow==5){
 			mv.setViewName("person/personMain");
@@ -52,9 +52,9 @@ public class PageController {
 		postVo.setPostContent(postContent);
 		postVo.setMemberId(memberId);
 		MultipartFile imgFile = multi.getFile("imgFile");
-		int result = pageService.postAdd(postVo, imgFile);
+		int result = postService.postAdd(postVo, imgFile);
 		if(result>0){
-			List<PostVo> postList= pageService.postList(memberId, lastPostRow);
+			List<PostVo> postList= postService.postList(memberId, lastPostRow);
 			mv.addObject("postList", postList);
 		}
 		return mv;	
@@ -69,9 +69,9 @@ public class PageController {
 		String postTitle = multi.getParameter("postModifyTitle");
 		String postContent = multi.getParameter("postModifyContent");
 		MultipartFile imgFile = multi.getFile("imgFile");
-		int result = pageService.postModify(postNo, postTitle, postContent, imgFile);
+		int result = postService.postModify(postNo, postTitle, postContent, imgFile);
 		if(result>0){
-			List<PostVo> postList= pageService.postList(memberId, lastPostRow);
+			List<PostVo> postList= postService.postList(memberId, lastPostRow);
 			mv.addObject("postList", postList);
 		}
 		return mv;	
@@ -82,9 +82,9 @@ public class PageController {
 			@RequestParam(value="lastPostRow", defaultValue="5") int lastPostRow,
 			@RequestParam(value="postNo") int postNo){
 		ModelAndView mv = new ModelAndView("jsonView");
-		int result = pageService.postDelete(postNo);
+		int result = postService.postDelete(postNo);
 		if(result>0){
-			List<PostVo> postList= pageService.postList(memberId, lastPostRow);
+			List<PostVo> postList= postService.postList(memberId, lastPostRow);
 			mv.addObject("postList", postList);
 		}
 		return mv;	
@@ -96,7 +96,7 @@ public class PageController {
 			@RequestParam(value="postNo") int postNo,
 			@RequestParam(value="lastCommentRow", defaultValue="5") int lastCommentRow){
 		ModelAndView mv = new ModelAndView("jsonView");
-		List<PostCommentVo> postCommentList= pageService.postCommentList(postNo, memberId, lastCommentRow);
+		List<PostCommentVo> postCommentList= postService.postCommentList(postNo, memberId, lastCommentRow);
 		mv.addObject("postCommentList", postCommentList);
 		return mv;
 	}	
@@ -108,9 +108,11 @@ public class PageController {
 			@RequestParam(value="postCommentContent") String postCommentContent,
 			@RequestParam(value="lastCommentRow", defaultValue="5") int lastCommentRow){
 		ModelAndView mv = new ModelAndView("jsonView");
-		int result = pageService.postCommentAdd(postNo, memberId, postCommentContent);
-		List<PostCommentVo> postCommentList= pageService.postCommentList(postNo, memberId, lastCommentRow);
-		mv.addObject("postCommentList", postCommentList);
+		int result = postService.postCommentAdd(postNo, memberId, postCommentContent);
+		if(result>0){
+			List<PostCommentVo> postCommentList= postService.postCommentList(postNo, memberId, lastCommentRow);
+			mv.addObject("postCommentList", postCommentList);
+		}	
 		return mv;
 	}
 	//댓글 삭제
@@ -120,9 +122,11 @@ public class PageController {
 			@RequestParam(value="postCommentNo") int postCommentNo,
 			@RequestParam(value="lastCommentRow", defaultValue="5") int lastCommentRow){
 		ModelAndView mv = new ModelAndView("jsonView");
-		int result = pageService.postcommentDelete(postCommentNo);
-		List<PostCommentVo> postCommentList= pageService.postCommentList(postNo, memberId, lastCommentRow);
-		mv.addObject("postCommentList", postCommentList);
+		int result = postService.postcommentDelete(postCommentNo);
+		if(result>0){
+			List<PostCommentVo> postCommentList= postService.postCommentList(postNo, memberId, lastCommentRow);
+			mv.addObject("postCommentList", postCommentList);
+		}
 		return mv;
 	}
 	
@@ -131,7 +135,7 @@ public class PageController {
 	public ModelAndView postCommentDelete(@ModelAttribute("sessionId") String memberId,
 			@RequestParam(value="postNo") int postNo){
 		ModelAndView mv = new ModelAndView("jsonView");
-		PostVo post = pageService.postView(postNo);
+		PostVo post = postService.postView(postNo);
 		mv.addObject("post", post);
 		return mv;
 	}

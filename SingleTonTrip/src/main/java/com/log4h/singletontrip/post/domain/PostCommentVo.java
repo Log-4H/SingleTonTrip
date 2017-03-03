@@ -1,4 +1,4 @@
-package com.log4h.singletontrip.page.domain;
+package com.log4h.singletontrip.post.domain;
 
 public class PostCommentVo {
 	

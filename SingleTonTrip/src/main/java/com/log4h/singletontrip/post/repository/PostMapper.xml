@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="pageMapper">
+<mapper namespace="postMapper">
 <!-- 포스트 리스트 -->
-<select id="postList" parameterType="map" resultType="com.log4h.singletontrip.page.domain.PostVo">
+<select id="postList" parameterType="map" resultType="com.log4h.singletontrip.post.domain.PostVo">
 	SELECT
 		post_no,
 		member_id,
@@ -24,7 +24,7 @@
 </select>
 
 <!-- 포스트 등록 -->
-<insert id="postInsert" parameterType="com.log4h.singletontrip.page.domain.PostVo">
+<insert id="postInsert" parameterType="com.log4h.singletontrip.post.domain.PostVo">
 	INSERT INTO tb_post(
 		member_id,
 		post_title,
@@ -46,7 +46,7 @@
 </insert>
 
 <!-- 포스트 보기 -->
-<select id="postView" parameterType="int" resultType="com.log4h.singletontrip.page.domain.PostVo">
+<select id="postView" parameterType="int" resultType="com.log4h.singletontrip.post.domain.PostVo">
 	SELECT
 		post_no,
 		member_id,
@@ -62,7 +62,7 @@
 </select>
 
 <!-- 포스트 수정 -->
-<update id="postUpdate" parameterType="com.log4h.singletontrip.page.domain.PostVo">
+<update id="postUpdate" parameterType="com.log4h.singletontrip.post.domain.PostVo">
 	UPDATE 
 		tb_post
 	SET
@@ -86,7 +86,7 @@
 </update>
 
 <!-- 포스트 댓글 등록 -->
-<insert id="postCommentInsert" parameterType="com.log4h.singletontrip.page.domain.PostCommentVo">
+<insert id="postCommentInsert" parameterType="com.log4h.singletontrip.post.domain.PostCommentVo">
 	INSERT INTO tb_post_comment(
 		post_no,
 		member_id,
@@ -101,7 +101,7 @@
 	)
 </insert>
 <!-- 포스트 댓글 리스트 -->
-<select id="postCommentList" parameterType="Map" resultType="com.log4h.singletontrip.page.domain.PostCommentVo">
+<select id="postCommentList" parameterType="Map" resultType="com.log4h.singletontrip.post.domain.PostCommentVo">
 	SELECT
 		p.member_id as postId,
 		c.post_comment_no,

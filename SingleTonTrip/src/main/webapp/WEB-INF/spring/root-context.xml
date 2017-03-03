@@ -30,7 +30,7 @@
 				<value>classpath:com/log4h/singletontrip/evaluation/repository/EvaluationMapper.xml</value>
 				<value>classpath:com/log4h/singletontrip/member/repository/MemberMapper.xml</value>
 				<value>classpath:com/log4h/singletontrip/mileage/repository/MileageMapper.xml</value>
-				<value>classpath:com/log4h/singletontrip/page/repository/PageMapper.xml</value>
+				<value>classpath:com/log4h/singletontrip/post/repository/PostMapper.xml</value>
 				<value>classpath:com/log4h/singletontrip/report/repository/ReportMapper.xml</value>
 				<value>classpath:com/log4h/singletontrip/reserve/repository/ReserveMapper.xml</value>
 				<value>classpath:com/log4h/singletontrip/room/repository/RoomMapper.xml</value>

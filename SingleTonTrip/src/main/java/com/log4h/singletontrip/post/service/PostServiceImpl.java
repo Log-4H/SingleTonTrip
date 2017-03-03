@@ -1,4 +1,4 @@
-package com.log4h.singletontrip.page.service;
+package com.log4h.singletontrip.post.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,15 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.log4h.singletontrip.page.domain.PostCommentVo;
-import com.log4h.singletontrip.page.domain.PostVo;
-import com.log4h.singletontrip.page.repository.PageDao;
+import com.log4h.singletontrip.post.domain.PostCommentVo;
+import com.log4h.singletontrip.post.domain.PostVo;
+import com.log4h.singletontrip.post.repository.PostDao;
 import com.log4h.singletontrip.util.ImageUpload;
 
 @Service
-public class PageServiceImpl implements PageService{
+public class PostServiceImpl implements PostService{
 	@Autowired
-	private PageDao pageDao;
+	private PostDao postDao;
 
 	//포스트 리스트
 	@Override
@@ -24,7 +24,7 @@ public class PageServiceImpl implements PageService{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("memberId", memberId);
 		map.put("lastPostRow", lastPostRow);
-		List<PostVo> postList = pageDao.postList(map);		
+		List<PostVo> postList = postDao.postList(map);		
 		return postList;
 	}
 	
@@ -37,7 +37,7 @@ public class PageServiceImpl implements PageService{
 			postVo.setPostImg(postImg);
 		}
 		postVo.setPostContent(postVo.getPostContent().replaceAll("\r\n", "<br>"));
-		int result = pageDao.postInsert(postVo);
+		int result = postDao.postInsert(postVo);
 		return result;
 	}
 	
@@ -48,7 +48,7 @@ public class PageServiceImpl implements PageService{
 		postCommentVo.setPostNo(postNo);
 		postCommentVo.setMemberId(memberId);
 		postCommentVo.setPostCommentContent(postCommentContent);
-		int result = pageDao.postCommentInsert(postCommentVo);
+		int result = postDao.postCommentInsert(postCommentVo);
 		return result;
 	}
 	
@@ -59,20 +59,20 @@ public class PageServiceImpl implements PageService{
 		map.put("memberId", memberId);
 		map.put("postNo", postNo);
 		map.put("lastCommentRow", lastCommentRow);
-		List<PostCommentVo> postCommentList = pageDao.postCommentList(map);
+		List<PostCommentVo> postCommentList = postDao.postCommentList(map);
 		return postCommentList;
 	}
 
 	//포스트 댓글 삭제
 	@Override
 	public int postcommentDelete(int postCommentNo) {
-		return pageDao.postCommentDelete(postCommentNo);
+		return postDao.postCommentDelete(postCommentNo);
 	}
 
 	//포스트 보기
 	@Override
 	public PostVo postView(int postNo) {
-		return pageDao.postView(postNo);
+		return postDao.postView(postNo);
 	}
 
 	//포스트 업데이트
@@ -81,7 +81,7 @@ public class PageServiceImpl implements PageService{
 		String beforeImg = null;
 		String afterImg = null;
 		PostVo postVo = new PostVo();
-		postVo = pageDao.postView(postNo);
+		postVo = postDao.postView(postNo);
 		if(postVo.getPostImg()!=null){
 			beforeImg = postVo.getPostImg();
 		}
@@ -96,17 +96,17 @@ public class PageServiceImpl implements PageService{
 				imageUpload.deleteImage(beforeImg);
 			}
 		}
-		int result = pageDao.postUpdate(postVo);
+		int result = postDao.postUpdate(postVo);
 		return result;
 	}
 	//포스트 삭제
 	@Override
 	public int postDelete(int postNo) {
-		int result = pageDao.postDelete(postNo);
+		int result = postDao.postDelete(postNo);
 		if(result>0){
 			String beforeImg = null;
 			PostVo postVo = new PostVo();
-			postVo = pageDao.postView(postNo);
+			postVo = postDao.postView(postNo);
 			if(postVo.getPostImg()!=null){
 				beforeImg = postVo.getPostImg();
 				ImageUpload imageUpload = new ImageUpload();

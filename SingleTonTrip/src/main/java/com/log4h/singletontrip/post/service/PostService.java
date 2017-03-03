@@ -1,13 +1,13 @@
-package com.log4h.singletontrip.page.service;
+package com.log4h.singletontrip.post.service;
 
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.log4h.singletontrip.page.domain.PostCommentVo;
-import com.log4h.singletontrip.page.domain.PostVo;
+import com.log4h.singletontrip.post.domain.PostCommentVo;
+import com.log4h.singletontrip.post.domain.PostVo;
 
-public interface PageService {
+public interface PostService {
 	//포스트 리스트
 	public List<PostVo> postList(String memberId, int lastPostRow);
 	//포스트 등록

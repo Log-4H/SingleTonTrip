@@ -1,12 +1,12 @@
-package com.log4h.singletontrip.page.repository;
+package com.log4h.singletontrip.post.repository;
 
 import java.util.List;
 import java.util.Map;
 
-import com.log4h.singletontrip.page.domain.PostCommentVo;
-import com.log4h.singletontrip.page.domain.PostVo;
+import com.log4h.singletontrip.post.domain.PostCommentVo;
+import com.log4h.singletontrip.post.domain.PostVo;
 
-public interface PageDao {
+public interface PostDao {
 	//포스트리스트
 	public List<PostVo> postList(Map<String, Object> map);
 	//포스트 등록
