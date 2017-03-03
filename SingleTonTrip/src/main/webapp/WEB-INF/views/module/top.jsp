@@ -80,7 +80,8 @@
 		</div>
 	</nav>
 
-	<!-- First Parallax Image with Logo Text -->
+	<!--
+	<!-- First Parallax Image with Logo Text 
 	<div class="bgimg w3-display-container w3-opacity-min" id="home">
 		<div
 			class="w3-display-middle w3-padding-xlarge w3-border w3-wide w3-text-light-grey w3-center">
@@ -88,7 +89,7 @@
 			<h5 class="w3-hide-large" style="white-space: nowrap">JANE DOE</h5>
 			<h3 class="w3-hide-medium w3-hide-small">PHOTOGRAPHER</h3>
 		</div>
-	</div>
+	</div>-->
 
 
 	<!-- Modal -->
