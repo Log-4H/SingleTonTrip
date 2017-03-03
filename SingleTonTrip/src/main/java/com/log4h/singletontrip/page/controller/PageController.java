@@ -25,14 +25,14 @@ public class PageController {
 	private PageService pageService;
 	
 	//포스트 리스트
-	@RequestMapping(value="person/postList")
+	@RequestMapping(value="person/personMain")
 	public ModelAndView postList(@ModelAttribute("sessionId") String memberId,
 			@RequestParam(value="lastPostRow", defaultValue="5") int lastPostRow){
-		ModelAndView mv = new ModelAndView("person/post/postList");
+		ModelAndView mv = new ModelAndView();
 		List<PostVo> postList= pageService.postList(memberId, lastPostRow);
 		mv.addObject("postList", postList);
 		if(lastPostRow==5){
-			mv.setViewName("person/post/postList");
+			mv.setViewName("person/personMain");
 		}else{
 			mv.setViewName("jsonView");
 		}

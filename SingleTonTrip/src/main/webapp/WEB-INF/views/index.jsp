@@ -25,7 +25,7 @@
 <a href="friend">친구</a><br>
 
 <c:if test="${sessionId ne null }">
-<a href="person/postList">포스트</a><br>
+<a href="person/personMain">포스트</a><br>
 </c:if>
 
 
