@@ -19,6 +19,7 @@ function btnClick() {
 </script>
 </head>
 <body>
+<h3><a href="index">홈</a></h3>
 <c:choose>
 	<c:when test="${sessionLevel == 3}">
 		<form action="" method="post">

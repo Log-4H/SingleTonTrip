@@ -103,7 +103,7 @@ public class AdController {
 		return mv;
 	}
 	
-	// 광고 리스트에서 이미지 파일 업로드
+	// 광고 리스트에서 이미지 파일 수정
 	@RequestMapping(value="imgUpload", method=RequestMethod.POST)
 	public ModelAndView imgUpload(MultipartHttpServletRequest multi, AdVo adVo){
 		ModelAndView mv = new ModelAndView();
@@ -135,7 +135,7 @@ public class AdController {
 		String companyId = (String) request.getSession().getAttribute("sessionId");
 		adVo.setCompanyId(companyId);
 		adService.adApply(adVo,imgFile);
-		mv.setViewName("payment/payAdd");
+		mv.setViewName("redirect:adApply");
 		return mv;
 	}
 	
@@ -163,7 +163,7 @@ public class AdController {
 		map.put("companyId", companyId);
 		map.put("total", total);
 		adService.paymentAd(map);
-		mv.setViewName("redirect:payAdd");
+		mv.setViewName("redirect:adApplyList");
 		
 		
 		return mv;
