@@ -11,3 +11,6 @@
 
 		Spring MVC 구조에 OO추가
 
+Mybatis WHERE절
+
+![Alt text](https://github.com/Log-4H/imgRepo/blob/master/%5B0303%5D%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20001.png?raw=true)
