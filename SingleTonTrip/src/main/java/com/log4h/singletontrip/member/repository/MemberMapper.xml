@@ -341,6 +341,7 @@
 </update>
 
 <!-- 친구신청 -->
+<!-- 
 <insert id="friendAdd" parameterType="Map">
 	INSERT INTO tb_friend
 		(
@@ -358,8 +359,9 @@
 		)
 	
 </insert>
+ -->
 <!-- 친구요청리스트 -->
-<select id="friendList" parameterType="Map" resultType="com.log4h.singletontrip.member.domain.MemberVo">
+<!-- <select id="friendList" parameterType="Map" resultType="com.log4h.singletontrip.member.domain.MemberVo">
 	SELECT
 		 f.member_id,
 		 m.member_nm,
@@ -379,6 +381,5 @@
 	AND
 		f.approve_state_cd='1'
 </select>
-
-
+ -->
 </mapper>
