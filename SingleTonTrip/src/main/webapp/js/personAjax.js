@@ -29,15 +29,17 @@ function fileModalInfo(f){
 $(document).on('click', '#postAddBtn', function(){
 	var formData = new FormData($("#postAddForm")[0]);
 	$.ajax({
-		url : "postAdd",
-		type : "POST",
-		data : formData,
-		dataType : "json",
+		url : "postAdd", //controller 로 보낼 url
+		type : "POST", //보내는 방식 ( get, post)
+		data : formData, //내가 보내는 데이터 (form 을보낼수도 있고 
+		//{postNo : postNo, lastPostRow : ('#lastPostRow')} 이런식으로 변수를 보냄
+		dataType : "json", //처리 후 데이터를 받는 형식
 		contentType: false,
         processData: false,
         cache: false,
-		success : function(data) {
-			var postList = data.postList;
+		success : function(data) { //연결이 성공
+			console.log(data);
+			var postList = data.postList; 
 			html = postAppend(postList);
 			$("#postList").empty();
 			$("#postList").append(html);

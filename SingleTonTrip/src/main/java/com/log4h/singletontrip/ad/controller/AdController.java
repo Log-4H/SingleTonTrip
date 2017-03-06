@@ -4,13 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -64,9 +63,10 @@ public class AdController {
 	
 	// 광고 신청 승인
 	@RequestMapping(value="adApprove")
-	public ModelAndView adApprove(HttpServletRequest request,int adNo){
+	public ModelAndView adApprove(
+			@ModelAttribute("sessionId") String adminId, 
+			@RequestParam(value="adNo") int adNo){
 		Map<String,Object>map = new HashMap<String,Object>();
-		String adminId = (String) request.getSession().getAttribute("sessionId");
 		map.put("adminId", adminId);
 		map.put("adNo", adNo);
 		adService.adApprove(map);
@@ -79,9 +79,9 @@ public class AdController {
 	
 	// 광고 신청 거절
 	@RequestMapping(value="adRefuse")
-	public ModelAndView adRefuse(HttpServletRequest request,int adNo){
+	public ModelAndView adRefuse(@ModelAttribute("sessionId") String adminId,
+			@RequestParam(value="adNo") int adNo){
 		Map<String,Object>map = new HashMap<String,Object>();
-		String adminId = (String) request.getSession().getAttribute("sessionId");
 		map.put("adminId", adminId);
 		map.put("adNo", adNo);
 		adService.adRefuse(map);
@@ -128,11 +128,10 @@ public class AdController {
 	
 	// 광고 신청 등록
 	@RequestMapping(value="adApply", method=RequestMethod.POST)
-	public ModelAndView adApply(HttpServletRequest request,AdVo adVo,
+	public ModelAndView adApply(@ModelAttribute("sessionId") String companyId, AdVo adVo,
 								MultipartHttpServletRequest multi){
 		ModelAndView mv = new ModelAndView();
 		MultipartFile imgFile = multi.getFile("imgFile");
-		String companyId = (String) request.getSession().getAttribute("sessionId");
 		adVo.setCompanyId(companyId);
 		adService.adApply(adVo,imgFile);
 		mv.setViewName("redirect:adApply");
@@ -141,9 +140,8 @@ public class AdController {
 	
 	// 결제 폼
 	@RequestMapping(value="payAdd", method=RequestMethod.GET)
-	public ModelAndView payAdd(HttpServletRequest request,AdVo adVo){
+	public ModelAndView payAdd(@ModelAttribute("sessionId") String companyId,AdVo adVo){
 		ModelAndView mv = new ModelAndView();
-		String companyId = (String) request.getSession().getAttribute("sessionId");
 		Map<String,Object>map = adService.paymentList(companyId);
 		int total = (int) map.get("total");
 		mv.addObject("total",total);
@@ -155,11 +153,10 @@ public class AdController {
 	
 	// 결제
 	@RequestMapping(value="paymentAd", method=RequestMethod.POST)
-	public ModelAndView payment(HttpServletRequest request){
+	public ModelAndView payment(@ModelAttribute("sessionId") String companyId,
+			@RequestParam(value="total") int total){
 		ModelAndView mv = new ModelAndView();
 		Map<String,Object>map = new HashMap<String,Object>();
-		String companyId = (String) request.getSession().getAttribute("sessionId");
-		int total = Integer.parseInt(request.getParameter("total"));
 		map.put("companyId", companyId);
 		map.put("total", total);
 		adService.paymentAd(map);
@@ -171,11 +168,10 @@ public class AdController {
 	
 	// 결제 목록에서 삭제
 	@RequestMapping(value="deleteAdApplyList")
-	public ModelAndView deletePayList(int adNo){
+	public ModelAndView deletePayList(@RequestParam(value="adNo") int adNo){
 		ModelAndView mv = new ModelAndView();
 		adService.deleteAdApplyList(adNo);
 		mv.setViewName("redirect:payAdd");
-		
 		return mv;
 	}
 }

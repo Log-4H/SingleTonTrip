@@ -28,9 +28,9 @@ public class MailService {
 
 	// 아이디찾기
 	public int SendId(String memberNm, String memberEmail) {
-		String subject = "";
-		String text = "";
-		int result = 0;
+		String subject = ""; //이메일 제목
+		String text = ""; //이메일 내용
+		int result = 0; //전송 성공여부
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("memberNm", memberNm);
 		map.put("memberEmail", memberEmail);

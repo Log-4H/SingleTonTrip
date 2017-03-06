@@ -59,13 +59,13 @@ public class MemberController {
 		status.setComplete();
 		return mv;	
 	}
-	//개인 & 회원 선택 폼
+	//개인 & 업체회원 선택 폼
 	@RequestMapping(value="joinBegin", method=RequestMethod.GET)
 	public ModelAndView joinBegin(){
 		ModelAndView mv = new ModelAndView("member/join/joinBegin");
 		return mv;	
 	}
-	//개인 & 회원 선택 처리
+	//개인 & 업체회원 선택 처리
 	@RequestMapping(value="joinBegin", method=RequestMethod.POST)
 	public ModelAndView joinBegin(@RequestParam(value="memberLevel") int memberLevel){
 		ModelAndView mv = new ModelAndView();

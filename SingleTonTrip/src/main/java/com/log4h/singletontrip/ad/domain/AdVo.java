@@ -1,14 +1,14 @@
 package com.log4h.singletontrip.ad.domain;
 
 public class AdVo {
-	private int adNo;					// 광고no
-	private String companyId;			// 업체 아이디
+	private int adNo;						// 광고no
+	private String companyId;				// 업체 아이디
 	private int adPriceCd;				// 광고 단가 code
 	private int approveStateCd;			// 승인 상태 code
-	private String adContent;			// 광고 내용
-	private String adImg;				// 광고 이미지
+	private String adContent;				// 광고 내용
+	private String adImg;					// 광고 이미지
 	private int adTotalAmount;			// 총수량(일수)
-	private int adTotalPrice;			// 총결제금액
+	private int adTotalPrice;				// 총결제금액
 	private String adApplyDate;			// 광고 신청일
 	private String adRegDate;			// 광고 게시일
 	private String adEndDate;			// 광고 종료일

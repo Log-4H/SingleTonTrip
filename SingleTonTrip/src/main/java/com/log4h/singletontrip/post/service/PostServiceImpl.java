@@ -99,6 +99,7 @@ public class PostServiceImpl implements PostService{
 		int result = postDao.postUpdate(postVo);
 		return result;
 	}
+	
 	//포스트 삭제
 	@Override
 	public int postDelete(int postNo) {

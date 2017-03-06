@@ -13,29 +13,29 @@ public class ImageUpload {
 	
 	//업로드 이미지
 	public String uploadImage(MultipartFile imgFile){
-		String uploadPath = null;
-		String imgName = null;
-		String extension = null;
-		File destFile = null;
+		String uploadPath = null; //실제 저장되는 경로에 + 파일이름 
+		String imgName = null; //파일이름
+		String extension = null; //확장자
+		File destFile = null; //저장파일
 
 		try {
-			imgName = imgFile.getOriginalFilename();
-			if(!imgName.equals("")){
-				int index = imgName.lastIndexOf(".");
-				extension = "."+imgName.substring(index+1);
-				UUID uuid = UUID.randomUUID();
+			imgName = imgFile.getOriginalFilename(); //파일의 원래이름을 가져온다.
+			if(!imgName.equals("")){ //파일이 들어왔는지 체크
+				int index = imgName.lastIndexOf("."); //확장자 구분을 위한 (.)인덱스 찾기
+				extension = "."+imgName.substring(index+1); //. 뒤의 확장자를 저장
+				UUID uuid = UUID.randomUUID(); //랜덤 파일이름 생성 (중복안되게)
 				
-				imgName = uuid.toString().replace("-", "") + extension;
-				uploadPath = realPath + imgName;
-				destFile = new File(uploadPath);
+				imgName = uuid.toString().replace("-", "") + extension; //파일이름 생성 1111111.jpg
+				uploadPath = realPath + imgName; //저장될 경로 생성 (realpath + imgName) d:....11111.jpg
+				destFile = new File(uploadPath); //최종파일을 업로드 패쓰에 업로드
 				
-				imgFile.transferTo(destFile);
+				imgFile.transferTo(destFile); //?
 			}
 		} catch (IllegalStateException e) {
-			destFile.delete(); 
+			destFile.delete(); //파일삭제
 			e.printStackTrace();
 		} catch (IOException e) {
-			destFile.delete();
+			destFile.delete(); //파일삭제
 			e.printStackTrace();
 		}
 		return imgName;	

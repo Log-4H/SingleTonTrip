@@ -16,7 +16,7 @@
 			<when test="login.memberLevel == 1">
 				<if test="selectOption != 0">
 					WHERE
-					mct.mileage_state = ${selectOption}
+					mct.mileage_state = #{selectOption}
 				</if>
 					
 				<if test ="selectValue != null and selectValue !='' ">
@@ -29,7 +29,7 @@
 					m.person_id = #{login.memberId}
 				<if test="selectOption != 0">
 					AND
-						mct.mileage_state = ${selectOption}
+						mct.mileage_state = #{selectOption}
 				</if>
 			</otherwise>
 		</choose>
@@ -61,8 +61,8 @@
 		<choose>
 			<when test="login.memberLevel == 1">
 				<if test="selectOption != 0">
-					WHERE
-					 mct.mileage_state = ${selectOption}
+					WHERE 
+					 mct.mileage_state = #{selectOption}
 				</if>
 				<if test ="selectValue != null and selectValue !='' ">
 					AND
@@ -74,7 +74,7 @@
 					m.person_id = #{login.memberId}
 				<if test="selectOption != 0">
 					AND
-						mct.mileage_state = ${selectOption}
+						mct.mileage_state = #{selectOption}
 				</if>
 			</otherwise>
 		</choose>

@@ -38,6 +38,7 @@ public class MileageController {
 		logger.debug(" >>>>>>> memberId : {} \n memberLevel : {} \n",sessionId, sessionLevel);
 		logger.debug(" >>>>>>> currentPage : {} \n selectOption : {} \n ",currentPage, selectOption);
 		logger.debug(" >>>>>>> selectValue : {}  ",selectValue);
+		
 		LoginVo login = new LoginVo();
 		login.setMemberId(sessionId);
 		login.setMemberLevel(sessionLevel);

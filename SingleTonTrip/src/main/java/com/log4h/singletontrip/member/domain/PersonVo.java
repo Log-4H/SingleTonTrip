@@ -4,7 +4,7 @@ public class PersonVo {
 	private String memberId;
 	private int memberLevel;
 	private String memberPw;
-	private String newPw;
+	private String newPw; //비밀번호변경시 newPw에 담아서 변경
 	private String memberNm;
 	private String memberPhone;
 	private String memberEmail;
