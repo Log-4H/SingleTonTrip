@@ -7,7 +7,8 @@ import java.util.UUID;
 import org.springframework.web.multipart.MultipartFile;
 
 public class ImageUpload {	
-	//cafe24 절대 경로  /home/hosting_users/본인ID/www/디렉토리
+	//cafe24 경로
+	//private final String realPath = "/home/hosting_users/rexolua/tomcat/webapps/SingleTonTrip/images/";
 	private final String realPath = "D:\\TeamProject\\git\\SingleTonTrip\\SingleTonTrip\\src\\main\\webapp\\images\\";
 	
 	//업로드 이미지
