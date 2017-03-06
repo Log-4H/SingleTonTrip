@@ -1,5 +1,6 @@
 package com.log4h.singletontrip.member.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.log4h.singletontrip.member.domain.CompanyVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
+import com.log4h.singletontrip.member.domain.MemberVo;
 import com.log4h.singletontrip.member.domain.PersonVo;
 import com.log4h.singletontrip.member.service.MailService;
 import com.log4h.singletontrip.member.service.MemberService;
@@ -46,6 +48,7 @@ public class MemberController {
 		mv.addObject("sessionId", loginVo.getMemberId());
 		mv.addObject("sessionNm", loginVo.getMemberNm());
 		mv.addObject("sessionLevel", loginVo.getMemberLevel());
+		
 		return mv;	
 	}
 
@@ -282,10 +285,10 @@ public class MemberController {
 	//친구페이지
 	@RequestMapping(value="friend", method=RequestMethod.GET)
 	public ModelAndView friend(){
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("friend/friend");
 		return mv;
 	}
-	//친구신청
+	//친구추가
 	@RequestMapping(value="friendAdd", method=RequestMethod.GET)
 	public ModelAndView friendAdd(
 			@ModelAttribute("sessionId")String memberId,
@@ -297,22 +300,58 @@ public class MemberController {
 		}else{
 			mv.setViewName("redirect:error");
 		}
+		return mv;	
+	}
+	//친구요청리스트
+	@RequestMapping(value="friendAddList", method=RequestMethod.GET)
+	public ModelAndView friendList(
+			@ModelAttribute("sessionId") String memberId){	
+		ModelAndView mv = new ModelAndView("friend/friendAddList");
+		List<MemberVo> friendAddList = memberService.friendAddList(memberId);
+		mv.addObject("friendAddList",friendAddList);
 		return mv;
 		
 	}
-	//친구요청리스트
-	@RequestMapping(value="friendList", method=RequestMethod.GET)
-	public ModelAndView friendList(
-			@ModelAttribute("sessionId")String memberId,
-			@RequestParam(value="memberId")String friendId){
+	//친구요청 수락&거절
+	@RequestMapping(value="friendApprove", method=RequestMethod.GET)
+	public ModelAndView friendApprove(
+			@RequestParam("memberId") String memberId,
+			@ModelAttribute("sessionId") String sessionId,
+			@RequestParam("approveStateCd") int approveStateCd){	
 		ModelAndView mv = new ModelAndView();
-		int result =  0;
+		int result = memberService.friendApprove(memberId, approveStateCd, sessionId);
 		if(result>0){
-			mv.setViewName("friend/friendList");
+			mv.setViewName("redirect:friendAddList");
 		}else{
 			mv.setViewName("redirect:error");
 		}
-		return mv;
-		
+		return mv;	
 	}
+	//친구리스트
+	@RequestMapping(value="friendTotalList", method=RequestMethod.GET)
+	public ModelAndView friendTotalList(
+			@ModelAttribute("sessionId") String sessionId){	
+		ModelAndView mv = new ModelAndView("friend/friendTotalList");
+		List<MemberVo> friendTotalList = memberService.friendTotalList(sessionId);
+		mv.addObject("friendTotalList", friendTotalList);
+		return mv;	
+	}
+	//친구신청리스트
+	@RequestMapping(value="friendCheckList", method=RequestMethod.GET)
+	public ModelAndView friendCheckList(
+			@ModelAttribute("sessionId") String sessionId){	
+		ModelAndView mv = new ModelAndView("friend/friendCheckList");
+		List<MemberVo> friendCheckList = memberService.friendCheckList(sessionId);
+		mv.addObject("friendCheckList", friendCheckList);
+		return mv;	
+	}
+	//친구삭제
+	@RequestMapping(value="friendDelete", method=RequestMethod.GET)
+	public ModelAndView friendDelete(
+			@ModelAttribute("sessionId") String sessionId){	
+		ModelAndView mv = new ModelAndView("friend/friendCheckList");
+		
+		return mv;	
+	}
+	
 }

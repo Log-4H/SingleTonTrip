@@ -1,10 +1,11 @@
 package com.log4h.singletontrip.member.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.log4h.singletontrip.member.domain.CompanyVo;
-import com.log4h.singletontrip.member.domain.FindVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
+import com.log4h.singletontrip.member.domain.MemberVo;
 import com.log4h.singletontrip.member.domain.PersonVo;
 
 public interface MemberService {
@@ -28,6 +29,16 @@ public interface MemberService {
 	public int personModify(PersonVo personVo);
 	//업체회원정보수정
 	public int companyModify(CompanyVo companyVo);
-	//친구신청
-	public int friendAdd(String memberId,String friendId);
-	}
+	//친구추가
+	public int friendAdd(String memberId, String friendId);
+	//친구요청리스트
+	public List<MemberVo> friendAddList(String memberId);
+	//친구요청 수락&거절
+	public int friendApprove(String memberId, int approveStateCd, String sessionId);
+	//친구리스트
+	public List<MemberVo> friendTotalList(String sessionId);
+	//친구신청리스트
+	public List<MemberVo> friendCheckList(String sessionId);
+	//친구삭제
+	public int friendDelete(String friendId, String sessionId);
+}

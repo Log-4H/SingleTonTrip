@@ -303,7 +303,7 @@
 </update>
 
 <!-- 아이디찾기 -->
-<select id="memberIdFind" parameterType="Map" resultType="com.log4h.singletontrip.member.domain.FindVo">
+<select id="memberIdFind" parameterType="Map" resultType="com.log4h.singletontrip.member.domain.MemberVo">
 	SELECT
 		member_id,
 		member_nm,
@@ -317,7 +317,7 @@
 </select>
 
 <!-- 비밀번호찾기 -->
-<select id="memberPwFind" parameterType="Map" resultType="com.log4h.singletontrip.member.domain.FindVo">
+<select id="memberPwFind" parameterType="Map" resultType="com.log4h.singletontrip.member.domain.MemberVo">
 	SELECT
 		member_nm,
 		member_email
@@ -340,8 +340,7 @@
 		member_id=#{memberId}
 </update>
 
-<!-- 친구신청 -->
-<!-- 
+<!-- 친구추가 -->
 <insert id="friendAdd" parameterType="Map">
 	INSERT INTO tb_friend
 		(
@@ -359,9 +358,8 @@
 		)
 	
 </insert>
- -->
 <!-- 친구요청리스트 -->
-<!-- <select id="friendList" parameterType="Map" resultType="com.log4h.singletontrip.member.domain.MemberVo">
+<select id="friendAddList" parameterType="String" resultType="com.log4h.singletontrip.member.domain.MemberVo">
 	SELECT
 		 f.member_id,
 		 m.member_nm,
@@ -381,5 +379,96 @@
 	AND
 		f.approve_state_cd='1'
 </select>
- -->
+<!-- 친구요청 수락&거절 -->
+<update id="friendApprove" parameterType="Map">
+	UPDATE
+ 		tb_friend
+ 	SET
+ 		approve_state_cd=#{approveStateCd},
+ 		friend_approve_date=now()
+ 	WHERE
+ 		member_id=#{memberId}
+	AND
+		friend_id=#{sessionId}
+ 		
+</update>
+<!-- 친구요청 수락하면 친구 요청한 쪽에 리스트 추가 -->
+<insert id="friendApprove2" parameterType="Map">
+	INSERT INTO tb_friend
+		(
+		member_id,
+		friend_id,
+		approve_state_cd,
+		friend_apply_date
+		)
+	VALUE
+		(
+		#{sessionId},
+		#{memberId},
+		2,
+		now()
+		)
+	
+</insert>
+<!-- 친구리스트 -->
+<select id="friendTotalList" parameterType="String" resultType="com.log4h.singletontrip.member.domain.MemberVo">
+	SELECT
+		 f.friend_id,
+		 m.member_nm
+	FROM
+		tb_friend f
+	JOIN
+		tb_member m
+	ON
+		f.friend_id = m.member_id
+	WHERE
+		f.member_id=#{sessionId}
+	AND
+		f.approve_state_cd='2'
+</select>
+<!-- 친구신청확인 -->
+<select id="friendCheckList" parameterType="String" resultType="com.log4h.singletontrip.member.domain.MemberVo">
+	SELECT
+		 f.friend_id,
+		 m.member_nm,
+		 a.approve_state_nm
+	FROM
+		tb_friend f
+	JOIN
+		tb_member m
+	ON
+		f.friend_id = m.member_id
+	JOIN
+		tb_approve_state a
+	ON
+		f.approve_state_cd = a.approve_state_cd
+	WHERE
+		f.member_id=#{sessionId}
+	AND
+		f.approve_state_cd='1'
+	
+</select>
+<!-- 친구삭제 -->
+<delete id="friendDelete" parameterType="Map">
+	DELETE FROM
+		tb_friend
+	WHERE
+		member_id=#{sessionId}
+	AND
+		friend_id=#{friendId}
+	AND
+		approve_state_cd='2'
+</delete>
+
+<!-- 친구삭제시 상대방 리스트에서 삭제 -->
+<delete id="friendDelete2" parameterType="Map">
+	DELETE FROM
+		tb_friend
+	WHERE
+		member_id=#{friendId}
+	AND
+		friend_id=#{sessionId}
+	AND
+		approve_state_cd='2'
+</delete>
 </mapper>

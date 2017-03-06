@@ -14,7 +14,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.log4h.singletontrip.member.domain.FindVo;
+import com.log4h.singletontrip.member.domain.MemberVo;
 import com.log4h.singletontrip.member.repository.MemberDao;
 
 @Component
@@ -34,14 +34,14 @@ public class MailService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("memberNm", memberNm);
 		map.put("memberEmail", memberEmail);
-		FindVo findVo = memberDao.memberIdFind(map);
+		MemberVo memberVo = memberDao.memberIdFind(map);
 		MimeMessage msg = mailSender.createMimeMessage();
-		subject = findVo.getMemberNm() + "님 SingleTonTrip 아이디 찾기입니다.";
-		text = findVo.getMemberNm() + "님의 아이디는" + findVo.getMemberId() + "입니다";
+		subject = memberVo.getMemberNm() + "님 SingleTonTrip 아이디 찾기입니다.";
+		text = memberVo.getMemberNm() + "님의 아이디는" + memberVo.getMemberId() + "입니다";
 		try {
 			msg.setSubject(subject);
 			msg.setText(text);
-			msg.setRecipient(RecipientType.TO, new InternetAddress(findVo.getMemberEmail()));
+			msg.setRecipient(RecipientType.TO, new InternetAddress(memberVo.getMemberEmail()));
 			mailSender.send(msg);
 			result = 1;
 		} catch (MessagingException e) {
@@ -64,17 +64,17 @@ public class MailService {
 		map.put("memberEmail", memberEmail);
 		map.put("memberId", memberId);
 		map.put("randomPw", randomPw);
-		FindVo findVo = memberDao.memberPwFind(map);
-		if(findVo!=null){
+		MemberVo memberVo = memberDao.memberPwFind(map);
+		if(memberVo!=null){
 			int pwUpdateResult = memberDao.memberPwUpdate(map);
 			if(pwUpdateResult>0){
 				MimeMessage msg = mailSender.createMimeMessage();
-				subject = findVo.getMemberNm() + "님 SingleTonTrip 비밀번호 찾기입니다.";
-				text = findVo.getMemberNm() + "님의 비밀번호는" + randomPw + "입니다";
+				subject = memberVo.getMemberNm() + "님 SingleTonTrip 비밀번호 찾기입니다.";
+				text = memberVo.getMemberNm() + "님의 비밀번호는" + randomPw + "입니다";
 				try {
 					msg.setSubject(subject);
 					msg.setText(text);
-					msg.setRecipient(RecipientType.TO, new InternetAddress(findVo.getMemberEmail()));
+					msg.setRecipient(RecipientType.TO, new InternetAddress(memberVo.getMemberEmail()));
 					mailSender.send(msg);
 					result = 1;
 				} catch (MessagingException e) {

@@ -10,26 +10,24 @@
 <body>
 <h2>친구리스트</h2>
 <div>
-	<form action="friendList" method="post">
-		<table border='1'>
-			<thead>
-				<tr>
-					<td>ID</td>
-					<td>Name</td>
-					<td>State</td>				
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="" var="f">
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>	
-				</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</form>
+	<table border='1'>
+		<thead>
+			<tr>
+				<td>ID</td>
+				<td>Name</td>
+				<td>삭제</td>		
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${friendTotalList}" var="f">
+			<tr>
+				<td>${f.friendId}</td>
+				<td>${f.memberNm}</td>
+				<td><a href="<c:url value='friendApprove?memberId=${f.memberId}&&approveStateCd=3'/> ">삭제</a></td>	
+			</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 </div>
 </body>
 </html>

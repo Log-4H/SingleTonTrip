@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.log4h.singletontrip.member.domain.CompanyVo;
-import com.log4h.singletontrip.member.domain.FindVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
+import com.log4h.singletontrip.member.domain.MemberVo;
 import com.log4h.singletontrip.member.domain.PersonVo;
 import com.log4h.singletontrip.member.repository.MemberDao;
 import com.log4h.singletontrip.util.Paging;
@@ -118,7 +118,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		return memberDao.companyModify(companyVo);
 	}
-	//친구신청
+	//친구추가
 	@Override
 	public int friendAdd(String memberId, String friendId) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -126,4 +126,46 @@ public class MemberServiceImpl implements MemberService{
 		map.put("friendId", friendId);
 		return memberDao.friendAdd(map);
 	}
+	//친구요청리스트
+	@Override
+	public List<MemberVo> friendAddList(String memberId) {
+		
+		return memberDao.friendAddList(memberId);
+	}
+	//친구요청 수락&거절
+	@Transactional
+	@Override
+	public int friendApprove(String memberId, int approveStateCd, String sessionId) {
+		int result = 0;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberId", memberId);
+		map.put("approveStateCd", approveStateCd);
+		map.put("sessionId", sessionId);
+		memberDao.friendApprove(map);
+		if(approveStateCd==2){
+			result = memberDao.friendApprove2(map);
+		}
+		return result;
+	}
+	//친구리스트
+	@Override
+	public List<MemberVo> friendTotalList(String sessionId) {
+		
+		return memberDao.friendTotalList(sessionId);
+	}
+	//친구신청리스트
+	@Override
+	public List<MemberVo> friendCheckList(String sessionId) {
+		return memberDao.friendCheckList(sessionId);
+	}
+	//친구삭제
+	@Override
+	public int friendDelete(String friendId, String sessionId) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("friendId", friendId);
+		map.put("sessionId", sessionId);
+		return memberDao.friendDelete(map);
+	}
+	
+	
 }

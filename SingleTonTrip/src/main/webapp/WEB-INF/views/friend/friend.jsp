@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="friendList">친구리스트</a><br>
-<a href="friendList2">친구요청리스트</a><br>
-<a href="friendList3">친구신청</a><br>
+<a href="friendAddList">친구요청리스트</a><br>
+<a href="friendCheckList">친구신청확인</a><br>
+<a href="friendTotalList">친구리스트</a><br>
 </body>
 </html>

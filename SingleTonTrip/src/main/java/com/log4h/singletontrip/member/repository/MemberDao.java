@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.log4h.singletontrip.member.domain.CompanyVo;
-import com.log4h.singletontrip.member.domain.FindVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
+import com.log4h.singletontrip.member.domain.MemberVo;
 import com.log4h.singletontrip.member.domain.PersonVo;
 
 public interface MemberDao {
@@ -38,11 +38,23 @@ public interface MemberDao {
 	//업체회원정보수정
 	public int companyModify(CompanyVo companyVo);
 	//아이디찾기
-	public FindVo memberIdFind(Map<String, Object> map);
+	public MemberVo memberIdFind(Map<String, Object> map);
 	//비밀번호찾기
-	public FindVo memberPwFind(Map<String, Object> map);
+	public MemberVo memberPwFind(Map<String, Object> map);
 	//랜덤비밀번호 업데이트
 	public int memberPwUpdate(Map<String, Object> map);
-	//친구신청
+	//친구추가
 	public int friendAdd(Map<String, Object> map);
+	//친구요청리스트
+	public List<MemberVo> friendAddList(String memberId);
+	//친구요청 수락&거절
+	public int friendApprove(Map<String, Object> map);
+	//친구요청 수락하면 친구 요청한 쪽에 리스트 추가
+	public int friendApprove2(Map<String, Object> map);
+	//친구리스트
+	public List<MemberVo> friendTotalList(String sessionId);
+	//친구신청확인
+	public List<MemberVo> friendCheckList(String sessionId);
+	//친구삭제
+	public int friendDelete(Map<String, Object> map);
 }

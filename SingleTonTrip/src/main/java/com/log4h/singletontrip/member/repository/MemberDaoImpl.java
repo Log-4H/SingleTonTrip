@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.log4h.singletontrip.member.domain.CompanyVo;
-import com.log4h.singletontrip.member.domain.FindVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
+import com.log4h.singletontrip.member.domain.MemberVo;
 import com.log4h.singletontrip.member.domain.PersonVo;
 
 @Repository
@@ -91,12 +91,12 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	//아이디찾기
 	@Override
-	public FindVo memberIdFind(Map<String, Object> map) {
+	public MemberVo memberIdFind(Map<String, Object> map) {
 		return sqlSession.selectOne(MEMBER_NS+"memberIdFind", map);
 	}
 	//비밀번호찾기
 	@Override
-	public FindVo memberPwFind(Map<String, Object> map) {
+	public MemberVo memberPwFind(Map<String, Object> map) {
 		return sqlSession.selectOne(MEMBER_NS+"memberPwFind", map);
 	}
 	//랜덤비밀번호 업데이트
@@ -104,10 +104,42 @@ public class MemberDaoImpl implements MemberDao{
 	public int memberPwUpdate(Map<String, Object> map) {
 		return sqlSession.update(MEMBER_NS+"memberPwUpdate", map);
 	}
-	//친구신청
+	//친구추가
 	@Override
 	public int friendAdd(Map<String, Object> map) {
  
 		return sqlSession.insert(MEMBER_NS+"friendAdd", map);
 	}
+	//친구요청리스트
+	@Override
+	public List<MemberVo> friendAddList(String memberId) {
+		return sqlSession.selectList(MEMBER_NS+"friendAddList", memberId);
+	}
+	//친구요청 수락&거절
+	@Override
+	public int friendApprove(Map<String, Object> map) {
+		return sqlSession.update(MEMBER_NS+"friendApprove", map);
+	}
+	//친구리스트
+	@Override
+	public List<MemberVo> friendTotalList(String sessionId) {
+		return sqlSession.selectList(MEMBER_NS+"friendTotalList", sessionId);
+	}
+	//친구요청 수락하면 친구 요청한 쪽에 리스트 추가
+	@Override
+	public int friendApprove2(Map<String, Object> map) {
+		return sqlSession.insert(MEMBER_NS+"friendApprove2",map);
+	}
+	//친구신청확인
+	@Override
+	public List<MemberVo> friendCheckList(String sessionId) {
+		return sqlSession.selectList(MEMBER_NS+"friendCheckList", sessionId);
+	}
+	//친구삭제
+	@Override
+	public int friendDelete(Map<String, Object> map) {
+
+		return sqlSession.delete(MEMBER_NS+"friendDelete", map);
+	}
+	
 }
