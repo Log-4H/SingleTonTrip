@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <c:import url="/WEB-INF/views//module/top.jsp"></c:import>
 <body>
 	<div class="w3-container w3-content" style="max-width: 1400px; margin-top: 80px">
@@ -47,10 +48,10 @@
 										</div>
 										<div class="row">
 											<div class="col-md-3 col-md-offset-2">
-												입실 : ${i.reserveVo.reserveCheckIn}
+												입실일 : ${i.reserveVo.reserveCheckIn}
 											</div>
 											<div class="col-md-6 col-sm-3">
-												퇴실 : ${i.reserveVo.reserveCheckOut}
+												퇴실일 : ${i.reserveVo.reserveCheckOut}
 											</div>
 										</div>
 

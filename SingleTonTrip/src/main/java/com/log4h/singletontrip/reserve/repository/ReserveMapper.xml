@@ -65,7 +65,7 @@
 			
 			pm.payment_use_mileage as 'paymentVo.paymentUseMileage',
 			pm.payment_price as 'paymentVo.paymentPrice',
-			pm.payment_finish_date as 'paymentVo.paymentFinishDate',
+			DATE_FORMAT(pm.payment_finish_date, "%Y-%m-%d ") as 'paymentVo.paymentFinishDate',
 			
 			comm.member_nm as 'reserveVo.room.company.memberNm'
 			
