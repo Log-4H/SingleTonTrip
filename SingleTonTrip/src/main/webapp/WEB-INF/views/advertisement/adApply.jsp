@@ -26,7 +26,7 @@
 				<th>수량(일수)</th>
 				<th>합계</th>
 			</tr>
-		<c:forEach var="ad" items="${adPrice}">
+		<c:forEach var="ad" items="${adPrice}" >
 			<tr>
 				<td><input type="radio" name="adPriceCd" value="${ad.adPriceCd}"></td>
 				<td>${ad.adPriceDetail}</td>
@@ -40,5 +40,6 @@
 	<input type="file" name="imgFile">
 	<input type="submit" value="신청">
 </form>
+<a href="payAdd">결제하러 가기</a>
 </body>
 </html>
