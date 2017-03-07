@@ -53,7 +53,15 @@ public class AdServiceImpl implements AdService{
 	// 광고 신청 승인
 	@Override
 	public int adApprove(Map<String,Object>map){
-		return adDao.adApprove(map);
+		int adApproveResult = 0;
+		String selectSameAd = adDao.selectSameAd(map);
+		if(selectSameAd != null){
+			map.put("selectSameAd", selectSameAd);
+			adDao.adApprove(map);
+		} else {
+			adDao.adApprove(map);
+		}
+		return adApproveResult;
 	}
 	
 	// 광고 신청 거절

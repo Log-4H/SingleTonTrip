@@ -65,8 +65,12 @@ public class AdController {
 	@RequestMapping(value="adApprove")
 	public ModelAndView adApprove(
 			@ModelAttribute("sessionId") String adminId, 
-			@RequestParam(value="adNo") int adNo){
+			@RequestParam(value="adNo") int adNo,
+			@RequestParam(value="companyId") String companyId,
+			@RequestParam(value="adGroupCd") int adGroupCd){
 		Map<String,Object>map = new HashMap<String,Object>();
+		map.put("adGroupCd", adGroupCd);
+		map.put("companyId", companyId);
 		map.put("adminId", adminId);
 		map.put("adNo", adNo);
 		adService.adApprove(map);

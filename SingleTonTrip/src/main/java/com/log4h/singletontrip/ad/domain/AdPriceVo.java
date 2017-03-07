@@ -3,10 +3,11 @@ package com.log4h.singletontrip.ad.domain;
 // 광고 단가
 public class AdPriceVo {
 	private int adPriceCd;			// 광고분류 코드
-	private String adPriceDetail;		// 광고설명
+	private String adPriceDetail;	// 광고설명
+	private int adPriceGroup;		// 같은광고 그룹
 	private int adPricePerday;		// 광고가격(1일)
 	private int adPriceAmount;		// 광고수량(일수)
-	private int adPriceTotal;			// 총 가격
+	private int adPriceTotal;		// 총 가격
 	
 	public int getAdPriceCd() {
 		return adPriceCd;
@@ -19,6 +20,12 @@ public class AdPriceVo {
 	}
 	public void setAdPriceDetail(String adPriceDetail) {
 		this.adPriceDetail = adPriceDetail;
+	}
+	public int getAdPriceGroup() {
+		return adPriceGroup;
+	}
+	public void setAdPriceGroup(int adPriceGroup) {
+		this.adPriceGroup = adPriceGroup;
 	}
 	public int getAdPricePerday() {
 		return adPricePerday;

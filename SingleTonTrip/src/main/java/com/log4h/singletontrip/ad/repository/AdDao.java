@@ -23,4 +23,5 @@ public interface AdDao {
 	public List<AdVo> selectAdList();
 	public int adImgUpload(AdVo adVo);
 	public String selectAdImg(AdVo adVo);
+	public String selectSameAd(Map<String,Object>map);
 }

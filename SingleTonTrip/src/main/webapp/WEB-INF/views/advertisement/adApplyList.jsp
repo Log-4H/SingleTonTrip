@@ -37,8 +37,9 @@
 		 		<td><a href="<%=request.getContextPath() %>/images/${a.adImg}" target="_blank">${a.adImg}</a></td>
 		 		<td>${a.adApplyDate}</td>
 		 		<td>${a.paymentFinishDate}</td>
-		 		<td>${a.approveStateCd}</td>
-		 		<td><a href="adApprove?adNo=${a.adNo}">승인</a>/<a href="adRefuse?adNo=${a.adNo}">거절</a></td>
+		 		<td>${a.approveStateNm}</td>
+		 		<td><a href="adApprove?adNo=${a.adNo}&companyId=${a.companyId}&adGroupCd=${a.adGroupCd}">승인</a>/
+		 			<a href="adRefuse?adNo=${a.adNo}">거절</a></td>
 		 	</tr>
 		</c:forEach>
 		</table>
@@ -62,7 +63,7 @@
 		 		<td><a href="<%=request.getContextPath() %>/images/${a.adImg}" target="_blank">${a.adImg}</a></td>
 		 		<td>${a.adApplyDate}</td>
 		 		<td>${a.paymentFinishDate}</td>
-		 		<td>${a.approveStateCd}</td>
+		 		<td>${a.approveStateNm}</td>
 		 	</tr>
 		</c:forEach>
 		</table>

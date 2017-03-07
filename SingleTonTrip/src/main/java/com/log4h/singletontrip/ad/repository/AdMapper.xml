@@ -21,31 +21,61 @@
 	SELECT
 		ad_no,
 		company_id,
+		ad_group_cd,
 		ad_content,
 		ad_img,
 		ad_apply_date,
-		approve_state_cd,
+		approve_state_nm as approveStateNm,
 		payment_finish_date
 	FROM
 		tb_ad
 	JOIN
 		tb_payment
+	JOIN
+		tb_approve_state
 	ON
 		payment_target_no = ad_no
 	WHERE
-		approve_state_cd = 1
+		ad_approve_state_cd = 1
 	<if test="memberLevel == 2">
 		AND member_id = #{memberId}
 	</if>
+	GROUP BY
+		ad_no
+</select>
+<!-- 같은 내용의 광고가 승인 돼있는지 알아보기 (가장 늦는 날짜 가져옴) -->
+<select id="selectSameAd" parameterType="map"
+		resultType="String">
+	SELECT
+		ad_end_date
+	FROM
+		tb_ad
+	JOIN
+		tb_ad_price
+	ON 
+		ad_group_cd = ad_price_group
+	WHERE
+		ad_group_cd = #{adGroupCd}
+	AND
+		company_id = #{companyId}
+	AND
+		ad_approve_state_cd = 2
+	ORDER BY 
+		ad_end_date DESC limit 1
 </select>
 <!-- 광고 신청 목록에서 승인 -->
 <update id="adApprove" parameterType="map">
 	UPDATE
 		tb_ad
 	SET
-		approve_state_cd = 2,
+		ad_approve_state_cd = 2,
 		ad_reg_date = now(),
-		ad_end_date = ADDDATE(now(), INTERVAL ad_total_amount DAY),
+		<if test = "selectSameAd != null">
+			ad_end_date = ADDDATE(#{selectSameAd}, INTERVAL ad_total_amount DAY),
+		</if>
+		<if test = "selectSameAd == null">
+			ad_end_date = ADDDATE(now(), INTERVAL ad_total_amount DAY),
+		</if>
 		admin_id = #{adminId}
 	WHERE
 		ad_no = #{adNo}
@@ -59,7 +89,7 @@
 	ON
 		a.ad_no = b.payment_target_no
 	SET
-		a.approve_state_cd = 3,
+		a.ad_approve_state_cd = 3,
 		a.admin_id = #{adminId},
 		b.payment_state_cd = 3
 	WHERE
@@ -79,7 +109,7 @@
 	FROM
 		tb_ad
 	WHERE
-		approve_state_cd=2
+		ad_approve_state_cd=2
 </select>
 <!-- 광고 이미지 파일 검색 -->
 <select id="selectAdImg" parameterType="com.log4h.singletontrip.ad.domain.AdVo"
@@ -106,6 +136,7 @@
 		(
 			company_id,
 			ad_price_cd, 
+			ad_group_cd,
 			ad_content, 
 			ad_img,
 			ad_total_amount,
@@ -115,6 +146,7 @@
 	SELECT
 			#{companyId},
 			ad_price_cd, 
+			ad_price_group,
 			ad_price_detail,
 			#{adImg}, 
 			ad_price_amount, 
@@ -164,7 +196,7 @@
 	AND
 		payment_state_cd=1
 	AND
-		approve_state_cd=1
+		ad_approve_state_cd=1
 	GROUP BY
 		ad_no
 </select>

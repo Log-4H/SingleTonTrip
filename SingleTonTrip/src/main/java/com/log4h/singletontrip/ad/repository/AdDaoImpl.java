@@ -43,6 +43,12 @@ public class AdDaoImpl implements AdDao{
 		return sqlSession.update(AD_NS+"adApprove",map);
 	}
 	
+	// 같은 내용의 광고가 승인 돼있는지 알아보기
+	@Override
+	public String selectSameAd(Map<String,Object>map){
+		return sqlSession.selectOne(AD_NS+"selectSameAd",map);
+	}
+	
 	// 광고 신청 거절
 	@Override
 	public int adRefuse(Map<String,Object>map){
