@@ -453,22 +453,8 @@
 	DELETE FROM
 		tb_friend
 	WHERE
-		member_id=#{sessionId}
-	AND
-		friend_id=#{friendId}
-	AND
-		approve_state_cd='2'
-</delete>
-
-<!-- 친구삭제시 상대방 리스트에서 삭제 -->
-<delete id="friendDelete2" parameterType="Map">
-	DELETE FROM
-		tb_friend
-	WHERE
-		member_id=#{friendId}
-	AND
-		friend_id=#{sessionId}
-	AND
-		approve_state_cd='2'
+		(member_id=#{sessionId} AND friend_id=#{friendId})
+	OR
+		(member_id=#{friendId} AND friend_id=#{sessionId})
 </delete>
 </mapper>

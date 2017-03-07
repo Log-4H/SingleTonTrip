@@ -296,7 +296,7 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		int result = memberService.friendAdd(memberId, friendId);
 		if(result>0){
-			mv.setViewName("friend/friendList");
+			mv.setViewName("redirect:friendCheckList");
 		}else{
 			mv.setViewName("redirect:error");
 		}
@@ -348,10 +348,13 @@ public class MemberController {
 	//친구삭제
 	@RequestMapping(value="friendDelete", method=RequestMethod.GET)
 	public ModelAndView friendDelete(
-			@ModelAttribute("sessionId") String sessionId){	
-		ModelAndView mv = new ModelAndView("friend/friendCheckList");
-		
-		return mv;	
+			@ModelAttribute("sessionId") String sessionId,
+			@RequestParam("friendId") String friendId){	
+		ModelAndView mv = new ModelAndView();
+		int result = memberService.friendDelete(friendId, sessionId);
+		if(result>0){
+			mv.setViewName("redirect:friendTotalList");
+		}
+	 	return mv;	
 	}
-	
 }

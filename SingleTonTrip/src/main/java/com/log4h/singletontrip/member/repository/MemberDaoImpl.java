@@ -138,8 +138,6 @@ public class MemberDaoImpl implements MemberDao{
 	//친구삭제
 	@Override
 	public int friendDelete(Map<String, Object> map) {
-
 		return sqlSession.delete(MEMBER_NS+"friendDelete", map);
 	}
-	
 }

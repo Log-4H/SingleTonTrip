@@ -23,7 +23,7 @@
 			<tr>
 				<td>${f.friendId}</td>
 				<td>${f.memberNm}</td>
-				<td><a href="<c:url value='friendApprove?memberId=${f.memberId}&&approveStateCd=3'/> ">삭제</a></td>	
+				<td><a href="<c:url value='friendDelete?friendId=${f.friendId}'/> ">삭제</a></td>	
 			</tr>
 			</c:forEach>
 		</tbody>
