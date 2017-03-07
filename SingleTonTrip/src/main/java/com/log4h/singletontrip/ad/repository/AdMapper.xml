@@ -58,7 +58,7 @@
 		ad_group_cd = #{adGroupCd}
 	AND
 		company_id = #{companyId}
-	AND
+	AND0
 		ad_approve_state_cd = 2
 	ORDER BY 
 		ad_end_date DESC limit 1
@@ -69,11 +69,12 @@
 		tb_ad
 	SET
 		ad_approve_state_cd = 2,
-		ad_reg_date = now(),
 		<if test = "selectSameAd != null">
-			ad_end_date = ADDDATE(#{selectSameAd}, INTERVAL ad_total_amount DAY),
+			ad_reg_date = ADDDATE(#{selectSameAd}, INTERVAL 1 DAY),
+			ad_end_date = ADDDATE(#{selectSameAd}, INTERVAL ad_total_amount+1 DAY),
 		</if>
 		<if test = "selectSameAd == null">
+			ad_reg_date = now(),
 			ad_end_date = ADDDATE(now(), INTERVAL ad_total_amount DAY),
 		</if>
 		admin_id = #{adminId}
