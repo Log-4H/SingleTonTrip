@@ -43,8 +43,81 @@ public class ReserveController {
 		logger.debug(" >>>>>>> getReserveList에서 리턴 받는 map : \n {} <<<<<<< ",getMap);
 		
 		mv.addObject("map", getMap);
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("selectOption", selectOption);
+		mv.addObject("selectValue", selectValue);
+		mv.addObject("startPage", getMap.get("startPage"));
+		mv.addObject("pageSize", getMap.get("pageSize"));
+		mv.addObject("endPage", getMap.get("endPage"));
+		mv.addObject("lastPage", getMap.get("lastPage"));
 		
-		mv.setViewName("company/reserve/reserveList");
+		mv.setViewName("/company/reserve/reserveList");
+		
+		return mv;
+		
+	}
+	
+	@RequestMapping(value="/payment/payList",method=RequestMethod.GET)
+	public ModelAndView payList(
+			@ModelAttribute("sessionId") String sessionId,
+			@ModelAttribute("sessionLevel") int sessionLevel,
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage,
+			@RequestParam(value="selectOption", defaultValue="0") int selectOption,
+			@RequestParam(value="selectValue", required=false) String selectValue			
+			){
+		ModelAndView mv = new ModelAndView();
+		
+		LoginVo login = new LoginVo();
+		login.setMemberId(sessionId);
+		login.setMemberLevel(sessionLevel);
+		logger.debug("login에 담긴 값 : {} ", login);
+		
+/*		Map<String, Object> getMap = reserveService.getReserveList(currentPage,login, selectOption, selectValue);
+		logger.debug(" >>>>>>> getReserveList에서 리턴 받는 map : \n {} <<<<<<< ",getMap);
+		
+		mv.addObject("map", getMap);
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("selectOption", selectOption);
+		mv.addObject("selectValue", selectValue);
+		mv.addObject("startPage", getMap.get("startPage"));
+		mv.addObject("pageSize", getMap.get("pageSize"));
+		mv.addObject("endPage", getMap.get("endPage"));
+		mv.addObject("lastPage", getMap.get("lastPage"));
+		*/
+		mv.setViewName("/payment/payList");
+		
+		return mv;
+		
+	}
+	
+	@RequestMapping(value="/payment/payAdd",method=RequestMethod.GET)
+	public ModelAndView payAdd(
+			@ModelAttribute("sessionId") String sessionId,
+			@ModelAttribute("sessionLevel") int sessionLevel,
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage,
+			@RequestParam(value="selectOption", defaultValue="0") int selectOption,
+			@RequestParam(value="selectValue", required=false) String selectValue			
+			){
+		ModelAndView mv = new ModelAndView();
+		
+		LoginVo login = new LoginVo();
+		login.setMemberId(sessionId);
+		login.setMemberLevel(sessionLevel);
+		logger.debug("login에 담긴 값 : {} ", login);
+		
+/*		Map<String, Object> getMap = reserveService.getReserveList(currentPage,login, selectOption, selectValue);
+		logger.debug(" >>>>>>> getReserveList에서 리턴 받는 map : \n {} <<<<<<< ",getMap);
+		
+		mv.addObject("map", getMap);
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("selectOption", selectOption);
+		mv.addObject("selectValue", selectValue);
+		mv.addObject("startPage", getMap.get("startPage"));
+		mv.addObject("pageSize", getMap.get("pageSize"));
+		mv.addObject("endPage", getMap.get("endPage"));
+		mv.addObject("lastPage", getMap.get("lastPage"));
+		*/
+		mv.setViewName("/payment/payAdd");
 		
 		return mv;
 		

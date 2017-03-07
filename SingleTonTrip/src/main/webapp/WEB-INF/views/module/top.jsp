@@ -71,10 +71,13 @@
 							내정보
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="#">광고 신청</a></li>
-							<li><a href="reserve/reserveList">예약 내역</a></li>
-							<li><a href="mileageList">mileage</a></li>
+							<c:if test="sessionLevel == 2">
+							<li><a href="<c:url value='adApply'/>">광고 신청</a></li>
+							</c:if>
+							<li><a href="<c:url value='reserve/reserveList'/>">예약 내역</a></li>
+							<li><a href="<c:url value='mileageList'/>">mileage</a></li>
 						</ul>
+						
 					</li>
 					<c:if test="${sessionId eq null }">
 					<li>
@@ -86,7 +89,7 @@
 					</c:if>
 					<c:if test="${sessionId ne null }">
 					<li>
-						<a href="logout"> 
+						<a href="<c:url value='logout'/>"> 
 							<span class="glyphicon glyphicon-log-in"></span> 
 							로그아웃
 						</a>
