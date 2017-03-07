@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.log4h.singletontrip.member.domain.LoginVo;
+import com.log4h.singletontrip.reserve.domain.PaymentCateVo;
+import com.log4h.singletontrip.reserve.domain.PaymentStateVo;
 import com.log4h.singletontrip.reserve.repository.ReserveDao;
 import com.log4h.singletontrip.util.Paging;
 
@@ -46,5 +48,11 @@ public class ReserveServiceImpl implements ReserveService{
 	    logger.debug("\n >>>>>>> getReserveList retrunMap 값 {} ",returnList);
 	    map.put("returnList", returnList);
 	    return map;
+	}
+	// get paymentState data
+	@Override
+	public List<PaymentCateVo> getPaymentCate() {
+		List<PaymentCateVo> paymentCate = reserveDao.getPaymentCate();
+		return paymentCate;
 	}
 }

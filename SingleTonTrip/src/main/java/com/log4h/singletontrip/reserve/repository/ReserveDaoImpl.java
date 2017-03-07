@@ -7,6 +7,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.log4h.singletontrip.reserve.domain.PaymentCateVo;
+import com.log4h.singletontrip.reserve.domain.PaymentStateVo;
+
 @Repository
 public class ReserveDaoImpl implements ReserveDao{
 	@Autowired
@@ -21,9 +24,12 @@ public class ReserveDaoImpl implements ReserveDao{
 
 	@Override
 	public List<Object> getReserveList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList(RESERVE_NS+"getReserveList", map);
 	}
 
+	@Override
+	public List<PaymentCateVo> getPaymentCate() {
+		return sqlSession.selectList(RESERVE_NS+"getPaymentCate");
+	}
 
 }

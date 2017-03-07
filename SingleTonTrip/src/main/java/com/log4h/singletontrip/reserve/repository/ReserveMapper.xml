@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reserveMapper">
+	<!-- reserveList의 카운트를 가져옴 -->
 	<select id="getTotalCount" parameterType="Map" resultType="int">
 		SELECT 
 			COUNT(*)			
@@ -45,6 +46,8 @@
 		</choose>
 	
 	</select>
+	
+	<!-- reserveList 를 가져옴 -->
 	<select id="getReserveList" parameterType="Map" resultType="HashMap">
 		SELECT 
 			rsv.reserve_stay_day as 'reserveVo.reserveStayDay', 
@@ -98,5 +101,12 @@
 			</otherwise>
 		</choose>
 			
+	</select>
+	<select id="getPaymentCate" resultType="com.log4h.singletontrip.reserve.domain.PaymentCateVo">
+		SELECT 
+			payment_cate_cd
+			payment_cate_nm
+		FROM 
+			tb_payment_cate
 	</select>
 </mapper>

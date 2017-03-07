@@ -1,22 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="../module/top.jsp" />
-<div class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
+<div class="w3-container w3-content"
+	style="max-width: 1400px; margin-top: 130px">
 	<div class="w3-col m7">
-		<form action="<c:url value='mileageList'/>" method="get">
+		<form action="<c:url value='/payment/payList'/>" method="get">
 			<div class="w3-row-padding">
 				<div class="w3-col m12">
 					<div class="w3-card-2 w3-round w3-white">
 						<div class="w3-container w3-padding">
 
-
 							<!-- <p contenteditable="true" class="w3-border w3-padding"></p> -->
 							<select name="selectOption">
-								<option value=""></option>
-								<option value="1">사용</option>
-								<option value="2">적립</option>
-							</select> <input type="text" name="selectValue" /> <input type="submit"
-								class="w3-btn w3-theme-d1 w3-margin-bottom" value="검색" />
+									<option value="#">::선택::</option>
+									<c:forEach items="${faqCate}" var="f">
+										<option value="${f.boardCateCd}">${f.boardCateNm}</option>
+									</c:forEach>
+							</select>
+							<input type="text" name="selectValue" /> 
+							<input type="submit" class="w3-btn w3-theme-d1 w3-margin-bottom" value="검색" />
 						</div>
 					</div>
 				</div>

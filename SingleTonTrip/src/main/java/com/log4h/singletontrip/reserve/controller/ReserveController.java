@@ -1,5 +1,6 @@
 package com.log4h.singletontrip.reserve.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.log4h.singletontrip.member.domain.LoginVo;
+import com.log4h.singletontrip.reserve.domain.PaymentCateVo;
 import com.log4h.singletontrip.reserve.service.ReserveService;
 
 @Controller
@@ -23,7 +25,8 @@ public class ReserveController {
 	
 	@Autowired
 	private ReserveService reserveService;
-	
+
+	// 방 예약내역 리스트
 	@RequestMapping(value="/reserve/reserveList",method=RequestMethod.GET)
 	public ModelAndView reserveList(
 			@ModelAttribute("sessionId") String sessionId,
@@ -57,6 +60,7 @@ public class ReserveController {
 		
 	}
 	
+	// 결제내역 리스트
 	@RequestMapping(value="/payment/payList",method=RequestMethod.GET)
 	public ModelAndView payList(
 			@ModelAttribute("sessionId") String sessionId,
@@ -72,9 +76,12 @@ public class ReserveController {
 		login.setMemberLevel(sessionLevel);
 		logger.debug("login에 담긴 값 : {} ", login);
 		
+		List<PaymentCateVo> paymentCate = reserveService.getPaymentCate();
+		
+		
 /*		Map<String, Object> getMap = reserveService.getReserveList(currentPage,login, selectOption, selectValue);
 		logger.debug(" >>>>>>> getReserveList에서 리턴 받는 map : \n {} <<<<<<< ",getMap);
-		
+		 
 		mv.addObject("map", getMap);
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("selectOption", selectOption);
