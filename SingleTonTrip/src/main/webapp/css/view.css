@@ -113,17 +113,22 @@ body, html {
      border-radius: 0;
      font-family: Montserrat, sans-serif;
 }
+/* 상단바 글자 색 */
  .navbar li a, .navbar .navbar-brand {
      color: #fff !important;
  }
+/* 상단바 마우스 올렸을때 색 color는 글자색, back은 백 */
  .navbar-nav li a:hover, .navbar-nav li.active a {
      color: #f4511e !important;
      background-color: #fff !important;
  }
+/* 드랍다운 했을때 마우스 올리면 배경 색 바뀜 */
  .navbar-default .navbar-toggle {
      border-color: transparent;
      color: #fff !important;
  }
+
+ 
 /* Turn off parallax scrolling for tablets and phones */
 @media only screen and (max-device-width: 1024px) {
 	.bgimg {

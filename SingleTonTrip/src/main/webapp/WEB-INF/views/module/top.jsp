@@ -3,26 +3,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
-<link rel="stylesheet" href="<c:url value='/css/commons/bootstrap.min.css'/>" />
-<link rel="stylesheet" href="<c:url value='/css/commons/w3.css'/>" />
-<link rel="stylesheet" href="<c:url value='/css/view.css'/>" />
-<link rel="stylesheet" href="<c:url value='/css/commons/familyMontserrat.css'/>" />
-<link rel="stylesheet" href="<c:url value='/css/commons/familyLato.css'/>" />
-<link rel="stylesheet" href="<c:url value='/css/commons/font-awesome.min.css'/>" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> SingleTon-Trip :: 둘이가서 셋이되는 여행 :: </title>
+	<link rel="stylesheet" href="<c:url value='/css/commons/bootstrap.min.css'/>" />
+	<link rel="stylesheet" href="<c:url value='/css/commons/w3.css'/>" />
+	<link rel="stylesheet" href="<c:url value='/css/view.css'/>" />
+	<link rel="stylesheet" href="<c:url value='/css/commons/familyMontserrat.css'/>" />
+	<link rel="stylesheet" href="<c:url value='/css/commons/familyLato.css'/>" />
+	<link rel="stylesheet" href="<c:url value='/css/commons/font-awesome.min.css'/>" />
+	
+	<script src="<c:url value='/js/commons/jquery.min.js'/>"></script>
+	<script src="<c:url value='/js/commons/bootstrap.min.js'/>"></script>
 
-<script src="<c:url value='/js/commons/jquery.min.js'/>"></script>
-<script src="<c:url value='/js/commons/bootstrap.min.js'/>"></script>
 </head>
 <body>
-	<!--navbar-->
+	<!-- navbar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-					<span class="icon-bar"></span> <span class="icon-bar"></span>
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#test">Trip</a>
@@ -51,12 +53,17 @@
 							<span class="badge">3</span>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Merchandise</a></li>
-							<li><a href="#">Extras</a></li>
+							<li><a href="#">메세지</a></li>
+							<li><a href="#">친구목록</a></li>
 							<li><a href="#">Media</a></li>
 						</ul>
-					<li>
+					<li class = "dropdown">
 						<a href="#contact">도움말</a>
+						<ul class = "dropdown-menu">
+							<li><a href="">공지사항</a></li>
+							<li><a href = "faqList">FAQ</a></li>							
+							<li><a href="">문의</a></li>
+						</ul>
 					</li>
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#"> 
@@ -64,17 +71,27 @@
 							내정보
 						</a>
 						<ul class="dropdown-menu">
+							<li><a href="#">광고 신청</a></li>
+							<li><a href="reserve/reserveList">예약 내역</a></li>
 							<li><a href="mileageList">mileage</a></li>
-							<li><a href="#">Extras</a></li>
-							<li><a href="#">Media</a></li>
 						</ul>
 					</li>
+					<c:if test="${sessionId eq null }">
 					<li>
 						<a href="#" id="myBtn"> 
 							<span class="glyphicon glyphicon-log-in"></span> 
 							로그인
 						</a>
 					</li>
+					</c:if>
+					<c:if test="${sessionId ne null }">
+					<li>
+						<a href="logout"> 
+							<span class="glyphicon glyphicon-log-in"></span> 
+							로그아웃
+						</a>
+					</li>
+					</c:if>
 				</ul>
 			</div>
 		</div>
@@ -105,37 +122,38 @@
 					</h4>
 				</div>
 				<div class="modal-body" style="padding: 40px 50px;">
-					<form role="form">
+					<form action="login" role="form">
 						<div class="form-group">
 							<label for="usrname"> <span
 								class="glyphicon glyphicon-user"></span> 아이디
-							</label> <input type="text" class="form-control" id="usrname"
-								placeholder="Enter id">
+							</label> <input type="text" class="form-control" id="loginId" placeholder="Enter id">
 						</div>
 						<div class="form-group">
 							<label for="psw"> <span
 								class="glyphicon glyphicon-eye-open"></span> 비밀번호
-							</label> <input type="password" class="form-control" id="psw"
-								placeholder="Enter password">
+							</label> 
+							<input type="password" class="form-control" id="loginPw" placeholder="Enter password">
 						</div>
 						<div class="checkbox">
-							<label><input type="checkbox" value="">아이디저장</label>
+							<label>
+								<input type="checkbox" value="">아이디저장
+							</label>
 						</div>
 						<button type="submit" class="btn btn-success btn-block">
-							<span class="glyphicon glyphicon-off"></span> 로그인
+							<span class="glyphicon glyphicon-off"></span>
+							로그인
 						</button>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-danger btn-default pull-left"
-						data-dismiss="modal">
+					<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
 						<span class="glyphicon glyphicon-remove"></span> 취소
 					</button>
 					<p>
-						회원이 아니십니까? <a href="#">회원가입</a>
+						회원이 아니십니까? <a href="joinBegin">회원가입</a>
 					</p>
 					<p>
-						기억나지않을땐 <a href="#">비밀번호찾기</a>
+						기억나지않을땐 <a href="memberPwFind">비밀번호찾기</a>
 					</p>
 				</div>
 			</div>
