@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.log4h.singletontrip.trip.domain.PlanVo;
 import com.log4h.singletontrip.trip.domain.TripVo;
 import com.log4h.singletontrip.trip.repository.TripDao;
 
@@ -25,12 +26,15 @@ public class TripServiceImpl implements TripService{
 		return tripList;
 	}
 	//여행상세보기
-	@Override
-	public TripVo tripView(String memberId, int tripNo) {
+	@Override	
+	public Map<String, Object> tripView(String memberId, int tripNo) {
 		Map<String, Object> map = new HashMap<String,Object>();
 		map.put("memberId", memberId);
 		map.put("tripNo", tripNo);
 		TripVo trip = tripDao.tripView(map);
-		return trip;
+		List<PlanVo> planList = tripDao.planList(tripNo);
+		map.put("trip", trip);
+		map.put("planList", planList);
+		return map;
 	}
 }

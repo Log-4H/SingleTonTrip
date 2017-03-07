@@ -5,7 +5,7 @@
 <c:import url="./post/postDelete.jsp"></c:import>
 <div class="tab-pane fade in active" id="post">
 	<input type="hidden" class="lastPostRow" name="lastPostRow" value="10">
-	<div class="w3-container w3-card-2 w3-white w3-round w3-margin"><br>
+	<br>
 	<c:import url="./post/postAdd.jsp"></c:import>
 	<div id="postList">
 		<c:forEach items="${postList}" var="p">
@@ -35,7 +35,7 @@
 					<i class="fa fa-comment"></i>  Comment
 				</button>
 				<input type="hidden" id="lastCommentRow${p.postNo}" value="10">
-				<input type="hidden" id="flag${p.postNo}" value="close">
+				<input type="hidden" id="commentFlag${p.postNo}" value="close">
 				<div id="commentList${p.postNo}"></div>
 			</div>
 		</c:forEach>
@@ -44,6 +44,4 @@
 	<button type="button" class="btn btn-primary" id="addList">더보기</button>
 	</div>
 	<br>
-	</div>
-	
 </div>

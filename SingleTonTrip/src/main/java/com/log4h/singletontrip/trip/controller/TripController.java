@@ -1,6 +1,7 @@
 package com.log4h.singletontrip.trip.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,8 +35,9 @@ public class TripController {
 	public ModelAndView tripView(@ModelAttribute("sessionId") String memberId,
 			@RequestParam(value="tripNo") int tripNo){
 		ModelAndView mv = new ModelAndView("jsonView");
-		TripVo trip= tripService.tripView(memberId, tripNo);
-		mv.addObject("trip", trip);
+		Map<String, Object> map = tripService.tripView(memberId, tripNo);
+		mv.addObject("trip", map.get("trip"));
+		mv.addObject("planList", map.get("planList"));
 		return mv;	
 	}
 }

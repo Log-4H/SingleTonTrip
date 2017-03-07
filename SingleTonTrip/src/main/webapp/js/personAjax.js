@@ -146,10 +146,10 @@ $(document).on('click', '#postDeleteBtn', function(){
 //댓글 리스트 보기
 $(document).on('click', '.commentListBtn', function(){
 	var postNo = $(this).attr('value');
-	var flag = $("#flag"+postNo).attr('value');
+	var commentFlag = $("#commentFlag"+postNo).attr('value');
 	var divId = "commentList" + postNo;
 	var html = ""
-	if(flag=='close'){
+	if(commentFlag=='close'){
 	$.ajax({
 		url : "postCommentList",
 		type : "POST",
@@ -160,12 +160,12 @@ $(document).on('click', '.commentListBtn', function(){
 			html = postCommentAppend(postNo, postCommentList);
 			$("#"+divId).empty();
 			$("#"+divId).append(html);
-			$("#flag"+postNo).val("open");
+			$("#commentFlag"+postNo).val("open");
 			}
 	})
 	}else{
 		$("#"+divId).empty();
-		$("#flag"+postNo).val("close");
+		$("#commentFlag"+postNo).val("close");
 	}
 });
 
@@ -175,7 +175,7 @@ $(document).on('click', '.commentListAdd', function(){
 	var lastCommentRow = $('#'+'lastCommentRow'+postNo).attr('value');
 	lastCommentRow = Number(lastCommentRow);
 	var divId = "commentList" + postNo;
-	var html = ""
+	var html = "";
 	$.ajax({
 		url : "postCommentList",
 		type : "POST",
@@ -231,7 +231,7 @@ $(document).on('click', '.commentDelete', function(){
 			html = postCommentAppend(postNo, postCommentList);
 			$("#"+divId).empty();
 			$("#"+divId).append(html);
-			$("#flag"+postNo).val("open");
+			$("#commentFlag"+postNo).val("open");
 		}
 	})
 });
@@ -260,7 +260,7 @@ function postAppend(postList){
 		html+="<hr class='w3-clear'>";
 		html+="<button type='button' class='w3-btn w3-theme-d2 w3-margin-bottom commentListBtn' value='"+item.postNo+"''><i class='fa fa-comment'></i>  Comment</button> ";
 		html+="<input type='hidden' id='lastCommentRow"+item.postNo+"' value='10'>";
-		html+="<input type='hidden' id='flag"+item.postNo+"' value='close'>";
+		html+="<input type='hidden' id='commentFlag"+item.postNo+"' value='close'>";
 		html+="<div id='commentList"+item.postNo+"'>";
 		html+="</div>";
 		html+="</div>";
@@ -326,37 +326,32 @@ $(document).on('click', '#tripTab', function(){
 		}
 	})
 });
-//여행 상세보기 modal
-function tripDetailModalShow(tripNo){
-	$.ajax({
-		url : "tripView",
-		type : "POST",
-		data : {tripNo : tripNo},
-		dataType : "json",
-		success : function(data) {
-			var trip = data.trip;
-			var tripRecruitState ="";
-			if(trip.recruitStateCd==1){
-				tripRecruitState = "<span class='label label-success'>"+trip.recruitStateNm+"</span>";
-			}else if(trip.recruitStateCd==2){
-				tripRecruitState = "<span class='label label-warning'>"+trip.recruitStateNm+"</span>";
-			}else if(trip.recruitStateCd==3){
-				tripRecruitState = "<span class='label label-danger'>"+trip.recruitStateNm+"</span>";
+//여행 상세보기
+$(document).on('click', '.tripDetailBtn', function(){
+	var tripNo = $(this).attr('value');
+	var tripFlag = $("#tripFlag"+tripNo).attr('value');
+	var html = "";
+	if(tripFlag=='close'){
+
+		$.ajax({
+			url : "tripView",
+			type : "POST",
+			data : {tripNo : tripNo},
+			dataType : "json",
+			success : function(data) {
+				var trip = data.trip;
+				var planList = data.planList;
+				html= tripDetailAppend(trip, planList);
+				$("#tripDetail" + tripNo).empty();
+				$("#tripDetail" + tripNo).append(html);
+				$("#tripFlag"+tripNo).val("open");
 			}
-			$("#tripDetailTitle").html(tripRecruitState + trip.tripTitle);
-			$("#tripDetailThemeNm").html(trip.tripThemeNm);
-			$("#tripDetailRegionDoSi").html(trip.regionDo + trip.regionSi);
-			$("#tripDetailContent").html(trip.tripContent);
-			$("#tripDetailMemberCount").html(trip.tripPresentMember + " / " + trip.tripMaxMember);
-			$("#tripDetailDate").html(trip.tripStartDate +" ~ "+ trip.tripEndDate);
-			$("#tripDetailPrice").html(trip.tripPerPrice + " / " + trip.tripTotalPrice);
-			$("#tripDetailRecruitDate").html(trip.tripRecruitStartDate+" ~ "+trip.tripRecruitEndDate);
-			$("#tripDetailTag").html(trip.tripTag);
-			$("#tripDetailModal").modal('show');
-		    
-		}
-	})
-};
+		})
+	}else{
+		$("#tripDetail"+tripNo).empty();
+		$("#tripFlag"+tripNo).val("close");
+	}
+});
 
 //여행 html추가
 function tripAppend(tripList){
@@ -384,9 +379,30 @@ function tripAppend(tripList){
 		html+="<hr class='w3-clear'>";
 		html+="<p>"+item.tripContent+"</p>";
 		html+="<hr class='w3-clear'>";
-		html+="<button type='button' class='w3-btn w3-theme-d2 w3-margin-bottom' onclick='tripDetailModalShow("+item.tripNo+")'>";
+		html+="<div id='tripDetail"+item.tripNo+"'></div>";
+		html+="<button type='button' class='w3-btn w3-theme-d2 w3-margin-bottom tripDetailBtn' value='"+item.tripNo+"''>";
 		html+="<i class='fa fa-comment'></i>  상세보기</button> ";
+		html+="<input type='hidden' id='tripFlag"+item.tripNo+"' value='close'>";
 		html+="</div>";
 		})
 		return html;
+}
+//여행상세보기 html추가
+function tripDetailAppend(trip, planList){
+	var html = "";
+	html+="<p>참여인원(현재인원/총인원) : "+trip.tripPresentMember + " / " + trip.tripMaxMember+"</p>";
+	html+="<p>여행기간 : "+trip.tripStartDate +" ~ "+ trip.tripEndDate+"</p>";
+	html+="<p>예상경비(1인경비/총경비) : "+trip.tripPerPrice + " / " + trip.tripTotalPrice+"</p>";
+	html+="<p>모집기간 : "+trip.tripRecruitStartDate+" ~ "+trip.tripRecruitEndDate+"</p>";
+	html+="<p>태그 : #"+trip.tripTag+"</p>";
+	html+="<hr class='w3-clear'>";
+	$.each(planList, function(key, item) {
+		html +="<p>일정No : "+item.planNo+"</p>";
+		html +="<p>지역 : "+item.planSite+"</p>";
+		html +="<p>내용 : "+item.planContent+"</p>";
+		html +="<p>시간 : "+item.planStartTime+" ~ "+item.planEndTime+"</p>";
+		html +="<p>예상비용: "+item.planPrice+"</p>";	
+	});
+	html+="<hr class='w3-clear'>";
+	return html;
 }

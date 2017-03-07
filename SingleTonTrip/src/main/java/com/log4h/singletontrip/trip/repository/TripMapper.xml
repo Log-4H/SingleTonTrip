@@ -57,4 +57,19 @@
 	</otherwise>
 	</choose>
 </select>
+<!-- 여행플랜리스트 -->
+<select id="planList" parameterType="int" resultType="com.log4h.singletontrip.trip.domain.PlanVo">
+	SELECT
+		plan_no,
+		plan_site,
+		plan_content,
+		plan_start_time,
+		plan_end_time,
+		plan_price
+	FROM
+		tb_plan
+	WHERE
+		trip_no = #{tripNo}
+	ORDER BY plan_no ASC
+</select>
 </mapper>

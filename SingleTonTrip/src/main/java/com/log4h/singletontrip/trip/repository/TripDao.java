@@ -3,6 +3,7 @@ package com.log4h.singletontrip.trip.repository;
 import java.util.List;
 import java.util.Map;
 
+import com.log4h.singletontrip.trip.domain.PlanVo;
 import com.log4h.singletontrip.trip.domain.TripVo;
 
 public interface TripDao {
@@ -10,4 +11,6 @@ public interface TripDao {
 	public List<TripVo> tripList(Map<String, Object> map);
 	//여행상세보기
 	public TripVo tripView(Map<String,Object> map);
+	//여행계획리스트
+	public List<PlanVo> planList(int tripNo);
 }	

@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.log4h.singletontrip.trip.domain.PlanVo;
 import com.log4h.singletontrip.trip.domain.TripVo;
 
 @Repository
@@ -25,5 +26,10 @@ public class TripDaoImpl implements TripDao{
 	@Override
 	public TripVo tripView(Map<String, Object> map) {
 		return sqlSession.selectOne(TRIP_NS+"tripList", map);
+	}
+	//여행계획리스트
+	@Override
+	public List<PlanVo> planList(int tripNo) {
+		return sqlSession.selectList(TRIP_NS+"planList", tripNo);
 	}
 }
