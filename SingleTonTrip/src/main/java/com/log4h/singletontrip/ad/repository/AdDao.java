@@ -25,5 +25,7 @@ public interface AdDao {
 	public int adImgUpload(AdVo adVo);
 	public String selectAdImg(AdVo adVo);
 	public String selectSameAd(Map<String,Object>map);
-	public List<PaymentVo> payback();
+	public List<PaymentVo> paybackList();
+	public int payback(Map<String,Object>map);
+	public int adDrop();
 }

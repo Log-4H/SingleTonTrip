@@ -97,8 +97,8 @@
 	WHERE
 		ad_no = #{adNo}
 </update>
-<!-- 거절 후 환불창 -->
-<select id="payback" parameterType="int"
+<!-- 환불 페이지 -->
+<select id="paybackList" parameterType="int"
 		resultType="com.log4h.singletontrip.reserve.domain.PaymentVo">
 	SELECT
 		admin_id,
@@ -118,6 +118,18 @@
 	WHERE
 		a.payment_state_cd > 2
 </select>
+<!-- 환불 -->
+<update id="payback" parameterType="map">
+	UPDATE
+		tb_payment
+	SET
+		payment_price = payment_price-#{paymentTotalPrice},
+		payment_state_cd = 5
+	WHERE
+		member_id = #{memberId}
+	AND
+		payment_finish_date = #{paymentFinishDate}
+</update>
 <!-- 광고 리스트 가져오기 -->
 <select id="selectAdList"
 		resultType="com.log4h.singletontrip.ad.domain.AdVo">
@@ -263,5 +275,15 @@
 		payment_finish_date=now()
 	WHERE
 		member_id=#{companyId}
+</update>
+<!-- 스케줄러 -->
+<!-- 기간 지난 광고 내리기 -->
+<update id="adDrop">
+	UPDATE
+		tb_ad
+	SET
+		ad_img = null
+	WHERE
+		ad_end_date = curdate()
 </update>
 </mapper>

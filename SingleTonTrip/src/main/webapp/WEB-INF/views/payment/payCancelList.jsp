@@ -28,7 +28,12 @@
 				<td>${p.paymentFinishDate}</td>
 				<td>${p.adminId}</td>
 				<td>${p.paymentStateNm}</td>
-				<td><a href="">환불</a>/<a href="">취소</a></td>
+				<td>
+					<c:if test="${p.paymentPrice} != 0">
+						<a href="payback?memberId=${p.memberId}&paymentTotalPrice=${p.paymentTotalPrice}&paymentFinishDate=${p.paymentFinishDate}">환불</a>/
+						<a href="">취소</a>
+					</c:if>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>

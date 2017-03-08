@@ -92,9 +92,35 @@ public class AdController {
 		adService.adRefuse(map);
 
 		ModelAndView mv = new ModelAndView();
-		List<PaymentVo> payback = adService.payback();
+		mv.setViewName("redirect:adApplyList");
+		
+		return mv;
+	}
+	
+	// 환불 리스트
+	@RequestMapping(value="payCancelList")
+	public ModelAndView payCancelList(){
+		ModelAndView mv = new ModelAndView();
+		List<PaymentVo> payback = adService.paybackList();
 		mv.addObject("payback", payback);
 		mv.setViewName("payment/payCancelList");
+		
+		return mv;
+	}
+	
+	// 환불
+	@RequestMapping(value="payback")
+	public ModelAndView payback(
+			@RequestParam(value="memberId") String memberId,
+			@RequestParam(value="paymentTotalPrice") int paymentTotalPrice,
+			@RequestParam(value="paymentFinishDate") String paymentFinishDate){
+		ModelAndView mv = new ModelAndView("redirect:payback");
+		Map<String,Object>map = new HashMap<String,Object>();
+		map.put("memberId", memberId);
+		map.put("paymentTotalPrice", paymentTotalPrice);
+		map.put("paymentFinishDate", paymentFinishDate);
+		adService.payback(map);
+		
 		
 		return mv;
 	}

@@ -71,10 +71,16 @@ public class AdServiceImpl implements AdService{
 		return adDao.adRefuse(map);
 	}
 	
-	// 거절 후 환불창
+	// 환불 리스트
 	@Override
-	public List<PaymentVo> payback(){
-		return adDao.payback();
+	public List<PaymentVo> paybackList(){
+		return adDao.paybackList();
+	}
+	
+	// 환불
+	@Override
+	public int payback(Map<String,Object>map){
+		return adDao.payback(map);
 	}
 	
 	// 광고 이미지 등록(수정)
