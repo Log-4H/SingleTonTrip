@@ -16,6 +16,9 @@ public class Scheduler {
 		System.out.println("=======SCHEDULER START=======");
         try {
         	adDao.adDrop();
+        	adDao.deleteOldAd();
+        	adDao.deleteOldPayment();
+        	adDao.deleteNotPayment();
         } catch (Exception e) {
             e.printStackTrace();
         }

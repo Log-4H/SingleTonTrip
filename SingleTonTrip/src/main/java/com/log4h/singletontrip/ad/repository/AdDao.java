@@ -28,4 +28,7 @@ public interface AdDao {
 	public List<PaymentVo> paybackList();
 	public int payback(Map<String,Object>map);
 	public int adDrop();
+	public int deleteOldAd();
+	public int deleteOldPayment();
+	public int deleteNotPayment();
 }

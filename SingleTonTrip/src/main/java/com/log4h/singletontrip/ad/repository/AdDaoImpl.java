@@ -128,4 +128,22 @@ public class AdDaoImpl implements AdDao{
 		return sqlSession.update(AD_NS+"adDrop");
 	}
 	
+	// 스케줄러 - 오래된 광고 목록 지우기
+	@Override
+	public int deleteOldAd(){
+		return sqlSession.delete(AD_NS+"deleteOldAd");
+	}
+	
+	// 스케줄러 - 오래된 결제 목록 지우기
+	@Override
+	public int deleteOldPayment(){
+		return sqlSession.delete(AD_NS+"deleteOldPayment");
+	}
+	
+	// 스케줄러 - 등록만 하고 결제를 안한 항목은 7일 뒤 삭제
+	@Override
+	public int deleteNotPayment(){
+		return sqlSession.delete(AD_NS+"deleteNotPayment");
+	}
+	
 }

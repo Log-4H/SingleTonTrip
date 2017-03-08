@@ -282,8 +282,32 @@
 	UPDATE
 		tb_ad
 	SET
+		ad_approve_state_cd = 4,
 		ad_img = null
 	WHERE
 		ad_end_date = curdate()
 </update>
+<!-- 광고 테이블 신청일로부터 2년 지난 데이터 지우기 -->
+<delete id="deleteOldAd">
+	DELETE FROM
+		tb_ad
+	WHERE
+		DATE_ADD(ad_apply_date, INTERVAL 730 DAY) <![CDATA[<]]> now()
+</delete>
+<!-- 결제 테이블 결제일로부터 5년 지난 데이터 지우기 -->
+<delete id="deleteOldPayment">
+	DELETE FROM
+		tb_payment
+	WHERE
+		DATE_ADD(payment_finish_date, INTERVAL 1825 DAY) <![CDATA[<]]> now()
+</delete>
+<!-- 등록만 하고 결제를 안한 데이터는 7일 뒤에 지워짐 -->
+<delete id="deleteNotPayment">
+	DELETE FROM
+		tb_payment
+	WHERE
+		payment_finish_date is null
+	AND
+		DATE_ADD(payment_apply_date, INTERVAL 7 DAY) <![CDATA[<]]> now()
+</delete>
 </mapper>
