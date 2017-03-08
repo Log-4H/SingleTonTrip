@@ -72,4 +72,30 @@
 		trip_no = #{tripNo}
 	ORDER BY plan_no ASC
 </select>
+<!-- 여행테마목록 -->
+<select id="tripThemeList" resultType="com.log4h.singletontrip.trip.domain.TripThemeVo">
+	SELECT
+		trip_theme_cd,
+		trip_theme_nm
+	FROM
+		tb_trip_theme
+</select>
+<!-- 여행지역(도)목록 -->
+<select id="regionDoList" resultType="com.log4h.singletontrip.trip.domain.RegionVo">
+	SELECT DISTINCT
+		region_do
+	FROM
+		tb_region
+</select>
+<!-- 여행지역(시)목록 -->
+<select id="regionSiList" parameterType="String" resultType="com.log4h.singletontrip.trip.domain.RegionVo">
+	SELECT
+		region_cd,
+		region_si
+	FROM
+		tb_region
+	WHERE
+		region_do=#{regionDo}
+</select>
+
 </mapper>

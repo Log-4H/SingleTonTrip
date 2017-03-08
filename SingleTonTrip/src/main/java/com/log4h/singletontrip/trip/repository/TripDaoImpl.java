@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.log4h.singletontrip.trip.domain.PlanVo;
+import com.log4h.singletontrip.trip.domain.RegionVo;
+import com.log4h.singletontrip.trip.domain.TripThemeVo;
 import com.log4h.singletontrip.trip.domain.TripVo;
 
 @Repository
@@ -31,5 +33,20 @@ public class TripDaoImpl implements TripDao{
 	@Override
 	public List<PlanVo> planList(int tripNo) {
 		return sqlSession.selectList(TRIP_NS+"planList", tripNo);
+	}
+	//여행테마리스트
+	@Override
+	public List<TripThemeVo> tripThemeList() {
+		return sqlSession.selectList(TRIP_NS+"tripThemeList");
+	}
+	//여행지역리스트
+	@Override
+	public List<RegionVo> regionDoList() {
+		return sqlSession.selectList(TRIP_NS+"regionDoList");
+	}
+	//여행지역리스트
+	@Override
+	public List<RegionVo> regionSiList(String regionDo) {
+		return sqlSession.selectList(TRIP_NS+"regionSiList", regionDo);
 	}
 }

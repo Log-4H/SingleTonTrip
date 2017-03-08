@@ -73,7 +73,6 @@ $(document).on('click', '#postAddBtn', function() {
 		processData : false,
 		cache : false,
 		success : function(data) { // 연결이 성공
-			console.log(data);
 			var postList = data.postList;
 			html = postAppend(postList);
 			$("#postList").empty();
@@ -293,43 +292,40 @@ $(document).on('click', '.commentDelete', function() {
 // 포스트 html추가
 function postAppend(postList) {
 	var html = "";
-	$
-			.each(
-					postList,
-					function(key, item) {
-						html += "<div class='w3-container w3-card-2 w3-white w3-round w3-margin'><br>";
-						html += "<span class='w3-right w3-opacity'>"
-								+ item.postRegDate + "</span><br>";
-						html += "<span class='w3-right w3-opacity'>";
-						html += "<button type='button' class='btn btn-primary' onclick='postModifyModalShow("
-								+ item.postNo + ")'>수정</button>";
-						html += "<button type='button' class='btn btn-primary' onclick='postDeleteModalShow("
-								+ item.postNo + ")'>삭제</button>";
-						html += "</span>";
-						html += "<h4>" + item.postTitle + "</h4><br>";
-						html += "<hr class='w3-clear'>";
-						html += "<p>" + item.postContent + "</p>";
-						if (item.postImg != null) {
-							html += "<div class='w3-row-padding' style='margin:0 -16px'>";
-							html += "<div class='w3-half'>";
-							html += "<img src='../images/"
-									+ item.postImg
-									+ "' style='width: 100%' class='w3-margin-bottom'>";
-							html += "</div>";
-							html += "</div>";
-						}
-						html += "<hr class='w3-clear'>";
-						html += "<button type='button' class='w3-btn w3-theme-d2 w3-margin-bottom commentListBtn' value='"
-								+ item.postNo
-								+ "''><i class='fa fa-comment'></i>  Comment</button> ";
-						html += "<input type='hidden' id='lastCommentRow"
-								+ item.postNo + "' value='10'>";
-						html += "<input type='hidden' id='commentFlag"
-								+ item.postNo + "' value='close'>";
-						html += "<div id='commentList" + item.postNo + "'>";
-						html += "</div>";
-						html += "</div>";
-					})
+	$.each(postList,function(key, item) {
+		html += "<div class='w3-container w3-card-2 w3-white w3-round w3-margin'><br>";
+		html += "<span class='w3-right w3-opacity'>"
+				+ item.postRegDate + "</span><br>";
+		html += "<span class='w3-right w3-opacity'>";
+		html += "<button type='button' class='btn btn-primary' onclick='postModifyModalShow("
+				+ item.postNo + ")'>수정</button>";
+		html += "<button type='button' class='btn btn-primary' onclick='postDeleteModalShow("
+				+ item.postNo + ")'>삭제</button>";
+		html += "</span>";
+		html += "<h4>" + item.postTitle + "</h4><br>";
+		html += "<hr class='w3-clear'>";
+		html += "<p>" + item.postContent + "</p>";
+		if (item.postImg != null) {
+			html += "<div class='w3-row-padding' style='margin:0 -16px'>";
+			html += "<div class='w3-half'>";
+			html += "<img src='../images/"
+					+ item.postImg
+					+ "' style='width: 100%' class='w3-margin-bottom'>";
+			html += "</div>";
+			html += "</div>";
+		}
+		html += "<hr class='w3-clear'>";
+		html += "<button type='button' class='w3-btn w3-theme-d2 w3-margin-bottom commentListBtn' value='"
+				+ item.postNo
+				+ "''><i class='fa fa-comment'></i>  Comment</button> ";
+		html += "<input type='hidden' id='lastCommentRow"
+				+ item.postNo + "' value='10'>";
+		html += "<input type='hidden' id='commentFlag"
+				+ item.postNo + "' value='close'>";
+		html += "<div id='commentList" + item.postNo + "'>";
+		html += "</div>";
+		html += "</div>";
+	})
 	return html;
 }
 
@@ -351,21 +347,18 @@ function postCommentAppend(postNo, postCommentList) {
 	html += "</tr>";
 	html += "</thead>";
 	html += "<tbody id='tbody" + postNo + "'>";
-	$
-			.each(
-					postCommentList,
-					function(key, item) {
-						html += "<tr>";
-						html += "<td>" + item.memberId + "</td>";
-						html += "<td>" + item.postCommentContent + "</td>";
-						html += "<td>" + item.postCommentRegDate + "</td>";
-						html += "<td><a class='commentDelete' postno='"
-								+ postNo
-								+ "' value='"
-								+ item.postCommentNo
-								+ "'><span class='glyphicon glyphicon glyphicon-remove' aria-hidden='true'></span></a></td>";
-						html += "</tr>";
-					})
+	$.each(postCommentList,function(key, item) {
+		html += "<tr>";
+		html += "<td>" + item.memberId + "</td>";
+		html += "<td>" + item.postCommentContent + "</td>";
+		html += "<td>" + item.postCommentRegDate + "</td>";
+		html += "<td><a class='commentDelete' postno='"
+				+ postNo
+				+ "' value='"
+				+ item.postCommentNo
+				+ "'><span class='glyphicon glyphicon glyphicon-remove' aria-hidden='true'></span></a></td>";
+		html += "</tr>";
+	})
 	html += "</tbody>";
 	html += "</table>";
 	return html;
@@ -437,47 +430,83 @@ $(document).on('click', '.tripDetailBtn', function() {
 		$("#tripFlag" + tripNo).val("close");
 	}
 });
+//여행 등록 modal
+function tripAddModalShow(){
+	$.ajax({
+		url : "tripAdd",
+		type : "GET",
+		dataType : "json",
+		success : function(data) {
+			var tripThemeList = data.tripThemeList;
+			$.each(tripThemeList,function(key, item) {
+				$("#tripThemeList").append("<option value='"+item.tripThemeCd+"'>"+item.tripThemeNm+"</option>");
+			});
+			var regionDoList = data.regionDoList;
+			$.each(regionDoList,function(key, item) {
+				$("#regionDoList").append("<option value='"+item.regionDo+"'>"+item.regionDo+"</option>");
+			});
+			$("#tripAddModal").modal('show');
+		}
+	})
+}
+//여행지역(시) 리스트
+function regionSiList(value){
+	$.ajax({
+		url : "regionSiList",
+		type : "POST",
+		data : {regionDo : value},
+		dataType : "json",
+		success : function(data) {
+			var html = "";
+			var regionSiList = data.regionSiList;
+			html += "<select name='regionList'>";
+			$.each(regionSiList,function(key, item) {
+				html += "<option value='"+item.regionSi+"'>"+item.regionSi+"</option>";
+			});
+			html +="</select>";
+			$("#regionSiList").empty();
+			$("#regionSiList").append(html);
+		}
+	})
+}
 
 // 여행 html추가
 function tripAppend(tripList) {
 	var html = "";
-	$
-			.each(
-					tripList,
-					function(key, item) {
-						html += "<div class='w3-container w3-card-2 w3-white w3-round w3-margin'><br>";
-						html += "<span class='w3-right w3-opacity'>"
-								+ item.tripRegDate + "</span><br>";
-						html += "<span class='w3-right w3-opacity'>";
-						html += "<button type='button' class='btn btn-primary'>수정</button>";
-						html += "<button type='button' class='btn btn-primary'>삭제</button>";
-						html += "</span>";
-						if (item.recruitStateCd == 1) {
-							html += "<span class='label label-success'>";
-						} else if (item.recruitStateCd == 2) {
-							html += "<span class='label label-warning'>";
-						} else if (item.recruitStateCd == 3) {
-							html += "<span class='label label-danger'>";
-						}
-						html += item.recruitStateNm;
-						html += "</span>";
-						html += "<h4>" + item.tripTitle + "</h4><br>";
-						html += "<hr class='w3-clear'>";
-						html += "<p>" + item.tripThemeNm + "</p>";
-						html += "<p>" + item.regionDo + " " + item.regionSi
-								+ "</p>";
-						html += "<hr class='w3-clear'>";
-						html += "<p>" + item.tripContent + "</p>";
-						html += "<hr class='w3-clear'>";
-						html += "<div id='tripDetail" + item.tripNo
-								+ "'></div>";
-						html += "<button type='button' class='w3-btn w3-theme-d2 w3-margin-bottom tripDetailBtn' value='"
-								+ item.tripNo + "''>";
-						html += "<i class='fa fa-comment'></i>  상세보기</button> ";
-						html += "<input type='hidden' id='tripFlag"
-								+ item.tripNo + "' value='close'>";
-						html += "</div>";
-					})
+	$.each(tripList,function(key, item) {
+		html += "<div class='w3-container w3-card-2 w3-white w3-round w3-margin'><br>";
+		html += "<span class='w3-right w3-opacity'>"
+				+ item.tripRegDate + "</span><br>";
+		html += "<span class='w3-right w3-opacity'>";
+		html += "<button type='button' class='btn btn-primary'>수정</button>";
+		html += "<button type='button' class='btn btn-primary'>삭제</button>";
+		html += "</span>";
+		if (item.recruitStateCd == 1) {
+			html += "<span class='label label-success'>";
+		} else if (item.recruitStateCd == 2) {
+			html += "<span class='label label-warning'>";
+		} else if (item.recruitStateCd == 3) {
+			html += "<span class='label label-danger'>";
+		}
+		html += item.recruitStateNm;
+		html += "</span>";
+		html += "<h4>" + item.tripTitle + "</h4><br>";
+		html += "<hr class='w3-clear'>";
+		html += "<p>" + item.tripThemeNm + "</p>";
+		html += "<p>" + item.regionDo + " " + item.regionSi
+				+ "</p>";
+		html += "<hr class='w3-clear'>";
+		html += "<p>" + item.tripContent + "</p>";
+		html += "<hr class='w3-clear'>";
+		html += "<div id='tripDetail" + item.tripNo
+				+ "'></div>";
+		html += "<button type='button' class='w3-btn w3-theme-d2 w3-margin-bottom tripDetailBtn' value='"
+				+ item.tripNo + "''>";
+		html += "<i class='fa fa-comment'></i>  상세보기</button> ";
+		html += "<input type='hidden' id='tripFlag"
+				+ item.tripNo + "' value='close'>";
+		html += "</div>";
+	})
 	return html;
 }
 // 여행상세보기 html추가
