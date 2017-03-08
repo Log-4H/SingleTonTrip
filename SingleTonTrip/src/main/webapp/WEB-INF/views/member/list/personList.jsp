@@ -43,7 +43,9 @@
 				<td>${p.personBirth}</td>
 				<td>${p.personGender}</td>
 				<td>${p.actStateNm}</td>
-				<td><a href="<c:url value='friendAdd?memberId=${p.memberId}'/> ">신청하기</a></td>				
+				<c:if test="${sessionId ne p.memberId and p.friendState eq 0}">
+				<td><a href="<c:url value='friendAdd?memberId=${p.memberId}'/> ">신청하기</a></td>
+				</c:if>
 			</tr>
 			</c:forEach>
 		</tbody>

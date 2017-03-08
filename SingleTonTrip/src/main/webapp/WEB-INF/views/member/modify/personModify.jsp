@@ -19,10 +19,35 @@ $("#form").submit(function(){
 	}
 });
 });
+</script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#imgInp").on('change', function(){
+            readURL(this);
+        });
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+
+          reader.readAsDataURL(input.files[0]);
+        }
+    }
+
 
 </script>
 <body>
-	<form id="form" action="personModify" method="post">
+	<form id="form" action="personModify" method="post" enctype="multipart/form-data" id="form1">
+		<div>
+			프로필사진<br>
+			<img id="blah" src="#" alt="your image" style="max-height: 100px; max-width: 100px"/><br>
+			<input type='file' name="imgFile" id="imgInp" />	
+    	</div>
 		<div>ID</div>
 		<div><input type="text" name="memberId" value="${personVo.memberId}" readonly="readonly"/></div>
 		<div>Current PW</div>

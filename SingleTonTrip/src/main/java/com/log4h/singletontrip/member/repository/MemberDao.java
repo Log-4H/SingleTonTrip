@@ -3,6 +3,7 @@ package com.log4h.singletontrip.member.repository;
 import java.util.List;
 import java.util.Map;
 
+import com.log4h.singletontrip.member.domain.CompanyTypeVo;
 import com.log4h.singletontrip.member.domain.CompanyVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
 import com.log4h.singletontrip.member.domain.MemberVo;
@@ -11,6 +12,8 @@ import com.log4h.singletontrip.member.domain.PersonVo;
 public interface MemberDao {
 	//로그인처리 (DB SELECT)
 	public LoginVo login(Map<String, String> map);
+	//업체유형리스트
+	public List<CompanyTypeVo> companyTypeList();
 	//개인회원가입
 	public int personMemberJoin(PersonVo personVo);
 	//업체회원가입
@@ -50,7 +53,7 @@ public interface MemberDao {
 	//친구요청 수락&거절
 	public int friendApprove(Map<String, Object> map);
 	//친구요청 수락하면 친구 요청한 쪽에 리스트 추가
-	public int friendApprove2(Map<String, Object> map);
+	public int friendApproveAdd(Map<String, Object> map);
 	//친구리스트
 	public List<MemberVo> friendTotalList(String sessionId);
 	//친구신청확인

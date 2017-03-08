@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.log4h.singletontrip.member.domain.CompanyTypeVo;
 import com.log4h.singletontrip.member.domain.CompanyVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
 import com.log4h.singletontrip.member.domain.MemberVo;
@@ -23,6 +24,11 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public LoginVo login(Map<String, String> map) {
 		return sqlSession.selectOne(MEMBER_NS+"login", map);
+	}
+	//업체유형리스트
+	@Override
+	public List<CompanyTypeVo> companyTypeList() { 
+		return sqlSession.selectList(MEMBER_NS+"companyTypeList");
 	}
 	//개인회원가입
 	@Override
@@ -127,8 +133,8 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	//친구요청 수락하면 친구 요청한 쪽에 리스트 추가
 	@Override
-	public int friendApprove2(Map<String, Object> map) {
-		return sqlSession.insert(MEMBER_NS+"friendApprove2",map);
+	public int friendApproveAdd(Map<String, Object> map) {
+		return sqlSession.insert(MEMBER_NS+"friendApproveAdd",map);
 	}
 	//친구신청확인
 	@Override
@@ -140,4 +146,5 @@ public class MemberDaoImpl implements MemberDao{
 	public int friendDelete(Map<String, Object> map) {
 		return sqlSession.delete(MEMBER_NS+"friendDelete", map);
 	}
+
 }

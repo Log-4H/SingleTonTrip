@@ -7,12 +7,15 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.log4h.singletontrip.member.domain.CompanyTypeVo;
 import com.log4h.singletontrip.member.domain.CompanyVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
 import com.log4h.singletontrip.member.domain.MemberVo;
 import com.log4h.singletontrip.member.domain.PersonVo;
 import com.log4h.singletontrip.member.repository.MemberDao;
+import com.log4h.singletontrip.util.ImageUpload;
 import com.log4h.singletontrip.util.Paging;
 
 @Service
@@ -29,35 +32,52 @@ public class MemberServiceImpl implements MemberService{
 		LoginVo loginVo = memberDao.login(map);
 		return loginVo;
 	}
+	
+	//업체유형리스트
+	@Override
+	public List<CompanyTypeVo> companyTypeList() {
+		return memberDao.companyTypeList();
+	}
 
 	//개인 회원 가입
 	@Transactional
 	@Override
-	public int personJoin(PersonVo personVo) {
-		int personResult = 0;
-		//member 테이블 insert
-		int joinResult = memberDao.personMemberJoin(personVo);
-		if(joinResult >0){
-			personResult = memberDao.personJoin(personVo);
+	public int personMemberJoin(PersonVo personVo, MultipartFile imgFile) {
+		ImageUpload imageUpload = new ImageUpload();
+		String personImg = imageUpload.uploadImage(imgFile);
+		if(personImg!=null){
+			personVo.setPersonImg(personImg);
 		}
-		return personResult;
+		int personResult = 0;
+		personResult = memberDao.personMemberJoin(personVo);
+			int lastResult = 0;
+			if(personResult>0){
+				lastResult = memberDao.personJoin(personVo);
+			}
+		return lastResult;
 	}
 
 	//업체 회원 가입
 	@Transactional
 	@Override
-	public int companyJoin(CompanyVo companyVo) {
-		int companyResult = 0;
-		int joinResult = memberDao.companyMemberJoin(companyVo);
-		if(joinResult >0){
-			companyResult = memberDao.companyJoin(companyVo);
+	public int companyMemberJoin(CompanyVo companyVo, MultipartFile imgFile) {
+		ImageUpload imageUpload = new ImageUpload();
+		String companyImg = imageUpload.uploadImage(imgFile);
+		if(companyImg!=null){
+			companyVo.setCompanyImg(companyImg);
 		}
-		return companyResult;
+		int companyResult = 0;
+		companyResult = memberDao.companyMemberJoin(companyVo);
+			int lastResult = 0;
+			if(companyResult>0){
+				lastResult = memberDao.companyJoin(companyVo);
+			}
+		return lastResult;
 	}
 	//개인회원리스트
 	@Override
 	public Map<String, Object> personList(int currentPage, String selectOption,
-			String selectValue) {
+			String selectValue, String sessionId) {
 		Map<String, Object> totalCountMap = new HashMap<String, Object>();
 		totalCountMap.put("selectOption", selectOption);
 		totalCountMap.put("selectValue", selectValue);
@@ -66,13 +86,14 @@ public class MemberServiceImpl implements MemberService{
         Map<String, Object> map = paging.pagingMethod(currentPage, personTotalCount);
         map.put("selectOption", selectOption);
         map.put("selectValue", selectValue);
+        map.put("sessionId", sessionId);
         List<PersonVo> personList = memberDao.personList(map);
         map.put("personList", personList);
 		return map;
 	}
 	//업체회원리스트
 	@Override
-	public Map<String, Object> companyList(int currentPage, String selectOption, String selectValue) {
+	public Map<String, Object> companyList(int currentPage, String selectOption, String selectValue,  String sessionId) {
 		Map<String, Object> totalCountMap = new HashMap<String, Object>();
 		totalCountMap.put("selectOption", selectOption);
 		totalCountMap.put("selectValue", selectValue);
@@ -81,6 +102,7 @@ public class MemberServiceImpl implements MemberService{
         Map<String, Object> map = paging.pagingMethod(currentPage, companyTotalCount);
         map.put("selectOption", selectOption);
         map.put("selectValue", selectValue);
+        map.put("sessionId", sessionId);
         List<CompanyVo> companyList = memberDao.companyList(map);
         map.put("companyList", companyList);
 		return map;
@@ -108,15 +130,27 @@ public class MemberServiceImpl implements MemberService{
 	}
 	//개인회원정보수정
 	@Override
-	public int personModify(PersonVo personVo) {
-		
-		return memberDao.personModify(personVo);
+	public int personModify(PersonVo personVo, MultipartFile imgFile) {
+		ImageUpload imageUpload = new ImageUpload();
+		String personImg = imageUpload.uploadImage(imgFile);
+		if(personImg!=null){
+			personVo.setPersonImg(personImg);
+		}
+		int personResult = 0;
+		personResult = memberDao.personModify(personVo);
+		return personResult;
 	}
 	//업체회원정보수정
 	@Override
-	public int companyModify(CompanyVo companyVo) {
-		
-		return memberDao.companyModify(companyVo);
+	public int companyModify(CompanyVo companyVo, MultipartFile imgFile) {
+		ImageUpload imageUpload = new ImageUpload();
+		String companyImg = imageUpload.uploadImage(imgFile);
+		if(companyImg!=null){
+			companyVo.setCompanyImg(companyImg);
+		}
+		int companyResult = 0;
+		companyResult = memberDao.companyModify(companyVo);
+		return companyResult;
 	}
 	//친구추가
 	@Override
@@ -143,7 +177,7 @@ public class MemberServiceImpl implements MemberService{
 		map.put("sessionId", sessionId);
 		memberDao.friendApprove(map);
 		if(approveStateCd==2){
-			result = memberDao.friendApprove2(map);
+			result = memberDao.friendApproveAdd(map);
 		}
 		return result;
 	}
@@ -166,6 +200,7 @@ public class MemberServiceImpl implements MemberService{
 		map.put("sessionId", sessionId);
 		return memberDao.friendDelete(map);
 	}
-	
+
+
 	
 }

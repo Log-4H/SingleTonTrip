@@ -28,6 +28,9 @@
 		member_phone,
 		member_email,
 		member_reg_date
+		<if test="personImg != null and personImg !=''">
+		,member_img
+		</if>
 		)
 	VALUE(
 		#{memberId},
@@ -36,10 +39,20 @@
 		#{memberNm},
 		#{memberPhone},
 		#{memberEmail},
-		
-		now()		
+		now()
+		<if test="personImg != null and personImg !=''">
+		,#{personImg}
+		</if>
 		)
 </insert>
+
+<select id="companyTypeList" resultType="com.log4h.singletontrip.member.domain.CompanyTypeVo">
+	SELECT
+		company_type_cd,
+		company_type_nm
+	FROM
+		tb_company_type
+</select>
 
 <!-- 업체회원가입 -->
 <insert id="companyMemberJoin" parameterType="com.log4h.singletontrip.member.domain.CompanyVo">
@@ -51,6 +64,9 @@
 		member_phone,
 		member_email,
 		member_reg_date
+		<if test="companyImg != null and companyImg !=''">
+		,member_img
+		</if>
 		)
 	VALUE(
 		#{memberId},
@@ -59,8 +75,10 @@
 		#{memberNm},
 		#{memberPhone},
 		#{memberEmail},
-		
-		now()		
+		now()
+		<if test="companyImg != null and companyImg !=''">
+		,#{companyImg}
+		</if>
 		)
 </insert>
 
@@ -120,7 +138,8 @@
 		m.member_email,
 		p.person_birth,
 		p.person_gender,
-		a.act_state_nm
+		a.act_state_nm,
+		f.approve_state_cd as friendState
 	FROM
 		tb_member m
 	JOIN
@@ -131,6 +150,11 @@
 		tb_act_state a
 	ON 
 		m.act_state_cd = a.act_state_cd	
+	LEFT OUTER JOIN 
+		tb_friend f
+	ON 
+		m.member_id = f.friend_id
+	AND f.member_id =#{sessionId}
 	<if test="selectValue != null and selectValue !=''">
 	WHERE
 		${selectOption} LIKE '%${selectValue}%'
@@ -228,6 +252,7 @@
 		m.member_email,
 		m.member_report_count,
 		c.company_crd,
+		t.company_type_cd,
 		t.company_type_nm,
 		c.company_address,
 		a.act_state_nm
@@ -276,6 +301,9 @@
 	<if test="newPw != null and newPw !=''">
 		,member_pw=#{newPw}
 	</if>
+	<if test="personImg != null and personImg !=''">
+		,member_img=#{personImg}
+	</if>
 	WHERE
 		member_id=#{memberId}
 	AND
@@ -290,11 +318,14 @@
 		member_nm=#{memberNm},
 		member_phone=#{memberPhone},
 		member_email=#{memberEmail},
-		company_type=#{companyType},
+		company_type_cd=#{companyTypeCd},
 		company_crd=#{companyCrd},
-		company_Address_=#{companyAddress}
+		company_Address=#{companyAddress}
 	<if test="newPw != null and newPw !=''">
 		,member_pw=#{newPw}
+	</if>
+	<if test="companyImg != null and companyImg !=''">
+		,member_img=#{companyImg}
 	</if>
 	WHERE
 		member_id=#{memberId}
@@ -393,7 +424,7 @@
  		
 </update>
 <!-- 친구요청 수락하면 친구 요청한 쪽에 리스트 추가 -->
-<insert id="friendApprove2" parameterType="Map">
+<insert id="friendApproveAdd" parameterType="Map">
 	INSERT INTO tb_friend
 		(
 		member_id,

@@ -19,6 +19,21 @@ public class PersonVo {
 	private String tripStateCd;
 	private String tripStateNm;
 	private int personTotalMileage;
+	private int friendState;
+	private String personImg;
+	
+	public String getPersonImg() {
+		return personImg;
+	}
+	public void setPersonImg(String personImg) {
+		this.personImg = personImg;
+	}
+	public int getFriendState() {
+		return friendState;
+	}
+	public void setFriendState(int friendState) {
+		this.friendState = friendState;
+	}
 	public String getTripStateCd() {
 		return tripStateCd;
 	}

@@ -10,19 +10,44 @@
 <script src="<c:url value='/js/commons/jquery.min.js'/>"></script>
 <script>
 $(document).ready(function(){
-$("#form").submit(function(){
-	var newPw = $("#newPw").val();
-	var newPwCheck =$("#newPwCheck").val();
-	if(newPw!=newPwCheck){
-		alert("비밀번호 틀렸어요");
-		return false;
-	}
+	$("#form").submit(function(){
+		var newPw = $("#newPw").val();
+		var newPwCheck =$("#newPwCheck").val();
+		if(newPw!=newPwCheck){
+			alert("비밀번호 틀렸어요");
+			return false;
+		}
+	});
 });
-});
+</script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#imgInp").on('change', function(){
+            readURL(this);
+        });
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+
+          reader.readAsDataURL(input.files[0]);
+        }
+    }
+
 
 </script>
 <body>
-	<form id="form" action="companyModify" method="post">
+	<form id="form" action="companyModify" method="post" enctype="multipart/form-data" id="form1">
+		<div>
+			프로필사진<br>
+			<img id="blah" src="#" alt="your image" style="max-height: 100px; max-width: 100px"/><br>
+			<input type='file' name="imgFile" id="imgInp" />	
+    	</div>
 		<div>ID</div>
 		<div><input type="text" name="memberId" value="${companyVo.memberId}" readonly="readonly"/></div>
 		<div>Current PW</div>
@@ -37,6 +62,19 @@ $("#form").submit(function(){
 		<div><input type="text" name="memberPhone" value="${companyVo.memberPhone}"/></div>
 		<div>EMAIL</div>
 		<div><input type="text" name="memberEmail" value="${companyVo.memberEmail}"/></div>
+		<div>분류</div>
+		<div>
+			<c:forEach items="${companyTypeList}" var="t">
+				<c:choose>
+					<c:when test="${t.companyTypeCd eq companyVo.companyTypeCd}">
+						<input type="radio" name="companyTypeCd" value="${t.companyTypeCd }" checked="checked"/><span>${t.companyTypeNm }</span>
+					</c:when>
+					<c:otherwise>
+						<input type="radio" name="companyTypeCd" value="${t.companyTypeCd }"/><span>${t.companyTypeNm }</span>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+		</div>
 		<div>TYPE</div>
 		<div><input type="text" name="companyTypeNm" value="${companyVo.companyTypeNm}"/></div>
 		<div>COMPANYCRD</div>

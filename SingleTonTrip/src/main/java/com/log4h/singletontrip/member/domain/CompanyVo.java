@@ -18,6 +18,14 @@ public class CompanyVo {
 	private String actStateNm;
 	private String memberDropDate;
 	private String memberDropReason;
+	private String companyImg;
+
+	public String getCompanyImg() {
+		return companyImg;
+	}
+	public void setCompanyImg(String companyImg) {
+		this.companyImg = companyImg;
+	}
 	public String getMemberId() {
 		return memberId;
 	}

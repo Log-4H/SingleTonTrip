@@ -8,8 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>개인약관 입니당</h2>
-약관 동의 하시겠습니까?
+<h2 align="center">개인약관 입니당</h2>
+<div align="center">
+<c:import url='terms.jsp'></c:import><br>
+</div>
+<div align="center">약관 동의 하시겠습니까?
 <a href="personJoin?memberLevel=${memberLevel}">Yes</a>
+</div>
 </body>
 </html>

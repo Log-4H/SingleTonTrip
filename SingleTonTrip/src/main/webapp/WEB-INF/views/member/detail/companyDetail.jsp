@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form>
 		<div>ID</div>
 		<div><input type="text" name="memberId" value="${companyVo.memberId}" readonly="readonly"/></div>
 		<div>NAME</div>
@@ -31,6 +30,5 @@
 		<div><input type="text" name="companyAddress" value="${companyVo.companyAddress}" readonly="readonly"/></div>
 		<div><a href="<c:url value='memberDrop?memberId=${companyVo.memberId}'/> ">삭제하기</a></div>
 		<div><a href="<c:url value='companyModify?memberId=${companyVo.memberId}'/> ">수정하기</a></div>
-	</form>
 </body>
 </html>

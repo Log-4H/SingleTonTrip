@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.log4h.singletontrip.member.domain.CompanyTypeVo;
 import com.log4h.singletontrip.member.domain.CompanyVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
 import com.log4h.singletontrip.member.domain.MemberVo;
@@ -65,9 +67,9 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView("member/join/joinBegin");
 		return mv;	
 	}
-	//개인 & 업체회원 선택 처리
-	@RequestMapping(value="joinBegin", method=RequestMethod.POST)
-	public ModelAndView joinBegin(@RequestParam(value="memberLevel") int memberLevel){
+	//개인 & 업체약관폼
+	@RequestMapping(value="joinTerms", method=RequestMethod.GET)
+	public ModelAndView joinTerms(@RequestParam(value="memberLevel") int memberLevel){
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("memberLevel", memberLevel);
 		if(memberLevel==2){
@@ -81,22 +83,26 @@ public class MemberController {
 	@RequestMapping(value="personJoin", method=RequestMethod.GET)
 	public ModelAndView personJoin(@RequestParam(value="memberLevel") int memberLevel){
 		ModelAndView mv = new ModelAndView("member/join/personJoin");
-		mv.addObject("memberLevel", memberLevel);
+
 		return mv;	
 	}
 	//업체 가입 폼 요청
 	@RequestMapping(value="companyJoin", method=RequestMethod.GET)
 	public ModelAndView companyJoin(@RequestParam(value="memberLevel") int memberLevel){
 		ModelAndView mv = new ModelAndView("member/join/companyJoin");
+		List<CompanyTypeVo> companyTypeList = memberService.companyTypeList();
+		mv.addObject("companyTypeList", companyTypeList);
+		mv.addObject("memberLevel", memberLevel);
 		mv.addObject("memberLevel", memberLevel);
 		return mv;	
 	}
 	
 	//개인회원 가입 처리
 	@RequestMapping(value="personJoin", method=RequestMethod.POST)
-	public ModelAndView personJoin(PersonVo personVo){
+	public ModelAndView personJoin(PersonVo personVo,
+			@RequestParam(value="imgFile") MultipartFile imgFile){
 		ModelAndView mv = new ModelAndView();
-		int result = memberService.personJoin(personVo);
+		int result = memberService.personMemberJoin(personVo, imgFile);
 		if(result>0){
 			mv.setViewName("index");
 		}else{
@@ -106,9 +112,10 @@ public class MemberController {
 	}
 	//업체회원 가입 처리
 	@RequestMapping(value="companyJoin", method=RequestMethod.POST)
-	public ModelAndView companyJoin(CompanyVo companyVo){
+	public ModelAndView companyJoin(CompanyVo companyVo,
+			@RequestParam(value="imgFile") MultipartFile imgFile){
 		ModelAndView mv = new ModelAndView();
-		int result = memberService.companyJoin(companyVo);
+		int result = memberService.companyMemberJoin(companyVo, imgFile);
 		if(result>0){
 			mv.setViewName("index");
 		}else{
@@ -119,11 +126,12 @@ public class MemberController {
 	//개인회원리스트
 	@RequestMapping(value="personList", method=RequestMethod.GET)
 	public ModelAndView personList(
+			@ModelAttribute("sessionId") String sessionId,
 			@RequestParam(value="currentPage", defaultValue="1") int currentPage,
 			@RequestParam(value="selectOption", required=false) String selectOption,
 			@RequestParam(value="selectValue", required=false) String selectValue
 			){
-		Map<String, Object> map = memberService.personList(currentPage, selectOption, selectValue);
+		Map<String, Object> map = memberService.personList(currentPage, selectOption, selectValue, sessionId);
 		ModelAndView mv = new ModelAndView("member/list/personList");
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("selectOption", selectOption);
@@ -138,11 +146,12 @@ public class MemberController {
 	//업체회원리스트
 	@RequestMapping(value="companyList", method=RequestMethod.GET)
 	public ModelAndView companyList(
+			@ModelAttribute("sessionId") String sessionId,
 			@RequestParam(value="currentPage", defaultValue="1") int currentPage,
 			@RequestParam(value="selectOption", required=false) String selectOption,
 			@RequestParam(value="selectValue", required=false) String selectValue
 			){
-		Map<String, Object> map = memberService.companyList(currentPage, selectOption, selectValue);
+		Map<String, Object> map = memberService.companyList(currentPage, selectOption, selectValue, sessionId);
 		ModelAndView mv = new ModelAndView("member/list/companyList");
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("selectOption", selectOption);
@@ -189,7 +198,7 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView("redirect:index");
 		return mv;
 	}
-	
+	 
 	//개인회원정보수정화면요청
 	@RequestMapping(value="personModify",method=RequestMethod.GET)
 	public ModelAndView personModify(PersonVo personVo,
@@ -204,15 +213,18 @@ public class MemberController {
 	public ModelAndView companyModify(CompanyVo companyVo,
 			@RequestParam(value="memberId") String memberId){
 		ModelAndView mv = new ModelAndView("member/modify/companyModify");
+		List<CompanyTypeVo> companyTypeList = memberService.companyTypeList();
+		mv.addObject("companyTypeList", companyTypeList);
 		mv.addObject("companyVo" , memberService.companyDetail(memberId));
 		return mv;
 	}
 	
 	//개인회원정보수정
 	@RequestMapping(value="personModify",method=RequestMethod.POST)
-	public ModelAndView personModify(PersonVo personVo){
+	public ModelAndView personModify(PersonVo personVo,
+			@RequestParam(value="imgFile") MultipartFile imgFile){
 		ModelAndView mv = new ModelAndView();
-		int result = memberService.personModify(personVo);
+		int result = memberService.personModify(personVo, imgFile);
 		if(result>0){
 			mv.setViewName("redirect:personList");
 		}else{
@@ -223,9 +235,10 @@ public class MemberController {
 	
 	//업체회원정보수정
 	@RequestMapping(value="companyModify",method=RequestMethod.POST)
-	public ModelAndView companyModify(CompanyVo companyVo){
+	public ModelAndView companyModify(CompanyVo companyVo,
+			@RequestParam(value="imgFile") MultipartFile imgFile){
 		ModelAndView mv = new ModelAndView();
-		int result = memberService.companyModify(companyVo);
+		int result = memberService.companyModify(companyVo, imgFile);
 		if(result>0){
 			mv.setViewName("redirect:companyList");
 		}else{
