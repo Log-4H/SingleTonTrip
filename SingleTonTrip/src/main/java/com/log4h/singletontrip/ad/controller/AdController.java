@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.log4h.singletontrip.ad.domain.AdPriceVo;
 import com.log4h.singletontrip.ad.domain.AdVo;
+import com.log4h.singletontrip.reserve.domain.PaymentVo;
 import com.log4h.singletontrip.ad.service.AdService;
 import com.log4h.singletontrip.member.domain.LoginVo;
 
@@ -91,7 +92,9 @@ public class AdController {
 		adService.adRefuse(map);
 
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:adApplyList");
+		List<PaymentVo> payback = adService.payback();
+		mv.addObject("payback", payback);
+		mv.setViewName("payment/payCancelList");
 		
 		return mv;
 	}

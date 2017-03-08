@@ -58,7 +58,7 @@
 		ad_group_cd = #{adGroupCd}
 	AND
 		company_id = #{companyId}
-	AND0
+	AND
 		ad_approve_state_cd = 2
 	ORDER BY 
 		ad_end_date DESC limit 1
@@ -84,18 +84,40 @@
 <!-- 광고 신청 목록에서 거절 -->
 <update id="adRefuse" parameterType="map">
 	UPDATE
-		tb_ad a 
+		tb_ad
 	JOIN
-		tb_payment b
+		tb_payment
 	ON
-		a.ad_no = b.payment_target_no
+		ad_no = payment_target_no
 	SET
-		a.ad_approve_state_cd = 3,
-		a.admin_id = #{adminId},
-		b.payment_state_cd = 3
+		ad_approve_state_cd = 3,
+		tb_ad.admin_id = #{adminId},
+		tb_payment.admin_id = #{adminId},
+		payment_state_cd = 3
 	WHERE
-		a.ad_no = #{adNo}
+		ad_no = #{adNo}
 </update>
+<!-- 거절 후 환불창 -->
+<select id="payback" parameterType="int"
+		resultType="com.log4h.singletontrip.reserve.domain.PaymentVo">
+	SELECT
+		admin_id,
+		member_id,
+		payment_target_no,
+		payment_price,
+		payment_total_price,
+		payment_apply_date,
+		payment_finish_date,
+		payment_state_nm
+	FROM
+		tb_payment a
+	JOIN
+		tb_payment_state b
+	ON
+		a.payment_state_cd = b.payment_state_cd
+	WHERE
+		a.payment_state_cd > 2
+</select>
 <!-- 광고 리스트 가져오기 -->
 <select id="selectAdList"
 		resultType="com.log4h.singletontrip.ad.domain.AdVo">
@@ -166,14 +188,16 @@
 			payment_cate_cd,
 			payment_target_no,
 			payment_total_price, 
-			payment_apply_date
+			payment_apply_date,
+			payment_approve_date
 		) 
 	SELECT
 			company_id,
 			2, 
 			#{adNo}, 
 			ad_total_price, 
-			ad_apply_date 
+			ad_apply_date,
+			now()
 	FROM 
 			tb_ad
 	WHERE 

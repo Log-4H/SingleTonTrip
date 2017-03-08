@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.log4h.singletontrip.ad.domain.AdPriceVo;
 import com.log4h.singletontrip.ad.domain.AdVo;
+import com.log4h.singletontrip.reserve.domain.PaymentVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
 
 
@@ -21,4 +22,5 @@ public interface AdService {
 	public int adRefuse(Map<String,Object>map);
 	public List<AdVo> selectAdList();
 	public int adImgUpload(AdVo adVo, MultipartFile imgFile);
+	public List<PaymentVo> payback();
 }

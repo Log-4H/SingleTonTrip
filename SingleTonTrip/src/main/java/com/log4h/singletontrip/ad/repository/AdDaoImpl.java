@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.log4h.singletontrip.ad.domain.AdPriceVo;
 import com.log4h.singletontrip.ad.domain.AdVo;
+import com.log4h.singletontrip.reserve.domain.PaymentVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
 
 @Repository
@@ -53,6 +54,12 @@ public class AdDaoImpl implements AdDao{
 	@Override
 	public int adRefuse(Map<String,Object>map){
 		return sqlSession.update(AD_NS+"adRefuse",map);
+	}
+	
+	// 거절 후 환불창
+	@Override
+	public List<PaymentVo> payback(){
+		return sqlSession.selectList(AD_NS+"payback");
 	}
 	
 	// 광고 이미지 등록

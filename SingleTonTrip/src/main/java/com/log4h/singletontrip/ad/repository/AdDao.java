@@ -6,6 +6,7 @@ import java.util.Map;
 import com.log4h.singletontrip.ad.domain.AdPriceVo;
 import com.log4h.singletontrip.ad.domain.AdVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
+import com.log4h.singletontrip.reserve.domain.PaymentVo;
 
 public interface AdDao {
 
@@ -24,4 +25,5 @@ public interface AdDao {
 	public int adImgUpload(AdVo adVo);
 	public String selectAdImg(AdVo adVo);
 	public String selectSameAd(Map<String,Object>map);
+	public List<PaymentVo> payback();
 }

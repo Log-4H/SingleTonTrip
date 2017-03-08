@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.log4h.singletontrip.ad.domain.AdPriceVo;
 import com.log4h.singletontrip.ad.domain.AdVo;
+import com.log4h.singletontrip.reserve.domain.PaymentVo;
 import com.log4h.singletontrip.ad.repository.AdDao;
 import com.log4h.singletontrip.member.domain.LoginVo;
 import com.log4h.singletontrip.util.ImageUpload;
@@ -68,6 +69,12 @@ public class AdServiceImpl implements AdService{
 	@Override
 	public int adRefuse(Map<String,Object>map){
 		return adDao.adRefuse(map);
+	}
+	
+	// 거절 후 환불창
+	@Override
+	public List<PaymentVo> payback(){
+		return adDao.payback();
 	}
 	
 	// 광고 이미지 등록(수정)

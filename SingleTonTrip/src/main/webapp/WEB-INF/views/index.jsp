@@ -24,6 +24,7 @@
 <a href="payAdd">결제 폼</a><br>
 <a href="adList">광고 리스트</a><br>
 <a href="friend">친구</a><br>
+<a href="payCancelList">환불 리스트</a><br>
 
 <c:if test="${sessionId ne null }">
 <a href="person/personMain">포스트</a><br>

@@ -92,11 +92,9 @@
 									</table>
 									<hr class="w3-clear">
 
-									합계: <input type="text" id="total" name="total" value="${total}"
-										readonly> <br> 결제금액 :
-									<div id="price">${total}</div>
-									<input type="submit"
-										class="w3-btn w3-theme-d1 w3-margin-bottom" value="결제" />
+									합계: 	<input type="text" id="total" name="total" value="${total}" readonly> <br> 
+									결제금액 : <div id="price">${total}</div>
+											<input type="submit" class="w3-btn w3-theme-d1 w3-margin-bottom" value="결제" />
 
 								</div>
 							</div>

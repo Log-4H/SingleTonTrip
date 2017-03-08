@@ -3,19 +3,48 @@ package com.log4h.singletontrip.reserve.domain;
 import com.log4h.singletontrip.member.domain.LoginVo;
 
 public class PaymentVo {
-	private int paymentNo;
-	private String adminId;
-	private LoginVo login;
-	private PaymentCateVo paymentCate;
-	private int paymentTargetNo;
+	private int paymentNo;					// 결제no
+	private String adminId;					// 관리자아이디
+	private String memberId;				// 결제자아이디
+	private int paymentCateCd;				// 결제분류코드
+	private int paymentTargetNo;			// 결제대상no
+	private int paymentStateCd;				// 결제상태코드
+	private int paymentUseMileage;			// 마일리지사용
+	private int paymentPrice;				// 실제 결제금액
+	private int paymentTotalPrice;			// 상품가
+	private String paymentApplyDate;		// 결제신청일
+	private String paymentFinishDate;		// 결제일
+	private String paymentApproveDate;		// 관리자승인/거부일
+	private String paymentStateNm;			// 결제상태코드 한글
+	public String getPaymentStateNm() {
+		return paymentStateNm;
+	}
+	public void setPaymentStateNm(String paymentStateNm) {
+		this.paymentStateNm = paymentStateNm;
+	}
+
 	private PaymentStateVo paymentState;
-	private int paymentUseMileage;
-	private int paymentPrice;
-	private int paymentTotalPrice;
-	private String paymentApplyDate;
-	private String paymentFinishDate;
-	private String paymentApproveDate;
+	private PaymentCateVo paymentCate;
+	private LoginVo login;
 	
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	public int getPaymentCateCd() {
+		return paymentCateCd;
+	}
+	public void setPaymentCateCd(int paymentCateCd) {
+		this.paymentCateCd = paymentCateCd;
+	}
+	public int getPaymentStateCd() {
+		return paymentStateCd;
+	}
+	public void setPaymentStateCd(int paymentStateCd) {
+		this.paymentStateCd = paymentStateCd;
+	}
 	public int getPaymentNo() {
 		return paymentNo;
 	}
@@ -91,11 +120,13 @@ public class PaymentVo {
 	
 	@Override
 	public String toString() {
-		return "PaymentVo [paymentNo=" + paymentNo + ", adminId=" + adminId + ", login=" + login + ", paymentCate="
-				+ paymentCate + ", paymentTargetNo=" + paymentTargetNo + ", paymentState=" + paymentState
-				+ ", paymentUseMileage=" + paymentUseMileage + ", paymentPrice=" + paymentPrice + ", paymentTotalPrice="
-				+ paymentTotalPrice + ", paymentApplyDate=" + paymentApplyDate + ", paymentFinishDate="
-				+ paymentFinishDate + ", paymentApproveDate=" + paymentApproveDate + "]";
+		return "PaymentVo [paymentNo=" + paymentNo + ", adminId=" + adminId + ", memberId=" + memberId
+				+ ", paymentCateCd=" + paymentCateCd + ", paymentTargetNo=" + paymentTargetNo + ", paymentStateCd="
+				+ paymentStateCd + ", paymentUseMileage=" + paymentUseMileage + ", paymentPrice=" + paymentPrice
+				+ ", paymentTotalPrice=" + paymentTotalPrice + ", paymentApplyDate=" + paymentApplyDate
+				+ ", paymentFinishDate=" + paymentFinishDate + ", paymentApproveDate=" + paymentApproveDate
+				+ ", paymentStateNm=" + paymentStateNm + ", paymentState=" + paymentState + ", paymentCate="
+				+ paymentCate + ", login=" + login + "]";
 	}
 	
 	
