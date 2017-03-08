@@ -287,12 +287,12 @@
 	WHERE
 		ad_end_date = curdate()
 </update>
-<!-- 광고 테이블 신청일로부터 2년 지난 데이터 지우기 -->
+<!-- 광고 테이블 광고 끝난시점 부터 2년 지난 데이터 지우기 -->
 <delete id="deleteOldAd">
 	DELETE FROM
 		tb_ad
 	WHERE
-		DATE_ADD(ad_apply_date, INTERVAL 730 DAY) <![CDATA[<]]> now()
+		DATE_ADD(ad_end_date, INTERVAL 730 DAY) <![CDATA[<]]> now()
 </delete>
 <!-- 결제 테이블 결제일로부터 5년 지난 데이터 지우기 -->
 <delete id="deleteOldPayment">
