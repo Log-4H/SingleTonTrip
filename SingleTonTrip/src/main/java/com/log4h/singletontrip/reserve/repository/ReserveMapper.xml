@@ -115,46 +115,48 @@
 	<!-- payList의 카운트를 가져옴 -->
 	<select id="getPayTotalCount" parameterType="Map" resultType="int">
 		SELECT 
-			COUNT(*)			
-		FROM 
-			tb_reserve rsv
-		JOIN 
-			tb_room r
-		JOIN 
-			tb_payment_state pmst
-		JOIN 
-			tb_company cp
-		JOIN 
-			tb_member perm
-		JOIN 
-			tb_payment pm
-		JOIN 
-			tb_member comm
-		ON 
-			rsv.room_no = r.room_no
-		AND 
-			rsv.payment_state_cd = pmst.payment_state_cd
-		AND
-			r.company_id = cp.company_id
-		AND
-			rsv.person_id = perm.member_id
-		AND
-			rsv.reserve_no = pm.payment_target_no
-		AND 
-			comm.member_id = r.company_id
-		<choose>
-			<when test="login.memberLevel == 3">
-					
-				WHERE
-					rsv.person_id = #{login.memberId}
-			</when>
-			<when test="login.memberLevel == 2">
-				WHERE 
-					cp.company_id = #{login.memberId}
-			</when>
-			<otherwise>
-			</otherwise>
-		</choose>
+			COUNT(*)
+		FROM tb_payment pm
+		JOIN tb_payment_cate pmc
+		JOIN tb_payment_state pms
+		
+		ON pm.payment_cate_cd = pmc.payment_cate_cd
+		AND pm.payment_state_cd = pms.payment_state_cd
+
+		<if test="login.memberLevel != 1 ">
+				
+			WHERE
+				pm.member_id = #{login.memberId}
+		</if>
+	</select>
 	
+	<!-- payList의 가져옴 -->
+	<select id="getPayList" parameterType="Map" resultType="com.log4h.singletontrip.reserve.domain.PaymentVo">
+		SELECT 
+			pm.payment_no ,
+			pm.admin_id , 
+			pm.member_id , 
+		 	pm.payment_target_no, 
+			pm.payment_use_mileage, 
+			pm.payment_price, 
+			pm.payment_total_price, 
+			DATE_FORMAT(pm.payment_apply_date,"%Y-%m-%d "), 
+			DATE_FORMAT(pm.payment_finish_date, "%Y-%m-%d "), 
+			DATE_FORMAT(pm.payment_approve_date,"%Y-%m-%d "), 
+			
+			pmc.payment_cate_nm '',
+			
+			pms.payment_state_nm
+		FROM tb_payment pm
+		JOIN tb_payment_cate pmc
+		JOIN tb_payment_state pms
+		
+		ON pm.payment_cate_cd = pmc.payment_cate_cd
+		AND pm.payment_state_cd = pms.payment_state_cd
+
+		<if test="login.memberLevel != 1 ">
+			WHERE
+				pm.member_id = #{login.memberId}
+		</if>
 	</select>
 </mapper>
