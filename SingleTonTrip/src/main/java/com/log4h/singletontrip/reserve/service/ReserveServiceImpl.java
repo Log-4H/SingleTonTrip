@@ -49,10 +49,29 @@ public class ReserveServiceImpl implements ReserveService{
 	    map.put("returnList", returnList);
 	    return map;
 	}
+	
 	// get paymentState data
 	@Override
 	public List<PaymentCateVo> getPaymentCate() {
 		List<PaymentCateVo> paymentCate = reserveDao.getPaymentCate();
+		logger.debug("paymentCate :{}", paymentCate);
 		return paymentCate;
+	}
+
+	// get payList
+	@Override
+	public Map<String, Object> getPayList(int currentPage, LoginVo login, int selectOption, String selectValue) {
+		logger.debug(" >>>>>>> getPayList <<<<<<< ");
+		
+		Map<String, Object> totalCountMap = new HashMap<String, Object>();
+		totalCountMap.put("selectOption", selectOption);
+		totalCountMap.put("selectValue", selectValue);
+		totalCountMap.put("login", login);
+		logger.debug(" >>>>>>> totalCountMap에 담긴 값 \n{}   ", totalCountMap);
+		
+		// 행의 수를 가져온다
+		int payTotalCount = reserveDao.payTotalCount(totalCountMap);
+		
+		return null;
 	}
 }

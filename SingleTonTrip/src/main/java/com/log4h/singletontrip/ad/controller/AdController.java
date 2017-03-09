@@ -45,25 +45,8 @@ public class AdController {
 	private AdService adService;
 	
 	
-	// 광고 신청 리스트
-	@RequestMapping(value="adApplyList")
-	public ModelAndView adAppllyList(
-			@ModelAttribute("sessionId") String sessionId,
-			@ModelAttribute("sessionLevel") int sessionLevel){
-		LoginVo loginVo = new LoginVo();
-		loginVo.setMemberId(sessionId);
-		loginVo.setMemberLevel(sessionLevel);
-		
-		ModelAndView mv = new ModelAndView();
-		List<AdVo> adApplyList = adService.selectAdApplyList(loginVo);
-		mv.addObject("adApplyList",adApplyList);
-		mv.setViewName("advertisement/adApplyList");
-		
-		return mv;
-	}
-	
 	// 광고 신청 승인
-	@RequestMapping(value="adApprove")
+	@RequestMapping(value="/advertisement/adApprove")
 	public ModelAndView adApprove(
 			@ModelAttribute("sessionId") String adminId, 
 			@RequestParam(value="adNo") int adNo,
@@ -83,7 +66,7 @@ public class AdController {
 	}
 	
 	// 광고 신청 거절
-	@RequestMapping(value="adRefuse")
+	@RequestMapping(value="/advertisement/adRefuse")
 	public ModelAndView adRefuse(@ModelAttribute("sessionId") String adminId,
 			@RequestParam(value="adNo") int adNo){
 		Map<String,Object>map = new HashMap<String,Object>();
@@ -98,7 +81,7 @@ public class AdController {
 	}
 	
 	// 환불 리스트
-	@RequestMapping(value="payCancelList")
+	@RequestMapping(value="/payment/payCancelList")
 	public ModelAndView payCancelList(){
 		ModelAndView mv = new ModelAndView();
 		List<PaymentVo> payback = adService.paybackList();
@@ -109,7 +92,7 @@ public class AdController {
 	}
 	
 	// 환불
-	@RequestMapping(value="payback")
+	@RequestMapping(value="/payment/payback")
 	public ModelAndView payback(
 			@RequestParam(value="memberId") String memberId,
 			@RequestParam(value="paymentTotalPrice") int paymentTotalPrice,
@@ -126,7 +109,7 @@ public class AdController {
 	}
 	
 	// 광고 리스트
-	@RequestMapping(value="adList")
+	@RequestMapping(value="/advertisement/adList")
 	public ModelAndView adList(){
 		ModelAndView mv = new ModelAndView();
 		List<AdVo> adList = adService.selectAdList();
@@ -149,7 +132,7 @@ public class AdController {
 	}
 	
 	// 광고 신청 폼
-	@RequestMapping(value="adApply", method=RequestMethod.GET)
+	@RequestMapping(value="/advertisement/adApply", method=RequestMethod.GET)
 	public ModelAndView adApply(){
 		ModelAndView mv = new ModelAndView();
 		List<AdPriceVo> adPrice = adService.selectAdPrice();
@@ -160,7 +143,7 @@ public class AdController {
 	}
 	
 	// 광고 신청 등록
-	@RequestMapping(value="adApply", method=RequestMethod.POST)
+	@RequestMapping(value="/advertisement/adApply", method=RequestMethod.POST)
 	public ModelAndView adApply(@ModelAttribute("sessionId") String companyId, AdVo adVo,
 								MultipartHttpServletRequest multi){
 		ModelAndView mv = new ModelAndView();
@@ -172,7 +155,7 @@ public class AdController {
 	}
 	
 	// 결제 폼
-	@RequestMapping(value="payAdd", method=RequestMethod.GET)
+	@RequestMapping(value="/payment/payAdd", method=RequestMethod.GET)
 	public ModelAndView payAdd(@ModelAttribute("sessionId") String companyId,AdVo adVo){
 		ModelAndView mv = new ModelAndView();
 		Map<String,Object>map = adService.paymentList(companyId);
@@ -184,8 +167,8 @@ public class AdController {
 		return mv;
 	}
 	
-	// 결제
-	@RequestMapping(value="paymentAd", method=RequestMethod.POST)
+	// 광고신청 리스트가기전 결제
+	@RequestMapping(value="/advertisement/paymentAd", method=RequestMethod.POST)
 	public ModelAndView payment(@ModelAttribute("sessionId") String companyId,
 			@RequestParam(value="total") int total){
 		ModelAndView mv = new ModelAndView();
@@ -199,8 +182,27 @@ public class AdController {
 		return mv;
 	}
 	
-	// 결제 목록에서 삭제
-	@RequestMapping(value="deleteAdApplyList")
+
+	// 광고 신청 리스트
+	@RequestMapping(value="/advertisement/adApplyList")
+	public ModelAndView adAppllyList(
+			@ModelAttribute("sessionId") String sessionId,
+			@ModelAttribute("sessionLevel") int sessionLevel){
+		LoginVo loginVo = new LoginVo();
+		loginVo.setMemberId(sessionId);
+		loginVo.setMemberLevel(sessionLevel);
+		
+		ModelAndView mv = new ModelAndView();
+		List<AdVo> adApplyList = adService.selectAdApplyList(loginVo);
+		mv.addObject("adApplyList",adApplyList);
+		mv.setViewName("advertisement/adApplyList");
+		
+		return mv;
+	}
+	
+	
+	// 광고 결제 목록에서 삭제
+	@RequestMapping(value="/advertisement/deleteAdApplyList")
 	public ModelAndView deletePayList(@RequestParam(value="adNo") int adNo){
 		ModelAndView mv = new ModelAndView();
 		adService.deleteAdApplyList(adNo);

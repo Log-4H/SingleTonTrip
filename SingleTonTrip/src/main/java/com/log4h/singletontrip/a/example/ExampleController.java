@@ -32,7 +32,7 @@ public class ExampleController {
 	private ExampleService exampleService;
 
 	//insert 예제 -get방식
-	@RequestMapping(value="exampleInsert", method=RequestMethod.GET)
+	@RequestMapping(value="/dddd/login", method=RequestMethod.GET)
 	public ModelAndView insertExample(){
 		//ModelAndView 객체 생성
 		ModelAndView mv = new ModelAndView();

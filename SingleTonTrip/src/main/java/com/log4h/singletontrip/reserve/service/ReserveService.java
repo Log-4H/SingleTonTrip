@@ -13,4 +13,6 @@ public interface ReserveService {
 
 	List<PaymentCateVo> getPaymentCate();
 
+	Map<String, Object> getPayList(int currentPage, LoginVo login, int selectOption, String selectValue);
+
 }

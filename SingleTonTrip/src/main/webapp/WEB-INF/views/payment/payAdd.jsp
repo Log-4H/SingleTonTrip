@@ -59,7 +59,7 @@
 				</form>
 			</c:when>
 			<c:otherwise>
-				<form action="paymentAd" method="post">
+				<form action="/advertisement/paymentAd" method="post">
 					<div class="w3-row-padding">
 						<div class="w3-col m12">
 							<div class="w3-card-2 w3-round w3-white">
@@ -84,8 +84,11 @@
 													<td>${list.adTotalPrice}</td>
 													<td>35</td>
 													<td>New York</td>
-													<td><a href="deleteAdApplyList?adNo=${list.adNo}"><button
-																type="button">취소</button></a></td>
+													<td>
+														<a href="/advertisement/deleteAdApplyList?adNo=${list.adNo}">
+															<button type="button">취소</button>
+														</a>
+													</td>
 												</tr>
 											</tbody>
 										</c:forEach>

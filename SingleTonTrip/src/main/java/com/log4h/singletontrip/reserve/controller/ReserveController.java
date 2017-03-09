@@ -78,8 +78,11 @@ public class ReserveController {
 		
 		List<PaymentCateVo> paymentCate = reserveService.getPaymentCate();
 		
+		mv.addObject("cateList",paymentCate);
 		
-/*		Map<String, Object> getMap = reserveService.getReserveList(currentPage,login, selectOption, selectValue);
+		Map<String, Object> getMap = reserveService.getPayList(currentPage, login, selectOption, selectValue);
+		
+/*		
 		logger.debug(" >>>>>>> getReserveList에서 리턴 받는 map : \n {} <<<<<<< ",getMap);
 		 
 		mv.addObject("map", getMap);
@@ -97,6 +100,7 @@ public class ReserveController {
 		
 	}
 	
+/*	
 	@RequestMapping(value="/payment/payAdd",method=RequestMethod.GET)
 	public ModelAndView payAdd(
 			@ModelAttribute("sessionId") String sessionId,
@@ -111,8 +115,7 @@ public class ReserveController {
 		login.setMemberId(sessionId);
 		login.setMemberLevel(sessionLevel);
 		logger.debug("login에 담긴 값 : {} ", login);
-		
-/*		Map<String, Object> getMap = reserveService.getReserveList(currentPage,login, selectOption, selectValue);
+		Map<String, Object> getMap = reserveService.getReserveList(currentPage,login, selectOption, selectValue);
 		logger.debug(" >>>>>>> getReserveList에서 리턴 받는 map : \n {} <<<<<<< ",getMap);
 		
 		mv.addObject("map", getMap);
@@ -123,12 +126,12 @@ public class ReserveController {
 		mv.addObject("pageSize", getMap.get("pageSize"));
 		mv.addObject("endPage", getMap.get("endPage"));
 		mv.addObject("lastPage", getMap.get("lastPage"));
-		*/
+		
 		mv.setViewName("/payment/payAdd");
 		
 		return mv;
 		
 	}
-	
+	*/
 	
 }

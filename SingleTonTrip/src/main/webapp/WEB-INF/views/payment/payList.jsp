@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="../module/top.jsp" />
-<div class="w3-container w3-content"
-	style="max-width: 1400px; margin-top: 130px">
+<div class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
 	<div class="w3-col m7">
 		<form action="<c:url value='/payment/payList'/>" method="get">
 			<div class="w3-row-padding">
@@ -14,8 +12,8 @@
 							<!-- <p contenteditable="true" class="w3-border w3-padding"></p> -->
 							<select name="selectOption">
 									<option value="#">::선택::</option>
-									<c:forEach items="${faqCate}" var="f">
-										<option value="${f.boardCateCd}">${f.boardCateNm}</option>
+									<c:forEach items="${cateList}" var="l">
+										<option value="${l.paymentCateCd}">${l.paymentCateNm}</option>
 									</c:forEach>
 							</select>
 							<input type="text" name="selectValue" /> 
@@ -38,15 +36,13 @@
 				<br>
 				<!-- 사용했을때 -->
 				<c:if test="${mileageList.mileageCate.mileageState == 1}">
-					<img
-						src="https://raw.githubusercontent.com/enujo/imgRepository/master/yes.png"
+					<img src="https://raw.githubusercontent.com/enujo/imgRepository/master/yes.png"
 						alt="Avatar" class="w3-left w3-circle w3-margin-right"
 						style="width: 37px">
 				</c:if>
 				<!-- 적립했을때 -->
 				<c:if test="${mileageList.mileageCate.mileageState == 2}">
-					<img
-						src="https://raw.githubusercontent.com/enujo/imgRepository/master/no.png"
+					<img src="https://raw.githubusercontent.com/enujo/imgRepository/master/no.png"
 						alt="Avatar" class="w3-left w3-circle w3-margin-right"
 						style="width: 37px">
 				</c:if>

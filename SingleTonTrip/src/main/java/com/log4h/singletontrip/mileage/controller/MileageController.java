@@ -25,7 +25,7 @@ public class MileageController {
 	private MileageService mileageService;
 	
 	// 마일리지 리스트
-	@RequestMapping(value="mileageList", method=RequestMethod.GET)
+	@RequestMapping(value="/mileage/mileageList", method=RequestMethod.GET)
 	public ModelAndView mileageList(
 			@ModelAttribute("sessionId") String sessionId,
 			@ModelAttribute("sessionLevel") int sessionLevel,
