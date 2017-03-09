@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:import url="../module/top.jsp"></c:import>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,7 +15,7 @@
 </script>
 <% response.sendRedirect("index"); %>
 </c:if>
-<h3><a href="index">홈</a></h3>
+<h3><a href="<%= request.getContextPath() %>/index">홈</a></h3>
 *선택파일 없이 등록버튼을 누르면 파일이 삭제 됩니다.
 <table border=1>
 	<tr>

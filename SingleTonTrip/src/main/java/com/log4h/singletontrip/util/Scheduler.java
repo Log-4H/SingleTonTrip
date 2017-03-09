@@ -4,17 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import com.log4h.singletontrip.ad.controller.AdController;
 import com.log4h.singletontrip.ad.repository.AdDao;
 
 @Component
 public class Scheduler {
 	@Autowired
 	AdDao adDao;
+	@Autowired
+	AdController adController;
 	
 	@Scheduled(cron = "0 0 0 * * *")
 	public void schedule(){
 		System.out.println("=======SCHEDULER START=======");
         try {
+        	// 광고 할 이미지 파일 가져오기
+        	adController.selectUseAd();
         	// 기간 지난 광고 내리기
         	adDao.adDrop();
         	// 광고 테이블 광고 끝난시점 부터 2년 지난 데이터 지우기

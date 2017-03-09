@@ -32,4 +32,5 @@ public interface AdDao {
 	public int deleteOldPayment();
 	public int deleteNotPayment();
 	public int deleteNotPaymentAd();
+	public List<AdVo> selectUseAd();
 }

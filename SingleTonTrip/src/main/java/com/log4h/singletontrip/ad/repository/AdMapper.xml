@@ -277,6 +277,18 @@
 		member_id=#{companyId}
 </update>
 <!-- 스케줄러 -->
+<!-- 광고 할 이미지파일 가져오기 -->
+<select id="selectUseAd"
+		resultType="com.log4h.singletontrip.ad.domain.AdVo">
+	SELECT
+		ad_img
+	FROM
+		tb_ad
+	WHERE
+		ad_approve_state_cd = 2
+	AND
+		ad_reg_date = curdate()-1
+</select>
 <!-- 기간 지난 광고 내리기 -->
 <update id="adDrop">
 	UPDATE

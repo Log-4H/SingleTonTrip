@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:import url="../module/top.jsp"></c:import>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,10 +16,16 @@
 <% response.sendRedirect("index"); %>
 </c:if>
 <h1>신청 리스트</h1>
-<h3><a href="index">홈</a></h3>
+<h3><a href="<%= request.getContextPath() %>/index">홈</a></h3>
+<div class="w3-container w3-content"
+	style="max-width: 1400px; margin-top: 130px" align="center">
+	<div class="w3-row-padding">
+		<div class="w3-col m12">
+			<div class="w3-card-2 w3-round w3-white">
+				<div class="w3-container w3-padding">
 <c:choose>
 	<c:when test="${sessionLevel == 1}">
-		<table border="1">
+		<table class="table">
 		 	<tr>
 		 		<th>번호</th>
 		 		<th>신청자</th>
@@ -45,7 +52,7 @@
 		</table>
 	</c:when>
 	<c:otherwise>
-		<table border="1">
+		<table class="table">
 		 	<tr>
 		 		<th>번호</th>
 		 		<th>신청자</th>
@@ -69,5 +76,10 @@
 		</table>
 	</c:otherwise>
 </c:choose>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 </body>
 </html>

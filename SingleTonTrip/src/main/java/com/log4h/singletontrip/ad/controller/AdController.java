@@ -209,4 +209,14 @@ public class AdController {
 		mv.setViewName("redirect:payAdd");
 		return mv;
 	}
+	
+	// 광고할 이미지파일 가져오기
+	@RequestMapping(value="")
+	public ModelAndView selectUseAd(){
+		ModelAndView mv = new ModelAndView();
+		List<AdVo> adList = adService.selectUseAd();
+		mv.addObject("adList",adList);
+		
+		return mv;
+	}
 }

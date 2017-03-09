@@ -132,4 +132,10 @@ public class AdServiceImpl implements AdService{
 	public int paymentAd(Map<String,Object>map){
 		return adDao.paymentAd(map);
 	}
+	
+	// 광고 할 이미지파일 가져오기
+	@Override
+	public List<AdVo> selectUseAd(){
+		return adDao.selectUseAd();
+	}
 }

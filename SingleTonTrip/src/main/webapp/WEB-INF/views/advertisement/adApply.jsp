@@ -15,7 +15,7 @@
 </script>
 <% response.sendRedirect("index"); %>
 </c:if>
-<h3><a href="index">홈</a></h3>
+<h3><a href="<%= request.getContextPath() %>/index">홈</a></h3>
 <div class="w3-container w3-content"
 	style="max-width: 1400px; margin-top: 130px" align="center">
 	<form action="adApply" method="post" enctype="multipart/form-data">
