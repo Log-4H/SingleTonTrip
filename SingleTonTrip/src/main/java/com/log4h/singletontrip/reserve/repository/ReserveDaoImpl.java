@@ -38,9 +38,4 @@ public class ReserveDaoImpl implements ReserveDao{
 		return sqlSession.selectOne(RESERVE_NS+"getPayTotalCount", payTotalCountMap);
 	}
 
-	@Override
-	public List<Object> getPayList(Map<String, Object> map) {
-		return sqlSession.selectList(RESERVE_NS+"getPayList", map);
-	}
-
 }
