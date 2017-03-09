@@ -17,6 +17,8 @@ public interface ReserveDao {
 
 	int payTotalCount(Map<String, Object> payTotalCountMap);
 
+	List<Object> getPayList(Map<String, Object> map);
+
 
 
 
