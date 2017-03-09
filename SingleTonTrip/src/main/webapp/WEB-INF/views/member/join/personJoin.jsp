@@ -3,6 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- 이미지사진미리보기 -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script type="text/javascript">
     $(function() {
@@ -30,12 +32,12 @@
 </head>
 <body>
 <h1 align="center">SigletonTrip</h1>
-<h2 align="center">회원가입</h1>
+<h2 align="center">회원가입</h2>
 	<form action="personJoin" method="post" enctype="multipart/form-data" id="form1">
 		<input type="hidden" name="memberLevel" value="${memberLevel}">
 		<div align="center">
+			프로필사진
 			<img id="blah" src="#" alt="your image" style="max-height: 100px; max-width: 100px"/><br>
-			프로필사진:
 	    	<input type='file' name="imgFile" id="imgInp" />	       
 		</div>
 		<div align="center">

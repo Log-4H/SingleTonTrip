@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- 이미지사진미리보기 -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script type="text/javascript">
@@ -72,51 +73,48 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1 align="center">SigletonTrip</h1>
+<h2 align="center">회원가입</h2>
 	<form action="companyJoin" method="post" enctype="multipart/form-data" id="form1">
 		<input type="hidden" name="memberLevel" value="${memberLevel }">
-		<div>
+		<div align="center">
+			프로필사진
 			<img id="blah" src="#" alt="your image" style="max-height: 100px; max-width: 100px"/><br>
-			프로필사진:
 			<input type='file' name="imgFile" id="imgInp" />
 		</div>
-		<div>
-			아이디:
-			<input type="text" name="memberId"/>
+		<div align="center">
+			<input type="text" name="memberId" placeholder="아이디"/>
 		</div>
-		<div>
-			비밀번호:
-			<input type="password" name="memberPw"/>
+		<div align="center">
+			<input type="password" name="memberPw" placeholder="비밀번호"/>
 		</div>
-		<div>
-			이름:
-			<input type="text" name="memberNm"/>
+		<div align="center">
+			<input type="text" name="memberNm" placeholder="이름"/>
 		</div>
-		<div>
-			전화번호:
-			<input type="text" name="memberPhone"/>
+		<div align="center">
+			<input type="text" name="memberPhone" placeholder="전화번호"/>
 		</div>
-		<div>
-			이메일:
-			<input type="text" name="memberEmail"/>
+		<div align="center">
+			<input type="text" name="memberEmail" placeholder="이메일"/>
 		</div>
-		<div>
-			사업자번호:
-			<input type="text" name="companyCrd"/>
+		<div align="center">
+			<input type="text" name="companyCrd" placeholder="사업자번호"/>
 		</div>
-		<div>
+		<div align="center">
 			분류:
 			<c:forEach items="${companyTypeList}" var="t">
 				<input type="radio" name="companyTypeCd" value="${t.companyTypeCd }"/><span>${t.companyTypeNm }</span>
 			</c:forEach>
 		</div>
-		<div>
+		<div align="center">
 			주소:
 			<input type="text" id="sample6_postcode" placeholder="우편번호">
 			<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 			<input type="text" id="sample6_address" placeholder="주소">
 			<input type="text" id="sample6_address2" placeholder="상세주소">
 		</div>
-		<div><input type="submit" value="회원가입"></div>
+		<div align="center"><input type="submit" value="회원가입"></div>
 	</form>
+<c:import url="/WEB-INF/views/module/footer.jsp"></c:import>
 </body>
 </html>
