@@ -49,4 +49,9 @@ public class TripDaoImpl implements TripDao{
 	public List<RegionVo> regionSiList(String regionDo) {
 		return sqlSession.selectList(TRIP_NS+"regionSiList", regionDo);
 	}
+	//여행등록
+	@Override
+	public int tripInsert(TripVo tripVo) {
+		return sqlSession.insert(TRIP_NS+"tripInsert", tripVo);
+	}
 }

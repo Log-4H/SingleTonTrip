@@ -15,4 +15,6 @@ public interface TripService {
 	public Map<String, Object> tripAddForm();
 	//여행지역(시) 리스트
 	public List<RegionVo> regionSiList(String regionDo);
+	//여행등록
+	public int tripAdd(TripVo tripVo);
 }

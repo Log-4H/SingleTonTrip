@@ -1,11 +1,11 @@
 //구글 맵
-function googleMap(planSite, planContent) {
+function googleMap(no, planSite, planContent) {
 	var mapOptions = {
 		zoom : 14,
 		scrollwheel : true, // 줌 인&아웃 휠 컨트롤
 		zoomControl : true // 줌 컨트롤 표시
 	};
-	var map = new google.maps.Map(document.getElementById('google_map'),
+	var map = new google.maps.Map(document.getElementById('google_map'+no),
 			mapOptions);
 	var marker = null;
 	for (var i = 0; i < planSite.length; i++) {
@@ -421,7 +421,7 @@ $(document).on('click', '.tripDetailBtn', function() {
 					planSite.push(item.planSite);
 					planContent.push(item.planContent);
 				});
-				googleMap(planSite, planContent);
+				googleMap(tripNo, planSite, planContent);
 				$("#tripFlag" + tripNo).val("open");
 			}
 		})
@@ -450,26 +450,33 @@ function tripAddModalShow(){
 	})
 }
 //여행지역(시) 리스트
-function regionSiList(value){
+function regionSiListShow(value){
 	$.ajax({
 		url : "regionSiList",
 		type : "POST",
 		data : {regionDo : value},
 		dataType : "json",
 		success : function(data) {
-			var html = "";
-			var regionSiList = data.regionSiList;
-			html += "<select name='regionList'>";
-			$.each(regionSiList,function(key, item) {
-				html += "<option value='"+item.regionSi+"'>"+item.regionSi+"</option>";
-			});
-			html +="</select>";
 			$("#regionSiList").empty();
-			$("#regionSiList").append(html);
+			var regionSiList = data.regionSiList;
+			$.each(regionSiList,function(key, item) {
+				$("#regionSiList").append("<option value='"+item.regionCd+"'>"+item.regionSi+"</option>");
+			});
 		}
 	})
 }
-
+//여행 등록 처리
+$(document).on('click', '#tripAddNextBtn', function() {
+	$.ajax({
+		url : "tripAdd",
+		type : "POST",
+		data : $("#tripAddForm").serialize(),
+		dataType : "json",
+		success : function(data) {
+			console.log(data);
+		}
+	})
+});
 // 여행 html추가
 function tripAppend(tripList) {
 	var html = "";
@@ -530,7 +537,7 @@ function tripDetailAppend(trip, planList) {
 				+ "</p>";
 		html += "<p>예상비용: " + item.planPrice + "</p>";
 	});
-	html += "<div id='google_map' style='width:350px;height:350px;'></div>";
+		html += "<div id='google_map"+trip.tripNo+"' style='width:350px;height:350px;'></div>";
 	html += "<hr class='w3-clear'>";
 	return html;
 }

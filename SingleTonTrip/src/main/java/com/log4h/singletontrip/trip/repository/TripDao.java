@@ -21,4 +21,6 @@ public interface TripDao {
 	public List<RegionVo> regionDoList();
 	//여행지역(시)리스트
 	public List<RegionVo> regionSiList(String regionDo);
+	//여행등록
+	public int tripInsert(TripVo tripVo);
 }	

@@ -54,4 +54,9 @@ public class TripServiceImpl implements TripService{
 	public List<RegionVo> regionSiList(String regionDo) {
 		return tripDao.regionSiList(regionDo);
 	}
+	//여행등록
+	@Override
+	public int tripAdd(TripVo tripVo) {
+		return tripDao.tripInsert(tripVo);
+	}
 }

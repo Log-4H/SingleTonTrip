@@ -97,5 +97,34 @@
 	WHERE
 		region_do=#{regionDo}
 </select>
-
+<insert id="tripInsert" parameterType="com.log4h.singletontrip.trip.domain.TripVo">
+	INSERT INTO	tb_trip(
+		person_id,
+		trip_theme_cd,
+		region_cd,
+		trip_title,
+		trip_content,
+		trip_max_member,
+		trip_tag,
+		trip_start_date,
+		trip_end_date,
+		trip_recruit_start_date,
+		trip_recruit_end_date,
+		trip_reg_date
+	)
+	VALUES(
+		#{personId},
+		#{tripThemeCd},
+		#{regionCd},
+		#{tripTitle},
+		#{tripContent},
+		#{tripMaxMember},
+		#{tripTag},
+		#{tripStartDate},
+		#{tripEndDate},
+		now(),
+		#{tripRecruitEndDate},
+		now()
+	)
+</insert>
 </mapper>

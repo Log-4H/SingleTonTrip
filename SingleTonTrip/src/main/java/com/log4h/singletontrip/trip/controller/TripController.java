@@ -42,7 +42,7 @@ public class TripController {
 		mv.addObject("planList", map.get("planList"));
 		return mv;	
 	}
-	//여행 리스트
+	//여행등록폼 요청
 	@RequestMapping(value="person/tripAdd", method=RequestMethod.GET)
 	public ModelAndView tripAdd(){
 		ModelAndView mv = new ModelAndView("jsonView");
@@ -51,11 +51,26 @@ public class TripController {
 		mv.addObject("regionDoList", map.get("regionDoList"));
 		return mv;
 	}
+	//여행지역(시) 리스트 출력
 	@RequestMapping(value="person/regionSiList", method=RequestMethod.POST)
 	public ModelAndView regionSiList(@RequestParam(value="regionDo") String regionDo){
 		ModelAndView mv = new ModelAndView("jsonView");
 		List<RegionVo> regionSiList = tripService.regionSiList(regionDo);
 		mv.addObject("regionSiList", regionSiList);
+		return mv;
+	}
+	
+	//여행등록처리
+	@RequestMapping(value="person/tripAdd", method=RequestMethod.POST)
+	public ModelAndView tripAdd(@ModelAttribute("sessionId") String memberId,
+			@RequestParam(value="lastTripRow", defaultValue="5") int lastTripRow, TripVo tripVo){
+		ModelAndView mv = new ModelAndView("jsonView");
+		tripVo.setPersonId(memberId);
+		int result = tripService.tripAdd(tripVo);
+		if(result>0){
+			List<TripVo> tripList= tripService.tripList(memberId, lastTripRow);
+			mv.addObject("tripList", tripList);
+		}
 		return mv;
 	}
 }
