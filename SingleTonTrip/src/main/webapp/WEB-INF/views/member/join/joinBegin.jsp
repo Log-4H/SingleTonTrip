@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <title>Insert title here</title>
 <style>
 .btn-sq-lg {
@@ -43,6 +43,7 @@
 </head>
 <body>
 <h1 align="center">SigletonTrip</h1>
+<h2 align="center">회원가입</h2>
 <div class="container" align="center">
 	<div class="row">
 		<div class="col-lg-12">
