@@ -26,14 +26,14 @@ public class ReserveServiceImpl implements ReserveService{
 	public Map<String, Object> getReserveList(int currentPage, LoginVo login, int selectOption, String selectValue) {
 		logger.debug(" >>>>>>> getReserveList <<<<<<< ");
 		
-		Map<String, Object> totalCountMap = new HashMap<String, Object>();
-		totalCountMap.put("selectOption", selectOption);
-		totalCountMap.put("selectValue", selectValue);
-		totalCountMap.put("login", login);
-		logger.debug(" >>>>>>> totalCountMap에 담긴 값 \n{}   ", totalCountMap);
+		Map<String, Object> reserveTotalCountMap = new HashMap<String, Object>();
+		reserveTotalCountMap.put("selectOption", selectOption);
+		reserveTotalCountMap.put("selectValue", selectValue);
+		reserveTotalCountMap.put("login", login);
+		logger.debug(" >>>>>>> totalCountMap에 담긴 값 \n{}   ", reserveTotalCountMap);
 		
 		// 예약의 행의 수를 가져온다
-		int reserveTotalCount = reserveDao.reserveTotalCount(totalCountMap);
+		int reserveTotalCount = reserveDao.reserveTotalCount(reserveTotalCountMap);
 		logger.debug("\n >>>>>>> getReserveList reserveTotalCount 값 : {} ",reserveTotalCount);
 		
 		Paging paging = new Paging();
@@ -49,10 +49,29 @@ public class ReserveServiceImpl implements ReserveService{
 	    map.put("returnList", returnList);
 	    return map;
 	}
+	
 	// get paymentState data
 	@Override
 	public List<PaymentCateVo> getPaymentCate() {
 		List<PaymentCateVo> paymentCate = reserveDao.getPaymentCate();
+		logger.debug("paymentCate :{}", paymentCate);
 		return paymentCate;
+	}
+
+	// get payList
+	@Override
+	public Map<String, Object> getPayList(int currentPage, LoginVo login, int selectOption, String selectValue) {
+		logger.debug(" >>>>>>> getPayList <<<<<<< ");
+		
+		Map<String, Object> payTotalCountMap = new HashMap<String, Object>();
+		payTotalCountMap.put("selectOption", selectOption);
+		payTotalCountMap.put("selectValue", selectValue);
+		payTotalCountMap.put("login", login);
+		logger.debug(" >>>>>>> totalCountMap에 담긴 값 \n{}   ", payTotalCountMap);
+		
+		// 행의 수를 가져온다
+		int payTotalCount = reserveDao.payTotalCount(payTotalCountMap);
+		
+		return null;
 	}
 }

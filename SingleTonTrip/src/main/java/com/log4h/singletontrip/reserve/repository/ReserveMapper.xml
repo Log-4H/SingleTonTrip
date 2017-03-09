@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reserveMapper">
 	<!-- reserveList의 카운트를 가져옴 -->
-	<select id="getTotalCount" parameterType="Map" resultType="int">
+	<select id="getReserveTotalCount" parameterType="Map" resultType="int">
 		SELECT 
 			COUNT(*)			
 		FROM 
@@ -102,11 +102,59 @@
 		</choose>
 			
 	</select>
+	
+	<!-- paymentCate를 가져옴 -->
 	<select id="getPaymentCate" resultType="com.log4h.singletontrip.reserve.domain.PaymentCateVo">
 		SELECT 
-			payment_cate_cd
+			payment_cate_cd,
 			payment_cate_nm
 		FROM 
 			tb_payment_cate
+	</select>
+	
+	<!-- payList의 카운트를 가져옴 -->
+	<select id="getPayTotalCount" parameterType="Map" resultType="int">
+		SELECT 
+			COUNT(*)			
+		FROM 
+			tb_reserve rsv
+		JOIN 
+			tb_room r
+		JOIN 
+			tb_payment_state pmst
+		JOIN 
+			tb_company cp
+		JOIN 
+			tb_member perm
+		JOIN 
+			tb_payment pm
+		JOIN 
+			tb_member comm
+		ON 
+			rsv.room_no = r.room_no
+		AND 
+			rsv.payment_state_cd = pmst.payment_state_cd
+		AND
+			r.company_id = cp.company_id
+		AND
+			rsv.person_id = perm.member_id
+		AND
+			rsv.reserve_no = pm.payment_target_no
+		AND 
+			comm.member_id = r.company_id
+		<choose>
+			<when test="login.memberLevel == 3">
+					
+				WHERE
+					rsv.person_id = #{login.memberId}
+			</when>
+			<when test="login.memberLevel == 2">
+				WHERE 
+					cp.company_id = #{login.memberId}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	
 	</select>
 </mapper>

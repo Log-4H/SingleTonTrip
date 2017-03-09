@@ -9,11 +9,13 @@ import com.log4h.singletontrip.reserve.domain.PaymentStateVo;
 
 public interface ReserveDao {
 
-	int reserveTotalCount(Map<String, Object> totalCountMap);
+	int reserveTotalCount(Map<String, Object> reserveTotalCountMap);
 
 	List<Object> getReserveList(Map<String, Object> map);
 
 	List<PaymentCateVo> getPaymentCate();
+
+	int payTotalCount(Map<String, Object> payTotalCountMap);
 
 
 

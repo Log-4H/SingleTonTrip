@@ -18,8 +18,8 @@ public class ReserveDaoImpl implements ReserveDao{
 	private final String RESERVE_NS = "reserveMapper.";
 
 	@Override
-	public int reserveTotalCount(Map<String, Object> totalCountMap) {
-		return sqlSession.selectOne(RESERVE_NS+"getTotalCount", totalCountMap);
+	public int reserveTotalCount(Map<String, Object> reserveTotalCountMap) {
+		return sqlSession.selectOne(RESERVE_NS+"getReserveTotalCount", reserveTotalCountMap);
 	}
 
 	@Override
@@ -30,6 +30,12 @@ public class ReserveDaoImpl implements ReserveDao{
 	@Override
 	public List<PaymentCateVo> getPaymentCate() {
 		return sqlSession.selectList(RESERVE_NS+"getPaymentCate");
+	}
+
+	@Override
+	public int payTotalCount(Map<String, Object> payTotalCountMap) {
+		
+		return sqlSession.selectOne(RESERVE_NS+"getPayTotalCount", payTotalCountMap);
 	}
 
 }
