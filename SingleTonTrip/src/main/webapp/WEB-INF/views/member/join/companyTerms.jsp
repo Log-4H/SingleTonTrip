@@ -8,12 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2 align="center">업체약관 입니당</h2>
+<h1 align="center">SigletonTrip</h1>
+<h2 align="center">업체약관</h2>
 <div align="center">
 <c:import url='terms.jsp'></c:import><br>
 </div>
 <div align="center">약관 동의 하시겠습니까?
 <a href="companyJoin?memberLevel=${memberLevel}">Yes</a>
 </div>
+<c:import url="/WEB-INF/views/module/footer.jsp"></c:import>
 </body>
 </html>

@@ -34,6 +34,8 @@ public class MemberController {
 	@Autowired
     private MailService mailService;
 	
+
+	
 	//로그인 폼 요청
 	@RequestMapping(value="login", method=RequestMethod.GET)
 	public ModelAndView login(){

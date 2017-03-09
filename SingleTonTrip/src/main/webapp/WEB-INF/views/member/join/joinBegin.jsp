@@ -42,7 +42,7 @@
 </style>
 </head>
 <body>
-
+<h1 align="center">SigletonTrip</h1>
 <div class="container" align="center">
 	<div class="row">
 		<div class="col-lg-12">
@@ -59,6 +59,6 @@
 		</div>
 	</div>
 </div>
-
+<c:import url="/WEB-INF/views/module/footer.jsp"></c:import>
 </body>
 </html>

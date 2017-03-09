@@ -29,43 +29,41 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1 align="center">SigletonTrip</h1>
+<h2 align="center">회원가입</h1>
 	<form action="personJoin" method="post" enctype="multipart/form-data" id="form1">
 		<input type="hidden" name="memberLevel" value="${memberLevel}">
-		<div>
+		<div align="center">
 			<img id="blah" src="#" alt="your image" style="max-height: 100px; max-width: 100px"/><br>
 			프로필사진:
 	    	<input type='file' name="imgFile" id="imgInp" />	       
 		</div>
-		<div>
-			아이디:
-			<input type="text" name="memberId"/>
+		<div align="center">
+			<input type="text" name="memberId" placeholder="아이디"/>
 		</div>
-		<div>
-			비밀번호:
-			<input type="password" name="memberPw"/>
+		<div align="center">
+			<input type="password" name="memberPw" placeholder="비밀번호"/>
 		</div>
-		<div>
-			이름:
-			<input type="text" name="memberNm"/>
+		<div align="center">
+			<input type="text" name="memberNm" placeholder="이름"/>
 		</div>
-		<div>
-			전화번호:
-			<input type="text" name="memberPhone"/>
+		<div align="center">
+			<input type="text" name="memberPhone" placeholder="전화번호"/>
 		</div>
-		<div>
-			이메일:
-			<input type="text" name="memberEmail"/>
+		<div align="center">
+			<input type="text" name="memberEmail" placeholder="이메일"/>
 		</div>
-		<div>
+		<div align="center">
 			생일:
 			<input type="date" name="personBirth" />
 		</div>
-		<div>
+		<div align="center">
 			성별:
 			<input type="radio" name="personGender" value="M"><span>남</span>
 			<input type="radio" name="personGender" value="F"><span>여</span>
 		</div>
-		<div><input type="submit" value="회원가입"></div>
+		<div align="center"><input type="submit" value="회원가입"></div>
 	</form>
+<c:import url="/WEB-INF/views/module/footer.jsp"></c:import>
 </body>
 </html>
