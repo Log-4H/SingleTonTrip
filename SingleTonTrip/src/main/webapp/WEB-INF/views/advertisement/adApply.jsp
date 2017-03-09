@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:import url="/WEB-INF/views//module/top.jsp"></c:import>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,7 +16,7 @@
 <% response.sendRedirect("index"); %>
 </c:if>
 <h3><a href="index">홈</a></h3>
-<form action="adApply" method="post" enctype="multipart/form-data">
+<form action="advertisement/adApply" method="post" enctype="multipart/form-data">
 	<fieldset>
 		<legend>단가 목록</legend>
 		<table>
@@ -36,7 +37,8 @@
 			</tr>
 		</c:forEach>
 		</table>
-	</fieldset>
+	</fieldset><br>
+	<p>*광고에 쓰일 이미지 파일을 등록 해 주세요.</p>
 	<input type="file" name="imgFile">
 	<input type="submit" value="신청">
 </form>

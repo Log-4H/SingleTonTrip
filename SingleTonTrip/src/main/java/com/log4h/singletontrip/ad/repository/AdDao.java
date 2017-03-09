@@ -31,4 +31,5 @@ public interface AdDao {
 	public int deleteOldAd();
 	public int deleteOldPayment();
 	public int deleteNotPayment();
+	public int deleteNotPaymentAd();
 }

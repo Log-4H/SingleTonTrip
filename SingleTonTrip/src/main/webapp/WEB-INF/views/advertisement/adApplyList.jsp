@@ -38,8 +38,8 @@
 		 		<td>${a.adApplyDate}</td>
 		 		<td>${a.paymentFinishDate}</td>
 		 		<td>${a.approveStateNm}</td>
-		 		<td><a href="adApprove?adNo=${a.adNo}&companyId=${a.companyId}&adGroupCd=${a.adGroupCd}">승인</a>/
-		 			<a href="adRefuse?adNo=${a.adNo}">거절</a></td>
+		 		<td><a href="/advertisement/adApprove?adNo=${a.adNo}&companyId=${a.companyId}&adGroupCd=${a.adGroupCd}">승인</a>/
+		 			<a href="/advertisement/adRefuse?adNo=${a.adNo}">거절</a></td>
 		 	</tr>
 		</c:forEach>
 		</table>

@@ -146,4 +146,10 @@ public class AdDaoImpl implements AdDao{
 		return sqlSession.delete(AD_NS+"deleteNotPayment");
 	}
 	
+	// 스케줄러 - 결제 테이블에서 결제 안한 목록 지워진게 있으면 tb_ad 데이터도 삭제 
+	@Override
+	public int deleteNotPaymentAd(){
+		return sqlSession.delete(AD_NS+"deleteNotPaymentAd");
+	}
+	
 }
