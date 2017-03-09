@@ -1,47 +1,31 @@
 package com.log4h.singletontrip.reserve.domain;
 
-import com.log4h.singletontrip.ad.domain.AdVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
 
 public class PaymentVo {
 	private int paymentNo;					// 결제no
 	private String adminId;					// 관리자아이디
-	private String memberId;					// 결제자아이디
+	private String memberId;				// 결제자아이디
 	private int paymentCateCd;				// 결제분류코드
 	private int paymentTargetNo;			// 결제대상no
 	private int paymentStateCd;				// 결제상태코드
 	private int paymentUseMileage;			// 마일리지사용
-	private int paymentPrice;					// 실제 결제금액
+	private int paymentPrice;				// 실제 결제금액
 	private int paymentTotalPrice;			// 상품가
 	private String paymentApplyDate;		// 결제신청일
 	private String paymentFinishDate;		// 결제일
 	private String paymentApproveDate;		// 관리자승인/거부일
 	private String paymentStateNm;			// 결제상태코드 한글
-	private ReserveVo reserve;				// 결제대상 예약일때
-	private AdVo ad;							// 결제대상 광고일때
-	private PaymentStateVo paymentState;
-	private PaymentCateVo paymentCate;
-	private LoginVo login;
-
-	
-	public ReserveVo getReserve() {
-		return reserve;
-	}
-	public void setReserve(ReserveVo reserve) {
-		this.reserve = reserve;
-	}
-	public AdVo getAd() {
-		return ad;
-	}
-	public void setAd(AdVo ad) {
-		this.ad = ad;
-	}
 	public String getPaymentStateNm() {
 		return paymentStateNm;
 	}
 	public void setPaymentStateNm(String paymentStateNm) {
 		this.paymentStateNm = paymentStateNm;
 	}
+
+	private PaymentStateVo paymentState;
+	private PaymentCateVo paymentCate;
+	private LoginVo login;
 	
 	public String getMemberId() {
 		return memberId;
@@ -141,8 +125,9 @@ public class PaymentVo {
 				+ paymentStateCd + ", paymentUseMileage=" + paymentUseMileage + ", paymentPrice=" + paymentPrice
 				+ ", paymentTotalPrice=" + paymentTotalPrice + ", paymentApplyDate=" + paymentApplyDate
 				+ ", paymentFinishDate=" + paymentFinishDate + ", paymentApproveDate=" + paymentApproveDate
-				+ ", paymentStateNm=" + paymentStateNm + ", reserve=" + reserve + ", ad=" + ad + ", paymentState="
-				+ paymentState + ", paymentCate=" + paymentCate + ", login=" + login + "]";
+				+ ", paymentStateNm=" + paymentStateNm + ", paymentState=" + paymentState + ", paymentCate="
+				+ paymentCate + ", login=" + login + "]";
 	}
+	
 	
 }

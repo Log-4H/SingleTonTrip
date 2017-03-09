@@ -49,41 +49,29 @@ public class ReserveServiceImpl implements ReserveService{
 	    map.put("returnList", returnList);
 	    return map;
 	}
+	
+	// get paymentState data
+	@Override
+	public List<PaymentCateVo> getPaymentCate() {
+		List<PaymentCateVo> paymentCate = reserveDao.getPaymentCate();
+		logger.debug("paymentCate :{}", paymentCate);
+		return paymentCate;
+	}
 
 	// get payList
 	@Override
 	public Map<String, Object> getPayList(int currentPage, LoginVo login, int selectOption, String selectValue) {
 		logger.debug(" >>>>>>> getPayList <<<<<<< ");
 		
-		// paymentCate를 가져온다
-		List<PaymentCateVo> paymentCateList = reserveDao.getPaymentCate();
-		logger.debug("paymentCate :{}", paymentCateList);
-		
 		Map<String, Object> payTotalCountMap = new HashMap<String, Object>();
 		payTotalCountMap.put("selectOption", selectOption);
 		payTotalCountMap.put("selectValue", selectValue);
 		payTotalCountMap.put("login", login);
-		logger.debug(" >>>>>>> payTotalCountMap에 담긴 값 \n{}   ", payTotalCountMap);
+		logger.debug(" >>>>>>> totalCountMap에 담긴 값 \n{}   ", payTotalCountMap);
 		
 		// 행의 수를 가져온다
 		int payTotalCount = reserveDao.payTotalCount(payTotalCountMap);
-		logger.debug("\n >>>>>>> payTotalCount 값 : {} ",payTotalCount);
 		
-		Paging paging = new Paging();
-        
-		Map<String, Object> map = paging.pagingMethod(currentPage, payTotalCount);
-		map.put("selectOption", selectOption);
-	    map.put("selectValue", selectValue);
-	    map.put("login", login);
-	    
-	    // pay 리스트를 가져온다
-	    List<Object> returnList = reserveDao.getPayList(map);
-	    map.put("payList", returnList);
-	    map.put("paymentCateList", paymentCateList);
-	    
-	    logger.debug(" >>>>>>> return value : {}", returnList);
-	    
-	    return map;
+		return null;
 	}
-
 }
