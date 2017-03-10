@@ -90,5 +90,21 @@ public class TripDaoImpl implements TripDao{
 	public int planDelete(int planNo) {
 		return sqlSession.delete(TRIP_NS+"planDelete", planNo);
 	}
+	//그룹리스트 총카운트
+	@Override
+	public int groupTotalCount(String personId) {
+		return sqlSession.selectOne(TRIP_NS+"groupTotalCount", personId);
+	}
+	//그룹리스트
+	@Override
+	public List<GroupVo> groupList(Map<String, Object> map) {
+		return sqlSession.selectList(TRIP_NS+"groupList", map);			
+	}
+	//여행그룹원리스트
+	@Override
+	public List<GroupVo> groupMemberList(int tripNo) {
+		return sqlSession.selectList(TRIP_NS+"groupMemberList", tripNo);	
+	}
+	
 	
 }

@@ -22,7 +22,6 @@ import com.log4h.singletontrip.trip.service.TripService;
 public class TripController {
 	@Autowired
 	private TripService tripService;
-	
 	//여행 리스트
 	@RequestMapping(value="tripList")
 	public ModelAndView tripList(@ModelAttribute("pageId") String pageId,
@@ -34,8 +33,7 @@ public class TripController {
 	}
 	//여행 상세보기
 	@RequestMapping(value="tripView")
-	public ModelAndView tripView(@ModelAttribute("sessionId") String sessionId,
-			@ModelAttribute("pageId") String pageId,
+	public ModelAndView tripView(@ModelAttribute("pageId") String pageId,
 			@RequestParam(value="tripNo") int tripNo){
 		ModelAndView mv = new ModelAndView("jsonView");
 		Map<String, Object> map = tripService.tripView(pageId, tripNo);
@@ -121,5 +119,28 @@ public class TripController {
 			mv.addObject("planList", map.get("planList"));
 		}
 		return mv;
+	}
+	//그룹 리스트
+	@RequestMapping(value="groupList")
+	public ModelAndView groupList(@ModelAttribute("pageId") String pageId,
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage){
+		ModelAndView mv = new ModelAndView("jsonView");
+		Map<String,Object> map = tripService.groupList(pageId, currentPage);
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("groupList", map.get("groupList"));
+		mv.addObject("startPage", map.get("startPage"));
+		mv.addObject("pageSize", map.get("pageSize"));
+		mv.addObject("endPage", map.get("endPage"));
+		mv.addObject("lastPage", map.get("lastPage"));
+		return mv;	
+	}
+	//여행 상세보기
+	@RequestMapping(value="groupView")
+	public ModelAndView groupView(@RequestParam(value="tripNo") int tripNo){
+		ModelAndView mv = new ModelAndView("jsonView");
+		Map<String, Object> map = tripService.groupView(tripNo);
+		mv.addObject("trip", map.get("trip"));
+		mv.addObject("groupMemberList", map.get("groupMemberList"));
+		return mv;	
 	}
 }

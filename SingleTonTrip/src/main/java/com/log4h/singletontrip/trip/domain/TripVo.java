@@ -15,7 +15,6 @@ public class TripVo {
 	private int tripPresentMember;
 	private int tripMaxMember;
 	private String tripTag;
-	private String tripImg;
 	private String tripStartDate;
 	private String tripEndDate;
 	private int tripPerPrice;
@@ -109,12 +108,6 @@ public class TripVo {
 	public void setTripTag(String tripTag) {
 		this.tripTag = tripTag;
 	}
-	public String getTripImg() {
-		return tripImg;
-	}
-	public void setTripImg(String tripImg) {
-		this.tripImg = tripImg;
-	}
 	public String getTripStartDate() {
 		return tripStartDate;
 	}
@@ -175,8 +168,7 @@ public class TripVo {
 				+ tripThemeNm + ", regionCd=" + regionCd + ", regionDo=" + regionDo + ", regionSi=" + regionSi
 				+ ", recruitStateCd=" + recruitStateCd + ", recruitStateNm=" + recruitStateNm + ", tripTitle="
 				+ tripTitle + ", tripContent=" + tripContent + ", tripPresentMember=" + tripPresentMember
-				+ ", tripMaxMember=" + tripMaxMember + ", tripTag=" + tripTag + ", tripImg=" + tripImg
-				+ ", tripStartDate=" + tripStartDate + ", tripEndDate=" + tripEndDate + ", tripPerPrice=" + tripPerPrice
+				+ ", tripMaxMember=" + tripMaxMember + ", tripTag=" + tripTag + ", tripStartDate=" + tripStartDate + ", tripEndDate=" + tripEndDate + ", tripPerPrice=" + tripPerPrice
 				+ ", tripTotalPrice=" + tripTotalPrice + ", tripRecruitStartDate=" + tripRecruitStartDate
 				+ ", tripRecruitEndDate=" + tripRecruitEndDate + ", tripRegDate=" + tripRegDate + ", tripModifyDate="
 				+ tripModifyDate + ", tripDeleteDate=" + tripDeleteDate + "]";

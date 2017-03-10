@@ -14,6 +14,7 @@ import com.log4h.singletontrip.trip.domain.RegionVo;
 import com.log4h.singletontrip.trip.domain.TripThemeVo;
 import com.log4h.singletontrip.trip.domain.TripVo;
 import com.log4h.singletontrip.trip.repository.TripDao;
+import com.log4h.singletontrip.util.Paging;
 
 @Service
 public class TripServiceImpl implements TripService{
@@ -120,5 +121,27 @@ public class TripServiceImpl implements TripService{
 			tripPriceUpdate = tripDao.tripPriceUpdate(planVo);
 		}
 		return tripPriceUpdate;
+	}
+	//그룹리스트
+	@Override
+	public Map<String, Object> groupList(String personId, int currentPage) {
+		int groupTotalCount = tripDao.groupTotalCount(personId);
+		Paging paging = new Paging();
+        Map<String, Object> map = paging.pagingMethod(currentPage, groupTotalCount);
+		map.put("personId", personId);
+		List<GroupVo> groupList = tripDao.groupList(map);
+		map.put("groupList", groupList);
+		return map;
+	}
+	//그룹상세보기
+	@Override
+	public Map<String, Object> groupView(int tripNo) {
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("tripNo", tripNo);
+		TripVo trip = tripDao.tripView(map);
+		List<GroupVo> groupMemberList = tripDao.groupMemberList(tripNo);
+		map.put("trip", trip);
+		map.put("groupMemberList", groupMemberList);
+		return map;
 	}
 }

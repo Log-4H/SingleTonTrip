@@ -20,7 +20,6 @@
 		t.trip_present_member,
 		t.trip_max_member,
 		t.trip_tag,
-		t.trip_img,
 		t.trip_start_date,
 		t.trip_end_date,
 		t.trip_per_price,
@@ -45,8 +44,12 @@
 	ON 
 		t.recruit_state_cd = rn.recruit_state_cd
 	WHERE
-		t.person_id = #{memberId}
+		t.trip_theme_cd
 	<choose>
+	<when test="memberId != null and memberId !=''">
+	AND		
+		t.person_id = #{memberId}
+	</when>
 	<when test="tripNo != null and tripNo !=''">
 	AND		
 		t.trip_no =#{tripNo}
@@ -230,4 +233,63 @@ INSERT INTO	tb_group(
 		plan_no = #{planNo}
 </delete>
 
+<!-- 그룹리스트 총 카운트 -->
+<select id="groupTotalCount" parameterType="String" resultType="int">
+	SELECT
+		COUNT(*)
+	FROM
+		tb_group
+	WHERE
+		person_id = #{personId}
+</select>
+<!-- 그룹 리스트 -->
+<select id="groupList" parameterType="map" resultType="com.log4h.singletontrip.trip.domain.GroupVo">
+	SELECT
+		g.group_no,
+		g.trip_no,
+		t.trip_title,
+		g.person_id,
+		g.approve_state_cd,
+		a.approve_state_nm,
+		g.group_apply_date,
+		g.group_approve_date,
+		g.group_drop_date
+	FROM
+		tb_group g
+	JOIN
+		tb_trip t
+	ON 
+		g.trip_no = t.trip_no
+	JOIN
+		tb_approve_state a
+	ON 
+		g.approve_state_cd = a.approve_state_cd
+	WHERE
+		g.person_id = #{personId}
+	ORDER BY g.group_no DESC
+	LIMIT #{beginRow}, #{pagePerRow}
+</select>
+<!-- 해당여행그룹원 리스트 -->
+<select id="groupMemberList" parameterType="int" resultType="com.log4h.singletontrip.trip.domain.GroupVo">
+	SELECT
+		g.person_id,
+		m.member_nm,
+		g.group_apply_date,
+		a.approve_state_nm,
+		g.group_approve_date,
+		g.group_drop_date
+	FROM
+		tb_group g
+	JOIN
+		tb_member m
+	ON 
+		g.person_id = m.member_id
+	JOIN
+		tb_approve_state a
+	ON 
+		g.approve_state_cd = a.approve_state_cd
+	WHERE
+		g.trip_no = #{tripNo}
+	ORDER BY g.group_apply_date ASC
+</select>
 </mapper>

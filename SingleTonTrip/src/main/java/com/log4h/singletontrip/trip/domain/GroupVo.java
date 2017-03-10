@@ -3,7 +3,9 @@ package com.log4h.singletontrip.trip.domain;
 public class GroupVo {
 	private int groupNo;
 	private int tripNo;
+	private String tripTitle;
 	private String personId;
+	private String memberNm;
 	private int approveStateCd;
 	private String approveStateNm;
 	private String groupApplyDate;
@@ -21,11 +23,23 @@ public class GroupVo {
 	public void setTripNo(int tripNo) {
 		this.tripNo = tripNo;
 	}
+	public String getTripTitle() {
+		return tripTitle;
+	}
+	public void setTripTitle(String tripTitle) {
+		this.tripTitle = tripTitle;
+	}
 	public String getPersonId() {
 		return personId;
 	}
 	public void setPersonId(String personId) {
 		this.personId = personId;
+	}
+	public String getMemberNm() {
+		return memberNm;
+	}
+	public void setMemberNm(String memberNm) {
+		this.memberNm = memberNm;
 	}
 	public int getApproveStateCd() {
 		return approveStateCd;
@@ -59,10 +73,13 @@ public class GroupVo {
 	}
 	@Override
 	public String toString() {
-		return "GroupVo [groupNo=" + groupNo + ", tripNo=" + tripNo + ", personId=" + personId + ", approveStateCd="
-				+ approveStateCd + ", approveStateNm=" + approveStateNm + ", groupApplyDate=" + groupApplyDate
-				+ ", groupApproveDate=" + groupApproveDate + ", groupDropDate=" + groupDropDate + "]";
+		return "GroupVo [groupNo=" + groupNo + ", tripNo=" + tripNo + ", tripTitle=" + tripTitle + ", personId="
+				+ personId + ", memberNm=" + memberNm + ", approveStateCd=" + approveStateCd + ", approveStateNm="
+				+ approveStateNm + ", groupApplyDate=" + groupApplyDate + ", groupApproveDate=" + groupApproveDate
+				+ ", groupDropDate=" + groupDropDate + "]";
 	}
 	
+	
+
 	
 }

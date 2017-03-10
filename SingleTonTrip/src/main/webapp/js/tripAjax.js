@@ -380,17 +380,3 @@ $(document).on('click', '.tripJoinModalShow', function() {
 	$("#tripJoinNo").val(tripNo);
 	$("#tripJoinModal").modal('show');
 });
-
-//여행일정 삭제
-$(document).on('click', '#tripJoinBtn', function() {
-	var tripNo = $("#tripJoinNo").val();
-	$.ajax({
-		url : "tripJoin",
-		type : "POST",
-		data : {tripNo:tripNo},
-		dataType : "json",
-		success : function(data) {
-			
-		}
-	})
-});

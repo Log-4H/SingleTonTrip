@@ -26,4 +26,8 @@ public interface TripService {
 	public int planUpdate(PlanVo planVo);
 	//여행일정 삭제
 	public int planDelete(int planNo);
+	//그룹리스트
+	public Map<String, Object> groupList(String personId, int currentPage);
+	//그룹상세보기
+	public Map<String, Object> groupView(int tripNo);
 }
