@@ -133,9 +133,21 @@ public class AdServiceImpl implements AdService{
 		return adDao.paymentAd(map);
 	}
 	
-	// 광고 할 이미지파일 가져오기
+	// 광고 할 이미지파일 가져오기(메인)
 	@Override
-	public List<AdVo> selectUseAd(){
-		return adDao.selectUseAd();
+	public List<AdVo> selectUseAdMain(){
+		return adDao.selectUseAdMain();
+	}
+	
+	// 광고 할 이미지파일 가져오기(홈페이지)
+	@Override
+	public List<AdVo> selectUseAdHome(){
+		return adDao.selectUseAdHome();
+	}
+	
+	// 광고 할 이미지파일 가져오기(검색상단)
+	@Override
+	public List<AdVo> selectUseAdSearch(){
+		return adDao.selectUseAdSearch();
 	}
 }

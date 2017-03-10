@@ -46,7 +46,7 @@ public class AdController {
 	
 	
 	// 광고 신청 승인
-	@RequestMapping(value="/advertisement/adApprove")
+	@RequestMapping(value="adApprove")
 	public ModelAndView adApprove(
 			@ModelAttribute("sessionId") String adminId, 
 			@RequestParam(value="adNo") int adNo,
@@ -66,7 +66,7 @@ public class AdController {
 	}
 	
 	// 광고 신청 거절
-	@RequestMapping(value="/advertisement/adRefuse")
+	@RequestMapping(value="adRefuse")
 	public ModelAndView adRefuse(@ModelAttribute("sessionId") String adminId,
 			@RequestParam(value="adNo") int adNo){
 		Map<String,Object>map = new HashMap<String,Object>();
@@ -81,7 +81,7 @@ public class AdController {
 	}
 	
 	// 환불 리스트
-	@RequestMapping(value="/payment/payCancelList")
+	@RequestMapping(value="payCancelList")
 	public ModelAndView payCancelList(){
 		ModelAndView mv = new ModelAndView();
 		List<PaymentVo> payback = adService.paybackList();
@@ -92,7 +92,7 @@ public class AdController {
 	}
 	
 	// 환불
-	@RequestMapping(value="/payment/payback")
+	@RequestMapping(value="payback")
 	public ModelAndView payback(
 			@RequestParam(value="memberId") String memberId,
 			@RequestParam(value="paymentTotalPrice") int paymentTotalPrice,
@@ -109,7 +109,7 @@ public class AdController {
 	}
 	
 	// 광고 리스트
-	@RequestMapping(value="/advertisement/adList")
+	@RequestMapping(value="adList")
 	public ModelAndView adList(){
 		ModelAndView mv = new ModelAndView();
 		List<AdVo> adList = adService.selectAdList();
@@ -132,7 +132,7 @@ public class AdController {
 	}
 	
 	// 광고 신청 폼
-	@RequestMapping(value="/advertisement/adApply", method=RequestMethod.GET)
+	@RequestMapping(value="adApply", method=RequestMethod.GET)
 	public ModelAndView adApply(){
 		ModelAndView mv = new ModelAndView();
 		List<AdPriceVo> adPrice = adService.selectAdPrice();
@@ -143,7 +143,7 @@ public class AdController {
 	}
 	
 	// 광고 신청 등록
-	@RequestMapping(value="/advertisement/adApply", method=RequestMethod.POST)
+	@RequestMapping(value="adApply", method=RequestMethod.POST)
 	public ModelAndView adApply(@ModelAttribute("sessionId") String companyId, AdVo adVo,
 								MultipartHttpServletRequest multi){
 		ModelAndView mv = new ModelAndView();
@@ -155,7 +155,7 @@ public class AdController {
 	}
 	
 	// 결제 폼
-	@RequestMapping(value="/payment/payAdd", method=RequestMethod.GET)
+	@RequestMapping(value="payAdd", method=RequestMethod.GET)
 	public ModelAndView payAdd(@ModelAttribute("sessionId") String companyId,AdVo adVo){
 		ModelAndView mv = new ModelAndView();
 		Map<String,Object>map = adService.paymentList(companyId);
@@ -168,7 +168,7 @@ public class AdController {
 	}
 	
 	// 광고신청 리스트가기전 결제
-	@RequestMapping(value="/advertisement/paymentAd", method=RequestMethod.POST)
+	@RequestMapping(value="paymentAd", method=RequestMethod.POST)
 	public ModelAndView payment(@ModelAttribute("sessionId") String companyId,
 			@RequestParam(value="total") int total){
 		ModelAndView mv = new ModelAndView();
@@ -184,7 +184,7 @@ public class AdController {
 	
 
 	// 광고 신청 리스트
-	@RequestMapping(value="/advertisement/adApplyList")
+	@RequestMapping(value="adApplyList")
 	public ModelAndView adAppllyList(
 			@ModelAttribute("sessionId") String sessionId,
 			@ModelAttribute("sessionLevel") int sessionLevel){
@@ -202,7 +202,7 @@ public class AdController {
 	
 	
 	// 광고 결제 목록에서 삭제
-	@RequestMapping(value="/advertisement/deleteAdApplyList")
+	@RequestMapping(value="deleteAdApplyList")
 	public ModelAndView deletePayList(@RequestParam(value="adNo") int adNo){
 		ModelAndView mv = new ModelAndView();
 		adService.deleteAdApplyList(adNo);
@@ -210,11 +210,31 @@ public class AdController {
 		return mv;
 	}
 	
-	// 광고할 이미지 파일 가져오기 
-	@RequestMapping(value="")
-	public ModelAndView selectUseAd(){
+	// 광고할 이미지 파일 가져오기 (메인)
+	@RequestMapping(value="asdf")
+	public ModelAndView selectUseAdMain(){
 		ModelAndView mv = new ModelAndView();
-		List<AdVo> adList = adService.selectUseAd();
+		List<AdVo> adList = adService.selectUseAdMain();
+		mv.addObject("adList",adList);
+		
+		return mv;
+	}
+	
+	// 광고할 이미지 파일 가져오기 (홈페이지)
+	@RequestMapping(value="asdff")
+	public ModelAndView selectUseAdHome(){
+		ModelAndView mv = new ModelAndView();
+		List<AdVo> adList = adService.selectUseAdHome();
+		mv.addObject("adList",adList);
+		
+		return mv;
+	}
+	
+	// 광고할 이미지 파일 가져오기 (검색상단)
+	@RequestMapping(value="asdfff")
+	public ModelAndView selectUseAdSearch(){
+		ModelAndView mv = new ModelAndView();
+		List<AdVo> adList = adService.selectUseAdSearch();
 		mv.addObject("adList",adList);
 		
 		return mv;

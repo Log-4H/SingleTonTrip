@@ -24,5 +24,7 @@ public interface AdService {
 	public int adImgUpload(AdVo adVo, MultipartFile imgFile);
 	public List<PaymentVo> paybackList();
 	public int payback(Map<String,Object>map);
-	public List<AdVo> selectUseAd();
+	public List<AdVo> selectUseAdMain();
+	public List<AdVo> selectUseAdHome();
+	public List<AdVo> selectUseAdSearch();
 }

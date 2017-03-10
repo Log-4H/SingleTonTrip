@@ -68,10 +68,22 @@ public class AdDaoImpl implements AdDao{
 		return sqlSession.update(AD_NS+"payback",map);
 	}
 	
-	// 광고 할 이미지파일 가져오기
+	// 광고 할 이미지파일 가져오기(메인)
 	@Override
-	public List<AdVo> selectUseAd(){
-		return sqlSession.selectList(AD_NS+"selectUseAd");
+	public List<AdVo> selectUseAdMain(){
+		return sqlSession.selectList(AD_NS+"selectUseAdMain");
+	}
+	
+	// 광고 할 이미지파일 가져오기(홈페이지)
+	@Override
+	public List<AdVo> selectUseAdHome(){
+		return sqlSession.selectList(AD_NS+"selectUseAdHome");
+	}
+	
+	// 광고 할 이미지파일 가져오기(검색상단)
+	@Override
+	public List<AdVo> selectUseAdSearch(){
+		return sqlSession.selectList(AD_NS+"selectUseAdSearch");
 	}
 	
 	// 광고 이미지 등록
