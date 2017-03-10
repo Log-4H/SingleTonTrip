@@ -20,4 +20,6 @@ public interface TripService {
 	public int tripAdd(TripVo tripVo);
 	//여행일정등록
 	public int planAdd(PlanVo planVo);
+	//여행일정 view
+	public PlanVo planView(int planNo);
 }

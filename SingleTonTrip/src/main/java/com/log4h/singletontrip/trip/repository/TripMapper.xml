@@ -159,4 +159,19 @@
 	WHERE	
 		trip_no = #{tripNo}
 </update>
+<!-- 여행일정 view -->
+<select id="planView" parameterType="int" resultType="com.log4h.singletontrip.trip.domain.PlanVo">
+	SELECT
+		plan_no,
+		trip_no,
+		plan_site,
+		plan_content,
+		plan_start_time,
+		plan_end_time,
+		plan_price
+	FROM
+		tb_plan
+	WHERE
+		plan_no = #{planNo}
+</select>
 </mapper>

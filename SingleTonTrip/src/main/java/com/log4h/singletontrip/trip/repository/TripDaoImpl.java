@@ -64,4 +64,9 @@ public class TripDaoImpl implements TripDao{
 	public int tripPriceUpdate(TripVo tripVo) {
 		return sqlSession.update(TRIP_NS+"tripPriceUpdate", tripVo);
 	}
+	//여행일정 view
+	@Override
+	public PlanVo planView(int planNo) {
+		return sqlSession.selectOne(TRIP_NS+"planView", planNo);
+	}
 }

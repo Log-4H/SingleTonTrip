@@ -75,4 +75,14 @@ public class TripServiceImpl implements TripService{
 		}
 		return tripPriceUpdate;
 	}
+	//여행일정 view
+	@Override
+	public PlanVo planView(int planNo) {
+		PlanVo plan = tripDao.planView(planNo);
+		String planStartTime = plan.getPlanStartTime().replace(" ", "T");
+		String planEndTime = plan.getPlanEndTime().replace(" ", "T");
+		plan.setPlanStartTime(planStartTime);
+		plan.setPlanEndTime(planEndTime);
+		return plan;
+	}
 }

@@ -27,4 +27,6 @@ public interface TripDao {
 	public int planInsert(PlanVo planVo);
 	//여행일정등록시 여행경비업데이트
 	public int tripPriceUpdate(TripVo tripVo);
+	//여행일정 view
+	public PlanVo planView(int planNo);
 }	

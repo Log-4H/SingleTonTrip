@@ -22,27 +22,28 @@ import com.log4h.singletontrip.post.service.PostService;
 public class PostController {
 	@Autowired
 	private PostService postService;
-	
 	//포스트 리스트
-	@RequestMapping(value="person/personMain")
-	public ModelAndView postList(
-			@ModelAttribute("sessionId") String sessionId,
-			@RequestParam(value="pageId") String pageId,
+	@RequestMapping(value="personMain", method=RequestMethod.GET)
+	public ModelAndView postMain(@RequestParam(value="pageId") String pageId,
 			@RequestParam(value="lastPostRow", defaultValue="5") int lastPostRow){
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("pageId", "person1");
+		ModelAndView mv = new ModelAndView("person/personMain");
+		mv.addObject("pageId", pageId);
 		List<PostVo> postList= postService.postList(pageId, lastPostRow);
 		mv.addObject("postList", postList);
-		if(lastPostRow==5){
-			mv.setViewName("person/personMain");
-		}else{
-			mv.setViewName("jsonView");
-		}
+		return mv;	
+	}
+	//포스트 리스트 추가
+	@RequestMapping(value="postList", method=RequestMethod.POST)
+	public ModelAndView postList(@ModelAttribute(value="pageId") String pageId,
+			@RequestParam(value="lastPostRow", defaultValue="5") int lastPostRow){
+		ModelAndView mv = new ModelAndView("jsonView");
+		List<PostVo> postList= postService.postList(pageId, lastPostRow);
+		mv.addObject("postList", postList);
 		return mv;	
 	}
 
 	//포스트 등록
-	@RequestMapping(value="person/postAdd", method=RequestMethod.POST)
+	@RequestMapping(value="postAdd", method=RequestMethod.POST)
 	public ModelAndView postAdd(MultipartHttpServletRequest multi,
 			@ModelAttribute("sessionId") String sessionId,
 			@ModelAttribute("pageId") String pageId,
@@ -53,7 +54,7 @@ public class PostController {
 		String postContent = multi.getParameter("postContent");
 		postVo.setPostTitle(postTitle);
 		postVo.setPostContent(postContent);
-		postVo.setMemberId(pageId);
+		postVo.setMemberId(sessionId);
 		MultipartFile imgFile = multi.getFile("imgFile");
 		int result = postService.postAdd(postVo, imgFile);
 		if(result>0){
@@ -63,9 +64,8 @@ public class PostController {
 		return mv;	
 	}
 	//포스트 수정
-	@RequestMapping(value="person/postModify", method=RequestMethod.POST)
+	@RequestMapping(value="postModify", method=RequestMethod.POST)
 	public ModelAndView postModify(MultipartHttpServletRequest multi,
-			@ModelAttribute("sessionId") String sessionId,
 			@ModelAttribute("pageId") String pageId,
 			@RequestParam(value="lastPostRow", defaultValue="5") int lastPostRow){
 		ModelAndView mv = new ModelAndView("jsonView");
@@ -81,9 +81,8 @@ public class PostController {
 		return mv;	
 	}
 	//포스트 삭제
-	@RequestMapping(value="person/postDelete", method=RequestMethod.POST)
-	public ModelAndView postDelete(@ModelAttribute("sessionId") String sessionId,
-			@ModelAttribute("pageId") String pageId,
+	@RequestMapping(value="postDelete", method=RequestMethod.POST)
+	public ModelAndView postDelete(@ModelAttribute("pageId") String pageId,
 			@RequestParam(value="lastPostRow", defaultValue="5") int lastPostRow,
 			@RequestParam(value="postNo") int postNo){
 		ModelAndView mv = new ModelAndView("jsonView");
@@ -96,9 +95,8 @@ public class PostController {
 	}
 	
 	//댓글 리스트
-	@RequestMapping(value="person/postCommentList", method=RequestMethod.POST)
-	public ModelAndView postCommentList(@ModelAttribute("sessionId") String sessionId,
-			@ModelAttribute("pageId") String pageId,
+	@RequestMapping(value="postCommentList", method=RequestMethod.POST)
+	public ModelAndView postCommentList(@ModelAttribute("pageId") String pageId,
 			@RequestParam(value="postNo") int postNo,
 			@RequestParam(value="lastCommentRow", defaultValue="5") int lastCommentRow){
 		ModelAndView mv = new ModelAndView("jsonView");
@@ -108,14 +106,14 @@ public class PostController {
 	}	
 	
 	//댓글 등록
-	@RequestMapping(value="person/postCommentAdd", method=RequestMethod.POST)
+	@RequestMapping(value="postCommentAdd", method=RequestMethod.POST)
 	public ModelAndView postCommentAdd(@ModelAttribute("sessionId") String sessionId,
 			@ModelAttribute("pageId") String pageId,
 			@RequestParam(value="postNo") int postNo,
 			@RequestParam(value="postCommentContent") String postCommentContent,
 			@RequestParam(value="lastCommentRow", defaultValue="5") int lastCommentRow){
 		ModelAndView mv = new ModelAndView("jsonView");
-		int result = postService.postCommentAdd(postNo, pageId, postCommentContent);
+		int result = postService.postCommentAdd(postNo, sessionId, postCommentContent);
 		if(result>0){
 			List<PostCommentVo> postCommentList= postService.postCommentList(postNo, pageId, lastCommentRow);
 			mv.addObject("postCommentList", postCommentList);
@@ -123,9 +121,8 @@ public class PostController {
 		return mv;
 	}
 	//댓글 삭제
-	@RequestMapping(value="person/postCommentDelete", method=RequestMethod.POST)
-	public ModelAndView postCommentDelete(@ModelAttribute("sessionId") String sessionId,
-			@ModelAttribute("pageId") String pageId,
+	@RequestMapping(value="postCommentDelete", method=RequestMethod.POST)
+	public ModelAndView postCommentDelete(@ModelAttribute("pageId") String pageId,
 			@RequestParam(value="postNo") int postNo,
 			@RequestParam(value="postCommentNo") int postCommentNo,
 			@RequestParam(value="lastCommentRow", defaultValue="5") int lastCommentRow){
@@ -139,7 +136,7 @@ public class PostController {
 	}
 	
 	//포스트 조회
-	@RequestMapping(value="person/postView", method=RequestMethod.POST)
+	@RequestMapping(value="postView", method=RequestMethod.POST)
 	public ModelAndView postCommentDelete(
 			@RequestParam(value="postNo") int postNo){
 		ModelAndView mv = new ModelAndView("jsonView");

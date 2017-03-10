@@ -24,9 +24,8 @@ public class TripController {
 	private TripService tripService;
 	
 	//여행 리스트
-	@RequestMapping(value="person/tripList")
-	public ModelAndView tripList(@ModelAttribute("sessionId") String sessionId,
-			@ModelAttribute("pageId") String pageId,
+	@RequestMapping(value="tripList")
+	public ModelAndView tripList(@ModelAttribute("pageId") String pageId,
 			@RequestParam(value="lastTripRow", defaultValue="5") int lastTripRow){
 		ModelAndView mv = new ModelAndView("jsonView");
 		List<TripVo> tripList= tripService.tripList(pageId, lastTripRow);
@@ -34,7 +33,7 @@ public class TripController {
 		return mv;	
 	}
 	//여행 상세보기
-	@RequestMapping(value="person/tripView")
+	@RequestMapping(value="tripView")
 	public ModelAndView tripView(@ModelAttribute("sessionId") String sessionId,
 			@ModelAttribute("pageId") String pageId,
 			@RequestParam(value="tripNo") int tripNo){
@@ -45,7 +44,7 @@ public class TripController {
 		return mv;	
 	}
 	//여행등록폼 요청
-	@RequestMapping(value="person/tripAdd", method=RequestMethod.GET)
+	@RequestMapping(value="tripAdd", method=RequestMethod.GET)
 	public ModelAndView tripAdd(){
 		ModelAndView mv = new ModelAndView("jsonView");
 		Map<String, Object> map = tripService.tripAddForm();
@@ -54,7 +53,7 @@ public class TripController {
 		return mv;
 	}
 	//여행지역(시) 리스트 출력
-	@RequestMapping(value="person/regionSiList", method=RequestMethod.POST)
+	@RequestMapping(value="regionSiList", method=RequestMethod.POST)
 	public ModelAndView regionSiList(@RequestParam(value="regionDo") String regionDo){
 		ModelAndView mv = new ModelAndView("jsonView");
 		List<RegionVo> regionSiList = tripService.regionSiList(regionDo);
@@ -63,12 +62,12 @@ public class TripController {
 	}
 	
 	//여행등록처리
-	@RequestMapping(value="person/tripAdd", method=RequestMethod.POST)
+	@RequestMapping(value="tripAdd", method=RequestMethod.POST)
 	public ModelAndView tripAdd(@ModelAttribute("sessionId") String sessionId,
 			@ModelAttribute("pageId") String pageId,
 			@RequestParam(value="lastTripRow", defaultValue="5") int lastTripRow, TripVo tripVo){
 		ModelAndView mv = new ModelAndView("jsonView");
-		tripVo.setPersonId(pageId);
+		tripVo.setPersonId(sessionId);
 		int result = tripService.tripAdd(tripVo);
 		if(result>0){
 			List<TripVo> tripList= tripService.tripList(pageId, lastTripRow);
@@ -77,9 +76,8 @@ public class TripController {
 		return mv;
 	}
 	//여행일정 등록
-	@RequestMapping(value="person/planAdd", method=RequestMethod.POST)
-	public ModelAndView planAdd(@ModelAttribute("sessionId") String sessionId,
-			@ModelAttribute("pageId") String pageId, PlanVo planVo){
+	@RequestMapping(value="planAdd", method=RequestMethod.POST)
+	public ModelAndView planAdd(@ModelAttribute("pageId") String pageId, PlanVo planVo){
 		ModelAndView mv = new ModelAndView("jsonView");
 		int result = tripService.planAdd(planVo);
 		if(result>0){
@@ -87,6 +85,14 @@ public class TripController {
 			mv.addObject("trip", map.get("trip"));
 			mv.addObject("planList", map.get("planList"));
 		}
+		return mv;
+	}
+	//여행일정 수정 폼 요청
+	@RequestMapping(value="planView", method=RequestMethod.POST)
+	public ModelAndView planView(@RequestParam(value="planNo") int planNo){
+		ModelAndView mv = new ModelAndView("jsonView");
+		PlanVo plan = tripService.planView(planNo);
+		mv.addObject("plan", plan);
 		return mv;
 	}
 }
