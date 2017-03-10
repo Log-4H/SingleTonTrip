@@ -8,40 +8,39 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:import url="/WEB-INF/views/module/top.jsp" />
+<div class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
 	<form action="<c:url value='companyList'/>" method="get">
 		<div>
 			<select name="selectOption">
 				<option value="m.member_id">ID</option>
-				<option value="m.member_nm">Name</option>
-				<option value="m.member_phone">Phone</option>
-				<option value="m.member_email">Email</option>
+				<option value="c.company_nm">업체명</option>
+				<option value="c.company_address">주소</option>
+				<option value="t.company_type_nm">업체분류</option>
 			</select> 
 			<input type="text" name="selectValue" /> 
 			<input type="submit" value="검색" />
 		</div>
 	</form>
+	
 	<table border='1'>
 		<thead>
 			<tr>
+				<td>사진</td>
 				<td>ID</td>
-				<td>Name</td>
+				<td>companyName</td>
 				<td>Phone</td>
-				<td>Email</td>
-				<td>CRD</td>
 				<td>Type</td>
-				<td>Act State</td>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${companyList}" var="c">
 			<tr>
+				<td>${c.companyImg}</td>
 				<td><a href="<c:url value='companyDetail?memberId=${c.memberId}'/> ">${c.memberId}</a></td>
-				<td>${c.memberNm}</td>
+				<td>${c.companyNm}</td>
 				<td>${c.memberPhone}</td>
-				<td>${c.memberEmail}</td>
-				<td>${c.companyCrd}</td>
-				<td>${c.companyTypeNm}</td>
-				<td>${c.actStateNm}</td>		
+				<td>${c.companyTypeNm}</td>		
 			</tr>
 			</c:forEach>
 		</tbody>
@@ -57,5 +56,7 @@
 			<a href="<c:url value='companyList?currentPage=${startPage+pageSize}&selectOption=${selectOption}&selectValue=${selectValue}'/>">next</a>
 		</c:if>
 	</div>
+</div>
+<c:import url="/WEB-INF/views/module/footer.jsp"></c:import>
 </body>
 </html>

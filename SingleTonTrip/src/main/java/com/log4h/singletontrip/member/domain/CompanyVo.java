@@ -11,7 +11,10 @@ public class CompanyVo {
 	private int companyCrd;
 	private int companyTypeCd;
 	private String companyTypeNm;
+	private String companyNm;
 	private String companyAddress;
+	private String companyAddressSelect;
+	private String companyAddressDetail;
 	private int memberReportCount;
 	private String memberRegDate;
 	private int actStateCd;
@@ -20,6 +23,25 @@ public class CompanyVo {
 	private String memberDropReason;
 	private String companyImg;
 
+	
+	public String getCompanyNm() {
+		return companyNm;
+	}
+	public void setCompanyNm(String companyNm) {
+		this.companyNm = companyNm;
+	}
+	public String getCompanyAddressSelect() {
+		return companyAddressSelect;
+	}
+	public void setCompanyAddressSelect(String companyAddressSelect) {
+		this.companyAddressSelect = companyAddressSelect;
+	}
+	public String getCompanyAddressDetail() {
+		return companyAddressDetail;
+	}
+	public void setCompanyAddressDetail(String companyAddressDetail) {
+		this.companyAddressDetail = companyAddressDetail;
+	}
 	public String getCompanyImg() {
 		return companyImg;
 	}
@@ -131,12 +153,14 @@ public class CompanyVo {
 	}
 	@Override
 	public String toString() {
-		return "CompanyVo [memberId=" + memberId + ", memberLevel=" + memberLevel + ", memberPw=" + memberPw
-				+ ", memberNm=" + memberNm + ", memberPhone=" + memberPhone + ", memberEmail=" + memberEmail
+		return "CompanyVo [memberId=" + memberId + ", memberLevel=" + memberLevel + ", newPw=" + newPw + ", memberPw="
+				+ memberPw + ", memberNm=" + memberNm + ", memberPhone=" + memberPhone + ", memberEmail=" + memberEmail
 				+ ", companyCrd=" + companyCrd + ", companyTypeCd=" + companyTypeCd + ", companyTypeNm=" + companyTypeNm
-				+ ", companyAddress=" + companyAddress + ", memberReportCount=" + memberReportCount + ", memberRegDate="
-				+ memberRegDate + ", actStateCd=" + actStateCd + ", actStateNm=" + actStateNm + ", memberDropDate="
-				+ memberDropDate + ", memberDropReason=" + memberDropReason + "]";
+				+ ", companyNm=" + companyNm + ", companyAddress=" + companyAddress + ", companyAddressSelect="
+				+ companyAddressSelect + ", companyAddressDetail=" + companyAddressDetail + ", memberReportCount="
+				+ memberReportCount + ", memberRegDate=" + memberRegDate + ", actStateCd=" + actStateCd
+				+ ", actStateNm=" + actStateNm + ", memberDropDate=" + memberDropDate + ", memberDropReason="
+				+ memberDropReason + ", companyImg=" + companyImg + "]";
 	}
 
 

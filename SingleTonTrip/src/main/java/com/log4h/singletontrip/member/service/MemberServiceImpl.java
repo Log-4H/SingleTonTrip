@@ -63,6 +63,7 @@ public class MemberServiceImpl implements MemberService{
 	public int companyMemberJoin(CompanyVo companyVo, MultipartFile imgFile) {
 		ImageUpload imageUpload = new ImageUpload();
 		String companyImg = imageUpload.uploadImage(imgFile);
+		companyVo.setCompanyAddress(companyVo.getCompanyAddressSelect()+companyVo.getCompanyAddressDetail());
 		if(companyImg!=null){
 			companyVo.setCompanyImg(companyImg);
 		}
@@ -93,7 +94,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	//업체회원리스트
 	@Override
-	public Map<String, Object> companyList(int currentPage, String selectOption, String selectValue,  String sessionId) {
+	public Map<String, Object> companyList(int currentPage, String selectOption, String selectValue) {
 		Map<String, Object> totalCountMap = new HashMap<String, Object>();
 		totalCountMap.put("selectOption", selectOption);
 		totalCountMap.put("selectValue", selectValue);
@@ -102,7 +103,6 @@ public class MemberServiceImpl implements MemberService{
         Map<String, Object> map = paging.pagingMethod(currentPage, companyTotalCount);
         map.put("selectOption", selectOption);
         map.put("selectValue", selectValue);
-        map.put("sessionId", sessionId);
         List<CompanyVo> companyList = memberDao.companyList(map);
         map.put("companyList", companyList);
 		return map;

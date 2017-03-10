@@ -8,26 +8,30 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:import url="/WEB-INF/views/module/top.jsp" />
+<div class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
 <h2>친구신청리스트</h2>
-<div>
-	<table border='1'>
-		<thead>
-			<tr>
-				<td>ID</td>
-				<td>Name</td>
-				<td>State</td>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${friendCheckList}" var="f">
-			<tr>
-				<td>${f.friendId}</td>
-				<td>${f.memberNm}</td>
-				<td>${f.approveStateNm}중</td>
-			</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+	<div>
+		<table border='1'>
+			<thead>
+				<tr>
+					<td>ID</td>
+					<td>Name</td>
+					<td>State</td>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${friendCheckList}" var="f">
+				<tr>
+					<td>${f.friendId}</td>
+					<td>${f.memberNm}</td>
+					<td>${f.approveStateNm}중</td>
+				</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 </div>
+<c:import url="/WEB-INF/views/module/footer.jsp"></c:import>
 </body>
 </html>

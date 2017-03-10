@@ -42,6 +42,8 @@ $(document).ready(function(){
 
 </script>
 <body>
+<c:import url="/WEB-INF/views/module/top.jsp" />
+<div class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
 	<form id="form" action="companyModify" method="post" enctype="multipart/form-data" id="form1">
 		<div>
 			프로필사진<br>
@@ -83,5 +85,7 @@ $(document).ready(function(){
 		<div><input type="text" name="companyAddress" value="${companyVo.companyAddress}"/></div>
 		<div><input type="submit" value="개인정보수정"/></div>
 	</form>
+</div>
+<c:import url="/WEB-INF/views/module/footer.jsp"></c:import>
 </body>
 </html>

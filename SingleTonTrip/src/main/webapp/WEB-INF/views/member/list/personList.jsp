@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:import url="/WEB-INF/views/module/top.jsp" />
+<div class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
 	<form action="<c:url value='personList'/>" method="get">
 		<div>
 			<select name="selectOption">
@@ -61,5 +63,7 @@
 			<a href="<c:url value='personList?currentPage=${startPage+pageSize}&selectOption=${selectOption}&selectValue=${selectValue}'/>">next</a>
 		</c:if>
 	</div>
+</div>
+<c:import url="/WEB-INF/views/module/footer.jsp"></c:import>
 </body>
 </html>

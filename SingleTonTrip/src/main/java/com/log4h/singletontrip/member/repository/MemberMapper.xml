@@ -102,13 +102,15 @@
 		company_id,
 		company_crd,
 		company_type_cd,
-		company_address
+		company_address,
+		company_nm
 		)
 	VALUE(
 		#{memberId},
 		#{companyCrd},
 		#{companyTypeCd},
-		#{companyAddress}
+		#{companyAddress},
+		#{companyNm}
 		)
 </insert>
 
@@ -187,6 +189,9 @@
 		m.member_nm,
 		m.member_phone,
 		m.member_email,
+		m.member_img,
+		c.company_nm,
+		c.company_address,
 		c.company_crd,
 		t.company_type_nm,
 		a.act_state_nm

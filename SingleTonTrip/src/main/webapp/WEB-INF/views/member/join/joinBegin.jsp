@@ -26,6 +26,7 @@
 </style>
 </head>
 <body>
+<c:import url="/WEB-INF/views/module/top.jsp" />
 <div class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
 <h1 align="center">SigletonTrip</h1>
 <h2 align="center">회원가입</h2>

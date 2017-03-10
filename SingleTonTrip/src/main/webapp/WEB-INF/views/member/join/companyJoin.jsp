@@ -90,7 +90,7 @@
 					<input type="text" class="form-control" name="memberId" placeholder="아이디"/>
 				</div>
 				<div>
-					<input type="text" class="form-control" name="companyName" placeholder="업체명"/>
+					<input type="text" class="form-control" name="companyNm" placeholder="업체명"/>
 				</div>
 				<div>
 					<input type="password" class="form-control" name="memberPw" placeholder="비밀번호"/>
