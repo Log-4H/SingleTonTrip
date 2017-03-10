@@ -77,6 +77,7 @@ $(document).on('click', '#postAddBtn', function() {
 			html = postAppend(postList);
 			$("#postList").empty();
 			$("#postList").append(html);
+			$("#postAddForm")[0].reset();
 		}
 	})
 });
@@ -378,7 +379,7 @@ function postImgAppend(img) {
 
 // 여행탭 클릭시 여행리스트 호출
 $(document).on('click', '#tripTab', function() {
-	var lastTripRow = $('#lastTripRow').attr('value');
+	var lastTripRow = $('.lastTripRow').attr('value');
 	lastTripRow = Number(lastTripRow);
 	$.ajax({
 		url : "tripList",
@@ -389,6 +390,28 @@ $(document).on('click', '#tripTab', function() {
 		dataType : "json",
 		success : function(data) {
 			var html = "";
+			var tripList = data.tripList;
+			html = tripAppend(tripList);
+			$("#tripList").empty();
+			$("#tripList").append(html);
+		}
+	})
+});
+//여행리스트 더보기
+$(document).on('click', '#addTripList', function() {
+	var lastTripRow = $('.lastTripRow').attr('value');
+	lastTripRow = Number(lastTripRow);
+	lastTripRow += 5;
+	var html = "";
+	$.ajax({
+		url : "tripList",
+		type : "POST",
+		data : {
+			lastTripRow : lastTripRow
+		},
+		dataType : "json",
+		success : function(data) {
+			$('.lastTripRow').val(lastTripRow);
 			var tripList = data.tripList;
 			html = tripAppend(tripList);
 			$("#tripList").empty();
@@ -415,13 +438,15 @@ $(document).on('click', '.tripDetailBtn', function() {
 				html = tripDetailAppend(trip, planList);
 				$("#tripDetail" + tripNo).empty();
 				$("#tripDetail" + tripNo).append(html);
-				var planSite = new Array;
-				var planContent = new Array;
-				$.each(planList, function(key, item) {
-					planSite.push(item.planSite);
-					planContent.push(item.planContent);
-				});
-				googleMap(tripNo, planSite, planContent);
+				if(planList.length!=0){
+					var planSite = new Array;
+					var planContent = new Array;
+					$.each(planList, function(key, item) {
+						planSite.push(item.planSite);
+						planContent.push(item.planContent);
+					});
+					googleMap(tripNo, planSite, planContent);
+				}
 				$("#tripFlag" + tripNo).val("open");
 			}
 		})
@@ -430,25 +455,6 @@ $(document).on('click', '.tripDetailBtn', function() {
 		$("#tripFlag" + tripNo).val("close");
 	}
 });
-//여행 등록 modal
-function tripAddModalShow(){
-	$.ajax({
-		url : "tripAdd",
-		type : "GET",
-		dataType : "json",
-		success : function(data) {
-			var tripThemeList = data.tripThemeList;
-			$.each(tripThemeList,function(key, item) {
-				$("#tripThemeList").append("<option value='"+item.tripThemeCd+"'>"+item.tripThemeNm+"</option>");
-			});
-			var regionDoList = data.regionDoList;
-			$.each(regionDoList,function(key, item) {
-				$("#regionDoList").append("<option value='"+item.regionDo+"'>"+item.regionDo+"</option>");
-			});
-			$("#tripAddModal").modal('show');
-		}
-	})
-}
 //여행지역(시) 리스트
 function regionSiListShow(value){
 	$.ajax({
@@ -465,15 +471,74 @@ function regionSiListShow(value){
 		}
 	})
 }
-//여행 등록 처리
-$(document).on('click', '#tripAddNextBtn', function() {
+//여행등록 modal
+function tripAddModalShow(){
+	$("#tripAddForm")[0].reset();
+	$.ajax({
+		url : "tripAdd",
+		type : "GET",
+		dataType : "json",
+		success : function(data) {
+			var tripThemeList = data.tripThemeList;
+			$.each(tripThemeList,function(key, item) {
+				$("#tripThemeList").append("<option value='"+item.tripThemeCd+"'>"+item.tripThemeNm+"</option>");
+			});
+			var regionDoList = data.regionDoList;
+			$.each(regionDoList,function(key, item) {
+				$("#regionDoList").append("<option value='"+item.regionDo+"'>"+item.regionDo+"</option>");
+			});
+			$("#tripAddModal").modal('show');
+		}
+	})
+};
+//여행등록
+$(document).on('click', '#tripAddBtn', function() {
 	$.ajax({
 		url : "tripAdd",
 		type : "POST",
 		data : $("#tripAddForm").serialize(),
 		dataType : "json",
 		success : function(data) {
-			console.log(data);
+			var html = "";
+			var tripList = data.tripList;
+			html = tripAppend(tripList);
+			$("#tripList").empty();
+			$("#tripList").append(html);
+		}
+	})
+});
+
+//여행일정등록 modal
+$(document).on('click', '.planAddModalBtn', function() {
+	var tripNo = $(this).attr('value');
+	$("#planAddForm")[0].reset();
+	$("#planAddTripNo").val(tripNo);
+	$("#planAddModal").modal('show');
+});
+//여행일정 등록
+$(document).on('click', '#planAddBtn', function() {
+	$.ajax({
+		url : "planAdd",
+		type : "POST",
+		data : $("#planAddForm").serialize(),
+		dataType : "json",
+		success : function(data) {
+			var html = "";
+			var trip = data.trip;
+			var planList = data.planList;
+			html = tripDetailAppend(trip, planList);
+			$("#tripDetail" + trip.tripNo).empty();
+			$("#tripDetail" + trip.tripNo).append(html);
+			if(planList.length!=0){
+				var planSite = new Array;
+				var planContent = new Array;
+				$.each(planList, function(key, item) {
+					planSite.push(item.planSite);
+					planContent.push(item.planContent);
+				});
+				googleMap(trip.tripNo, planSite, planContent);
+			}
+			$("#tripFlag" + trip.tripNo).val("open");
 		}
 	})
 });
@@ -500,8 +565,11 @@ function tripAppend(tripList) {
 		html += "<h4>" + item.tripTitle + "</h4><br>";
 		html += "<hr class='w3-clear'>";
 		html += "<p>" + item.tripThemeNm + "</p>";
-		html += "<p>" + item.regionDo + " " + item.regionSi
-				+ "</p>";
+		if(item.regionDo!=item.regionSi){
+			html += "<p>" + item.regionDo + " " + item.regionSi + "</p>";
+		}else{
+			html += "<p>" + item.regionDo + "</p>";
+		}
 		html += "<hr class='w3-clear'>";
 		html += "<p>" + item.tripContent + "</p>";
 		html += "<hr class='w3-clear'>";
@@ -529,15 +597,19 @@ function tripDetailAppend(trip, planList) {
 			+ trip.tripRecruitEndDate + "</p>";
 	html += "<p>태그 : #" + trip.tripTag + "</p>";
 	html += "<hr class='w3-clear'>";
-	$.each(planList, function(key, item) {
-		html += "<p>일정No : " + item.planNo + "</p>";
-		html += "<p>지역 : " + item.planSite + "</p>";
-		html += "<p>내용 : " + item.planContent + "</p>";
-		html += "<p>시간 : " + item.planStartTime + " ~ " + item.planEndTime
-				+ "</p>";
-		html += "<p>예상비용: " + item.planPrice + "</p>";
-	});
-		html += "<div id='google_map"+trip.tripNo+"' style='width:350px;height:350px;'></div>";
+	html += "<button type='button' class='btn btn-primary planAddModalBtn' value='"+trip.tripNo+"'>일정등록</button>";
 	html += "<hr class='w3-clear'>";
+	if(planList.length!=0){
+		$.each(planList, function(key, item) {
+			html += "<p>일정No : " + key + "</p>";
+			html += "<p>지역 : " + item.planSite + "</p>";
+			html += "<p>내용 : " + item.planContent + "</p>";
+			html += "<p>시간 : " + item.planStartTime + " ~ " + item.planEndTime
+					+ "</p>";
+			html += "<p>예상비용: " + item.planPrice + "</p>";
+			html += "<hr class='w3-clear'>";
+		});
+		html += "<div id='google_map"+trip.tripNo+"' style='width:350px;height:350px;'></div>";
+	}
 	return html;
 }

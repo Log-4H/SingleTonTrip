@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.log4h.singletontrip.trip.domain.PlanVo;
 import com.log4h.singletontrip.trip.domain.RegionVo;
@@ -58,5 +59,20 @@ public class TripServiceImpl implements TripService{
 	@Override
 	public int tripAdd(TripVo tripVo) {
 		return tripDao.tripInsert(tripVo);
+	}
+	
+	//여행일정등록
+	@Transactional
+	@Override
+	public int planAdd(PlanVo planVo) {
+		int tripPriceUpdate = 0;
+		int planAddResult = tripDao.planInsert(planVo);
+		if(planAddResult>0){
+			TripVo tripVo = new TripVo();
+			tripVo.setTripNo(planVo.getTripNo());
+			tripVo.setTripTotalPrice(planVo.getPlanPrice());
+			tripPriceUpdate = tripDao.tripPriceUpdate(tripVo);
+		}
+		return tripPriceUpdate;
 	}
 }

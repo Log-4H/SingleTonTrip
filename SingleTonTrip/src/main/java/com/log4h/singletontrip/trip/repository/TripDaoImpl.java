@@ -54,4 +54,14 @@ public class TripDaoImpl implements TripDao{
 	public int tripInsert(TripVo tripVo) {
 		return sqlSession.insert(TRIP_NS+"tripInsert", tripVo);
 	}
+	//여행일정등록
+	@Override
+	public int planInsert(PlanVo planVo) {
+		return sqlSession.insert(TRIP_NS+"planInsert", planVo);
+	}
+	//여행일정등록시 여행경비업데이트
+	@Override
+	public int tripPriceUpdate(TripVo tripVo) {
+		return sqlSession.update(TRIP_NS+"tripPriceUpdate", tripVo);
+	}
 }

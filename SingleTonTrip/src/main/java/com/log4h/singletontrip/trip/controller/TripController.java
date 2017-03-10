@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.log4h.singletontrip.trip.domain.PlanVo;
 import com.log4h.singletontrip.trip.domain.RegionVo;
 import com.log4h.singletontrip.trip.domain.TripVo;
 import com.log4h.singletontrip.trip.service.TripService;
@@ -70,6 +71,18 @@ public class TripController {
 		if(result>0){
 			List<TripVo> tripList= tripService.tripList(memberId, lastTripRow);
 			mv.addObject("tripList", tripList);
+		}
+		return mv;
+	}
+	//여행일정 등록
+	@RequestMapping(value="person/planAdd", method=RequestMethod.POST)
+	public ModelAndView planAdd(@ModelAttribute("sessionId") String memberId, PlanVo planVo){
+		ModelAndView mv = new ModelAndView("jsonView");
+		int result = tripService.planAdd(planVo);
+		if(result>0){
+			Map<String, Object> map = tripService.tripView(memberId, planVo.getTripNo());
+			mv.addObject("trip", map.get("trip"));
+			mv.addObject("planList", map.get("planList"));
 		}
 		return mv;
 	}

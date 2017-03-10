@@ -8,7 +8,7 @@ public class PlanVo {
 	private String planContent;
 	private String planStartTime;
 	private String planEndTime;
-	private String planPrice;
+	private int planPrice;
 	
 	public int getPlanNo() {
 		return planNo;
@@ -46,12 +46,13 @@ public class PlanVo {
 	public void setPlanEndTime(String planEndTime) {
 		this.planEndTime = planEndTime;
 	}
-	public String getPlanPrice() {
+	public int getPlanPrice() {
 		return planPrice;
 	}
-	public void setPlanPrice(String planPrice) {
+	public void setPlanPrice(int planPrice) {
 		this.planPrice = planPrice;
 	}
+	
 	@Override
 	public String toString() {
 		return "PlanVo [planNo=" + planNo + ", tripNo=" + tripNo + ", planSite=" + planSite + ", planContent="

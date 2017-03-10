@@ -97,6 +97,7 @@
 	WHERE
 		region_do=#{regionDo}
 </select>
+<!-- 여행등록 -->
 <insert id="tripInsert" parameterType="com.log4h.singletontrip.trip.domain.TripVo">
 	INSERT INTO	tb_trip(
 		person_id,
@@ -127,4 +128,35 @@
 		now()
 	)
 </insert>
+<!-- 여행일정등록 -->
+<insert id="planInsert" parameterType="com.log4h.singletontrip.trip.domain.PlanVo">
+	INSERT INTO	tb_plan(
+		plan_no,
+		trip_no,
+		plan_site,
+		plan_content,
+		plan_start_time,
+		plan_end_time,
+		plan_price
+	)
+	VALUES(
+		#{planNo},
+		#{tripNo},
+		#{planSite},
+		#{planContent},
+		#{planStartTime},
+		#{planEndTime},
+		#{planPrice}	
+	)
+</insert>
+<!-- 여행일정등록시 여행경비업데이트 -->
+<update id="tripPriceUpdate" parameterType="com.log4h.singletontrip.trip.domain.TripVo">
+	UPDATE 
+		tb_trip
+	SET
+		trip_total_price = (trip_total_price + ${tripTotalPrice}),
+		trip_per_price = Round(trip_total_price/trip_max_member)
+	WHERE	
+		trip_no = #{tripNo}
+</update>
 </mapper>

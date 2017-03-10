@@ -66,4 +66,3 @@
 	</div>
 	<!-- End Page Container -->
 <br>
-<c:import url="/WEB-INF/views/module/footer.jsp"></c:import>

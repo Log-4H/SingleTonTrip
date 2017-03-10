@@ -3,6 +3,7 @@ package com.log4h.singletontrip.trip.service;
 import java.util.List;
 import java.util.Map;
 
+import com.log4h.singletontrip.trip.domain.PlanVo;
 import com.log4h.singletontrip.trip.domain.RegionVo;
 import com.log4h.singletontrip.trip.domain.TripVo;
 
@@ -17,4 +18,6 @@ public interface TripService {
 	public List<RegionVo> regionSiList(String regionDo);
 	//여행등록
 	public int tripAdd(TripVo tripVo);
+	//여행일정등록
+	public int planAdd(PlanVo planVo);
 }
