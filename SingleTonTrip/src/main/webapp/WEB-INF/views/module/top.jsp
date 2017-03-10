@@ -43,8 +43,6 @@ body, html {height: 100%}
 		<c:if test="${sessionLevel eq 1}">
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="personList">개인회원리스트</a></li>
-				<li><a href="companyList">업체회원리스트</a></li>
 				<li><a href="companyList"><span class="glyphicon glyphicon-bed"></span>숙소</a></li>
 				<li><a href="#tour"><span class="glyphicon glyphicon-plane"></span>여행</a></li>
 				<li class="dropdown">
@@ -56,7 +54,7 @@ body, html {height: 100%}
 						</ul>
 				</li>
 				<li><a href="logout"><span class="glyphicon glyphicon-log-in"></span> 로그아웃</a></li>
-				<li><a href="#" ><span class="glyphicon glyphicon-user"></span>${sessionNm}</a></li>
+				<li><a href="personMain?pageId=${sessionId}"><span class="glyphicon glyphicon-user"></span>${sessionNm}</a></li>
       			<li><a href="#"><span class="glyphicon glyphicon-headphones"></span>고객센터</a></li>
 			</ul>
 		</div>

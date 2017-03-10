@@ -175,6 +175,10 @@
 		tb_company c
 	ON 
 		m.member_id = c.company_id
+	JOIN
+		tb_company_type t
+	ON
+		c.company_type_cd = t.company_type_cd
 	<if test="selectValue != null and selectValue !=''">
 	WHERE
 		${selectOption} LIKE '%${selectValue}%'
@@ -194,6 +198,7 @@
 		c.company_address,
 		c.company_crd,
 		t.company_type_nm,
+		t.company_type_cd,
 		a.act_state_nm
 	FROM
 		tb_member m
@@ -204,7 +209,7 @@
 	JOIN 
 		tb_company_type t
 	ON 
-		c.company_type_cd = t.company_type_cd	
+		c.company_type_cd = t.company_type_cd
 	JOIN 
 		tb_act_state a
 	ON 
