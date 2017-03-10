@@ -53,10 +53,9 @@ public class BoardController {
 	
 	//FAQ리스트
 	@RequestMapping(value="faqList" , method=RequestMethod.GET)
-	public ModelAndView faqList(BoardVo board,
-			@ModelAttribute("sessionId") String sessionId){
+	public ModelAndView faqList(BoardVo board/*,
+			@ModelAttribute("sessionId") String sessionId*/){
 		logger.debug(" >>>>>>> faqAdd <<<<<<< ");
-		logger.debug(" >>>>>>> board 값 : {},\n sessionId 값 : {} ",board,sessionId);
 		ModelAndView mv = new ModelAndView();
 	    mv.setViewName("board/faq/faqList");
 	return mv;	

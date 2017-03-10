@@ -43,6 +43,13 @@ body, html {height: 100%}
 		<c:if test="${sessionLevel eq 1}">
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-blackboard"></span>광고</a>
+						<ul class="dropdown-menu">
+							<li><a href="adApplyList">광고 신청 리스트</a></li>
+							<li><a href="payCancelList">환불 리스트</a></li>
+						</ul>
+				</li>
 				<li><a href="companyList"><span class="glyphicon glyphicon-bed"></span>숙소</a></li>
 				<li><a href="#tour"><span class="glyphicon glyphicon-plane"></span>여행</a></li>
 				<li class="dropdown">
@@ -54,7 +61,7 @@ body, html {height: 100%}
 						</ul>
 				</li>
 				<li><a href="logout"><span class="glyphicon glyphicon-log-in"></span> 로그아웃</a></li>
-				<li><a href="personMain?pageId=${sessionId}"><span class="glyphicon glyphicon-user"></span>${sessionNm}</a></li>
+				<li><a href="personMain?pageId=${sessionId}"><span class="glyphicon glyphicon-wrench"></span>${sessionNm}</a></li>
       			<li><a href="#"><span class="glyphicon glyphicon-headphones"></span>고객센터</a></li>
 			</ul>
 		</div>
@@ -62,7 +69,15 @@ body, html {height: 100%}
 		<c:if test="${sessionLevel eq 2}">
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="adApply">광고 신청</a></li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">광고</a>
+						<ul class="dropdown-menu">
+							<li><a href="adApply">광고 신청</a></li>
+							<li><a href="adApplyList">광고 신청 리스트</a></li>
+							<li><a href="payAdd">광고 결제</a></li>
+							<li><a href="payCancelList">환불 리스트</a></li>
+						</ul>
+				</li>
 				<li><a href="companyList"><span class="glyphicon glyphicon-bed"></span>숙소</a></li>
 				<li><a href="#tour"><span class="glyphicon glyphicon-plane"></span>여행</a></li>
 				<li class="dropdown">
@@ -74,7 +89,7 @@ body, html {height: 100%}
 						</ul>
 				</li>
 				<li><a href="logout" ><span class="glyphicon glyphicon-log-in"></span> 로그아웃</a></li>
-				<li><a href="#" ><span class="glyphicon glyphicon-user"></span>${sessionNm}</a></li>
+				<li><a href="#" ><span class="glyphicon glyphicon-briefcase"></span>${sessionNm}</a></li>
       			<li><a href="#"><span class="glyphicon glyphicon-headphones"></span>고객센터</a></li>
 			</ul>
 		</div>
