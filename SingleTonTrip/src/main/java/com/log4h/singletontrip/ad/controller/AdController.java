@@ -216,7 +216,7 @@ public class AdController {
 		ModelAndView mv = new ModelAndView();
 		List<AdVo> adList = adService.selectUseAd();
 		mv.addObject("adList",adList);
-		
+		int t = 0;
 		return mv;
 	}
 }
