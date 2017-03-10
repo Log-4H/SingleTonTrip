@@ -13,7 +13,7 @@
 	<a href="payment/payCancelList">환불 리스트</a><br>
 	
 	<c:if test="${sessionId ne null }">
-		<a href="person/personMain">내 포스트</a><br>
+		<a href="person/personMain?pageId=${sessionId}">내 포스트</a><br>
 	</c:if>
 	<a href="person/personMain?pageId=person2">person2 포스트</a><br>
 	<a href="person/personMain?pageId=person3">person3 포스트</a><br>
