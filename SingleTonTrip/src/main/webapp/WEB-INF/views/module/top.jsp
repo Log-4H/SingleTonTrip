@@ -27,34 +27,46 @@ body, html {height: 100%}
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">SigletonTrip</a>
+			<a class="navbar-brand" href="index">SigletonTrip</a>
 		</div>
-
+		<c:if test="${sessionId eq null }">
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#band">호스팅하기</a></li>
-				<li><a href="#tour">여행</a></li>
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">메세지<span class="badge">3</span></a>
-				<ul class="dropdown-menu">
-					<li><a href="#">Merchandise</a></li>
-					<li><a href="#">Extras</a></li>
-					<li><a href="#">Media</a></li>
-				</ul>
-				</li>
-      		<li><a href="#" id="myBtn"><span class="glyphicon glyphicon-log-in"></span> 로그인</a></li>
+				<li><a href="#band"><span class="glyphicon glyphicon-bed"></span>숙소</a></li>
+				<li><a href="#tour"><span class="glyphicon glyphicon-plane"></span>여행</a></li>
+			    <li><a href="login"> <!-- id="myBtn" --><span class="glyphicon glyphicon-log-in"></span> 로그인</a></li>
         		<li><a href="joinBegin"><span class="glyphicon glyphicon-list-alt"></span> 회원가입</a></li>
 				<li><a href="#"><span class="glyphicon glyphicon-headphones"></span>고객센터</a></li>
 			</ul>
 		</div>
+		</c:if>
+		<c:if test="${sessionId ne null }">
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#band"><span class="glyphicon glyphicon-bed"></span>숙소</a></li>
+				<li><a href="#tour"><span class="glyphicon glyphicon-plane"></span>여행</a></li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">친구<span class="badge">3</span></a>
+						<ul class="dropdown-menu">
+							<li><a href="friendAddList">친구요청리스트</a></li>
+							<li><a href="friendCheckList">친구신청확인</a></li>
+							<li><a href="friendTotalList">친구리스트</a></li>
+						</ul>
+				</li>
+				<li><a href="logout" ><span class="glyphicon glyphicon-log-in"></span> 로그아웃</a></li>
+				<li><a href="#" ><span class="glyphicon glyphicon-user"></span> 내정보</a></li>
+      			<li><a href="#"><span class="glyphicon glyphicon-headphones"></span>고객센터</a></li>
+			</ul>
+		</div>
+		</c:if>
 	</div>
 </nav>
 
   <!-- 로그인 모달 -->
-    <div class="modal fade" id="myModal" role="dialog">
+   <!--  <div class="modal fade" id="myModal" role="dialog">
       <div class="modal-dialog">
 
-        <!-- 모달내용 -->
+        모달내용
         <div class="modal-content">
           <div class="modal-header" style="padding:35px 50px;">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -78,19 +90,20 @@ body, html {height: 100%}
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> 취소</button>
-            <p>회원이 아니십니까? <a href="#">회원가입</a></p>
-            <p>기억나지않을땐 <a href="#">비밀번호찾기</a></p>
+            <p>회원이 아니십니까? <a href="joinBegin">회원가입</a></p>
+            <p>아이디가 기억나지않을땐 <a href="memberIdFind">아이디찾기</a></p>
+            <p>비밀번호가 생각나지않을땐 <a href="memberPwFind">비밀번호찾기</a></p>
           </div>
         </div>
 
       </div>
-    </div>
-
-<!-- 본문 -->
-
-<header class="w3-display-container w3-content w3-wide" style="max-width:1300px;" id="home">
-  <img class="w3-image" src="D:/img/camping.jpg" alt="Architecture" style="width:1300px;height:500px;">
-  <div class="w3-display-middle w3-margin-top w3-center">
-    <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>여행</b></span> <span class="w3-hide-small w3-text-black">같이 갈래요?</span></h1>
-  </div>
-</header>
+    </div> -->
+ <!-- 스크립트 -->
+<!-- <script>
+//로그인모달
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal();
+    });
+});
+</script> -->
