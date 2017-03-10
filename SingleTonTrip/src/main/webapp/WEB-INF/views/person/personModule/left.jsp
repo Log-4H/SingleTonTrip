@@ -43,14 +43,6 @@
 						<i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>
 						 My	Groups
 					</button>
-					<button class="w3-btn-block w3-theme-l1 w3-left-align">
-						<i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>
-						 test
-					</button>
-					<button class="w3-btn-block w3-theme-l1 w3-left-align">
-						<i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>
-						 test
-					</button>
 				</div>
 			</div>
 			<br>

@@ -144,4 +144,12 @@ public class TripServiceImpl implements TripService{
 		map.put("groupMemberList", groupMemberList);
 		return map;
 	}
+	//그룹참가체크
+	@Override
+	public GroupVo tripJoinCheck(String personId, int tripNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("personId", personId);
+		map.put("tripNo", tripNo);
+		return tripDao.tripJoinCheck(map);
+	}
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.log4h.singletontrip.trip.domain.GroupVo;
 import com.log4h.singletontrip.trip.domain.PlanVo;
 import com.log4h.singletontrip.trip.domain.RegionVo;
 import com.log4h.singletontrip.trip.domain.TripVo;
@@ -141,6 +142,15 @@ public class TripController {
 		Map<String, Object> map = tripService.groupView(tripNo);
 		mv.addObject("trip", map.get("trip"));
 		mv.addObject("groupMemberList", map.get("groupMemberList"));
+		return mv;	
+	}
+	//여행그룹참가체크
+	@RequestMapping(value="tripJoinCheck")
+	public ModelAndView tripJoinCheck(@RequestParam(value="tripNo") int tripNo,
+			@ModelAttribute("sessionId") String sessionId){
+		ModelAndView mv = new ModelAndView("jsonView");
+		GroupVo group = tripService.tripJoinCheck(sessionId, tripNo);
+		mv.addObject("group", group);
 		return mv;	
 	}
 }

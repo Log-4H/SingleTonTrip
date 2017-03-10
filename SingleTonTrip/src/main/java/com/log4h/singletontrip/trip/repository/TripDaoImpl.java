@@ -105,6 +105,11 @@ public class TripDaoImpl implements TripDao{
 	public List<GroupVo> groupMemberList(int tripNo) {
 		return sqlSession.selectList(TRIP_NS+"groupMemberList", tripNo);	
 	}
+	//그룹참가체크
+	@Override
+	public GroupVo tripJoinCheck(Map<String, Object> map) {
+		return sqlSession.selectOne(TRIP_NS+"tripJoinCheck", map);
+	}
 	
 	
 }

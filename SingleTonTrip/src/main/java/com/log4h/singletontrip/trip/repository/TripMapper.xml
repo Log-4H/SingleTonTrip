@@ -292,4 +292,19 @@ INSERT INTO	tb_group(
 		g.trip_no = #{tripNo}
 	ORDER BY g.group_apply_date ASC
 </select>
+<!-- 그룹참가체크-->
+<select id="tripJoinCheck" parameterType="map" resultType="com.log4h.singletontrip.trip.domain.GroupVo">
+	SELECT
+		g.approve_state_cd
+	FROM
+		tb_group g
+	JOIN
+		tb_approve_state a
+	ON 
+		g.approve_state_cd = a.approve_state_cd
+	WHERE
+		person_id = #{personId}
+	AND
+		trip_no= #{tripNo}
+</select>
 </mapper>

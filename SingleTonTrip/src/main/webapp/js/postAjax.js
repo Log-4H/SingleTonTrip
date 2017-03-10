@@ -327,9 +327,11 @@ function postAppend(postList) {
 // 댓글 html추가
 function postCommentAppend(postNo, postCommentList) {
 	var html = "";
+	if($("#sessionId").val()!=""){
 	html += "<input type='text' id='comment" + postNo + "'>";
 	html += "<button type='button' class='commentAddBtn' value='" + postNo
 			+ "'>댓글등록</button>";
+	}
 	html += "<button class='commentListAdd' value='" + postNo
 			+ "'>댓글더보기</button>";
 	html += "<table border='1'>";

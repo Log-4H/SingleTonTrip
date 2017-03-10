@@ -44,4 +44,6 @@ public interface TripDao {
 	public List<GroupVo> groupList(Map<String, Object> map);
 	//여행그룹원리스트
 	public List<GroupVo> groupMemberList(int tripNo);
+	//그룹참가체크
+	public GroupVo tripJoinCheck(Map<String, Object> map);
 }	

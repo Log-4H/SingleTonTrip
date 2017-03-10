@@ -52,7 +52,6 @@ public class MemberController {
 		mv.addObject("sessionId", loginVo.getMemberId());
 		mv.addObject("sessionNm", loginVo.getMemberNm());
 		mv.addObject("sessionLevel", loginVo.getMemberLevel());
-		
 		return mv;	
 	}
 

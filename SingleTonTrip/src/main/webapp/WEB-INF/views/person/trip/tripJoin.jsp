@@ -13,13 +13,13 @@
 				여행 그룹 참가
 				</h4>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body" id="tripJoinBody">
 			그룹장의 승인을 기다려야합니다.
 			그룹에 참가하시겠습니까?
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" id="tripJoinBtn" class="btn btn-primary" data-dismiss="modal">Join</button>
+				<button type="button" id="tripJoinBtn" class="btn btn-primary" data-dismiss="modal" style="display:none;">Join</button>
 			</div>
 		</div>
 	</div>

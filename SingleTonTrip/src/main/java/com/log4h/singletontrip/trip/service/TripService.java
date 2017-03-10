@@ -3,6 +3,7 @@ package com.log4h.singletontrip.trip.service;
 import java.util.List;
 import java.util.Map;
 
+import com.log4h.singletontrip.trip.domain.GroupVo;
 import com.log4h.singletontrip.trip.domain.PlanVo;
 import com.log4h.singletontrip.trip.domain.RegionVo;
 import com.log4h.singletontrip.trip.domain.TripVo;
@@ -30,4 +31,6 @@ public interface TripService {
 	public Map<String, Object> groupList(String personId, int currentPage);
 	//그룹상세보기
 	public Map<String, Object> groupView(int tripNo);
+	//그룹참가체크
+	public GroupVo tripJoinCheck(String personId, int tripNo);
 }

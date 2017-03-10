@@ -299,6 +299,9 @@ function tripAppend(tripList) {
 			html += "<button type='button' class='btn btn-primary'>수정</button>";
 			html += "<button type='button' class='btn btn-primary'>종료</button>";
 			html += "</span>";
+		}else if($("#sessionId").val()==""){
+			html += "<span class='w3-right w3-opacity'>";
+			html += "</span>";
 		}else{
 			html += "<span class='w3-right w3-opacity'>";
 			html += "<button type='button' class='btn btn-primary tripJoinModalShow' value='"+item.tripNo+"'>참가신청</button>";
@@ -374,9 +377,35 @@ function tripDetailAppend(trip, planList) {
 	}
 	return html;
 }
+
 //여행그룹 참가modal
 $(document).on('click', '.tripJoinModalShow', function() {
+	$("#tripJoinBtn").hide();
 	var tripNo = $(this).attr('value');
-	$("#tripJoinNo").val(tripNo);
-	$("#tripJoinModal").modal('show');
+	$.ajax({
+		url : "tripJoinCheck",
+		type : "POST",
+		data : {tripNo:tripNo},
+		dataType : "json",
+		success : function(data) {
+			var html = "";
+			var group = data.group;
+			if(group!=null){
+				if(group.approveStateCd=="1"){
+					html += "그룹장의 승인 대기중입니다.";
+				}else if(group.approveStateCd=="2"){
+					html += "이미 그룹에 참가하셨습니다.";
+				}else if(group.approveStateCd=="3"){
+					html += "참여가 거부되었습니다.";
+				}
+			}else{
+				$("#tripJoinBtn").show();
+				html += "그룹장의 승인을 기다려야합니다.<br>";
+				html +=	"그룹에 참가하시겠습니까?";
+			}
+			$("#tripJoinNo").val(tripNo);
+			$("#tripJoinBody").html(html);
+			$("#tripJoinModal").modal('show');
+		}
+	})
 });
