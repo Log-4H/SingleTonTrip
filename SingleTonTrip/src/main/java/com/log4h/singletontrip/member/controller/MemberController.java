@@ -24,7 +24,7 @@ import com.log4h.singletontrip.member.domain.PersonVo;
 import com.log4h.singletontrip.member.service.MailService;
 import com.log4h.singletontrip.member.service.MemberService;
 
-@SessionAttributes({"sessionId", "sessionNm", "sessionLevel"})
+@SessionAttributes({"sessionId", "sessionNm", "sessionLevel", "pageId"})
 @Controller
 public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
@@ -166,17 +166,22 @@ public class MemberController {
 	}
 	//개인회원상세보기
 	@RequestMapping(value="personDetail", method=RequestMethod.GET)
-	public ModelAndView personDetail(PersonVo personVo,
-			@RequestParam(value="memberId") String memberId){
+	public ModelAndView personDetail(@RequestParam(value="memberId") String memberId){
 		ModelAndView mv = new ModelAndView("member/detail/personDetail");
 		mv.addObject("personVo" , memberService.personDetail(memberId));
+		return mv;
+	}
+	//개인회원상세보기 (포스트)
+	@RequestMapping(value="personDetail", method=RequestMethod.POST)
+	public ModelAndView personDetailPost(@ModelAttribute("pageId") String pageId){
+		ModelAndView mv = new ModelAndView("jsonView");
+		mv.addObject("person" , memberService.personDetail(pageId));
 		return mv;
 	}
 	
 	//업체회원상세보기
 	@RequestMapping(value="companyDetail", method=RequestMethod.GET)
-	public ModelAndView companyDetail(CompanyVo companyVo,
-			@RequestParam(value="memberId") String memberId){
+	public ModelAndView companyDetail(@RequestParam(value="memberId") String memberId){
 		ModelAndView mv = new ModelAndView("member/detail/companyDetail");
 		mv.addObject("companyVo" , memberService.companyDetail(memberId));
 		return mv;

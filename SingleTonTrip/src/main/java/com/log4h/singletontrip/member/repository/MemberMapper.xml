@@ -230,6 +230,7 @@
 		m.member_phone,
 		m.member_email,
 		m.member_report_count,
+		m.member_img,
 		p.person_birth,
 		p.person_gender,
 		p.person_total_mileage,

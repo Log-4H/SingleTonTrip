@@ -1,3 +1,30 @@
+//프로필 요청 
+$(document).ready(function(){
+	 $.ajax({
+		url : "personDetail", 
+		type : "POST",  
+		dataType : "json", 
+		success : function(data) {
+			var person = data.person;
+			var profileImg ="";
+			if(person.memberImg!=null){
+				profileImg = "./images/" + person.memberImg;	
+			}else if(person.personGender=="F"){
+				profileImg = "./images/Female.png";
+			}else{
+				profileImg = "./images/Male.png";
+			}
+			$("#profileImg").attr("src", profileImg);
+			$("#profileImg").attr("src", profileImg);
+			$("#profileId").html(person.memberId);
+			$("#profileNm").html(person.memberNm);
+			$("#profileBirth").html(person.personBirth);
+			$("#profileGender").html(person.personGender);
+			$("#profileEmail").html(person.memberEmail);
+			$("#profileState").html(person.tripStateNm);
+		}
+	})
+ });
 // 이미지 미리보기
 function fileInfo(f) {
 	$("#postInputImg").empty();
@@ -93,7 +120,7 @@ function postModifyModalShow(postNo) {
 			$("#postModifyModal").modal('show');
 			if (post.postImg != null) {
 				var html = "";
-				html = postImgAppend("../images/" + post.postImg);
+				html = postImgAppend("./images/" + post.postImg);
 				$("#postModalImg").append(html);
 			}
 
@@ -276,7 +303,7 @@ function postAppend(postList) {
 		if (item.postImg != null) {
 			html += "<div class='w3-row-padding' style='margin:0 -16px'>";
 			html += "<div class='w3-half'>";
-			html += "<img src='../images/"
+			html += "<img src='./images/"
 					+ item.postImg
 					+ "' style='width: 100%' class='w3-margin-bottom'>";
 			html += "</div>";

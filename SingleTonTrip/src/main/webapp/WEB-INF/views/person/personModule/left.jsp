@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:import url="/WEB-INF/views/module/top.jsp"></c:import>
-<script src="<c:url value='/js/postAjax.js'/>"></script>
-<script src="<c:url value='/js/tripAjax.js'/>"></script>
+<script src="<c:url value='/js/groupAjax.js'/>"></script>
+<c:import url="./group/groupList.jsp"></c:import>
 <input type="hidden" id="pageId" value="${pageId}">
 <input type="hidden" id="sessionId" value="${sessionId}">
 <div class="w3-container w3-content"
@@ -17,23 +16,22 @@
 				<div class="w3-container">
 					<h4 class="w3-center">My Profile</h4>
 					<p class="w3-center">
-						<img src="http://www.w3schools.com/w3images/avatar3.png"
-							class="w3-circle" style="height: 106px; width: 106px"
+						<img id="profileImg" src=""	class="w3-circle" style="height: 106px; width: 106px"
 							alt="Avatar">
 					</p>
 					<hr>
-					<p>
-						<i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>
-						Designer, UI
-					</p>
-					<p>
-						<i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>
-						London, UK
-					</p>
+					<p id="profileId"></p>
+					<p id="profileNm"></p>
+					<p id="profileBirth"></p>
+					<p id="profileGender"></p>
+					<p id="profileEmail"></p>
+					<p id="profileState"></p>
+					<!-- 
 					<p>
 						<i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>
 						April 1, 1988
-					</p>
+					</p> 
+					-->
 				</div>
 			</div>
 			<br>
@@ -41,55 +39,18 @@
 			<!-- Accordion -->
 			<div class="w3-card-2 w3-round">
 				<div class="w3-accordion w3-white">
-					<button onclick="myFunction('Demo1')"
-						class="w3-btn-block w3-theme-l1 w3-left-align">
-						<i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My
-						Groups
+					<button class="w3-btn-block w3-theme-l1 w3-left-align" onclick="groupListModalShow()">
+						<i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>
+						 My	Groups
 					</button>
-					<div id="Demo1" class="w3-accordion-content w3-container">
-						<p>Some text..</p>
-					</div>
-					<button onclick="myFunction('Demo2')"
-						class="w3-btn-block w3-theme-l1 w3-left-align">
-						<i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My
-						Events
+					<button class="w3-btn-block w3-theme-l1 w3-left-align">
+						<i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>
+						 test
 					</button>
-					<div id="Demo2" class="w3-accordion-content w3-container">
-						<p>Some other text..</p>
-					</div>
-					<button onclick="myFunction('Demo3')"
-						class="w3-btn-block w3-theme-l1 w3-left-align">
-						<i class="fa fa-users fa-fw w3-margin-right"></i> My Photos
+					<button class="w3-btn-block w3-theme-l1 w3-left-align">
+						<i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>
+						 test
 					</button>
-					<div id="Demo3" class="w3-accordion-content w3-container">
-						<div class="w3-row-padding">
-							<br>
-							<div class="w3-half">
-								<img src="http://www.w3schools.com/w3images/lights.jpg"
-									style="width: 100%" class="w3-margin-bottom">
-							</div>
-							<div class="w3-half">
-								<img src="http://www.w3schools.com/w3images/nature.jpg"
-									style="width: 100%" class="w3-margin-bottom">
-							</div>
-							<div class="w3-half">
-								<img src="http://www.w3schools.com/w3images/mountains.jpg"
-									style="width: 100%" class="w3-margin-bottom">
-							</div>
-							<div class="w3-half">
-								<img src="http://www.w3schools.com/w3images/forest.jpg"
-									style="width: 100%" class="w3-margin-bottom">
-							</div>
-							<div class="w3-half">
-								<img src="http://www.w3schools.com/w3images/nature.jpg"
-									style="width: 100%" class="w3-margin-bottom">
-							</div>
-							<div class="w3-half">
-								<img src="http://www.w3schools.com/w3images/fjords.jpg"
-									style="width: 100%" class="w3-margin-bottom">
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 			<br>
@@ -99,7 +60,7 @@
 				<div class="w3-container">
 					<p>Interests</p>
 					<p>
-						<span class="w3-tag w3-small w3-theme-d5">News</span> <span
+						<span class="w3-tag w3-small w3-theme-d5">Newseeeeeee</span> <span
 							class="w3-tag w3-small w3-theme-d4">W3Schools</span> <span
 							class="w3-tag w3-small w3-theme-d3">Labels</span> <span
 							class="w3-tag w3-small w3-theme-d2">Games</span> <span
