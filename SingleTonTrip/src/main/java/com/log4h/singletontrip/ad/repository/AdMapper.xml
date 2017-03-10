@@ -93,7 +93,8 @@
 	AND
 		ad_group_cd = 1
 	AND
-		ad_reg_date = curdate()
+		ad_reg_date <![CDATA[<]]> curdate()
+	ORDER BY rand() limit 1
 </select>
 <!-- 광고 할 이미지파일 가져오기(홈페이지상단) -->
 <select id="selectUseAdHome"
@@ -107,7 +108,8 @@
 	AND
 		ad_group_cd = 2
 	AND
-		ad_reg_date = curdate()
+		ad_reg_date <![CDATA[<]]> curdate()
+	ORDER BY rand() limit 1
 </select>
 <!-- 광고 할 이미지파일 가져오기(검색상단노출) -->
 <select id="selectUseAdSearch"
@@ -121,7 +123,8 @@
 	AND
 		ad_group_cd = 3
 	AND
-		ad_reg_date = curdate()
+		ad_reg_date <![CDATA[<]]> curdate()
+	ORDER BY rand() limit 1
 </select>
 <!-- 광고 신청 목록에서 거절 -->
 <update id="adRefuse" parameterType="map">

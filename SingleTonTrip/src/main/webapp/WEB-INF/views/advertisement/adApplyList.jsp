@@ -82,4 +82,5 @@
 	</div>
 </div>
 </body>
+<c:import url="../module/right.jsp"></c:import>
 </html>

@@ -1,8 +1,10 @@
 package com.log4h.singletontrip.ad.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,9 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.log4h.singletontrip.ad.domain.AdPriceVo;
 import com.log4h.singletontrip.ad.domain.AdVo;
-import com.log4h.singletontrip.reserve.domain.PaymentVo;
 import com.log4h.singletontrip.ad.service.AdService;
 import com.log4h.singletontrip.member.domain.LoginVo;
+import com.log4h.singletontrip.reserve.domain.PaymentVo;
 
 @Controller
 @SessionAttributes({"sessionId", "sessionNm", "sessionLevel"})
@@ -193,6 +195,8 @@ public class AdController {
 		loginVo.setMemberLevel(sessionLevel);
 		
 		ModelAndView mv = new ModelAndView();
+		List<AdVo> homeAdList = adService.selectUseAdHome();
+		mv.addObject("homeAdList",homeAdList);
 		List<AdVo> adApplyList = adService.selectAdApplyList(loginVo);
 		mv.addObject("adApplyList",adApplyList);
 		mv.setViewName("advertisement/adApplyList");
@@ -211,11 +215,15 @@ public class AdController {
 	}
 	
 	// 광고할 이미지 파일 가져오기 (메인)
-	@RequestMapping(value="asdf")
+	@RequestMapping(value="/")
 	public ModelAndView selectUseAdMain(){
 		ModelAndView mv = new ModelAndView();
-		List<AdVo> adList = adService.selectUseAdMain();
-		mv.addObject("adList",adList);
+		List<AdVo> mainAdList = adService.selectUseAdMain();
+		mv.addObject("mainAdList",mainAdList);
+		List<AdVo> homeAdList = adService.selectUseAdHome();
+		mv.addObject("homeAdList",homeAdList);
+		List<AdVo> searchAdList = adService.selectUseAdSearch();
+		mv.addObject("searchAdList",searchAdList);
 		
 		return mv;
 	}
@@ -224,8 +232,8 @@ public class AdController {
 	@RequestMapping(value="asdff")
 	public ModelAndView selectUseAdHome(){
 		ModelAndView mv = new ModelAndView();
-		List<AdVo> adList = adService.selectUseAdHome();
-		mv.addObject("adList",adList);
+		List<AdVo> homeAdList = adService.selectUseAdHome();
+		mv.addObject("homeAdList",homeAdList);
 		
 		return mv;
 	}
@@ -234,8 +242,8 @@ public class AdController {
 	@RequestMapping(value="asdfff")
 	public ModelAndView selectUseAdSearch(){
 		ModelAndView mv = new ModelAndView();
-		List<AdVo> adList = adService.selectUseAdSearch();
-		mv.addObject("adList",adList);
+		List<AdVo> searchAdList = adService.selectUseAdSearch();
+		mv.addObject("searchAdList",searchAdList);
 		
 		return mv;
 	}
