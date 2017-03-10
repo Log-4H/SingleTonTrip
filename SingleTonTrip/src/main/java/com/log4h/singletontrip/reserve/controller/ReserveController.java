@@ -1,6 +1,5 @@
 package com.log4h.singletontrip.reserve.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.log4h.singletontrip.member.domain.LoginVo;
-import com.log4h.singletontrip.reserve.domain.PaymentCateVo;
 import com.log4h.singletontrip.reserve.service.ReserveService;
 
 @Controller
@@ -76,15 +74,8 @@ public class ReserveController {
 		login.setMemberLevel(sessionLevel);
 		logger.debug("login에 담긴 값 : {} ", login);
 		
-		List<PaymentCateVo> paymentCate = reserveService.getPaymentCate();
-		
-		mv.addObject("cateList",paymentCate);
-		
 		Map<String, Object> getMap = reserveService.getPayList(currentPage, login, selectOption, selectValue);
-		
-/*		
-		logger.debug(" >>>>>>> getReserveList에서 리턴 받는 map : \n {} <<<<<<< ",getMap);
-		 
+		mv.addObject("paymentCateList", getMap.get("paymentCateList"));
 		mv.addObject("map", getMap);
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("selectOption", selectOption);
@@ -93,7 +84,8 @@ public class ReserveController {
 		mv.addObject("pageSize", getMap.get("pageSize"));
 		mv.addObject("endPage", getMap.get("endPage"));
 		mv.addObject("lastPage", getMap.get("lastPage"));
-		*/
+		mv.addObject("payList", getMap.get("payList"));
+		
 		mv.setViewName("/payment/payList");
 		
 		return mv;
