@@ -210,13 +210,13 @@ public class AdController {
 		return mv;
 	}
 	
-	// 광고할 이미지파일 가져오기
+	// 광고할 이미지 파일 가져오기 
 	@RequestMapping(value="")
 	public ModelAndView selectUseAd(){
 		ModelAndView mv = new ModelAndView();
 		List<AdVo> adList = adService.selectUseAd();
 		mv.addObject("adList",adList);
-		int t = 0;
+		
 		return mv;
 	}
 }
