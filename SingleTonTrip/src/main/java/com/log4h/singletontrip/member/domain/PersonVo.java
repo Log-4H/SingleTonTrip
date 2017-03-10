@@ -20,13 +20,13 @@ public class PersonVo {
 	private String tripStateNm;
 	private int personTotalMileage;
 	private int friendState;
-	private String personImg;
+	private String memberImg;
 	
-	public String getPersonImg() {
-		return personImg;
+	public String getMemberImg() {
+		return memberImg;
 	}
-	public void setPersonImg(String personImg) {
-		this.personImg = personImg;
+	public void setMemberImg(String memberImg) {
+		this.memberImg = memberImg;
 	}
 	public int getFriendState() {
 		return friendState;

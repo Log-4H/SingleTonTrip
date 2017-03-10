@@ -21,7 +21,7 @@ public class CompanyVo {
 	private String actStateNm;
 	private String memberDropDate;
 	private String memberDropReason;
-	private String companyImg;
+	private String memberImg;
 
 	
 	public String getCompanyNm() {
@@ -42,11 +42,11 @@ public class CompanyVo {
 	public void setCompanyAddressDetail(String companyAddressDetail) {
 		this.companyAddressDetail = companyAddressDetail;
 	}
-	public String getCompanyImg() {
-		return companyImg;
+	public String getMemberImg() {
+		return memberImg;
 	}
-	public void setCompanyImg(String companyImg) {
-		this.companyImg = companyImg;
+	public void setMemberImg(String memberImg) {
+		this.memberImg = memberImg;
 	}
 	public String getMemberId() {
 		return memberId;
@@ -160,7 +160,7 @@ public class CompanyVo {
 				+ companyAddressSelect + ", companyAddressDetail=" + companyAddressDetail + ", memberReportCount="
 				+ memberReportCount + ", memberRegDate=" + memberRegDate + ", actStateCd=" + actStateCd
 				+ ", actStateNm=" + actStateNm + ", memberDropDate=" + memberDropDate + ", memberDropReason="
-				+ memberDropReason + ", companyImg=" + companyImg + "]";
+				+ memberDropReason + ", memberImg=" + memberImg + "]";
 	}
 
 

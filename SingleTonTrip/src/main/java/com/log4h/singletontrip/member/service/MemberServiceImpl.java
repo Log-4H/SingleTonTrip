@@ -46,7 +46,7 @@ public class MemberServiceImpl implements MemberService{
 		ImageUpload imageUpload = new ImageUpload();
 		String personImg = imageUpload.uploadImage(imgFile);
 		if(personImg!=null){
-			personVo.setPersonImg(personImg);
+			personVo.setMemberImg(personImg);
 		}
 		int personResult = 0;
 		personResult = memberDao.personMemberJoin(personVo);
@@ -65,7 +65,7 @@ public class MemberServiceImpl implements MemberService{
 		String companyImg = imageUpload.uploadImage(imgFile);
 		companyVo.setCompanyAddress(companyVo.getCompanyAddressSelect()+companyVo.getCompanyAddressDetail());
 		if(companyImg!=null){
-			companyVo.setCompanyImg(companyImg);
+			companyVo.setMemberImg(companyImg);
 		}
 		int companyResult = 0;
 		companyResult = memberDao.companyMemberJoin(companyVo);
@@ -134,7 +134,7 @@ public class MemberServiceImpl implements MemberService{
 		ImageUpload imageUpload = new ImageUpload();
 		String personImg = imageUpload.uploadImage(imgFile);
 		if(personImg!=null){
-			personVo.setPersonImg(personImg);
+			personVo.setMemberImg(personImg);
 		}
 		int personResult = 0;
 		personResult = memberDao.personModify(personVo);
@@ -146,7 +146,7 @@ public class MemberServiceImpl implements MemberService{
 		ImageUpload imageUpload = new ImageUpload();
 		String companyImg = imageUpload.uploadImage(imgFile);
 		if(companyImg!=null){
-			companyVo.setCompanyImg(companyImg);
+			companyVo.setMemberImg(companyImg);
 		}
 		int companyResult = 0;
 		companyResult = memberDao.companyModify(companyVo);

@@ -10,58 +10,57 @@
 <body>
 <c:import url="/WEB-INF/views/module/top.jsp" />
 <div class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
-	<form action="<c:url value='personList'/>" method="get">
-		<div>
-			<select name="selectOption">
-				<option value="m.member_id">ID</option>
-				<option value="m.member_nm">Name</option>
-				<option value="m.member_phone">Phone</option>
-				<option value="m.member_email">Email</option>
-			</select> 
-			<input type="text" name="selectValue" /> 
-			<input type="submit" value="검색" />
+	<div class="w3-row-padding">
+		<div class="w3-col m12">
+			<div class="w3-card-2 w3-round w3-white">
+				<div class="w3-container w3-padding">
+					<form action="<c:url value='personList'/>" method="get">
+						<div align="right">
+							<select name="selectOption">
+								<option value="m.member_id">ID</option>
+								<option value="m.member_nm">Name</option>
+							</select> 
+							<input type="text" name="selectValue" /> 
+							<input type="submit" value="검색" />
+						</div>
+					</form>
+					<table class="table">
+						<thead>
+							<tr>
+								<td>사진</td>
+								<td>ID</td>
+								<td>Name</td>
+								<td>친구신청</td>				
+							</tr>
+						</thead>
+						
+						<tbody>
+							<c:forEach items="${personList}" var="p">
+								<tr>
+									<td><img src="<c:url value='/images/${p.memberImg}'/>" class="img-rounded" width="100" height="100"></td>
+									<td><a href="personMain?pageId=${p.memberId}">${p.memberId}</a></td>
+									<td>${p.memberNm}</td>
+										<c:if test="${sessionId ne p.memberId and p.friendState eq 0}">
+											<td><a href="<c:url value='friendAdd?memberId=${p.memberId}'/> ">신청하기</a></td>
+										</c:if>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					<div align="center">
+						<c:if test="${startPage>1}">
+							<a href="<c:url value='personList?currentPage=${startPage-pageSize}&selectOption=${selectOption}&selectValue=${selectValue}'/>">prev</a>
+						</c:if>
+						<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+							<a href="<c:url value='personList?currentPage=${i}&selectOption=${selectOption}&selectValue=${selectValue}'/>">${i}</a>
+						</c:forEach>
+						<c:if test="${endPage ne lastPage}">
+							<a href="<c:url value='personList?currentPage=${startPage+pageSize}&selectOption=${selectOption}&selectValue=${selectValue}'/>">next</a>
+						</c:if>
+					</div>
+				</div>
+			</div>
 		</div>
-	</form>
-	<table border='1'>
-		<thead>
-			<tr>
-				<td>ID</td>
-				<td>Name</td>
-				<td>Phone</td>
-				<td>Email</td>
-				<td>Birth</td>
-				<td>Gender</td>
-				<td>Act State</td>
-				<td>친구신청</td>				
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${personList}" var="p">
-			<tr>
-				<td><a href="<c:url value='personDetail?memberId=${p.memberId}'/> ">${p.memberId}</a></td>
-				<td>${p.memberNm}</td>
-				<td>${p.memberPhone}</td>
-				<td>${p.memberEmail}</td>
-				<td>${p.personBirth}</td>
-				<td>${p.personGender}</td>
-				<td>${p.actStateNm}</td>
-				<c:if test="${sessionId ne p.memberId and p.friendState eq 0}">
-				<td><a href="<c:url value='friendAdd?memberId=${p.memberId}'/> ">신청하기</a></td>
-				</c:if>
-			</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	<div>
-		<c:if test="${startPage>1}">
-			<a href="<c:url value='personList?currentPage=${startPage-pageSize}&selectOption=${selectOption}&selectValue=${selectValue}'/>">prev</a>
-		</c:if>
-		<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
-			<a href="<c:url value='personList?currentPage=${i}&selectOption=${selectOption}&selectValue=${selectValue}'/>">${i}</a>
-		</c:forEach>
-		<c:if test="${endPage ne lastPage}">
-			<a href="<c:url value='personList?currentPage=${startPage+pageSize}&selectOption=${selectOption}&selectValue=${selectValue}'/>">next</a>
-		</c:if>
 	</div>
 </div>
 <c:import url="/WEB-INF/views/module/footer.jsp"></c:import>
