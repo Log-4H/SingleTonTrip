@@ -3,6 +3,7 @@ package com.log4h.singletontrip.trip.repository;
 import java.util.List;
 import java.util.Map;
 
+import com.log4h.singletontrip.trip.domain.GroupVo;
 import com.log4h.singletontrip.trip.domain.PlanVo;
 import com.log4h.singletontrip.trip.domain.RegionVo;
 import com.log4h.singletontrip.trip.domain.TripThemeVo;
@@ -23,10 +24,18 @@ public interface TripDao {
 	public List<RegionVo> regionSiList(String regionDo);
 	//여행등록
 	public int tripInsert(TripVo tripVo);
+	//그룹등록
+	public int groupInsert(TripVo tripVo);
+	//여행그룹승인
+	public int groupApprove(GroupVo groupVo);
 	//여행일정등록
 	public int planInsert(PlanVo planVo);
 	//여행일정등록시 여행경비업데이트
-	public int tripPriceUpdate(TripVo tripVo);
+	public int tripPriceUpdate(PlanVo planVo);
 	//여행일정 view
 	public PlanVo planView(int planNo);
+	//여행일정 수정
+	public int planUpdate(PlanVo planVo);
+	//여행일정 삭제
+	public int planDelete(int planNo);
 }	

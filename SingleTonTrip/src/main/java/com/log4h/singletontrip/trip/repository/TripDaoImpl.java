@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.log4h.singletontrip.trip.domain.GroupVo;
 import com.log4h.singletontrip.trip.domain.PlanVo;
 import com.log4h.singletontrip.trip.domain.RegionVo;
 import com.log4h.singletontrip.trip.domain.TripThemeVo;
@@ -54,6 +55,17 @@ public class TripDaoImpl implements TripDao{
 	public int tripInsert(TripVo tripVo) {
 		return sqlSession.insert(TRIP_NS+"tripInsert", tripVo);
 	}
+	//그룹등록
+	@Override
+	public int groupInsert(TripVo tripVo) {
+		return sqlSession.insert(TRIP_NS+"groupInsert", tripVo);
+	}
+	//그룹승인
+	@Override
+	public int groupApprove(GroupVo groupVo) {
+		return sqlSession.update(TRIP_NS+"groupApprove", groupVo);
+	}
+
 	//여행일정등록
 	@Override
 	public int planInsert(PlanVo planVo) {
@@ -61,12 +73,22 @@ public class TripDaoImpl implements TripDao{
 	}
 	//여행일정등록시 여행경비업데이트
 	@Override
-	public int tripPriceUpdate(TripVo tripVo) {
-		return sqlSession.update(TRIP_NS+"tripPriceUpdate", tripVo);
+	public int tripPriceUpdate(PlanVo planVo) {
+		return sqlSession.update(TRIP_NS+"tripPriceUpdate", planVo);
 	}
 	//여행일정 view
 	@Override
 	public PlanVo planView(int planNo) {
 		return sqlSession.selectOne(TRIP_NS+"planView", planNo);
 	}
+	//여행일정 수정
+	public int planUpdate(PlanVo planVo){
+		return sqlSession.update(TRIP_NS+"planUpdate", planVo);
+	}
+	//여행일정 삭제
+	@Override
+	public int planDelete(int planNo) {
+		return sqlSession.delete(TRIP_NS+"planDelete", planNo);
+	}
+	
 }

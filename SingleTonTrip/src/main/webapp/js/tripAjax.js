@@ -210,23 +210,62 @@ $(document).on('click', '.planModifyShow', function() {
 		},
 		dataType : "json",
 		success : function(data) {
-			console.log(data);
 			var plan = data.plan;
+			$("#planModifyNo").val(plan.planNo);
+			$("#planModifyTripNo").val(plan.tripNo);
 			$("#planModifySite").val(plan.planSite);
 			$("#planModifyContent").val(plan.planContent);
 			$("#planModifyStartTime").val(plan.planStartTime);
 			$("#planModifyEndTime").val(plan.planEndTime);
-			$("#planModifyPrice").val(plan.planPrice);
+			$(".planModifyPrice").val(plan.planPrice);
 			$("#planModifyModal").modal('show');
 		}
 	})
 });
-//여행일정 삭제
-$(document).on('click', '.planDeleteBtn', function() {
+//여행일정 수정
+$(document).on('click', '#planModifyBtn', function() {
 	$.ajax({
-		url : "planAdd",
+		url : "planUpdate",
 		type : "POST",
-		data : $("#planAddForm").serialize(),
+		data : $("#planModifyForm").serialize(),
+		dataType : "json",
+		success : function(data) {
+			var html = "";
+			var trip = data.trip;
+			var planList = data.planList;
+			html = tripDetailAppend(trip, planList);
+			$("#tripDetail" + trip.tripNo).empty();
+			$("#tripDetail" + trip.tripNo).append(html);
+			if(planList.length!=0){
+				var planSite = new Array;
+				var planContent = new Array;
+				$.each(planList, function(key, item) {
+					planSite.push(item.planSite);
+					planContent.push(item.planContent);
+				});
+				googleMap(trip.tripNo, planSite, planContent);
+			}
+			$("#tripFlag" + trip.tripNo).val("open");
+		}
+	})
+});
+//여행일정 삭제modal
+$(document).on('click', '.planDeleteShow', function() {
+	var planNo = $(this).attr('value');
+	var tripNo = $(this).attr('tripNo');
+	$("#planDeleteNo").val(planNo);
+	$("#planDeleteTripNo").val(tripNo);
+	$("#planDeleteModal").modal('show');
+});
+
+//여행일정 삭제
+$(document).on('click', '#planDeleteBtn', function() {
+	var planNo = $("#planDeleteNo").val();
+	var tripNo = $("#planDeleteTripNo").val();
+	$.ajax({
+		url : "planDelete",
+		type : "POST",
+		data : {planNo : planNo, tripNo:tripNo},
 		dataType : "json",
 		success : function(data) {
 			var html = "";
@@ -258,7 +297,11 @@ function tripAppend(tripList) {
 		if($("#pageId").val() == $("#sessionId").val()){
 			html += "<span class='w3-right w3-opacity'>";
 			html += "<button type='button' class='btn btn-primary'>수정</button>";
-			html += "<button type='button' class='btn btn-primary'>삭제</button>";
+			html += "<button type='button' class='btn btn-primary'>종료</button>";
+			html += "</span>";
+		}else{
+			html += "<span class='w3-right w3-opacity'>";
+			html += "<button type='button' class='btn btn-primary tripJoinModalShow' value='"+item.tripNo+"'>참가신청</button>";
 			html += "</span>";
 		}
 		if (item.recruitStateCd == 1) {
@@ -315,7 +358,7 @@ function tripDetailAppend(trip, planList) {
 				html += "<div align='right'>";
 				html += "<a class='planModifyShow' value='"+ item.planNo+ "'>" ;
 				html += "<span class='glyphicon glyphicon-wrench' aria-hidden='true'></span></a>";
-				html += "<a class='planDeleteBtn' value='"+ item.planNo+ "'>" ;
+				html += "<a class='planDeleteShow' tripNo='"+trip.tripNo+"' value='"+ item.planNo+ "'>" ;
 				html += "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>";
 				html += "</div>"
 			}
@@ -331,3 +374,23 @@ function tripDetailAppend(trip, planList) {
 	}
 	return html;
 }
+//여행그룹 참가modal
+$(document).on('click', '.tripJoinModalShow', function() {
+	var tripNo = $(this).attr('value');
+	$("#tripJoinNo").val(tripNo);
+	$("#tripJoinModal").modal('show');
+});
+
+//여행일정 삭제
+$(document).on('click', '#tripJoinBtn', function() {
+	var tripNo = $("#tripJoinNo").val();
+	$.ajax({
+		url : "tripJoin",
+		type : "POST",
+		data : {tripNo:tripNo},
+		dataType : "json",
+		success : function(data) {
+			
+		}
+	})
+});

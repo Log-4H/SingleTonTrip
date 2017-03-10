@@ -4,6 +4,8 @@
 <c:import url="./trip/tripAdd.jsp"></c:import>
 <c:import url="./trip/planAdd.jsp"></c:import>
 <c:import url="./trip/planModify.jsp"></c:import>
+<c:import url="./trip/planDelete.jsp"></c:import>
+<c:import url="./trip/tripJoin.jsp"></c:import>
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDI3-OfEdnYv_YcK0ZnIG-nGAk3WvnMAk4&&sensor=false"></script>
 <div class="tab-pane fade" id="trip">
 	<input type="hidden" class="lastTripRow" name="lastTripRow" value="10">

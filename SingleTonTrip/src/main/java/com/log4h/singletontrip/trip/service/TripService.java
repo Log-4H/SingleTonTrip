@@ -16,10 +16,14 @@ public interface TripService {
 	public Map<String, Object> tripAddForm();
 	//여행지역(시) 리스트
 	public List<RegionVo> regionSiList(String regionDo);
-	//여행등록
+	//여행 & 그룹등록
 	public int tripAdd(TripVo tripVo);
 	//여행일정등록
 	public int planAdd(PlanVo planVo);
 	//여행일정 view
 	public PlanVo planView(int planNo);
+	//여행일정 업데이트
+	public int planUpdate(PlanVo planVo);
+	//여행일정 삭제
+	public int planDelete(int planNo);
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.log4h.singletontrip.trip.domain.GroupVo;
 import com.log4h.singletontrip.trip.domain.PlanVo;
 import com.log4h.singletontrip.trip.domain.RegionVo;
 import com.log4h.singletontrip.trip.domain.TripThemeVo;
@@ -55,10 +56,23 @@ public class TripServiceImpl implements TripService{
 	public List<RegionVo> regionSiList(String regionDo) {
 		return tripDao.regionSiList(regionDo);
 	}
-	//여행등록
+	//여행 & 그룹등록
 	@Override
 	public int tripAdd(TripVo tripVo) {
-		return tripDao.tripInsert(tripVo);
+		int groupAddResult = 0;
+		int result = 0;
+		int tripAddResult = tripDao.tripInsert(tripVo);
+		if(tripAddResult>0){
+			groupAddResult = tripDao.groupInsert(tripVo);
+			if(groupAddResult>0){
+				GroupVo groupVo = new GroupVo();
+				groupVo.setTripNo(tripVo.getTripNo());
+				groupVo.setApproveStateCd(2);
+				groupVo.setPersonId(tripVo.getPersonId());
+				result = tripDao.groupApprove(groupVo);
+			}
+		}
+		return result;
 	}
 	
 	//여행일정등록
@@ -68,10 +82,7 @@ public class TripServiceImpl implements TripService{
 		int tripPriceUpdate = 0;
 		int planAddResult = tripDao.planInsert(planVo);
 		if(planAddResult>0){
-			TripVo tripVo = new TripVo();
-			tripVo.setTripNo(planVo.getTripNo());
-			tripVo.setTripTotalPrice(planVo.getPlanPrice());
-			tripPriceUpdate = tripDao.tripPriceUpdate(tripVo);
+			tripPriceUpdate = tripDao.tripPriceUpdate(planVo);
 		}
 		return tripPriceUpdate;
 	}
@@ -84,5 +95,30 @@ public class TripServiceImpl implements TripService{
 		plan.setPlanStartTime(planStartTime);
 		plan.setPlanEndTime(planEndTime);
 		return plan;
+	}
+	//여행일정 업데이트
+	@Transactional
+	@Override
+	public int planUpdate(PlanVo planVo) {
+		int tripPriceUpdate = 0;
+		int planUpdateResult = tripDao.planUpdate(planVo);
+		if(planUpdateResult>0){
+			tripPriceUpdate = tripDao.tripPriceUpdate(planVo);
+		}
+		return tripPriceUpdate;
+	}
+	//여행일정 삭제
+	@Transactional
+	@Override
+	public int planDelete(int planNo) {
+		PlanVo planVo = tripDao.planView(planNo);
+		planVo.setPlanLastPrice(planVo.getPlanPrice());
+		planVo.setPlanPrice(0);
+		int tripPriceUpdate = 0;
+		int planDeleteResult = tripDao.planDelete(planNo);
+		if(planDeleteResult>0){
+			tripPriceUpdate = tripDao.tripPriceUpdate(planVo);
+		}
+		return tripPriceUpdate;
 	}
 }

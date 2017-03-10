@@ -95,4 +95,31 @@ public class TripController {
 		mv.addObject("plan", plan);
 		return mv;
 	}
+	//여행일정 수정
+	@RequestMapping(value="planUpdate", method=RequestMethod.POST)
+	public ModelAndView planUpdate(@ModelAttribute("pageId") String pageId,
+			PlanVo planVo){
+		ModelAndView mv = new ModelAndView("jsonView");
+		int result = tripService.planUpdate(planVo);
+		if(result>0){
+			Map<String, Object> map = tripService.tripView(pageId, planVo.getTripNo());
+			mv.addObject("trip", map.get("trip"));
+			mv.addObject("planList", map.get("planList"));
+		}
+		return mv;
+	}
+	//여행일정 삭제
+	@RequestMapping(value="planDelete", method=RequestMethod.POST)
+	public ModelAndView planDelete(@ModelAttribute("pageId") String pageId,
+			@RequestParam(value="planNo") int planNo,
+			@RequestParam(value="tripNo") int tripNo){
+		ModelAndView mv = new ModelAndView("jsonView");
+		int result = tripService.planDelete(planNo);
+		if(result>0){
+			Map<String, Object> map = tripService.tripView(pageId, tripNo);
+			mv.addObject("trip", map.get("trip"));
+			mv.addObject("planList", map.get("planList"));
+		}
+		return mv;
+	}
 }

@@ -9,6 +9,7 @@ public class PlanVo {
 	private String planStartTime;
 	private String planEndTime;
 	private int planPrice;
+	private int planLastPrice;
 	
 	public int getPlanNo() {
 		return planNo;
@@ -52,12 +53,18 @@ public class PlanVo {
 	public void setPlanPrice(int planPrice) {
 		this.planPrice = planPrice;
 	}
-	
+	public int getPlanLastPrice() {
+		return planLastPrice;
+	}
+	public void setPlanLastPrice(int planLastPrice) {
+		this.planLastPrice = planLastPrice;
+	}
 	@Override
 	public String toString() {
 		return "PlanVo [planNo=" + planNo + ", tripNo=" + tripNo + ", planSite=" + planSite + ", planContent="
 				+ planContent + ", planStartTime=" + planStartTime + ", planEndTime=" + planEndTime + ", planPrice="
-				+ planPrice + "]";
+				+ planPrice + ", planLastPrice=" + planLastPrice + "]";
 	}
+	
 
 }

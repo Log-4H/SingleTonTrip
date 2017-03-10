@@ -15,6 +15,8 @@
 			</div>
 			<div class="modal-body" style="max-height: calc(100vh - 210px); overflow-y: auto;">
 				<form class="form-horizontal" id="planModifyForm">
+				<input type="hidden" id="planModifyTripNo" name="tripNo">
+				<input type="hidden" id="planModifyNo" name="planNo">
 					<div class="form-group">
 						<label for="planModifySite" class="col-lg-2 control-label">planSite</label>
 						<div class="col-lg-10">
@@ -42,14 +44,15 @@
 					<div class="form-group">
 						<label for="planModifyPrice" class="col-lg-2 control-label">planPrice</label>
 						<div class="col-lg-10">
-							<input type="text" class="form-control" id="planModifyPrice" name="planPrice" placeholder="input planPrice">
+							<input type="text" class="form-control planModifyPrice" name="planPrice" placeholder="input planPrice">
+							<input type="hidden" class="planModifyPrice" name="planLastPrice">
 						</div>
 					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" id="planModifyBtn" class="btn btn-primary" data-dismiss="modal">Add</button>
+				<button type="button" id="planModifyBtn" class="btn btn-primary" data-dismiss="modal">Modify</button>
 			</div>
 		</div>
 	</div>
