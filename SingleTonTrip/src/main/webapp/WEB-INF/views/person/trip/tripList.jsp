@@ -7,9 +7,11 @@
 <div class="tab-pane fade" id="trip">
 	<input type="hidden" class="lastTripRow" name="lastTripRow" value="10">
 		<br>
-		<button type="button" class="w3-btn w3-theme-d2 w3-margin-bottom" onclick="tripAddModalShow()">
-			<i class="fa fa-pencil"></i>  여행모집글 등록
-		</button>
+		<c:if test="${sessionId eq pageId}">
+			<button type="button" class="w3-btn w3-theme-d2 w3-margin-bottom" onclick="tripAddModalShow()">
+				<i class="fa fa-pencil"></i>  여행모집글 등록
+			</button>
+		</c:if>
 		<br>
 		<div id="tripList">
 		</div>

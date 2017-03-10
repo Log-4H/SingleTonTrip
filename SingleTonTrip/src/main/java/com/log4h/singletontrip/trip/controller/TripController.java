@@ -17,28 +17,29 @@ import com.log4h.singletontrip.trip.domain.RegionVo;
 import com.log4h.singletontrip.trip.domain.TripVo;
 import com.log4h.singletontrip.trip.service.TripService;
 
-@SessionAttributes({"sessionId", "sessionNm", "sessionLevel"})
+@SessionAttributes({"sessionId", "sessionNm", "sessionLevel", "pageId"})
 @Controller
 public class TripController {
-
 	@Autowired
 	private TripService tripService;
 	
 	//여행 리스트
 	@RequestMapping(value="person/tripList")
-	public ModelAndView tripList(@ModelAttribute("sessionId") String memberId,
+	public ModelAndView tripList(@ModelAttribute("sessionId") String sessionId,
+			@ModelAttribute("pageId") String pageId,
 			@RequestParam(value="lastTripRow", defaultValue="5") int lastTripRow){
 		ModelAndView mv = new ModelAndView("jsonView");
-		List<TripVo> tripList= tripService.tripList(memberId, lastTripRow);
+		List<TripVo> tripList= tripService.tripList(pageId, lastTripRow);
 		mv.addObject("tripList", tripList);
 		return mv;	
 	}
 	//여행 상세보기
 	@RequestMapping(value="person/tripView")
-	public ModelAndView tripView(@ModelAttribute("sessionId") String memberId,
+	public ModelAndView tripView(@ModelAttribute("sessionId") String sessionId,
+			@ModelAttribute("pageId") String pageId,
 			@RequestParam(value="tripNo") int tripNo){
 		ModelAndView mv = new ModelAndView("jsonView");
-		Map<String, Object> map = tripService.tripView(memberId, tripNo);
+		Map<String, Object> map = tripService.tripView(pageId, tripNo);
 		mv.addObject("trip", map.get("trip"));
 		mv.addObject("planList", map.get("planList"));
 		return mv;	
@@ -63,24 +64,26 @@ public class TripController {
 	
 	//여행등록처리
 	@RequestMapping(value="person/tripAdd", method=RequestMethod.POST)
-	public ModelAndView tripAdd(@ModelAttribute("sessionId") String memberId,
+	public ModelAndView tripAdd(@ModelAttribute("sessionId") String sessionId,
+			@ModelAttribute("pageId") String pageId,
 			@RequestParam(value="lastTripRow", defaultValue="5") int lastTripRow, TripVo tripVo){
 		ModelAndView mv = new ModelAndView("jsonView");
-		tripVo.setPersonId(memberId);
+		tripVo.setPersonId(pageId);
 		int result = tripService.tripAdd(tripVo);
 		if(result>0){
-			List<TripVo> tripList= tripService.tripList(memberId, lastTripRow);
+			List<TripVo> tripList= tripService.tripList(pageId, lastTripRow);
 			mv.addObject("tripList", tripList);
 		}
 		return mv;
 	}
 	//여행일정 등록
 	@RequestMapping(value="person/planAdd", method=RequestMethod.POST)
-	public ModelAndView planAdd(@ModelAttribute("sessionId") String memberId, PlanVo planVo){
+	public ModelAndView planAdd(@ModelAttribute("sessionId") String sessionId,
+			@ModelAttribute("pageId") String pageId, PlanVo planVo){
 		ModelAndView mv = new ModelAndView("jsonView");
 		int result = tripService.planAdd(planVo);
 		if(result>0){
-			Map<String, Object> map = tripService.tripView(memberId, planVo.getTripNo());
+			Map<String, Object> map = tripService.tripView(pageId, planVo.getTripNo());
 			mv.addObject("trip", map.get("trip"));
 			mv.addObject("planList", map.get("planList"));
 		}

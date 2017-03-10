@@ -297,12 +297,14 @@ function postAppend(postList) {
 		html += "<div class='w3-container w3-card-2 w3-white w3-round w3-margin'><br>";
 		html += "<span class='w3-right w3-opacity'>"
 				+ item.postRegDate + "</span><br>";
-		html += "<span class='w3-right w3-opacity'>";
-		html += "<button type='button' class='btn btn-primary' onclick='postModifyModalShow("
-				+ item.postNo + ")'>수정</button>";
-		html += "<button type='button' class='btn btn-primary' onclick='postDeleteModalShow("
-				+ item.postNo + ")'>삭제</button>";
-		html += "</span>";
+		if($("#pageId") == $("#sessionId")){
+			html += "<span class='w3-right w3-opacity'>";
+			html += "<button type='button' class='btn btn-primary' onclick='postModifyModalShow("
+					+ item.postNo + ")'>수정</button>";
+			html += "<button type='button' class='btn btn-primary' onclick='postDeleteModalShow("
+					+ item.postNo + ")'>삭제</button>";
+			html += "</span>";
+		}
 		html += "<h4>" + item.postTitle + "</h4><br>";
 		html += "<hr class='w3-clear'>";
 		html += "<p>" + item.postContent + "</p>";
@@ -353,11 +355,12 @@ function postCommentAppend(postNo, postCommentList) {
 		html += "<td>" + item.memberId + "</td>";
 		html += "<td>" + item.postCommentContent + "</td>";
 		html += "<td>" + item.postCommentRegDate + "</td>";
-		html += "<td><a class='commentDelete' postno='"
-				+ postNo
-				+ "' value='"
-				+ item.postCommentNo
-				+ "'><span class='glyphicon glyphicon glyphicon-remove' aria-hidden='true'></span></a></td>";
+		html += "<td>";
+		if($("#pageId") == $("#sessionId") || $("#sessionId") == item.memberId){
+		html += "<a class='commentDelete' postno='"+ postNo+ "' value='"+ item.postCommentNo+ "'>" ;
+		html += "<span class='glyphicon glyphicon glyphicon-remove' aria-hidden='true'></span></a>";
+		}
+		html += "</td>";
 		html += "</tr>";
 	})
 	html += "</tbody>";
@@ -549,10 +552,12 @@ function tripAppend(tripList) {
 		html += "<div class='w3-container w3-card-2 w3-white w3-round w3-margin'><br>";
 		html += "<span class='w3-right w3-opacity'>"
 				+ item.tripRegDate + "</span><br>";
-		html += "<span class='w3-right w3-opacity'>";
-		html += "<button type='button' class='btn btn-primary'>수정</button>";
-		html += "<button type='button' class='btn btn-primary'>삭제</button>";
-		html += "</span>";
+		if($("#pageId") == $("#sessionId")){
+			html += "<span class='w3-right w3-opacity'>";
+			html += "<button type='button' class='btn btn-primary'>수정</button>";
+			html += "<button type='button' class='btn btn-primary'>삭제</button>";
+			html += "</span>";
+		}
 		if (item.recruitStateCd == 1) {
 			html += "<span class='label label-success'>";
 		} else if (item.recruitStateCd == 2) {
@@ -597,7 +602,9 @@ function tripDetailAppend(trip, planList) {
 			+ trip.tripRecruitEndDate + "</p>";
 	html += "<p>태그 : #" + trip.tripTag + "</p>";
 	html += "<hr class='w3-clear'>";
-	html += "<button type='button' class='btn btn-primary planAddModalBtn' value='"+trip.tripNo+"'>일정등록</button>";
+	if($("#pageId") == $("#sessionId")){
+		html += "<button type='button' class='btn btn-primary planAddModalBtn' value='"+trip.tripNo+"'>일정등록</button>";
+	}
 	html += "<hr class='w3-clear'>";
 	if(planList.length!=0){
 		$.each(planList, function(key, item) {

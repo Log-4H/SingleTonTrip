@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/WEB-INF/views/module/top.jsp"></c:import>
 <script src="<c:url value='/js/personAjax.js'/>"></script>
+<input type="hidden" id="pageId" value="${pageId}">
+<input type="hidden" id="sessionId" value="${sessionId}">
 <div class="w3-container w3-content"
 	style="max-width: 1400px; margin-top: 80px">
 	<!-- The Grid -->

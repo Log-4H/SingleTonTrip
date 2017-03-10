@@ -39,7 +39,7 @@
 						<div class="col-lg-7">
 							<input type="datetime-local" class="form-control" id="planEndTime" name="planEndTime">
 						</div>
-					</div> -->
+					</div>
 					<div class="form-group">
 						<label for="planPrice" class="col-lg-2 control-label">planPrice</label>
 						<div class="col-lg-10">
