@@ -73,15 +73,15 @@
 			<div align = "center">
 				<c:if test="${startPage>1}">
 					<a
-						href="<c:url value='/reserve/reserveList?currentPage=${startPage-pageSize}'/>">prev</a>
+						href="<c:url value='reserveList?currentPage=${startPage-pageSize}'/>">prev</a>
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
 					<a
-						href="<c:url value='/reserve/reserveList?currentPage=${i}'/>">${i}</a>
+						href="<c:url value='reserveList?currentPage=${i}'/>">${i}</a>
 				</c:forEach>
 				<c:if test="${endPage ne lastPage}">
 					<a
-						href="<c:url value='/reserve/reserveList?currentPage=${startPage+pageSize}'/>">next</a>
+						href="<c:url value='reserveList?currentPage=${startPage+pageSize}'/>">next</a>
 				</c:if>
 			</div>
 		</div>

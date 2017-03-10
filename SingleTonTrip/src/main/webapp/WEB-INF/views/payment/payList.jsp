@@ -4,16 +4,16 @@
 <div class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
 	<div class="w3-row">
 		<div class="w3-col m7">
-			<form action="<c:url value='/payment/payList'/>" method="get">
+			<form action="<c:url value='payList'/>" method="get">
 				<div class="w3-row-padding">
 					<div class="w3-col m12">
 						<div class="w3-card-2 w3-round w3-white">
 							<div class="w3-container w3-padding">
 								<!-- <p contenteditable="true" class="w3-border w3-padding"></p> -->
 								<select name="selectOption">
-									<option value="#">::선택::</option>
+									<option value="0">::선택::</option>
 									<c:forEach items="${paymentCateList}" var="cate">
-										<option value="${cate.paymentCateCd}">${cate.paymentCateNm}</option>
+										<option value="${cate.paymentCateCd}">${cate.paymentCateNm}//${cate.paymentCateCd}</option>
 									</c:forEach>
 								</select>
 								<c:if test="${sessionLevel == 1 }"> 
@@ -55,13 +55,13 @@
 			<!-- 페이징 -->
 			<div>
 				<c:if test="${startPage>1}">
-					<a href="<c:url value='/payment/payList?currentPage=${startPage-pageSize}&selectOption=${selectOption}&selectValue=${selectValue}'/>">prev</a>
+					<a href="<c:url value='payList?currentPage=${startPage-pageSize}&selectOption=${selectOption}&selectValue=${selectValue}'/>">prev</a>
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
-					<a href="<c:url value='/payment/payList?currentPage=${i}&selectOption=${selectOption}&selectValue=${selectValue}'/>">${i}</a>
+					<a href="<c:url value='payList?currentPage=${i}&selectOption=${selectOption}&selectValue=${selectValue}'/>">${i}</a>
 				</c:forEach>
 				<c:if test="${endPage ne lastPage}">
-					<a href="<c:url value='/payment/payList?currentPage=${startPage+pageSize}&selectOption=${selectOption}&selectValue=${selectValue}'/>">next</a>
+					<a href="<c:url value='payList?currentPage=${startPage+pageSize}&selectOption=${selectOption}&selectValue=${selectValue}'/>">next</a>
 				</c:if>
 			</div>
 		</div>

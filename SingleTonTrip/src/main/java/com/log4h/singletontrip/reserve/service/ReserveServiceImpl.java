@@ -81,6 +81,8 @@ public class ReserveServiceImpl implements ReserveService{
 	    map.put("payList", returnList);
 	    map.put("paymentCateList", paymentCateList);
 	    
+	   // for()
+	    
 	    
 	    
 	    logger.debug(" >>>>>>> return value : {}", returnList);

@@ -25,7 +25,7 @@ public class ReserveController {
 	private ReserveService reserveService;
 
 	// 방 예약내역 리스트
-	@RequestMapping(value="/reserve/reserveList",method=RequestMethod.GET)
+	@RequestMapping(value="reserveList",method=RequestMethod.GET)
 	public ModelAndView reserveList(
 			@ModelAttribute("sessionId") String sessionId,
 			@ModelAttribute("sessionLevel") int sessionLevel,
@@ -59,7 +59,7 @@ public class ReserveController {
 	}
 	
 	// 결제내역 리스트
-	@RequestMapping(value="/payment/payList",method=RequestMethod.GET)
+	@RequestMapping(value="payList",method=RequestMethod.GET)
 	public ModelAndView payList(
 			@ModelAttribute("sessionId") String sessionId,
 			@ModelAttribute("sessionLevel") int sessionLevel,
@@ -93,7 +93,7 @@ public class ReserveController {
 	}
 	
 /*	
-	@RequestMapping(value="/payment/payAdd",method=RequestMethod.GET)
+	@RequestMapping(value="payAdd",method=RequestMethod.GET)
 	public ModelAndView payAdd(
 			@ModelAttribute("sessionId") String sessionId,
 			@ModelAttribute("sessionLevel") int sessionLevel,

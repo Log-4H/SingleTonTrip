@@ -122,25 +122,26 @@
 		
 		ON pm.payment_cate_cd = pmc.payment_cate_cd
 		AND pm.payment_state_cd = pms.payment_state_cd
-
-		<if test="login.memberLevel != 1 ">
-			WHERE
-				pm.member_id = #{login.memberId}
-			
-			<if test="selectOption != 0">
-				AND 
-					pmc.payment_cate_cd = #{selectOption}
-			</if>
-		</if>
 		<where>
-		<if test="selectOption != 0">
-			WHERE
-				pmc.payment_cate_cd = #{selectOption}
-		</if>
-		<if test ="selectValue != null and selectValue !='' ">
-			AND
-				pm.member_id LIKE '%${selectValue}%'		
-		</if>
+			<choose>
+				<when test="login.memberLevel != 1 ">
+					pm.member_id = #{login.memberId}
+				
+					<if test="selectOption != 0">
+						AND 
+							pmc.payment_cate_cd = #{selectOption}
+					</if>
+				</when>
+				<otherwise>
+					<if test="selectOption != 0">
+							pmc.payment_cate_cd = #{selectOption}
+					</if>
+					<if test ="selectValue != null and selectValue !='' ">
+						AND
+							pm.member_id LIKE '%${selectValue}%'		
+					</if>
+				</otherwise>
+			</choose>
 		</where>
 		
 		
@@ -169,25 +170,26 @@
 				
 		ON pm.payment_cate_cd = pmc.payment_cate_cd
 		AND pm.payment_state_cd = pms.payment_state_cd
-
-		<if test="login.memberLevel != 1 ">
-			WHERE
-				pm.member_id = #{login.memberId}
-			
-			<if test="selectOption != 0">
-				AND 
-					pmc.payment_cate_cd = #{selectOption}
-			</if>
-		</if>
 		<where>
-		<if test="selectOption != 0">
-			WHERE
-				pmc.payment_cate_cd = #{selectOption}
-		</if>
-		<if test ="selectValue != null and selectValue !='' ">
-			AND
-				pm.member_id LIKE '%${selectValue}%'		
-		</if>
+			<choose>
+				<when test="login.memberLevel != 1 ">
+					pm.member_id = #{login.memberId}
+				
+					<if test="selectOption != 0">
+						AND 
+							pmc.payment_cate_cd = #{selectOption}
+					</if>
+				</when>
+				<otherwise>
+					<if test="selectOption != 0">
+							pmc.payment_cate_cd = #{selectOption}
+					</if>
+					<if test ="selectValue != null and selectValue !='' ">
+						AND
+							pm.member_id LIKE '%${selectValue}%'		
+					</if>
+				</otherwise>
+			</choose>
 		</where>
 		ORDER BY 	pm.payment_no DESC
 		
