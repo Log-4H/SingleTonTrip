@@ -18,7 +18,7 @@ public class Scheduler {
 	public void schedule(){
 		System.out.println("=======SCHEDULER START=======");
         try {
-        	// 광고 할 이미지 파일 가져오기
+        	// 광고 할 이미지 파일 가져오기 
         	adController.selectUseAd();
         	// 기간 지난 광고 내리기
         	adDao.adDrop();
