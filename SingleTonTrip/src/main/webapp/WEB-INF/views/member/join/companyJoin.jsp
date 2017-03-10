@@ -108,25 +108,22 @@
 					<input type="text" class="form-control" name="companyCrd" placeholder="사업자번호"/>
 				</div>
 				<div>
-					분류:
 					<c:forEach items="${companyTypeList}" var="t">
 						<input type="radio" name="companyTypeCd" value="${t.companyTypeCd }"/><span>${t.companyTypeNm }</span>
 					</c:forEach>
 				</div>
-				<div>   
-					주소:
+				<div>
 					<input type="text" class="form-control" id="sample6_postcode" placeholder="우편번호">
 					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 					<input type="text" class="form-control" id="sample6_address" name="companyAddressSelect" placeholder="주소">
 					<input type="text" class="form-control" id="sample6_address2" name="companyAddressDetail" placeholder="상세주소">
 				</div>
+				<br>
 				<div><input type="submit" value="회원가입"></div>						
 			</form>				
 		</div>	
 	</div>
 	<div class="w3-container w3-padding">
-
-
 	</div>
 </div>
 	

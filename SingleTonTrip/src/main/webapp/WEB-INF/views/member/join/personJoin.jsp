@@ -29,41 +29,47 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
 <h1 align="center">SigletonTrip</h1>
-<h2 align="center">회원가입</h1>
-	<form action="personJoin" method="post" enctype="multipart/form-data" id="form1">
-		<input type="hidden" name="memberLevel" value="${memberLevel}">
-		<div align="center">
-			<img id="blah" src="#" alt="your image" style="max-height: 100px; max-width: 100px"/><br>
-			프로필사진:
-	    	<input type='file' name="imgFile" id="imgInp" />	       
-		</div>
-		<div align="center">
-			<input type="text" name="memberId" placeholder="아이디"/>
-		</div>
-		<div align="center">
-			<input type="password" name="memberPw" placeholder="비밀번호"/>
-		</div>
-		<div align="center">
-			<input type="text" name="memberNm" placeholder="이름"/>
-		</div>
-		<div align="center">
-			<input type="text" name="memberPhone" placeholder="전화번호"/>
-		</div>
-		<div align="center">
-			<input type="text" name="memberEmail" placeholder="이메일"/>
-		</div>
-		<div align="center">
-			생일:
-			<input type="date" name="personBirth" />
-		</div>
-		<div align="center">
-			성별:
-			<input type="radio" name="personGender" value="M"><span>남</span>
-			<input type="radio" name="personGender" value="F"><span>여</span>
-		</div>
-		<div align="center"><input type="submit" value="회원가입"></div>
-	</form>
+<h2 align="center">회원가입</h2>
+<div style="width:100%;text-align:center!important;">
+	<div style="width:30%;margin-left:auto;margin-right:auto;">
+		<form action="personJoin" method="post" enctype="multipart/form-data" id="form1">
+			<input type="hidden" name="memberLevel" value="${memberLevel}">
+			<div align="center">
+				프로필사진
+				<img id="blah" src="#" alt="your image" style="max-height: 100px; max-width: 100px"/><br>
+				<input type='file' name="imgFile" id="imgInp" />	       
+			</div>
+			<div>
+				<input type="text" class="form-control" name="memberId" placeholder="아이디"/>
+			</div>
+			<div>
+				<input type="password" class="form-control" name="memberPw" placeholder="비밀번호"/>
+			</div>
+			<div>
+				<input type="text" class="form-control" name="memberNm" placeholder="이름"/>
+			</div>
+			<div>
+				<input type="text" class="form-control" name="memberPhone" placeholder="전화번호"/>
+			</div>
+			<div>
+				<input type="text" class="form-control" name="memberEmail" placeholder="이메일"/>
+			</div>
+			<div>
+				<input type="date" class="form-control" name="personBirth"/>
+			</div>
+			<div>
+				<input type="radio" name="personGender" value="M"><span>남</span>
+				<input type="radio" name="personGender" value="F"><span>여</span>
+			</div>
+			<br>
+			<div><input type="submit" value="회원가입"></div>
+		</form>
+	</div>
+</div>	
+
+</div>
 <c:import url="/WEB-INF/views/module/footer.jsp"></c:import>
 </body>
 </html>

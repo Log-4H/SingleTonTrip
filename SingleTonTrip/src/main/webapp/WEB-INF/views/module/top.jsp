@@ -40,9 +40,11 @@ body, html {height: 100%}
 			</ul>
 		</div>
 		</c:if>
-		<c:if test="${sessionId ne null }">
+		<c:if test="${sessionLevel eq 1}">
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
+				<li><a href="personList">개인회원리스트</a></li>
+				<li><a href="companyList">업체회원리스트</a></li>
 				<li><a href="#band"><span class="glyphicon glyphicon-bed"></span>숙소</a></li>
 				<li><a href="#tour"><span class="glyphicon glyphicon-plane"></span>여행</a></li>
 				<li class="dropdown">
@@ -54,7 +56,46 @@ body, html {height: 100%}
 						</ul>
 				</li>
 				<li><a href="logout" ><span class="glyphicon glyphicon-log-in"></span> 로그아웃</a></li>
-				<li><a href="#" ><span class="glyphicon glyphicon-user"></span> 내정보</a></li>
+				<li><a href="#" ><span class="glyphicon glyphicon-user"></span>${sessionNm}</a></li>
+      			<li><a href="#"><span class="glyphicon glyphicon-headphones"></span>고객센터</a></li>
+			</ul>
+		</div>
+		</c:if>
+		<c:if test="${sessionLevel eq 2}">
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="adApply">광고 신청</a></li>
+				<li><a href="#band"><span class="glyphicon glyphicon-bed"></span>숙소</a></li>
+				<li><a href="#tour"><span class="glyphicon glyphicon-plane"></span>여행</a></li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">친구<span class="badge">3</span></a>
+						<ul class="dropdown-menu">
+							<li><a href="friendAddList">친구요청리스트</a></li>
+							<li><a href="friendCheckList">친구신청확인</a></li>
+							<li><a href="friendTotalList">친구리스트</a></li>
+						</ul>
+				</li>
+				<li><a href="logout" ><span class="glyphicon glyphicon-log-in"></span> 로그아웃</a></li>
+				<li><a href="#" ><span class="glyphicon glyphicon-user"></span>${sessionNm}</a></li>
+      			<li><a href="#"><span class="glyphicon glyphicon-headphones"></span>고객센터</a></li>
+			</ul>
+		</div>
+		</c:if>
+		<c:if test="${sessionLevel eq 3}">
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#band"><span class="glyphicon glyphicon-bed"></span>숙소</a></li>
+				<li><a href="#tour"><span class="glyphicon glyphicon-plane"></span>여행</a></li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">친구<span class="badge">3</span></a>
+						<ul class="dropdown-menu">
+							<li><a href="friendAddList">친구요청리스트</a></li>
+							<li><a href="friendCheckList">친구신청확인</a></li> 
+							<li><a href="friendTotalList">친구리스트</a></li>
+						</ul>
+				</li>
+				<li><a href="logout" ><span class="glyphicon glyphicon-log-in"></span> 로그아웃</a></li>
+				<li><a href="#" ><span class="glyphicon glyphicon-user"></span>${sessionNm}</a></li>
       			<li><a href="#"><span class="glyphicon glyphicon-headphones"></span>고객센터</a></li>
 			</ul>
 		</div>
