@@ -1,17 +1,25 @@
+var groupMemberLevel;
+
 //그룹리스트 modal show
-function groupListModalShow(){
+$(document).on('click', '.groupListModalShow', function() {
 	var currentPage = 1;
+	groupMemberLevel = $(this).attr("value");
+	if(groupMemberLevel == "leader"){
+		$("#groupListModalTitle").html("내가 생성한 그룹");
+	}else if(groupMemberLevel == "member"){
+		$("#groupListModalTitle").html("내가 가입한 그룹");
+	}
 	$("#currentPage").val(currentPage);
-	groupList(currentPage);
+	groupList(currentPage, groupMemberLevel);
 	$("#groupListModal").modal('show');
-};
+});
 //그룹리스트 ajax
-function groupList(currentPage){
+function groupList(currentPage, groupMemberLevel){
 	$.ajax({
 		url : "groupList",
 		type : "POST",
 		data : {
-			currentPage : currentPage
+			currentPage : currentPage, groupMemberLevel : groupMemberLevel
 		},
 		dataType : "json",
 		success : function(data) {
@@ -29,7 +37,7 @@ function groupList(currentPage){
 $(document).on('click', '.pagingBtn', function() {
 	var currentPage = $(this).attr('value');
 	$('.modal-body').scrollTop(0);
-	groupList(currentPage);
+	groupList(currentPage, groupMemberLevel);
 });
 //그룹리스트 html추가
 function groupListAppend(groupList) {
@@ -147,6 +155,7 @@ function groupViewAppend(trip, groupMemberList) {
 	html +="<th>#</th>";
 	html +="<th>ID</th>";
 	html +="<th>NAME</th>";
+	html +="<th>LEVEL</th>";
 	html +="<th>APPLYDATE</th>";
 	html +="</tr>";
 	html +="</thead>";
@@ -156,6 +165,7 @@ function groupViewAppend(trip, groupMemberList) {
 		html +="<td>"+key+"</td>";
 		html +="<td>"+item.personId+"</td>";
 		html +="<td>"+item.memberNm+"</td>";
+		html +="<td>"+item.groupMemberLevel+"</td>";
 		html +="<td>"+item.groupApplyDate+"</td>";
 		html +="</tr>";
 	});
