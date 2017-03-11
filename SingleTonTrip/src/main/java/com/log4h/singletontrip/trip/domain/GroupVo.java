@@ -5,6 +5,7 @@ public class GroupVo {
 	private int tripNo;
 	private String tripTitle;
 	private String personId;
+	private String groupMemberLevel;
 	private String memberNm;
 	private int approveStateCd;
 	private String approveStateNm;
@@ -34,6 +35,12 @@ public class GroupVo {
 	}
 	public void setPersonId(String personId) {
 		this.personId = personId;
+	}
+	public String getGroupMemberLevel() {
+		return groupMemberLevel;
+	}
+	public void setGroupMemberLevel(String groupMemberLevel) {
+		this.groupMemberLevel = groupMemberLevel;
 	}
 	public String getMemberNm() {
 		return memberNm;
@@ -71,15 +78,14 @@ public class GroupVo {
 	public void setGroupDropDate(String groupDropDate) {
 		this.groupDropDate = groupDropDate;
 	}
+	
 	@Override
 	public String toString() {
 		return "GroupVo [groupNo=" + groupNo + ", tripNo=" + tripNo + ", tripTitle=" + tripTitle + ", personId="
-				+ personId + ", memberNm=" + memberNm + ", approveStateCd=" + approveStateCd + ", approveStateNm="
-				+ approveStateNm + ", groupApplyDate=" + groupApplyDate + ", groupApproveDate=" + groupApproveDate
-				+ ", groupDropDate=" + groupDropDate + "]";
+				+ personId + ", groupMemberLevel=" + groupMemberLevel + ", memberNm=" + memberNm + ", approveStateCd="
+				+ approveStateCd + ", approveStateNm=" + approveStateNm + ", groupApplyDate=" + groupApplyDate
+				+ ", groupApproveDate=" + groupApproveDate + ", groupDropDate=" + groupDropDate + "]";
 	}
-	
-	
 
 	
 }

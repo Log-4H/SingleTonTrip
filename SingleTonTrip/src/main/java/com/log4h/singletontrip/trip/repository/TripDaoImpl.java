@@ -92,8 +92,8 @@ public class TripDaoImpl implements TripDao{
 	}
 	//그룹리스트 총카운트
 	@Override
-	public int groupTotalCount(String personId) {
-		return sqlSession.selectOne(TRIP_NS+"groupTotalCount", personId);
+	public int groupTotalCount(Map<String, Object> map) {
+		return sqlSession.selectOne(TRIP_NS+"groupTotalCount", map);
 	}
 	//그룹리스트
 	@Override
@@ -110,6 +110,9 @@ public class TripDaoImpl implements TripDao{
 	public GroupVo tripJoinCheck(Map<String, Object> map) {
 		return sqlSession.selectOne(TRIP_NS+"tripJoinCheck", map);
 	}
-	
-	
+	//그룹참가신청
+	@Override
+	public int groupApply(TripVo tripVo) {
+		return sqlSession.insert(TRIP_NS+"groupApply", tripVo);
+	}
 }

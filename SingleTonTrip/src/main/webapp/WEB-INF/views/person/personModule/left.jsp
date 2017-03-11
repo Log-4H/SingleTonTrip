@@ -5,6 +5,19 @@
 <c:import url="./group/groupList.jsp"></c:import>
 <input type="hidden" id="pageId" value="${pageId}">
 <input type="hidden" id="sessionId" value="${sessionId}">
+<script>
+function myFunction(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        x.previousElementSibling.className += " w3-theme-d1";
+    } else { 
+        x.className = x.className.replace("w3-show", "");
+        x.previousElementSibling.className = 
+        x.previousElementSibling.className.replace(" w3-theme-d1", "");
+    }
+}
+</script>
 <div class="w3-container w3-content"
 	style="max-width: 1400px; margin-top: 80px">
 	<!-- The Grid -->
@@ -39,10 +52,16 @@
 			<!-- Accordion -->
 			<div class="w3-card-2 w3-round">
 				<div class="w3-accordion w3-white">
-					<button class="w3-btn-block w3-theme-l1 w3-left-align" onclick="groupListModalShow()">
-						<i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>
-						 My	Groups
+					<button class="w3-btn-block w3-theme-l1 w3-left-align" onclick="myFunction('groupTab')">
+						<i class="fa fa-bars fa-fw w3-margin-right"></i>
+						 My Groups
 					</button>
+					 <div align="center" id="groupTab" class="w3-hide w3-Lightgray w3-container">
+			            <p class="groupListModalShow" value="leader">생성한 그룹</p>
+			            <c:if test="${sessionId eq pageId}">
+			            <p class="groupListModalShow" value="member">가입한 그룹</p>
+			            </c:if>
+			          </div>
 				</div>
 			</div>
 			<br>

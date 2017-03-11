@@ -10,7 +10,7 @@
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 				</button>
-				<h4 class="modal-title">
+				<h4 id="groupListModalTitle" class="modal-title">
 				그룹 리스트
 				</h4>
 			</div>

@@ -124,9 +124,12 @@ public class TripController {
 	//그룹 리스트
 	@RequestMapping(value="groupList")
 	public ModelAndView groupList(@ModelAttribute("pageId") String pageId,
+			@RequestParam(value="groupMemberLevel") String groupMemberLevel,
 			@RequestParam(value="currentPage", defaultValue="1") int currentPage){
 		ModelAndView mv = new ModelAndView("jsonView");
-		Map<String,Object> map = tripService.groupList(pageId, currentPage);
+		System.out.println("----------------------");
+		System.out.println(groupMemberLevel);
+		Map<String,Object> map = tripService.groupList(pageId, groupMemberLevel, currentPage);
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("groupList", map.get("groupList"));
 		mv.addObject("startPage", map.get("startPage"));
@@ -151,6 +154,20 @@ public class TripController {
 		ModelAndView mv = new ModelAndView("jsonView");
 		GroupVo group = tripService.tripJoinCheck(sessionId, tripNo);
 		mv.addObject("group", group);
+		return mv;	
+	}
+	//여행그룹참가신청
+	@RequestMapping(value="tripJoin")
+	public ModelAndView tripJoin(@RequestParam(value="tripNo") int tripNo,
+			@ModelAttribute("sessionId") String sessionId,
+			@ModelAttribute("pageId") String pageId,
+			@RequestParam(value="lastTripRow", defaultValue="5") int lastTripRow){
+		ModelAndView mv = new ModelAndView("jsonView");
+		int result = tripService.groupApply(sessionId, tripNo);
+		if(result>0){
+			List<TripVo> tripList= tripService.tripList(pageId, lastTripRow);
+			mv.addObject("tripList", tripList);
+		}
 		return mv;	
 	}
 }

@@ -39,11 +39,13 @@ public interface TripDao {
 	//여행일정 삭제
 	public int planDelete(int planNo);
 	//그룹리스트 총카운트
-	public int groupTotalCount(String personId);
+	public int groupTotalCount(Map<String, Object> map);
 	//그룹리스트
 	public List<GroupVo> groupList(Map<String, Object> map);
 	//여행그룹원리스트
 	public List<GroupVo> groupMemberList(int tripNo);
 	//그룹참가체크
 	public GroupVo tripJoinCheck(Map<String, Object> map);
+	//그룹참가신청
+	public int groupApply(TripVo tripVo);
 }	

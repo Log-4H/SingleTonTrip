@@ -61,19 +61,11 @@ public class TripServiceImpl implements TripService{
 	@Override
 	public int tripAdd(TripVo tripVo) {
 		int groupAddResult = 0;
-		int result = 0;
 		int tripAddResult = tripDao.tripInsert(tripVo);
 		if(tripAddResult>0){
 			groupAddResult = tripDao.groupInsert(tripVo);
-			if(groupAddResult>0){
-				GroupVo groupVo = new GroupVo();
-				groupVo.setTripNo(tripVo.getTripNo());
-				groupVo.setApproveStateCd(2);
-				groupVo.setPersonId(tripVo.getPersonId());
-				result = tripDao.groupApprove(groupVo);
-			}
 		}
-		return result;
+		return groupAddResult;
 	}
 	
 	//여행일정등록
@@ -124,11 +116,15 @@ public class TripServiceImpl implements TripService{
 	}
 	//그룹리스트
 	@Override
-	public Map<String, Object> groupList(String personId, int currentPage) {
-		int groupTotalCount = tripDao.groupTotalCount(personId);
-		Paging paging = new Paging();
-        Map<String, Object> map = paging.pagingMethod(currentPage, groupTotalCount);
+	public Map<String, Object> groupList(String personId, String groupMemberLevel, int currentPage) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("personId", personId);
+		map.put("groupMemberLevel", groupMemberLevel);
+		int groupTotalCount = tripDao.groupTotalCount(map);
+		Paging paging = new Paging();
+        map = paging.pagingMethod(currentPage, groupTotalCount);
+        map.put("personId", personId);
+        map.put("groupMemberLevel", groupMemberLevel);
 		List<GroupVo> groupList = tripDao.groupList(map);
 		map.put("groupList", groupList);
 		return map;
@@ -151,5 +147,13 @@ public class TripServiceImpl implements TripService{
 		map.put("personId", personId);
 		map.put("tripNo", tripNo);
 		return tripDao.tripJoinCheck(map);
+	}
+	//그룹참가신청
+	@Override
+	public int groupApply(String personId, int tripNo) {
+		TripVo tripVo = new TripVo();
+		tripVo.setPersonId(personId);
+		tripVo.setTripNo(tripNo);
+		return tripDao.groupApply(tripVo);
 	}
 }

@@ -45,20 +45,18 @@
 		t.recruit_state_cd = rn.recruit_state_cd
 	WHERE
 		t.trip_theme_cd
-	<choose>
-	<when test="memberId != null and memberId !=''">
+	<if test="memberId != null and memberId !=''">
 	AND		
 		t.person_id = #{memberId}
-	</when>
-	<when test="tripNo != null and tripNo !=''">
+	</if>
+	<if test="tripNo != null and tripNo !=''">
 	AND		
 		t.trip_no =#{tripNo}
-	</when>
-	<otherwise>
+	</if>
+	<if test="lastTripRow != null and lastTripRow !=''">
 	ORDER BY trip_reg_date DESC
 	LIMIT 0, #{lastTripRow}
-	</otherwise>
-	</choose>
+	</if>
 </select>
 <!-- 여행플랜리스트 -->
 <select id="planList" parameterType="int" resultType="com.log4h.singletontrip.trip.domain.PlanVo">
@@ -132,18 +130,22 @@
 		now()
 	)
 </insert>
-<!-- 여행등록시 그룹등록 -->
+<!-- 그룹 생성 -->
 <insert id="groupInsert" parameterType="com.log4h.singletontrip.trip.domain.TripVo">
 INSERT INTO	tb_group(
 		trip_no,
 		person_id,
+		group_member_level,
 		approve_state_cd,
-		group_apply_date
+		group_apply_date,
+		group_approve_date
 		)
 	VALUES(
 		#{tripNo},
 		#{personId},
-		1,
+		'leader',
+		2,
+		now(),
 		now()
 	)
 </insert>
@@ -153,6 +155,9 @@ INSERT INTO	tb_group(
 		tb_group
 	SET
 		approve_state_cd = #{approveStateCd},
+	<if test="approveStateCd == 3">
+		group_drop_date = now(),
+	</if>
 		group_approve_date = now()
 	WHERE	
 		trip_no = #{tripNo}
@@ -234,13 +239,15 @@ INSERT INTO	tb_group(
 </delete>
 
 <!-- 그룹리스트 총 카운트 -->
-<select id="groupTotalCount" parameterType="String" resultType="int">
+<select id="groupTotalCount" parameterType="map" resultType="int">
 	SELECT
 		COUNT(*)
 	FROM
 		tb_group
 	WHERE
 		person_id = #{personId}
+	AND
+		group_member_level = #{groupMemberLevel}
 </select>
 <!-- 그룹 리스트 -->
 <select id="groupList" parameterType="map" resultType="com.log4h.singletontrip.trip.domain.GroupVo">
@@ -249,6 +256,7 @@ INSERT INTO	tb_group(
 		g.trip_no,
 		t.trip_title,
 		g.person_id,
+		g.group_member_level,
 		g.approve_state_cd,
 		a.approve_state_nm,
 		g.group_apply_date,
@@ -266,6 +274,8 @@ INSERT INTO	tb_group(
 		g.approve_state_cd = a.approve_state_cd
 	WHERE
 		g.person_id = #{personId}
+	AND
+		g.group_member_level = #{groupMemberLevel}
 	ORDER BY g.group_no DESC
 	LIMIT #{beginRow}, #{pagePerRow}
 </select>
@@ -273,6 +283,7 @@ INSERT INTO	tb_group(
 <select id="groupMemberList" parameterType="int" resultType="com.log4h.singletontrip.trip.domain.GroupVo">
 	SELECT
 		g.person_id,
+		g.group_member_level,
 		m.member_nm,
 		g.group_apply_date,
 		a.approve_state_nm,
@@ -290,6 +301,8 @@ INSERT INTO	tb_group(
 		g.approve_state_cd = a.approve_state_cd
 	WHERE
 		g.trip_no = #{tripNo}
+	AND
+		g.approve_state_cd = 2
 	ORDER BY g.group_apply_date ASC
 </select>
 <!-- 그룹참가체크-->
@@ -307,4 +320,21 @@ INSERT INTO	tb_group(
 	AND
 		trip_no= #{tripNo}
 </select>
+<!-- 그룹참가신청 -->
+<insert id="groupApply" parameterType="com.log4h.singletontrip.trip.domain.TripVo">
+INSERT INTO	tb_group(
+		trip_no,
+		person_id,
+		group_member_level,
+		approve_state_cd,
+		group_apply_date
+		)
+	VALUES(
+		#{tripNo},
+		#{personId},
+		'member',
+		1,
+		now()
+	)
+</insert>
 </mapper>

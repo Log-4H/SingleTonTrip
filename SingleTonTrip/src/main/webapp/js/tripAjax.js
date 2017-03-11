@@ -409,3 +409,22 @@ $(document).on('click', '.tripJoinModalShow', function() {
 		}
 	})
 });
+//여행그룹 참가신청
+$(document).on('click', '#tripJoinBtn', function() {
+	var tripNo = $("#tripJoinNo").val();
+	var lastTripRow = $('.lastTripRow').attr('value');
+	lastTripRow = Number(lastTripRow);
+	$.ajax({
+		url : "tripJoin",
+		type : "POST",
+		data : {tripNo:tripNo, lastTripRow:lastTripRow},
+		dataType : "json",
+		success : function(data) {
+			var html = "";
+			var tripList = data.tripList;
+			html = tripAppend(tripList);
+			$("#tripList").empty();
+			$("#tripList").append(html);
+		}
+	})
+});
