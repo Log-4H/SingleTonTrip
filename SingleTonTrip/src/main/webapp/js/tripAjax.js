@@ -297,12 +297,12 @@ function tripAppend(tripList) {
 		if($("#pageId").val() == $("#sessionId").val()){
 			html += "<span class='w3-right w3-opacity'>";
 			html += "<button type='button' class='btn btn-primary'>수정</button>";
-			html += "<button type='button' class='btn btn-primary'>종료</button>";
+			html += "<button type='button' class='btn btn-primary'>마감</button>";
 			html += "</span>";
 		}else if($("#sessionId").val()==""){
 			html += "<span class='w3-right w3-opacity'>";
 			html += "</span>";
-		}else{
+		}else if(item.recruitStateCd==1){
 			html += "<span class='w3-right w3-opacity'>";
 			html += "<button type='button' class='btn btn-primary tripJoinModalShow' value='"+item.tripNo+"'>참가신청</button>";
 			html += "</span>";
