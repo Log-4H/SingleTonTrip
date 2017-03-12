@@ -61,7 +61,7 @@ body, html {height: 100%}
 						</ul>
 				</li>
 				<li><a href="logout"><span class="glyphicon glyphicon-log-in"></span> 로그아웃</a></li>
-				<li><a href="personMain?pageId=${sessionId}"><span class="glyphicon glyphicon-wrench"></span>${sessionNm}</a></li>
+				<li><a href="pageMain?pageId=${sessionId}"><span class="glyphicon glyphicon-wrench"></span>${sessionNm}</a></li>
       			<li><a href="#"><span class="glyphicon glyphicon-headphones"></span>고객센터</a></li>
 			</ul>
 		</div>
@@ -92,7 +92,7 @@ body, html {height: 100%}
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-briefcase"></span>${sessionNm}</a>
 						<ul class="dropdown-menu">
-							<li class="dropdown"><a href="personMain?pageId=${sessionId}">페이지</a></li>
+							<li class="dropdown"><a href="pageMain?pageId=${sessionId}">페이지</a></li>
 							<li><a href="companyDetail?memberId=${sessionId}">업체정보</a></li>
 						</ul>
 				</li>
@@ -117,7 +117,7 @@ body, html {height: 100%}
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>${sessionNm}</a>
 						<ul class="dropdown-menu">
-							<li class="dropdown"><a href="personMain?pageId=${sessionId}">페이지</a></li>
+							<li class="dropdown"><a href="pageMain?pageId=${sessionId}">페이지</a></li>
 							<li><a href="personDetail?memberId=${sessionId}">회원정보</a></li>
 						</ul>
 				</li>

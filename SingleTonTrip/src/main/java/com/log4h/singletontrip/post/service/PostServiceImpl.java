@@ -18,6 +18,10 @@ public class PostServiceImpl implements PostService{
 	@Autowired
 	private PostDao postDao;
 
+	//페이지레벨
+	public String pageLevel(String pageId){
+		return postDao.pageLevel(pageId);
+	}
 	//포스트 리스트
 	@Override
 	public List<PostVo> postList(String memberId, int lastPostRow) {

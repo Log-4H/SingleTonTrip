@@ -8,6 +8,9 @@ import com.log4h.singletontrip.post.domain.PostCommentVo;
 import com.log4h.singletontrip.post.domain.PostVo;
 
 public interface PostService {
+	
+	//페이지레벨
+	public String pageLevel(String pageId);
 	//포스트 리스트
 	public List<PostVo> postList(String memberId, int lastPostRow);
 	//포스트 등록

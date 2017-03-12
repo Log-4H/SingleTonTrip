@@ -22,13 +22,15 @@ import com.log4h.singletontrip.post.service.PostService;
 public class PostController {
 	@Autowired
 	private PostService postService;
-	//포스트 리스트
-	@RequestMapping(value="personMain", method=RequestMethod.GET)
+	//페이지메인
+	@RequestMapping(value="pageMain", method=RequestMethod.GET)
 	public ModelAndView postMain(@RequestParam(value="pageId") String pageId,
 			@RequestParam(value="lastPostRow", defaultValue="5") int lastPostRow){
-		ModelAndView mv = new ModelAndView("person/personMain");
-		mv.addObject("pageId", pageId);
+		ModelAndView mv = new ModelAndView("page/pageMain");
+		String pageLevel = postService.pageLevel(pageId);
 		List<PostVo> postList= postService.postList(pageId, lastPostRow);
+		mv.addObject("pageId", pageId);
+		mv.addObject("pageLevel", pageLevel);
 		mv.addObject("postList", postList);
 		return mv;	
 	}

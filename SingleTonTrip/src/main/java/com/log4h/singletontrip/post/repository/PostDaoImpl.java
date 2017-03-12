@@ -17,12 +17,15 @@ public class PostDaoImpl implements PostDao{
 
 	private final String POST_NS = "postMapper.";
 	
+	//페이지레벨
+	public String pageLevel(String pageId){
+		return sqlSession.selectOne(POST_NS+"pageLevel", pageId);
+	}
 	//포스트리스트
 	@Override
 	public List<PostVo> postList(Map<String, Object> map) {
 		return sqlSession.selectList(POST_NS+"postList", map);
 	}
-	
 	//포스트등록
 	@Override
 	public int postInsert(PostVo postVo) {

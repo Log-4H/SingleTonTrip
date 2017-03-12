@@ -7,6 +7,8 @@ import com.log4h.singletontrip.post.domain.PostCommentVo;
 import com.log4h.singletontrip.post.domain.PostVo;
 
 public interface PostDao {
+	//페이지레벨
+	public String pageLevel(String pageId);
 	//포스트리스트
 	public List<PostVo> postList(Map<String, Object> map);
 	//포스트 등록

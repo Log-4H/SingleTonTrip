@@ -170,19 +170,25 @@ public class MemberController {
 		mv.addObject("personVo" , memberService.personDetail(memberId));
 		return mv;
 	}
-	//개인회원상세보기 (포스트)
+	//개인회원상세보기(포스트)
 	@RequestMapping(value="personDetail", method=RequestMethod.POST)
 	public ModelAndView personDetailPost(@ModelAttribute("pageId") String pageId){
 		ModelAndView mv = new ModelAndView("jsonView");
 		mv.addObject("person" , memberService.personDetail(pageId));
 		return mv;
 	}
-	
 	//업체회원상세보기
 	@RequestMapping(value="companyDetail", method=RequestMethod.GET)
 	public ModelAndView companyDetail(@RequestParam(value="memberId") String memberId){
 		ModelAndView mv = new ModelAndView("member/detail/companyDetail");
 		mv.addObject("companyVo" , memberService.companyDetail(memberId));
+		return mv;
+	}
+	//업체회원상세보기(포스트)
+	@RequestMapping(value="companyDetail", method=RequestMethod.POST)
+	public ModelAndView companyDetailPost(@ModelAttribute("pageId") String pageId){
+		ModelAndView mv = new ModelAndView("jsonView");
+		mv.addObject("company" , memberService.companyDetail(pageId));
 		return mv;
 	}
 	//개인&업체회원탈퇴처리화면요청

@@ -262,6 +262,7 @@
 		m.member_phone,
 		m.member_email,
 		m.member_report_count,
+		m.member_img,
 		c.company_crd,
 		t.company_type_cd,
 		t.company_type_nm,
