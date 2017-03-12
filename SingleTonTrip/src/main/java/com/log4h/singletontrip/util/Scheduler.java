@@ -9,7 +9,7 @@ import com.log4h.singletontrip.ad.repository.AdDao;
 @Component
 public class Scheduler {
 	@Autowired
-	AdDao adDao;
+	private AdDao adDao;
 	
 	@Scheduled(cron = "0 0 0 * * *")
 	public void schedule(){
