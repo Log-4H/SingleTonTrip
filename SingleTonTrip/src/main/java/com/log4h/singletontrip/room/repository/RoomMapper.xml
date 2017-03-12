@@ -3,5 +3,39 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="roomMapper">
-
+<!-- 객실리스트 -->
+<select id="roomList" parameterType="map" resultType="com.log4h.singletontrip.room.domain.RoomVo">
+	SELECT
+		room_no,
+		company_id,
+		room_nm,
+		room_base_count,
+		room_max_count,
+		room_detail,
+		room_img,
+		room_normal_price,
+		room_holiday_price,
+		room_extra_price,
+		room_reg_date
+	FROM
+		tb_room
+	WHERE
+		company_id = #{companyId}
+</select>
+<!-- 객실시설리스트 -->
+<select id="roomFacilityList" parameterType="int" resultType="com.log4h.singletontrip.room.domain.RoomFacilityVo">
+	SELECT
+		rf.room_facility_no,
+		rf.room_no,
+		rf.facility_cd,
+		f.facility_nm
+	FROM
+		tb_room_facility rf
+	JOIN
+		tb_facility f
+	ON 
+		rf.facility_cd = f.facility_cd
+	WHERE
+		rf.room_no = #{roomNo}
+</select>
 </mapper>

@@ -1,5 +1,7 @@
 package com.log4h.singletontrip.room.domain;
 
+import java.util.List;
+
 import com.log4h.singletontrip.member.domain.CompanyVo;
 
 public class RoomVo {
@@ -14,6 +16,8 @@ public class RoomVo {
 	private int roomHolidayPrice;
 	private int roomExtraPrice;
 	private String roomRegDate;
+	private List<RoomFacilityVo> roomFacilityList;
+	
 	public int getRoomNo() {
 		return roomNo;
 	}
@@ -79,6 +83,13 @@ public class RoomVo {
 	}
 	public void setRoomRegDate(String roomRegDate) {
 		this.roomRegDate = roomRegDate;
+	}
+	
+	public List<RoomFacilityVo> getRoomFacilityList() {
+		return roomFacilityList;
+	}
+	public void setRoomFacilityList(List<RoomFacilityVo> roomFacilityList) {
+		this.roomFacilityList = roomFacilityList;
 	}
 	@Override
 	public String toString() {
