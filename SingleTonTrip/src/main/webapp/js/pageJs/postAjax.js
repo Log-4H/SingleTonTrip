@@ -5,7 +5,7 @@ function fileInfo(f) {
 	var reader = new FileReader();
 	reader.onload = function(rst) {
 		var html = "";
-		html += "<button type='button' id='postImgDelete'>이미지 삭제</button>";
+		html += "<button type='button' onclick='postImgDelete()'>이미지 삭제</button>";
 		html += postImgAppend(rst.target.result);
 		$("#postInputImg").append(html);
 	}
@@ -43,15 +43,16 @@ $(document).on('click', '#postAddBtn', function() {
 			$("#postList").empty();
 			$("#postList").append(html);
 			$("#postAddForm")[0].reset();
+			postImgDelete();
 		}
 	})
 });
 // 포스트등록 이미지 삭제
-$(document).on('click', '#postImgDelete', function() {
+function postImgDelete() {
 	var postImgFile = $('#postImgFile');
 	postImgFile.replaceWith(postImgFile.val('').clone(true));
 	$("#postInputImg").empty();
-});
+};
 
 // 포스트 더보기
 $(document).on('click', '#addList', function() {
