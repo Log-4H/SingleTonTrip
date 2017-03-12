@@ -4,6 +4,7 @@ public class GroupVo {
 	private int groupNo;
 	private int tripNo;
 	private String tripTitle;
+	private String leaderId;
 	private String personId;
 	private String groupMemberLevel;
 	private String memberNm;
@@ -29,6 +30,13 @@ public class GroupVo {
 	}
 	public void setTripTitle(String tripTitle) {
 		this.tripTitle = tripTitle;
+	}
+	
+	public String getLeaderId() {
+		return leaderId;
+	}
+	public void setLeaderId(String leaderId) {
+		this.leaderId = leaderId;
 	}
 	public String getPersonId() {
 		return personId;

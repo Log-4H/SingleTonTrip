@@ -149,22 +149,6 @@ INSERT INTO	tb_group(
 		now()
 	)
 </insert>
-<!-- 여행그룹 승인 & 거절-->
-<update id="groupApprove" parameterType="com.log4h.singletontrip.trip.domain.GroupVo">
-	UPDATE 
-		tb_group
-	SET
-		approve_state_cd = #{approveStateCd},
-	<if test="approveStateCd == 3">
-		group_drop_date = now(),
-	</if>
-		group_approve_date = now()
-	WHERE	
-		trip_no = #{tripNo}
-	AND
-		person_id = #{personId}
-</update>
-
 <!-- 여행일정등록 -->
 <insert id="planInsert" parameterType="com.log4h.singletontrip.trip.domain.PlanVo" 
 	useGeneratedKeys="true"  keyProperty="planNo">
@@ -280,8 +264,14 @@ INSERT INTO	tb_group(
 	LIMIT #{beginRow}, #{pagePerRow}
 </select>
 <!-- 해당여행그룹원 리스트 -->
-<select id="groupMemberList" parameterType="int" resultType="com.log4h.singletontrip.trip.domain.GroupVo">
+<select id="groupMemberList" parameterType="map" resultType="com.log4h.singletontrip.trip.domain.GroupVo">
 	SELECT
+		(SELECT 
+			t.person_id 
+		FROM 
+			tb_trip t 
+		WHERE 
+			t.trip_no = 5) as leaderId,
 		g.person_id,
 		g.group_member_level,
 		m.member_nm,
@@ -302,7 +292,14 @@ INSERT INTO	tb_group(
 	WHERE
 		g.trip_no = #{tripNo}
 	AND
+	<choose>
+		<when test="approveStateCd eq 1">
+		g.approve_state_cd = 1
+		</when>
+		<otherwise>
 		g.approve_state_cd = 2
+		</otherwise>
+	</choose>	
 	ORDER BY g.group_apply_date ASC
 </select>
 <!-- 그룹참가체크-->
@@ -337,4 +334,46 @@ INSERT INTO	tb_group(
 		now()
 	)
 </insert>
+<!-- 그룹 참가 승인 or 거절-->
+<update id="groupApprove" parameterType="com.log4h.singletontrip.trip.domain.GroupVo" 
+	useGeneratedKeys="true"  keyProperty="groupNo">
+	UPDATE 
+		tb_group
+	SET
+		approve_state_cd = #{approveStateCd},
+		group_approve_date = now()
+	<if test = "approveStateCd != null and approveStateCd != 2">
+		,group_drop_date = now()
+	</if>
+	WHERE	
+		trip_no = #{tripNo}
+	AND
+		approve_state_cd = 1
+	<if test="personId != null and personId !=''">
+	AND
+		person_id = #{personId}
+	</if>
+	<if test="groupNo != null and groupNo !=''">
+	AND
+		group_no != #{groupNo}
+	</if>	
+</update>
+<!-- 그룹참가 -> 여행상태변경 -->
+<update id="tripRecruitUpdate" parameterType="map">
+	UPDATE 
+		tb_trip
+	SET
+		recruit_state_cd = #{recruitStateCd}
+	<if test="recruitStateCd != null and recruitStateCd != 1">
+		,trip_recruit_end_date = now()
+	</if>
+	<if test = "approveStateCd != null and approveStateCd == 2">
+		,trip_present_member = trip_present_member + 1
+	</if>
+	<if test = "drop != null and drop == 1">
+		,trip_present_member = trip_present_member - 1
+	</if>
+	WHERE
+		trip_no = #{tripNo}
+</update>
 </mapper>

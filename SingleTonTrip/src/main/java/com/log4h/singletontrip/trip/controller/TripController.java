@@ -170,4 +170,26 @@ public class TripController {
 		}
 		return mv;	
 	}
+	//참가신청멤버 리스트
+	@RequestMapping(value="applyMemberList")
+	public ModelAndView applyMemberList(@RequestParam(value="tripNo") int tripNo,
+			@RequestParam(value="approveStateCd") int approveStateCd){
+		ModelAndView mv = new ModelAndView("jsonView");
+		List<GroupVo> groupMemberList = tripService.applyMemberList(tripNo, approveStateCd);
+		mv.addObject("groupMemberList", groupMemberList);
+		return mv;	
+	}
+	//그룹참가 승인or거절
+	@RequestMapping(value="groupApprove")
+	public ModelAndView groupApprove(@RequestParam(value="tripNo") int tripNo,
+			@RequestParam(value="personId") String personId,
+			@RequestParam(value="approveStateCd") int approveStateCd){
+		ModelAndView mv = new ModelAndView("jsonView");
+		int result = tripService.groupApprove(approveStateCd, tripNo, personId);
+		if(result>0){
+			List<GroupVo> groupMemberList = tripService.applyMemberList(tripNo, approveStateCd);
+			mv.addObject("groupMemberList", groupMemberList);
+		}
+		return mv;	
+	}
 }

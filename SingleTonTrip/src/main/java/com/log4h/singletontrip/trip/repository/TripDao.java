@@ -26,8 +26,6 @@ public interface TripDao {
 	public int tripInsert(TripVo tripVo);
 	//그룹등록
 	public int groupInsert(TripVo tripVo);
-	//여행그룹승인
-	public int groupApprove(GroupVo groupVo);
 	//여행일정등록
 	public int planInsert(PlanVo planVo);
 	//여행일정등록시 여행경비업데이트
@@ -43,9 +41,13 @@ public interface TripDao {
 	//그룹리스트
 	public List<GroupVo> groupList(Map<String, Object> map);
 	//여행그룹원리스트
-	public List<GroupVo> groupMemberList(int tripNo);
+	public List<GroupVo> groupMemberList(Map<String, Object> map);
 	//그룹참가체크
 	public GroupVo tripJoinCheck(Map<String, Object> map);
 	//그룹참가신청
 	public int groupApply(TripVo tripVo);
+	//그룹 참가 승인 or 거절
+	public int groupApprove(GroupVo groupVo);
+	//그룹참가 -> 여행상태변경
+	public int tripRecruitUpdate(Map<String, Object> map);
 }	

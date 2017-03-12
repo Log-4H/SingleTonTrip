@@ -135,7 +135,7 @@ public class TripServiceImpl implements TripService{
 		Map<String, Object> map = new HashMap<String,Object>();
 		map.put("tripNo", tripNo);
 		TripVo trip = tripDao.tripView(map);
-		List<GroupVo> groupMemberList = tripDao.groupMemberList(tripNo);
+		List<GroupVo> groupMemberList = tripDao.groupMemberList(map);
 		map.put("trip", trip);
 		map.put("groupMemberList", groupMemberList);
 		return map;
@@ -155,5 +155,51 @@ public class TripServiceImpl implements TripService{
 		tripVo.setPersonId(personId);
 		tripVo.setTripNo(tripNo);
 		return tripDao.groupApply(tripVo);
+	}
+	//참가신청멤버리스트
+	@Override
+	public List<GroupVo> applyMemberList(int tripNo, int approveStateCd) {
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("tripNo", tripNo);
+		map.put("approveStateCd", approveStateCd);
+		List<GroupVo> groupMemberList = tripDao.groupMemberList(map);
+		return groupMemberList;
+	}
+	//그룹 참가 승인 or 거절
+	@Transactional
+	@Override
+	public int groupApprove(int approveStateCd, int tripNo, String personId) {
+		GroupVo groupVo = new GroupVo();
+		groupVo.setApproveStateCd(approveStateCd);
+		groupVo.setTripNo(tripNo);
+		groupVo.setPersonId(personId);
+		int approveResult = tripDao.groupApprove(groupVo);
+		if(approveResult>0){
+			Map<String, Object> map = new HashMap<String,Object>();
+			map.put("approveStateCd", approveStateCd);
+			map.put("recruitStateCd", 1);
+			map.put("tripNo", tripNo);
+			int presentMemberUpdate = tripDao.tripRecruitUpdate(map);
+			if(presentMemberUpdate>0){
+				map.put("tripNo", tripNo);
+				TripVo tripVo = tripDao.tripView(map);
+				int presentMember = tripVo.getTripPresentMember();
+				int maxMember = tripVo.getTripMaxMember();
+				if(presentMember >= maxMember){
+					map.remove("approveStateCd");
+					map.put("recruitStateCd", 2);
+					int tripRecruitUpdate = tripDao.tripRecruitUpdate(map);
+					if(tripRecruitUpdate>0){
+						groupVo.setApproveStateCd(3);
+						groupVo.setPersonId("");
+						int applyDropResult = tripDao.groupApprove(groupVo);
+						return applyDropResult;
+					}
+				}else{
+					return presentMemberUpdate;
+				}
+			}
+		}
+		return 0;
 	}
 }

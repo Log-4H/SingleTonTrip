@@ -35,4 +35,8 @@ public interface TripService {
 	public GroupVo tripJoinCheck(String personId, int tripNo);
 	//그룹참가신청
 	public int groupApply(String personId, int tripNo);
+	//참가신청멤버리스트
+	public List<GroupVo> applyMemberList(int tripNo, int approveStateCd);
+	//그룹 참가 승인 or 거절
+	public int groupApprove(int approveStateCd, int tripNo, String personId);
 }

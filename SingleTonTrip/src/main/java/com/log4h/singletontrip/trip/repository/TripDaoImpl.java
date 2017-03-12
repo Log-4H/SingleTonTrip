@@ -60,12 +60,6 @@ public class TripDaoImpl implements TripDao{
 	public int groupInsert(TripVo tripVo) {
 		return sqlSession.insert(TRIP_NS+"groupInsert", tripVo);
 	}
-	//그룹승인
-	@Override
-	public int groupApprove(GroupVo groupVo) {
-		return sqlSession.update(TRIP_NS+"groupApprove", groupVo);
-	}
-
 	//여행일정등록
 	@Override
 	public int planInsert(PlanVo planVo) {
@@ -102,8 +96,8 @@ public class TripDaoImpl implements TripDao{
 	}
 	//여행그룹원리스트
 	@Override
-	public List<GroupVo> groupMemberList(int tripNo) {
-		return sqlSession.selectList(TRIP_NS+"groupMemberList", tripNo);	
+	public List<GroupVo> groupMemberList(Map<String, Object> map) {
+		return sqlSession.selectList(TRIP_NS+"groupMemberList", map);	
 	}
 	//그룹참가체크
 	@Override
@@ -114,5 +108,15 @@ public class TripDaoImpl implements TripDao{
 	@Override
 	public int groupApply(TripVo tripVo) {
 		return sqlSession.insert(TRIP_NS+"groupApply", tripVo);
+	}
+	//그룹 참가 승인 or 거절
+	@Override
+	public int groupApprove(GroupVo groupVo) {
+		return sqlSession.update(TRIP_NS+"groupApprove", groupVo);
+	}
+	//그룹참가 -> 여행상태변경
+	@Override
+	public int tripRecruitUpdate(Map<String, Object> map) {
+		return sqlSession.update(TRIP_NS+"tripRecruitUpdate", map);
 	}
 }
