@@ -70,7 +70,7 @@
 	SET
 		ad_approve_state_cd = 2,
 		<if test = "selectSameAd != null">
-			ad_reg_date = #{selectSameAd}
+			ad_reg_date = #{selectSameAd},
 			ad_end_date = ADDDATE(#{selectSameAd}, INTERVAL ad_total_amount DAY),
 		</if>
 		<if test = "selectSameAd == null">
@@ -85,7 +85,8 @@
 <select id="selectUseAdMain"
 		resultType="com.log4h.singletontrip.ad.domain.AdVo">
 	SELECT
-		ad_img
+		ad_img,
+		ad_page_address
 	FROM
 		tb_ad
 	WHERE
@@ -100,7 +101,8 @@
 <select id="selectUseAdHome"
 		resultType="com.log4h.singletontrip.ad.domain.AdVo">
 	SELECT
-		ad_img
+		ad_img,
+		ad_page_address
 	FROM
 		tb_ad
 	WHERE
@@ -115,7 +117,8 @@
 <select id="selectUseAdSearch"
 		resultType="com.log4h.singletontrip.ad.domain.AdVo">
 	SELECT
-		ad_img
+		ad_img,
+		ad_page_address
 	FROM
 		tb_ad
 	WHERE
@@ -219,6 +222,7 @@
 			ad_group_cd,
 			ad_content, 
 			ad_img,
+			ad_page_address,
 			ad_total_amount,
 			ad_total_price, 
 			ad_apply_date
@@ -229,6 +233,7 @@
 			ad_price_group,
 			ad_price_detail,
 			#{adImg}, 
+			#{adPageAddress},
 			ad_price_amount, 
 			ad_price_total, 
 			now() 

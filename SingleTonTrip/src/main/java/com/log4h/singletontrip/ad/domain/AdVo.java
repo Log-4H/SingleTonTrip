@@ -9,6 +9,7 @@ public class AdVo {
 	private String approveStateNm;		// 승인 상태 code 한글
 	private String adContent;			// 광고 내용
 	private String adImg;				// 광고 이미지
+	private String adPageAddress;		// 광고 클릭시 링크 주소
 	private int adTotalAmount;			// 총수량(일수)
 	private int adTotalPrice;			// 총결제금액
 	private String adApplyDate;			// 광고 신청일
@@ -65,6 +66,12 @@ public class AdVo {
 	public void setAdImg(String adImg) {
 		this.adImg = adImg;
 	}
+	public String getAdPageAddress() {
+		return adPageAddress;
+	}
+	public void setAdPageAddress(String adPageAddress) {
+		this.adPageAddress = adPageAddress;
+	}
 	public int getAdTotalAmount() {
 		return adTotalAmount;
 	}
@@ -110,10 +117,12 @@ public class AdVo {
 	
 	@Override
 	public String toString() {
-		return "Ad [adNo=" + adNo + ", companyId=" + companyId + ", adPriceCd=" + adPriceCd + ", approveStateCd="
-				+ approveStateCd + ", adContent=" + adContent + ", adImg=" + adImg + ", adTotalAmount=" + adTotalAmount
-				+ ", adTotalPrice=" + adTotalPrice + ", adApplyDate=" + adApplyDate + ", adRegDate=" + adRegDate
-				+ ", adEndDate=" + adEndDate + ", adminId=" + adminId + "]";
+		return "AdVo [adNo=" + adNo + ", companyId=" + companyId + ", adPriceCd=" + adPriceCd + ", adGroupCd="
+				+ adGroupCd + ", approveStateCd=" + approveStateCd + ", approveStateNm=" + approveStateNm
+				+ ", adContent=" + adContent + ", adImg=" + adImg + ", adPageAddress=" + adPageAddress
+				+ ", adTotalAmount=" + adTotalAmount + ", adTotalPrice=" + adTotalPrice + ", adApplyDate=" + adApplyDate
+				+ ", adRegDate=" + adRegDate + ", adEndDate=" + adEndDate + ", adminId=" + adminId
+				+ ", paymentFinishDate=" + paymentFinishDate + "]";
 	}
 	
 }

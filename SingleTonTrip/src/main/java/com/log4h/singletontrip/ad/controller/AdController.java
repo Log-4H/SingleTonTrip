@@ -146,8 +146,8 @@ public class AdController {
 	
 	// 광고 신청 등록
 	@RequestMapping(value="adApply", method=RequestMethod.POST)
-	public ModelAndView adApply(@ModelAttribute("sessionId") String companyId, AdVo adVo,
-								MultipartHttpServletRequest multi){
+	public ModelAndView adApply(@ModelAttribute("sessionId") String companyId,
+								AdVo adVo, MultipartHttpServletRequest multi){
 		ModelAndView mv = new ModelAndView();
 		MultipartFile imgFile = multi.getFile("imgFile");
 		adVo.setCompanyId(companyId);
