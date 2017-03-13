@@ -46,12 +46,14 @@ function groupListAppend(groupList) {
 		html += "<div class='w3-container w3-card-2 w3-white w3-round w3-margin'><br>";
 		html += "<span class='w3-right w3-opacity'>"+ item.groupApplyDate + "</span><br>";
 		html += "<span class='w3-right w3-opacity'>";
-		if (item.approveStateCd == 1) {
-			html += "<button type='button' class='btn btn-info applyCancelBtn' value='"+item.tripNo+"'>취소</button></span>";
-		} else if (item.approveStateCd == 2) {
-			html += "<button type='button' class='btn btn-info groupDropBtn' value='"+item.tripNo+"'>탈퇴</button></span>";
-		}else{
-			html += "</span>";
+		if(item.groupMemberLevel=="member"){
+			if (item.approveStateCd == 1) {
+				html += "<button type='button' class='btn btn-info applyCancelBtn' value='"+item.tripNo+"'>취소</button></span>";
+			}else if (item.approveStateCd == 2) {
+				html += "<button type='button' class='btn btn-info groupDropBtn' value='"+item.tripNo+"'>탈퇴</button></span>";
+			}
+		}else if(item.groupMemberLevel=="leader"){
+			html += "<button type='button' class='btn btn-info tripEndModalBtn' value='"+item.tripNo+"' data-dismiss='modal'>마감</button></span>";
 		}
 
 		if (item.approveStateCd == 1) {
