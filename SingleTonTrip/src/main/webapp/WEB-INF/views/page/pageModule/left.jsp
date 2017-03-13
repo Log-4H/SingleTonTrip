@@ -144,9 +144,7 @@
 						</button>
 						<div align="center" id="groupTab"
 							class="w3-hide w3-Lightgray w3-container">
-							<c:if test="${sessionId eq pageId}">
-								<p class="groupListModalShow" value="leader">생성한 그룹</p>
-							</c:if>
+							<p class="groupListModalShow" value="leader">생성한 그룹</p>
 							<p class="groupListModalShow" value="member">가입한 그룹</p>
 						</div>
 					</c:if>

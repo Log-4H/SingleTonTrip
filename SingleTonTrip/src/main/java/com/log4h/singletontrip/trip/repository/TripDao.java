@@ -35,7 +35,7 @@ public interface TripDao {
 	//여행일정 수정
 	public int planUpdate(PlanVo planVo);
 	//여행일정 삭제
-	public int planDelete(int planNo);
+	public int planDelete(Map<String, Object> map);
 	//그룹리스트 총카운트
 	public int groupTotalCount(Map<String, Object> map);
 	//그룹리스트
@@ -52,4 +52,8 @@ public interface TripDao {
 	public int tripRecruitUpdate(Map<String, Object> map);
 	//여행수정
 	public int tripUpdate(TripVo tripVo);
+	//여행삭제
+	public int tripDelete(int tripNo);
+	//그룹삭제
+	public int groupDelete(Map<String, Object> map);
 }	

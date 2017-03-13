@@ -4,6 +4,8 @@
 <script src="<c:url value='/js/pageJs/tripAjax.js'/>"></script>
 <c:import url="./trip/tripAdd.jsp"></c:import>
 <c:import url="./trip/tripModify.jsp"></c:import>
+<c:import url="./trip/tripEnd.jsp"></c:import>
+<c:import url="./trip/tripDelete.jsp"></c:import>
 <c:import url="./trip/planAdd.jsp"></c:import>
 <c:import url="./trip/planModify.jsp"></c:import>
 <c:import url="./trip/planDelete.jsp"></c:import>

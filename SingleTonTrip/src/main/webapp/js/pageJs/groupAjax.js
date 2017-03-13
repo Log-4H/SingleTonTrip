@@ -241,8 +241,16 @@ $(document).on('click', '.groupApproveBtn', function() {
 			dataType : "json",
 			success : function(data) {
 				var html = "";
+				var trip = data.trip;
 				var groupMemberList = data.groupMemberList;
-				html = groupMemberListAppend(tripNo, groupMemberList, approveStateCd);
+				html = groupViewAppend(trip);
+				$("#groupList").empty();
+				$("#groupPaging").html(
+						"<a href='javascript:void(0)' class='pagingBtn'" 
+						+"value='"+$("#currentPage").val()+"'>"
+						+"뒤로가기</a>");
+				$("#groupList").append(html);
+				html = groupMemberListAppend(tripNo, groupMemberList, 2);
 				$("#groupMemberList").html(html);
 			}
 	});

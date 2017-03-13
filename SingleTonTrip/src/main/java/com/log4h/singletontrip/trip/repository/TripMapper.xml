@@ -215,11 +215,16 @@ INSERT INTO	tb_group(
 		plan_no = #{planNo}
 </update>
 <!-- 여행삭제 -->
-<delete id="planDelete" parameterType="int">
+<delete id="planDelete" parameterType="map">
 	DELETE FROM 
 		tb_plan
 	WHERE
+	<if test = "planNo != null and planNo != ''">
 		plan_no = #{planNo}
+	</if>
+	<if test = "tripNo != null and tripNo != ''">
+		trip_no = #{tripNo}
+	</if>
 </delete>
 
 <!-- 그룹리스트 총 카운트 -->
@@ -340,8 +345,10 @@ INSERT INTO	tb_group(
 	UPDATE 
 		tb_group
 	SET
-		approve_state_cd = #{approveStateCd},
-		group_approve_date = now()
+		approve_state_cd = #{approveStateCd}
+	<if test = "approveStateCd != null and approveStateCd == 2">	
+		,group_approve_date = now()
+	</if>
 	<if test = "approveStateCd != null and approveStateCd != 2">
 		,group_drop_date = now()
 	</if>
@@ -356,7 +363,7 @@ INSERT INTO	tb_group(
 	<if test="groupNo != null and groupNo !=''">
 	AND
 		group_no != #{groupNo}
-	</if>	
+	</if>
 </update>
 <!-- 그룹참가 -> 여행상태변경 -->
 <update id="tripRecruitUpdate" parameterType="map">
@@ -390,8 +397,31 @@ INSERT INTO	tb_group(
 		trip_start_date = #{tripStartDate},
 		trip_end_date = #{tripEndDate},
 		trip_recruit_end_date = #{tripRecruitEndDate},
+		trip_modify_date = now(),
 		recruit_state_cd = CASE WHEN trip_present_member >= ${tripMaxMember} THEN 2 ELSE 1 END
 	WHERE
 		trip_no = #{tripNo}
+</update>
+<!-- 여행삭제 -->
+<update id="tripDelete" parameterType="int">
+	UPDATE 
+		tb_trip
+	SET
+		trip_delete_date = now()
+	WHERE
+		trip_no = #{tripNo}
+</update>
+<!-- 그룹 탈퇴 -->
+<update id="groupDelete" parameterType="map">
+	UPDATE 
+		tb_group
+	SET
+		group_drop_date = now()
+	WHERE
+		trip_no = #{tripNo}
+	<if test = "personId != null and personId !=''">
+	AND
+		person_id=#{personId}
+	</if>
 </update>
 </mapper>

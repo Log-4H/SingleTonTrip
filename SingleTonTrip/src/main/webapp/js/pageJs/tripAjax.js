@@ -303,9 +303,9 @@ function tripAppend(tripList) {
 			html += "<span class='w3-right w3-opacity'>";
 			if(item.recruitStateCd == 1){
 			html += "<button type='button' class='btn btn-primary tripModifyModalBtn' value='"+item.tripNo+"'>수정</button>";
-			html += "<button type='button' class='btn btn-primary tripDeleteModalBtn' value='"+item.tripNo+"'>마감</button>";
+			html += "<button type='button' class='btn btn-primary tripEndModalBtn' value='"+item.tripNo+"'>마감</button>";
 			}else{
-				html += "<button type='button' class='btn btn-primary' value='"+item.tripNo+"'>삭제</button>";
+				html += "<button type='button' class='btn btn-primary tripDeleteModalBtn' value='"+item.tripNo+"'>삭제</button>";
 			}
 			html += "</span>";
 		}else if($("#sessionId").val()==""){
@@ -488,7 +488,7 @@ $(document).on('click', '.tripModifyModalBtn', function() {
 		}
 	})
 });
-//여행등록
+//여행수정처리
 $(document).on('click', '#tripModifyBtn', function() {
 	$.ajax({
 		url : "tripModify",
@@ -504,3 +504,55 @@ $(document).on('click', '#tripModifyBtn', function() {
 		}
 	})
 });
+
+//여행마감 modal
+$(document).on('click', '.tripEndModalBtn', function() {
+	var tripNo = $(this).attr('value');
+	$("#tripEndNo").val(tripNo);
+	$("#tripEndModal").modal('show');
+});
+//여행마감 처리
+$(document).on('click', '#tripEndBtn', function() {
+	var tripNo = $("#tripEndNo").val();
+	var lastTripRow = $('.lastTripRow').attr('value');
+	lastTripRow = Number(lastTripRow);
+	$.ajax({
+		url : "tripEnd",
+		type : "POST",
+		data : {tripNo : tripNo , lastTripRow : lastTripRow},
+		dataType : "json",
+		success : function(data) {
+			var html = "";
+			var tripList = data.tripList;
+			html = tripAppend(tripList);
+			$("#tripList").empty();
+			$("#tripList").append(html);
+		}
+	})
+});
+//여행삭제 modal
+$(document).on('click', '.tripDeleteModalBtn', function() {
+	var tripNo = $(this).attr('value');
+	$("#tripDeleteNo").val(tripNo);
+	$("#tripDeleteModal").modal('show');
+});
+//여행삭제 처리
+$(document).on('click', '#tripDeleteBtn', function() {
+	var tripNo = $("#tripDeleteNo").val();
+	var lastTripRow = $('.lastTripRow').attr('value');
+	lastTripRow = Number(lastTripRow);
+	$.ajax({
+		url : "tripDelete",
+		type : "POST",
+		data : {tripNo : tripNo , lastTripRow : lastTripRow},
+		dataType : "json",
+		success : function(data) {
+			var html = "";
+			var tripList = data.tripList;
+			html = tripAppend(tripList);
+			$("#tripList").empty();
+			$("#tripList").append(html);
+		}
+	})
+});
+

@@ -81,8 +81,8 @@ public class TripDaoImpl implements TripDao{
 	}
 	//여행일정 삭제
 	@Override
-	public int planDelete(int planNo) {
-		return sqlSession.delete(TRIP_NS+"planDelete", planNo);
+	public int planDelete(Map<String, Object> map) {
+		return sqlSession.delete(TRIP_NS+"planDelete", map);
 	}
 	//그룹리스트 총카운트
 	@Override
@@ -123,5 +123,14 @@ public class TripDaoImpl implements TripDao{
 	@Override
 	public int tripUpdate(TripVo tripVo) {
 		return sqlSession.update(TRIP_NS+"tripUpdate", tripVo);
+	}
+	//여행삭제
+	@Override
+	public int tripDelete(int tripNo) {
+		return sqlSession.update(TRIP_NS+"tripDelete", tripNo);
+	}
+	@Override
+	public int groupDelete(Map<String, Object> map) {
+		return sqlSession.update(TRIP_NS+"groupDelete", map);
 	}
 }

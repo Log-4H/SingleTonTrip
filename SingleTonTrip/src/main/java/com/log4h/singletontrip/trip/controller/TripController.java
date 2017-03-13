@@ -123,13 +123,11 @@ public class TripController {
 	}
 	//그룹 리스트
 	@RequestMapping(value="groupList")
-	public ModelAndView groupList(@ModelAttribute("pageId") String pageId,
+	public ModelAndView groupList(@ModelAttribute("sessionId") String sessionId,
 			@RequestParam(value="groupMemberLevel") String groupMemberLevel,
 			@RequestParam(value="currentPage", defaultValue="1") int currentPage){
 		ModelAndView mv = new ModelAndView("jsonView");
-		System.out.println("----------------------");
-		System.out.println(groupMemberLevel);
-		Map<String,Object> map = tripService.groupList(pageId, groupMemberLevel, currentPage);
+		Map<String,Object> map = tripService.groupList(sessionId, groupMemberLevel, currentPage);
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("groupList", map.get("groupList"));
 		mv.addObject("startPage", map.get("startPage"));
@@ -187,8 +185,9 @@ public class TripController {
 		ModelAndView mv = new ModelAndView("jsonView");
 		int result = tripService.groupApprove(approveStateCd, tripNo, personId);
 		if(result>0){
-			List<GroupVo> groupMemberList = tripService.applyMemberList(tripNo, approveStateCd);
-			mv.addObject("groupMemberList", groupMemberList);
+			Map<String, Object> map = tripService.groupView(tripNo);
+			mv.addObject("trip", map.get("trip"));
+			mv.addObject("groupMemberList", map.get("groupMemberList"));
 		}
 		return mv;	
 	}
@@ -212,6 +211,32 @@ public class TripController {
 		ModelAndView mv = new ModelAndView("jsonView");
 		tripVo.setPersonId(sessionId);
 		int result = tripService.tripUpdate(tripVo);
+		if(result>0){
+			List<TripVo> tripList= tripService.tripList(pageId, lastTripRow);
+			mv.addObject("tripList", tripList);
+		}
+		return mv;	
+	}
+	//여행 마감
+	@RequestMapping(value="tripEnd", method=RequestMethod.POST)
+	public ModelAndView tripEnd(@RequestParam(value="tripNo") int tripNo,
+			@ModelAttribute("pageId") String pageId,
+			@RequestParam(value="lastTripRow", defaultValue="5") int lastTripRow){
+		ModelAndView mv = new ModelAndView("jsonView");
+		int result = tripService.tripEnd(tripNo);
+		if(result>0){
+			List<TripVo> tripList= tripService.tripList(pageId, lastTripRow);
+			mv.addObject("tripList", tripList);
+		}
+		return mv;	
+	}
+	//여행 삭제
+	@RequestMapping(value="tripDelete", method=RequestMethod.POST)
+	public ModelAndView tripDelete(@RequestParam(value="tripNo") int tripNo,
+			@ModelAttribute("pageId") String pageId,
+			@RequestParam(value="lastTripRow", defaultValue="5") int lastTripRow){
+		ModelAndView mv = new ModelAndView("jsonView");
+		int result = tripService.tripDelete(tripNo);
 		if(result>0){
 			List<TripVo> tripList= tripService.tripList(pageId, lastTripRow);
 			mv.addObject("tripList", tripList);

@@ -43,4 +43,8 @@ public interface TripService {
 	public Map<String, Object> tripModifyForm(String memberId, int tripNo);
 	//여행수정
 	public int tripUpdate(TripVo tripVo);
+	//여행마감
+	public int tripEnd(int tripNo);
+	//여행삭제
+	public int tripDelete(int tripNo);
 }

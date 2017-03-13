@@ -109,12 +109,15 @@ public class TripServiceImpl implements TripService{
 		planVo.setPlanLastPrice(planVo.getPlanPrice());
 		planVo.setPlanPrice(0);
 		int tripPriceUpdate = 0;
-		int planDeleteResult = tripDao.planDelete(planNo);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("planNo", planNo);
+		int planDeleteResult = tripDao.planDelete(map);
 		if(planDeleteResult>0){
 			tripPriceUpdate = tripDao.tripPriceUpdate(planVo);
 		}
 		return tripPriceUpdate;
 	}
+	
 	//그룹리스트
 	@Override
 	public Map<String, Object> groupList(String personId, String groupMemberLevel, int currentPage) {
@@ -191,7 +194,7 @@ public class TripServiceImpl implements TripService{
 					map.put("recruitStateCd", 2);
 					int tripRecruitUpdate = tripDao.tripRecruitUpdate(map);
 					if(tripRecruitUpdate>0){
-						groupVo.setApproveStateCd(3);
+						groupVo.setApproveStateCd(4);
 						groupVo.setPersonId("");
 						int applyDropResult = tripDao.groupApprove(groupVo);
 						return applyDropResult;
@@ -225,5 +228,32 @@ public class TripServiceImpl implements TripService{
 	public int tripUpdate(TripVo tripVo) {
 		tripVo.setTripContent(tripVo.getTripContent().replaceAll("\r\n", "<br>"));
 		return tripDao.tripUpdate(tripVo);
-	};
+	}
+	//여행마감
+	@Override
+	public int tripEnd(int tripNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("tripNo", tripNo);
+		map.put("recruitStateCd", 2);
+		int tripRecruitUpdate = tripDao.tripRecruitUpdate(map);
+		if(tripRecruitUpdate>0){
+			GroupVo groupVo = new GroupVo();
+			groupVo.setTripNo(tripNo);
+			groupVo.setApproveStateCd(4);
+			int applyDropResult = tripDao.groupApprove(groupVo);
+		}
+		return tripRecruitUpdate;
+	}
+	//여행삭제
+	@Override
+	public int tripDelete(int tripNo) {
+		int tripDelete = tripDao.tripDelete(tripNo);
+		if(tripDelete>0){
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("tripNo", tripNo);
+			int planDelete = tripDao.planDelete(map);
+			int applyDropResult = tripDao.groupDelete(map);
+		}
+		return tripDelete;
+	};	
 }
