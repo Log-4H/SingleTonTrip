@@ -29,6 +29,16 @@ body, html {height: 100%}
 			</button>
 			<a class="navbar-brand" href="index">SigletonTrip</a>
 		</div>
+			<form class="navbar-form navbar-left">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Search">
+				<div class="input-group-btn">
+					<button class="btn btn-default" type="submit">
+							<i class="glyphicon glyphicon-search"></i>
+					</button>
+				</div>
+				</div>
+			</form>
 		<c:if test="${sessionId eq null }">
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
@@ -47,7 +57,7 @@ body, html {height: 100%}
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-search"></span>검색</a>
 						<ul class="dropdown-menu">
-							<li><a href="companyList">숙소</a></li>
+							<li><a href="adminCompanyList">숙소</a></li>
 							<li><a href="personList">회원</a></li>
 						</ul>
 				</li>
@@ -112,7 +122,7 @@ body, html {height: 100%}
 				</li>
 				<li><a href="logout" ><span class="glyphicon glyphicon-log-in"></span> 로그아웃</a></li>
 				<li class="dropdown">
-					
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-briefcase"></span>${sessionNm}</a>
 						<ul class="dropdown-menu">
 							<li class="dropdown"><a href="pageMain?pageId=${sessionId}">페이지</a></li>
 							<li><a href="companyDetail?memberId=${sessionId}">업체정보</a></li>

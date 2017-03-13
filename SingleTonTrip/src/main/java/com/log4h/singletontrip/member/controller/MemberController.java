@@ -162,6 +162,27 @@ public class MemberController {
 		mv.addObject("lastPage", map.get("lastPage"));
 		return mv;	
 	}
+	
+	//관리자업체회원리스트
+	@RequestMapping(value="adminCompanyList", method=RequestMethod.GET)
+	public ModelAndView adminCompanyList(
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage,
+			@RequestParam(value="selectOption", required=false) String selectOption,
+			@RequestParam(value="selectValue", required=false) String selectValue
+			){
+		Map<String, Object> map = memberService.companyList(currentPage, selectOption, selectValue);
+		ModelAndView mv = new ModelAndView("member/list/adminCompanyList");
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("selectOption", selectOption);
+		mv.addObject("selectValue", selectValue);
+		mv.addObject("companyList", map.get("companyList"));
+		mv.addObject("startPage", map.get("startPage"));
+		mv.addObject("pageSize", map.get("pageSize"));
+		mv.addObject("endPage", map.get("endPage"));
+		mv.addObject("lastPage", map.get("lastPage"));
+		return mv;	
+	}
+	
 	//개인회원상세보기
 	@RequestMapping(value="personDetail", method=RequestMethod.GET)
 	public ModelAndView personDetail(@RequestParam(value="memberId") String memberId){

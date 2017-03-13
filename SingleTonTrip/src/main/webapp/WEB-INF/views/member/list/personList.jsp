@@ -10,6 +10,7 @@
 <body>
 <c:import url="/WEB-INF/views/module/top.jsp" />
 <div class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
+<h1 align="center">회원검색</h1><br>
 	<div class="w3-row-padding">
 		<div class="w3-col m12">
 			<div class="w3-card-2 w3-round w3-white">

@@ -10,29 +10,35 @@
 <body>
 <c:import url="/WEB-INF/views/module/top.jsp" />
 <div class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
-<h2>친구요청리스트</h2>
-	<div>
-		<table border='1'>
-			<thead>
-				<tr>
-					<td>ID</td>
-					<td>Name</td>
-					<td>State</td>
-					<td>수락&거절</td>		
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${friendAddList}" var="f">
-				<tr>
-					<td>${f.memberId}</td>
-					<td>${f.memberNm}</td>
-					<td>${f.approveStateNm}</td>
-					<td><a href="<c:url value='friendApprove?memberId=${f.memberId}&&approveStateCd=2'/> ">수락</a>/<a href="<c:url value='friendApprove?memberId=${f.memberId}&&approveStateCd=3'/> ">거절</a></td>	
-				</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
+<h2 align="center">친구요청리스트</h2><br>
+	<div class="w3-row-padding">
+		<div class="w3-col m12">
+			<div class="w3-card-2 w3-round w3-white">
+				<div class="w3-container w3-padding">
+					<table class="table">
+						<thead>
+							<tr>
+								<td>ID</td>
+								<td>Name</td>
+								<td>State</td>
+								<td>수락&거절</td>		
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${friendAddList}" var="f">
+							<tr>
+								<td>${f.memberId}</td>
+								<td>${f.memberNm}</td>
+								<td>${f.approveStateNm}</td>
+								<td><a href="<c:url value='friendApprove?memberId=${f.memberId}&&approveStateCd=2'/> ">수락</a>/<a href="<c:url value='friendApprove?memberId=${f.memberId}&&approveStateCd=3'/> ">거절</a></td>	
+							</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>	
 </div>
 <c:import url="/WEB-INF/views/module/footer.jsp"></c:import>
 </body>

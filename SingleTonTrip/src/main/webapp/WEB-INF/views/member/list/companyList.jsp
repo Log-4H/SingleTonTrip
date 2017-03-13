@@ -10,6 +10,7 @@
 <body>
 <c:import url="/WEB-INF/views/module/top.jsp" />
 <div class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
+<h1 align="center">숙박업체검색</h1><br>
 	<div class="w3-row-padding">
 		<div class="w3-col m12">
 			<div class="w3-card-2 w3-round w3-white">
@@ -36,19 +37,17 @@
 								<td>Phone</td>
 								<td>Type</td>
 								<td>Address</td>
-								<td>상세보기</td>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach items="${companyList}" var="c">
 								<tr>
-									<td><img src="<c:url value='/images/${c.memberImg}'/>" class="img-rounded" width="100" height="100"></td>
-									<td><a href="<c:url value='companyDetail?memberId=${c.memberId}'/> ">${c.memberId}</a></td>
+									<td><img src="<c:url value='/images/${f.memberImg}'/>" class="img-rounded" width="100" height="100"></td>
+									<td><a href="pageMain?pageId=${c.memberId}">${c.memberId}</a></td>
 									<td>${c.companyNm}</td>
 									<td>${c.memberPhone}</td>
 									<td>${c.companyTypeNm}</td>
 									<td>${c.companyAddress}</td>
-									<td><a href="pageMain?pageId=${c.memberId}">상세보기</a></tb>		
 								</tr>
 							</c:forEach>
 						</tbody>
