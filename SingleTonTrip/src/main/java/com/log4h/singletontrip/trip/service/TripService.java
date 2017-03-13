@@ -47,4 +47,6 @@ public interface TripService {
 	public int tripEnd(int tripNo);
 	//여행삭제
 	public int tripDelete(int tripNo);
+	//그룹가입취소
+	public int groupApplyCancel(int tripNo, String personId);
 }

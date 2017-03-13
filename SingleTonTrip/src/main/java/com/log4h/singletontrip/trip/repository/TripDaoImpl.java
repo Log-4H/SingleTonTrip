@@ -129,8 +129,14 @@ public class TripDaoImpl implements TripDao{
 	public int tripDelete(int tripNo) {
 		return sqlSession.update(TRIP_NS+"tripDelete", tripNo);
 	}
+	//그룹삭제
 	@Override
 	public int groupDelete(Map<String, Object> map) {
 		return sqlSession.update(TRIP_NS+"groupDelete", map);
+	}
+	//그룹가입취소
+	@Override
+	public int groupApplyCancel(Map<String, Object> map) {
+		return sqlSession.delete(TRIP_NS+"groupApplyCancel", map);
 	}
 }

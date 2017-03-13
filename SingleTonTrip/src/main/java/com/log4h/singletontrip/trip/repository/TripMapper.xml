@@ -424,4 +424,13 @@ INSERT INTO	tb_group(
 		person_id=#{personId}
 	</if>
 </update>
+<!-- 그룹 가입신청 취소-->
+<delete id="groupApplyCancel" parameterType="map">
+	DELETE FROM
+		tb_group
+	WHERE
+		trip_no = #{tripNo}
+	AND
+		person_id=#{personId}
+</delete>
 </mapper>

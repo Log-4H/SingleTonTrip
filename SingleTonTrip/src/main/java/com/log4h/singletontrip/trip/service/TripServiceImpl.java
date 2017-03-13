@@ -255,5 +255,13 @@ public class TripServiceImpl implements TripService{
 			int applyDropResult = tripDao.groupDelete(map);
 		}
 		return tripDelete;
+	}
+	//그룹가입취소
+	@Override
+	public int groupApplyCancel(int tripNo, String personId) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("tripNo", tripNo);
+		map.put("personId", personId);
+		return tripDao.groupApplyCancel(map);
 	};	
 }

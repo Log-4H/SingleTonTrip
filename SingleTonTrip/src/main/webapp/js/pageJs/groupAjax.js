@@ -46,17 +46,14 @@ function groupListAppend(groupList) {
 		html += "<div class='w3-container w3-card-2 w3-white w3-round w3-margin'><br>";
 		html += "<span class='w3-right w3-opacity'>"+ item.groupApplyDate + "</span><br>";
 		html += "<span class='w3-right w3-opacity'>";
-		if($("#pageId").val() == $("#sessionId").val()){
-			if (item.approveStateCd == 1) {
-				html += "<button type='button' class='btn btn-info'>취소</button></span>";
-			} else if (item.approveStateCd == 2) {
-				html += "<button type='button' class='btn btn-info'>탈퇴</button></span>";
-			}else{
-				html += "</span>";
-			}
+		if (item.approveStateCd == 1) {
+			html += "<button type='button' class='btn btn-info applyCancelBtn' value='"+item.tripNo+"'>취소</button></span>";
+		} else if (item.approveStateCd == 2) {
+			html += "<button type='button' class='btn btn-info groupDropBtn' value='"+item.tripNo+"'>탈퇴</button></span>";
 		}else{
 			html += "</span>";
 		}
+
 		if (item.approveStateCd == 1) {
 			html += "<span class='label label-warning'>";
 		}else if (item.approveStateCd == 2) {
@@ -252,6 +249,30 @@ $(document).on('click', '.groupApproveBtn', function() {
 				$("#groupList").append(html);
 				html = groupMemberListAppend(tripNo, groupMemberList, 2);
 				$("#groupMemberList").html(html);
+			}
+	});
+});
+
+//가입취소
+$(document).on('click', '.applyCancelBtn', function() {
+	var tripNo = $(this).attr('value');
+	var currentPage = $("#currentPage").val();
+	var groupMemberLevel = "member";
+	$.ajax({
+			url : "applyCancel",
+			type : "POST",
+			data : {
+				tripNo : tripNo, currentPage : currentPage, groupMemberLevel : groupMemberLevel
+			},
+			dataType : "json",
+			success : function(data) {
+				$("#currentPage").val(currentPage);
+				var html = "";
+				var groupList = data.groupList;
+				html = groupListAppend(groupList);
+				$("#groupList").empty();
+				$("#groupList").append(html);
+				$("#groupPaging").html(groupPaging(data.startPage, data.pageSize, data.endPage, data.lastPage));
 			}
 	});
 });

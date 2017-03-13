@@ -56,4 +56,6 @@ public interface TripDao {
 	public int tripDelete(int tripNo);
 	//그룹삭제
 	public int groupDelete(Map<String, Object> map);
+	//그룹가입취소
+	public int groupApplyCancel(Map<String, Object> map);
 }	
