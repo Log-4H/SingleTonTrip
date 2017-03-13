@@ -69,14 +69,8 @@ public class ReserveController {
 			){
 		ModelAndView mv = new ModelAndView();
 		
-		LoginVo login = new LoginVo();
-		login.setMemberId(sessionId);
-		login.setMemberLevel(sessionLevel);
-		logger.debug("login에 담긴 값 : {} ", login);
-		
-		Map<String, Object> getMap = reserveService.getPayList(currentPage, login, selectOption, selectValue);
+		Map<String, Object> getMap = reserveService.getPayList(currentPage, sessionId, sessionLevel, selectOption, selectValue);
 		mv.addObject("paymentCateList", getMap.get("paymentCateList"));
-		mv.addObject("map", getMap);
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("selectOption", selectOption);
 		mv.addObject("selectValue", selectValue);
@@ -84,7 +78,8 @@ public class ReserveController {
 		mv.addObject("pageSize", getMap.get("pageSize"));
 		mv.addObject("endPage", getMap.get("endPage"));
 		mv.addObject("lastPage", getMap.get("lastPage"));
-		mv.addObject("payList", getMap.get("payList"));
+		mv.addObject("adPayList", getMap.get("adPayList"));
+		mv.addObject("reservePayList", getMap.get("reservePayList"));
 		
 		mv.setViewName("/payment/payList");
 		

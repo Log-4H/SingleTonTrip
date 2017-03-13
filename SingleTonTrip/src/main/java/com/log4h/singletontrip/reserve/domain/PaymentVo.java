@@ -25,8 +25,24 @@ public class PaymentVo {
 	private PaymentStateVo paymentState;
 	private PaymentCateVo paymentCate;
 	private LoginVo login;
+	
+	private String roomNm;
+	private String companyNm;
 
 	
+	
+	public String getRoomNm() {
+		return roomNm;
+	}
+	public void setRoomNm(String roomNm) {
+		this.roomNm = roomNm;
+	}
+	public String getCompanyNm() {
+		return companyNm;
+	}
+	public void setCompanyNm(String companyNm) {
+		this.companyNm = companyNm;
+	}
 	public ReserveVo getReserve() {
 		return reserve;
 	}
@@ -145,7 +161,8 @@ public class PaymentVo {
 				+ ", paymentTotalPrice=" + paymentTotalPrice + ", paymentApplyDate=" + paymentApplyDate
 				+ ", paymentFinishDate=" + paymentFinishDate + ", paymentApproveDate=" + paymentApproveDate
 				+ ", paymentStateNm=" + paymentStateNm + ", reserve=" + reserve + ", ad=" + ad + ", paymentState="
-				+ paymentState + ", paymentCate=" + paymentCate + ", login=" + login + "]";
+				+ paymentState + ", paymentCate=" + paymentCate + ", login=" + login + ", roomNm=" + roomNm
+				+ ", companyNm=" + companyNm + "]";
 	}
 	
 }

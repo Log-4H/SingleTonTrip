@@ -8,6 +8,6 @@ public interface ReserveService {
 
 	Map<String, Object> getReserveList(int currentPage, LoginVo login, int selectOption, String selectValue);
 
-	Map<String, Object> getPayList(int currentPage, LoginVo login, int selectOption, String selectValue);
-//주석
+	Map<String, Object> getPayList(int currentPage, String sessionId, int sessionLevel, int selectOption,
+			String selectValue);
 }

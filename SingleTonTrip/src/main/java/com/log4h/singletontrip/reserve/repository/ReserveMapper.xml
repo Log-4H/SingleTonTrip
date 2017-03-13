@@ -112,78 +112,62 @@
 			tb_payment_cate
 	</select>
 	
-	<!-- payList의 카운트를 가져옴 -->
-	<select id="getPayTotalCount" parameterType="Map" resultType="int">
+	<!-- 업체 광고 결제 내역 count -->
+	<select id="adPayCount" parameterType="Map" resultType="int">
 		SELECT 
 			COUNT(*)
 		FROM tb_payment pm
 		JOIN tb_payment_cate pmc
 		JOIN tb_payment_state pms
-		
+		JOIN tb_ad ad
+						
 		ON pm.payment_cate_cd = pmc.payment_cate_cd
 		AND pm.payment_state_cd = pms.payment_state_cd
+		AND pm.payment_target_no = ad.ad_no
 		<where>
 			<choose>
 				<when test="login.memberLevel != 1 ">
 					pm.member_id = #{login.memberId}
-				
-					<if test="selectOption != 0">
-						AND 
-							pmc.payment_cate_cd = #{selectOption}
-					</if>
 				</when>
 				<otherwise>
-					<if test="selectOption != 0">
-							pmc.payment_cate_cd = #{selectOption}
-					</if>
 					<if test ="selectValue != null and selectValue !='' ">
-						AND
-							pm.member_id LIKE '%${selectValue}%'		
+					pm.member_id LIKE '%${selectValue}%'		
 					</if>
 				</otherwise>
 			</choose>
 		</where>
-		
-		
 	</select>
 	
-	<!-- payList의 가져옴 -->
-	<select id="getPayList" parameterType="Map" resultType="com.log4h.singletontrip.reserve.domain.PaymentVo">
-		SELECT 
+	<!-- 업체 광고 결제 내역 -->
+	<select id="adPayList" parameterType="Map" resultType="com.log4h.singletontrip.reserve.domain.PaymentVo">
+			SELECT 
 			pm.payment_no ,
 			pm.admin_id , 
 			pm.member_id ,
-		 	pm.payment_target_no, 
-			pm.payment_use_mileage, 
 			pm.payment_price, 
-			pm.payment_total_price, 
 			DATE_FORMAT(pm.payment_apply_date,"%Y-%m-%d ") 'paymentApplyDate', 
 			DATE_FORMAT(pm.payment_finish_date, "%Y-%m-%d ") 'paymentFinishDate', 
 			DATE_FORMAT(pm.payment_approve_date,"%Y-%m-%d ") 'paymentApproveDate', 
 			
 			pmc.payment_cate_nm 'paymentCate.paymentCateNm',
 			
-			pms.payment_state_nm
+			pms.payment_state_nm,
+			
+			ad.ad_content 'ad.adContent'
 		FROM tb_payment pm
 		JOIN tb_payment_cate pmc
 		JOIN tb_payment_state pms
-				
+		JOIN tb_ad ad
+						
 		ON pm.payment_cate_cd = pmc.payment_cate_cd
 		AND pm.payment_state_cd = pms.payment_state_cd
+		AND pm.payment_target_no = ad.ad_no
 		<where>
 			<choose>
 				<when test="login.memberLevel != 1 ">
 					pm.member_id = #{login.memberId}
-				
-					<if test="selectOption != 0">
-						AND 
-							pmc.payment_cate_cd = #{selectOption}
-					</if>
 				</when>
 				<otherwise>
-					<if test="selectOption != 0">
-							pmc.payment_cate_cd = #{selectOption}
-					</if>
 					<if test ="selectValue != null and selectValue !='' ">
 						AND
 							pm.member_id LIKE '%${selectValue}%'		
@@ -195,4 +179,82 @@
 		
 	</select>
 	
+	<!-- 일반회원 결제 내역 count -->
+	<select id="reservePayCount" parameterType="Map" resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM tb_payment pm
+		JOIN tb_payment_cate pmc
+		JOIN tb_payment_state pms
+		JOIN tb_reserve rv
+		JOIN tb_room rm
+		JOIN tb_member m
+				
+		ON pm.payment_cate_cd = pmc.payment_cate_cd
+		AND pm.payment_state_cd = pms.payment_state_cd
+		AND rv.reserve_no = pm.payment_target_no
+		AND rv.room_no = rm.room_no
+		AND rm.company_id = m.member_id
+		<where>
+			<choose>
+				<when test="login.memberLevel != 1 ">
+					pm.member_id = #{login.memberId}
+				</when>
+				<otherwise>
+					<if test ="selectValue != null and selectValue !='' ">
+						pm.member_id LIKE '%${selectValue}%'		
+					</if>
+				</otherwise>
+			</choose>
+		</where>
+	</select>
+	
+	<!-- 일반회원 결제 내역 -->
+	<select id="reservePayList" parameterType="Map" resultType="com.log4h.singletontrip.reserve.domain.PaymentVo">
+		SELECT 
+			pm.payment_no ,
+			pm.admin_id , 
+			pm.member_id ,
+			pm.payment_use_mileage,  
+			pm.payment_price, 
+			pm.payment_total_price, 
+			DATE_FORMAT(pm.payment_apply_date,"%Y-%m-%d ") 'paymentApplyDate', 
+			DATE_FORMAT(pm.payment_finish_date, "%Y-%m-%d ") 'paymentFinishDate', 
+			DATE_FORMAT(pm.payment_approve_date,"%Y-%m-%d ") 'paymentApproveDate', 
+			
+			pmc.payment_cate_nm 'paymentCate.paymentCateNm',
+			
+			pms.payment_state_nm,
+			
+			rm.room_nm,
+			
+			m.member_nm 'companyNm' 
+		FROM tb_payment pm
+		JOIN tb_payment_cate pmc
+		JOIN tb_payment_state pms
+		JOIN tb_reserve rv
+		JOIN tb_room rm
+		JOIN tb_member m
+				
+		ON pm.payment_cate_cd = pmc.payment_cate_cd
+		AND pm.payment_state_cd = pms.payment_state_cd
+		AND rv.reserve_no = pm.payment_target_no
+		AND rv.room_no = rm.room_no
+		AND rm.company_id = m.member_id
+		<where>
+			<choose>
+				<when test="login.memberLevel != 1 ">
+					pm.member_id = #{login.memberId}
+				</when>
+				<otherwise>
+					<if test ="selectValue != null and selectValue !='' ">
+						pm.member_id LIKE '%${selectValue}%'		
+					</if>
+				</otherwise>
+			</choose>
+		</where>
+		ORDER BY 	pm.payment_no DESC
+		
+	</select>
+
 </mapper>
