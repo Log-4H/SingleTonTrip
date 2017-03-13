@@ -67,7 +67,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
   <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
     <h2>프로젝트 소개</h2>
     <hr style="width:200px" class="w3-opacity">
-    <p>"sigleton" 야구에서, 주어진 회에 한 번의 기회로 득점이 되는 것. "trip" 여행.<br>
+    <p>"sigleton" 야구에서, 주어진 회에 한 번의 기회로 득점이 되는 것. + "trip" 여행.<br>
 주어진 여행의 기회를 한번에 성공하기 위해 도와주고자 이프로젝트를 시작하게 되었습니다.
     </p>
 
@@ -79,16 +79,16 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
           <li class="w3-dark-grey w3-xlarge w3-padding-32">OS</li>
           <li class="w3-padding-16">window 7</li>
           <li class="w3-dark-grey w3-xlarge w3-padding-32">WAS</li>
-          <li class="w3-padding-16">Apache tomcat</li>
+          <li class="w3-padding-16">Apache tomcat 8.0</li>
           <li class="w3-dark-grey w3-xlarge w3-padding-32">언어</li>
-          <li class="w3-padding-16">java</li>
+          <li class="w3-padding-16">java 1.8</li>
           <li class="w3-padding-16">java script / jquery / ajax</li>
           <li class="w3-padding-16">jsp</li>
           <li class="w3-padding-16">html</li>
           <li class="w3-dark-grey w3-xlarge w3-padding-32">프레임워크</li>
-          <li class="w3-padding-16">spring framwork</li>
+          <li class="w3-padding-16">spring framwork 4.3.5</li>
           <li class="w3-padding-16">maven</li>
-          <li class="w3-padding-16">mybatis</li>
+          <li class="w3-padding-16">mybatis 3.4.1</li>
           <li class="w3-padding-16">bootstrap</li>
         </ul>
       </div>
@@ -98,7 +98,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
           <li class="w3-dark-grey w3-xlarge w3-padding-32">웹브라우저</li>
           <li class="w3-padding-16">Chrome</li>
           <li class="w3-dark-grey w3-xlarge w3-padding-32">DBMS</li>
-          <li class="w3-padding-16">MySQL</li>
+          <li class="w3-padding-16">MySQL 5.1.40</li>
           <li class="w3-dark-grey w3-xlarge w3-padding-32">개발툴</li>
           <li class="w3-padding-16">spring tool suite</li>
           <li class="w3-padding-16">mysql workbench</li>
