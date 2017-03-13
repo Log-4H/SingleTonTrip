@@ -61,6 +61,7 @@ public class TripServiceImpl implements TripService{
 	@Override
 	public int tripAdd(TripVo tripVo) {
 		int groupAddResult = 0;
+		tripVo.setTripContent(tripVo.getTripContent().replaceAll("\r\n", "<br>"));
 		int tripAddResult = tripDao.tripInsert(tripVo);
 		if(tripAddResult>0){
 			groupAddResult = tripDao.groupInsert(tripVo);
@@ -202,4 +203,27 @@ public class TripServiceImpl implements TripService{
 		}
 		return 0;
 	}
+	//여행수정폼 요청
+	public Map<String, Object> tripModifyForm(String memberId, int tripNo){
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("memberId", memberId);
+		map.put("tripNo", tripNo);
+		TripVo trip = tripDao.tripView(map);
+		trip.setTripContent(trip.getTripContent().replaceAll("<br>", "\r\n"));
+		List<TripThemeVo> tripThemeList = tripDao.tripThemeList();
+		List<RegionVo> regionDoList = tripDao.regionDoList();
+		String regionDo = trip.getRegionDo();
+		List<RegionVo> regionSiList = tripDao.regionSiList(regionDo);
+		map.put("trip", trip);
+		map.put("tripThemeList", tripThemeList);
+		map.put("regionDoList", regionDoList);
+		map.put("regionSiList", regionSiList);
+		return map;
+	}
+	//여행수정
+	@Override
+	public int tripUpdate(TripVo tripVo) {
+		tripVo.setTripContent(tripVo.getTripContent().replaceAll("\r\n", "<br>"));
+		return tripDao.tripUpdate(tripVo);
+	};
 }

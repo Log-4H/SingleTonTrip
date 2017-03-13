@@ -25,7 +25,7 @@ public class PostController {
 	//페이지메인
 	@RequestMapping(value="pageMain", method=RequestMethod.GET)
 	public ModelAndView postMain(@RequestParam(value="pageId") String pageId,
-			@RequestParam(value="lastPostRow", defaultValue="5") int lastPostRow){
+			@RequestParam(value="lastPostRow", defaultValue="10") int lastPostRow){
 		ModelAndView mv = new ModelAndView("page/pageMain");
 		String pageLevel = postService.pageLevel(pageId);
 		List<PostVo> postList= postService.postList(pageId, lastPostRow);
@@ -37,7 +37,7 @@ public class PostController {
 	//포스트 리스트 추가
 	@RequestMapping(value="postList", method=RequestMethod.POST)
 	public ModelAndView postList(@ModelAttribute(value="pageId") String pageId,
-			@RequestParam(value="lastPostRow", defaultValue="5") int lastPostRow){
+			@RequestParam(value="lastPostRow", defaultValue="10") int lastPostRow){
 		ModelAndView mv = new ModelAndView("jsonView");
 		List<PostVo> postList= postService.postList(pageId, lastPostRow);
 		mv.addObject("postList", postList);
@@ -49,7 +49,7 @@ public class PostController {
 	public ModelAndView postAdd(MultipartHttpServletRequest multi,
 			@ModelAttribute("sessionId") String sessionId,
 			@ModelAttribute("pageId") String pageId,
-			@RequestParam(value="lastPostRow", defaultValue="5") int lastPostRow){
+			@RequestParam(value="lastPostRow", defaultValue="10") int lastPostRow){
 		ModelAndView mv = new ModelAndView("jsonView");
 		PostVo postVo = new PostVo();
 		String postTitle = multi.getParameter("postTitle");
@@ -69,7 +69,7 @@ public class PostController {
 	@RequestMapping(value="postModify", method=RequestMethod.POST)
 	public ModelAndView postModify(MultipartHttpServletRequest multi,
 			@ModelAttribute("pageId") String pageId,
-			@RequestParam(value="lastPostRow", defaultValue="5") int lastPostRow){
+			@RequestParam(value="lastPostRow", defaultValue="10") int lastPostRow){
 		ModelAndView mv = new ModelAndView("jsonView");
 		int postNo = Integer.parseInt(multi.getParameter("postModifyNo"));
 		String postTitle = multi.getParameter("postModifyTitle");
@@ -85,7 +85,7 @@ public class PostController {
 	//포스트 삭제
 	@RequestMapping(value="postDelete", method=RequestMethod.POST)
 	public ModelAndView postDelete(@ModelAttribute("pageId") String pageId,
-			@RequestParam(value="lastPostRow", defaultValue="5") int lastPostRow,
+			@RequestParam(value="lastPostRow", defaultValue="10") int lastPostRow,
 			@RequestParam(value="postNo") int postNo){
 		ModelAndView mv = new ModelAndView("jsonView");
 		int result = postService.postDelete(postNo);
@@ -100,7 +100,7 @@ public class PostController {
 	@RequestMapping(value="postCommentList", method=RequestMethod.POST)
 	public ModelAndView postCommentList(@ModelAttribute("pageId") String pageId,
 			@RequestParam(value="postNo") int postNo,
-			@RequestParam(value="lastCommentRow", defaultValue="5") int lastCommentRow){
+			@RequestParam(value="lastCommentRow", defaultValue="10") int lastCommentRow){
 		ModelAndView mv = new ModelAndView("jsonView");
 		List<PostCommentVo> postCommentList= postService.postCommentList(postNo, pageId, lastCommentRow);
 		mv.addObject("postCommentList", postCommentList);
@@ -113,7 +113,7 @@ public class PostController {
 			@ModelAttribute("pageId") String pageId,
 			@RequestParam(value="postNo") int postNo,
 			@RequestParam(value="postCommentContent") String postCommentContent,
-			@RequestParam(value="lastCommentRow", defaultValue="5") int lastCommentRow){
+			@RequestParam(value="lastCommentRow", defaultValue="10") int lastCommentRow){
 		ModelAndView mv = new ModelAndView("jsonView");
 		int result = postService.postCommentAdd(postNo, sessionId, postCommentContent);
 		if(result>0){
@@ -127,7 +127,7 @@ public class PostController {
 	public ModelAndView postCommentDelete(@ModelAttribute("pageId") String pageId,
 			@RequestParam(value="postNo") int postNo,
 			@RequestParam(value="postCommentNo") int postCommentNo,
-			@RequestParam(value="lastCommentRow", defaultValue="5") int lastCommentRow){
+			@RequestParam(value="lastCommentRow", defaultValue="10") int lastCommentRow){
 		ModelAndView mv = new ModelAndView("jsonView");
 		int result = postService.postcommentDelete(postCommentNo);
 		if(result>0){

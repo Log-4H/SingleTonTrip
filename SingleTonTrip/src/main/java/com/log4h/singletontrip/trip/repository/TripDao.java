@@ -50,4 +50,6 @@ public interface TripDao {
 	public int groupApprove(GroupVo groupVo);
 	//그룹참가 -> 여행상태변경
 	public int tripRecruitUpdate(Map<String, Object> map);
+	//여행수정
+	public int tripUpdate(TripVo tripVo);
 }	

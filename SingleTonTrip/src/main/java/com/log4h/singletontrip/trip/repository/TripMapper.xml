@@ -376,4 +376,22 @@ INSERT INTO	tb_group(
 	WHERE
 		trip_no = #{tripNo}
 </update>
+<!-- 여행 수정 -->
+<update id="tripUpdate" parameterType="com.log4h.singletontrip.trip.domain.TripVo">
+	UPDATE 
+		tb_trip
+	SET
+		trip_theme_cd = #{tripThemeCd},
+		region_cd = #{regionCd},
+		trip_title = #{tripTitle},
+		trip_content = #{tripContent},
+		trip_max_member= #{tripMaxMember},
+		trip_tag = #{tripTag},
+		trip_start_date = #{tripStartDate},
+		trip_end_date = #{tripEndDate},
+		trip_recruit_end_date = #{tripRecruitEndDate},
+		recruit_state_cd = CASE WHEN trip_present_member >= ${tripMaxMember} THEN 2 ELSE 1 END
+	WHERE
+		trip_no = #{tripNo}
+</update>
 </mapper>

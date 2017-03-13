@@ -79,6 +79,8 @@
 									+ "</p>";
 							html += "<p id='profileNm'>" + company.memberNm
 									+ "</p>";
+							html += "<p id='profileComNm'>" + company.companyNm
+							+ "</p>";
 							html += "<p id='profileType'>"
 									+ company.companyTypeNm + "</p>";
 							html += "<p id='profilePhone'>"

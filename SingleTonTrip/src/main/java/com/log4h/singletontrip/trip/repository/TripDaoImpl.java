@@ -119,4 +119,9 @@ public class TripDaoImpl implements TripDao{
 	public int tripRecruitUpdate(Map<String, Object> map) {
 		return sqlSession.update(TRIP_NS+"tripRecruitUpdate", map);
 	}
+	//여행수정
+	@Override
+	public int tripUpdate(TripVo tripVo) {
+		return sqlSession.update(TRIP_NS+"tripUpdate", tripVo);
+	}
 }

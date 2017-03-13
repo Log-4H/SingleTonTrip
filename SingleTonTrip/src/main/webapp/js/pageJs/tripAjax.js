@@ -11,6 +11,11 @@ function googleMap(no, planSite, planContent) {
 	for (var i = 0; i < planSite.length; i++) {
 		addMarker(map, planSite[i], planContent[i]);
 	};
+	google.maps.event.addDomListener(window, "resize", function() {
+	   var center = map.getCenter();
+	   google.maps.event.trigger(map, "resize");
+	   map.setCenter(center); 
+	});
 }
 //구글맵 마커등록
 function addMarker(map, planSite, planContent){
@@ -120,10 +125,10 @@ function regionSiListShow(value){
 		data : {regionDo : value},
 		dataType : "json",
 		success : function(data) {
-			$("#regionSiList").empty();
+			$(".regionSiList").empty();
 			var regionSiList = data.regionSiList;
 			$.each(regionSiList,function(key, item) {
-				$("#regionSiList").append("<option value='"+item.regionCd+"'>"+item.regionSi+"</option>");
+				$(".regionSiList").append("<option value='"+item.regionCd+"'>"+item.regionSi+"</option>");
 			});
 		}
 	})
@@ -296,8 +301,12 @@ function tripAppend(tripList) {
 				+ item.tripRegDate + "</span><br>";
 		if($("#pageId").val() == $("#sessionId").val()){
 			html += "<span class='w3-right w3-opacity'>";
-			html += "<button type='button' class='btn btn-primary'>수정</button>";
-			html += "<button type='button' class='btn btn-primary'>마감</button>";
+			if(item.recruitStateCd == 1){
+			html += "<button type='button' class='btn btn-primary tripModifyModalBtn' value='"+item.tripNo+"'>수정</button>";
+			html += "<button type='button' class='btn btn-primary tripDeleteModalBtn' value='"+item.tripNo+"'>마감</button>";
+			}else{
+				html += "<button type='button' class='btn btn-primary' value='"+item.tripNo+"'>삭제</button>";
+			}
 			html += "</span>";
 		}else if($("#sessionId").val()==""){
 			html += "<span class='w3-right w3-opacity'>";
@@ -373,7 +382,7 @@ function tripDetailAppend(trip, planList) {
 			html += "<p>예상비용: " + item.planPrice + "</p>";
 			html += "<hr class='w3-clear'>";
 		});
-		html += "<div id='google_map"+trip.tripNo+"' style='width:350px;height:350px;'></div>";
+		html += "<div class='googleMap' id='google_map"+trip.tripNo+"' style='max-width:350px; height:350px;'></div>";
 	}
 	return html;
 }
@@ -418,6 +427,73 @@ $(document).on('click', '#tripJoinBtn', function() {
 		url : "tripJoin",
 		type : "POST",
 		data : {tripNo:tripNo, lastTripRow:lastTripRow},
+		dataType : "json",
+		success : function(data) {
+			var html = "";
+			var tripList = data.tripList;
+			html = tripAppend(tripList);
+			$("#tripList").empty();
+			$("#tripList").append(html);
+		}
+	})
+});
+//여행수정
+$(document).on('click', '.tripModifyModalBtn', function() {
+	var tripNo = $(this).attr('value');
+	$("#tripModifyForm")[0].reset();
+	$(".regionSiList").empty();
+	$.ajax({
+		url : "tripModifyForm",
+		type : "GET",
+		data : {
+			tripNo : tripNo
+		},
+		dataType : "json",
+		success : function(data) {
+			console.log(data);
+			var trip = data.trip;
+			var tripThemeList = data.tripThemeList;
+			var regionDoList = data.regionDoList;
+			var regionSiList = data.regionSiList;
+			$.each(tripThemeList,function(key, tripTheme) {
+				if(tripTheme.tripThemeCd == trip.tripThemeCd){
+					$("#tripModifyThemeList").append("<option value='"+tripTheme.tripThemeCd+"' selected>"+tripTheme.tripThemeNm+"</option>");
+				}else{
+					$("#tripModifyThemeList").append("<option value='"+tripTheme.tripThemeCd+"'>"+tripTheme.tripThemeNm+"</option>");
+				}
+			});
+			$.each(regionDoList,function(key, regionDo) {
+				if(trip.regionDo == regionDo.regionDo){
+					$("#regionModifyDoList").append("<option value='"+regionDo.regionDo+"' selected>"+regionDo.regionDo+"</option>");
+				}else{
+					$("#regionModifyDoList").append("<option value='"+regionDo.regionDo+"'>"+regionDo.regionDo+"</option>");
+				}
+			});
+			$.each(regionSiList,function(key, regionSi) {
+				if(trip.regionCd == regionSi.regionCd){
+					$(".regionSiList").append("<option value='"+regionSi.regionCd+"' selected>"+regionSi.regionSi+"</option>");
+				}else{
+					$(".regionSiList").append("<option value='"+regionSi.regionCd+"'>"+regionSi.regionSi+"</option>");
+				}
+			});
+			$("#tripModifyNo").val(trip.tripNo);
+			$("#tripModifyTitle").val(trip.tripTitle);
+			$("#tripModifyContent").val(trip.tripContent);
+			$("#tripModifyMaxMember").val(trip.tripMaxMember);
+			$("#tripModifyTag").val(trip.tripTag);
+			$("#tripModifyStartDate").val(trip.tripStartDate);
+			$("#tripModifyEndDate").val(trip.tripEndDate);
+			$("#tripModifyRecruitEndDate").val(trip.tripRecruitEndDate);
+			$("#tripModifyModal").modal('show');
+		}
+	})
+});
+//여행등록
+$(document).on('click', '#tripModifyBtn', function() {
+	$.ajax({
+		url : "tripModify",
+		type : "POST",
+		data : $("#tripModifyForm").serialize(),
 		dataType : "json",
 		success : function(data) {
 			var html = "";

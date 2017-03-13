@@ -35,7 +35,7 @@
 							<select class="form-control" id="regionDoList" onChange="regionSiListShow(this.value)">
 								<option value="0">지역 선택</option>
 							</select> <br> 
-							<select size="2" id="regionSiList" name="regionCd" class="form-control">
+							<select size="2" id="regionSiList" name="regionCd" class="form-control regionSiList">
 							</select>
 						</div>
 					</div>

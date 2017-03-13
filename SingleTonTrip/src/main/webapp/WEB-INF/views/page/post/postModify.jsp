@@ -6,7 +6,7 @@
 		<div class="modal-content">
 		<form enctype="multipart/form-data" id="postModifyForm">
 		<input type="hidden" name="postModifyNo" id="postModifyNo" value="">
-		<input type="hidden" class="lastPostRow" name="lastPostRow" value="5">
+		<input type="hidden" class="lastPostRow" name="lastPostRow" value="10">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">×</span><span class="sr-only">Close</span>

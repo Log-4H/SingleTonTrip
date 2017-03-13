@@ -3,13 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="<c:url value='/js/pageJs/tripAjax.js'/>"></script>
 <c:import url="./trip/tripAdd.jsp"></c:import>
+<c:import url="./trip/tripModify.jsp"></c:import>
 <c:import url="./trip/planAdd.jsp"></c:import>
 <c:import url="./trip/planModify.jsp"></c:import>
 <c:import url="./trip/planDelete.jsp"></c:import>
 <c:import url="./trip/tripJoin.jsp"></c:import>
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDI3-OfEdnYv_YcK0ZnIG-nGAk3WvnMAk4&&sensor=false"></script>
 <div class="tab-pane fade" id="trip">
-	<input type="hidden" class="lastTripRow" name="lastTripRow" value="10">
+	<input type="hidden" class="lastTripRow" name="lastTripRow" value="5">
 		<br>
 		<c:if test="${sessionId eq pageId}">
 			<button type="button" class="w3-btn w3-theme-d2 w3-margin-bottom" onclick="tripAddModalShow()">

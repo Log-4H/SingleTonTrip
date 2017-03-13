@@ -192,4 +192,30 @@ public class TripController {
 		}
 		return mv;	
 	}
+	//여행 수정폼 요청
+	@RequestMapping(value="tripModifyForm", method=RequestMethod.GET)
+	public ModelAndView tripModifyForm(@ModelAttribute("pageId") String pageId,
+			@RequestParam(value="tripNo") int tripNo){
+		ModelAndView mv = new ModelAndView("jsonView");
+		Map<String, Object> map = tripService.tripModifyForm(pageId, tripNo);
+		mv.addObject("trip", map.get("trip"));
+		mv.addObject("tripThemeList", map.get("tripThemeList"));
+		mv.addObject("regionDoList", map.get("regionDoList"));
+		mv.addObject("regionSiList", map.get("regionSiList"));
+		return mv;	
+	}
+	//여행 수정 처리
+	@RequestMapping(value="tripModify", method=RequestMethod.POST)
+	public ModelAndView tripModifyForm(@ModelAttribute("sessionId") String sessionId,
+			@ModelAttribute("pageId") String pageId,
+			@RequestParam(value="lastTripRow", defaultValue="5") int lastTripRow, TripVo tripVo){
+		ModelAndView mv = new ModelAndView("jsonView");
+		tripVo.setPersonId(sessionId);
+		int result = tripService.tripUpdate(tripVo);
+		if(result>0){
+			List<TripVo> tripList= tripService.tripList(pageId, lastTripRow);
+			mv.addObject("tripList", tripList);
+		}
+		return mv;	
+	}
 }

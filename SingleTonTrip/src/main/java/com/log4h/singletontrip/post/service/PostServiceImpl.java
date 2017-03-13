@@ -76,7 +76,9 @@ public class PostServiceImpl implements PostService{
 	//포스트 보기
 	@Override
 	public PostVo postView(int postNo) {
-		return postDao.postView(postNo);
+		PostVo postVo = postDao.postView(postNo);
+		postVo.setPostContent(postVo.getPostContent().replaceAll("<br>", "\r\n"));
+		return postVo;
 	}
 
 	//포스트 업데이트
