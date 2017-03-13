@@ -24,7 +24,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 <!-- Icon Bar (Sidenav - hidden on small screens) -->
 <nav class="w3-sidenav w3-center w3-small w3-hide-small">
   <!-- Avatar image in top left corner -->
-  <img src="/images/main.jpg" style="width:100%">
+  <img src="<c:url value='/images/main.jpg'/>" style="width:100%">
   <a class="w3-padding-large w3-black" href="#">
     <i class="fa fa-home w3-xxlarge"></i>
     <p>HOME</p>
@@ -60,7 +60,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     <h1 class="w3-jumbo"><span class="w3-hide-small"></span>SingletonTrip.</h1>
     <p>당신의 즐거운 여행을 위하여.</p>
     <p>2017-2-14~2017-3-29</p>
-    <img src="/images/main.jpg" alt="main" class="w3-image" width="992" height="1108">
+    <img src="<c:url value='/images/main.jpg'/>" alt="main" class="w3-image" width="992" height="1108">
   </header>
 
   <!-- About Section -->
@@ -157,7 +157,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     <hr style="width:200px" class="w3-opacity">
 
     <div class="w3-section">
-      <img src="/w3images/wedding.jpg" style="width:100%">
+      <img src="https://raw.githubusercontent.com/Log-4H/imgRepo/master/erd.png" style="width:100%">
     </div><br>
   </div>
 
