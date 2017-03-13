@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberMapper">
+
 <!-- 로그인 -->
 <select id="login" parameterType="map" resultType="com.log4h.singletontrip.member.domain.LoginVo">
 	SELECT 
@@ -28,7 +29,7 @@
 		member_phone,
 		member_email,
 		member_reg_date
-		<if test="personImg != null and personImg !=''">
+		<if test="memberImg != null and memberImg !=''">
 		,member_img
 		</if>
 		)
@@ -40,44 +41,8 @@
 		#{memberPhone},
 		#{memberEmail},
 		now()
-		<if test="personImg != null and personImg !=''">
-		,#{personImg}
-		</if>
-		)
-</insert>
-
-<select id="companyTypeList" resultType="com.log4h.singletontrip.member.domain.CompanyTypeVo">
-	SELECT
-		company_type_cd,
-		company_type_nm
-	FROM
-		tb_company_type
-</select>
-
-<!-- 업체회원가입 -->
-<insert id="companyMemberJoin" parameterType="com.log4h.singletontrip.member.domain.CompanyVo">
-	INSERT INTO tb_member(
-		member_id,
-		member_level,
-		member_pw,
-		member_nm,
-		member_phone,
-		member_email,
-		member_reg_date
-		<if test="companyImg != null and companyImg !=''">
-		,member_img
-		</if>
-		)
-	VALUE(
-		#{memberId},
-		#{memberLevel},
-		#{memberPw},
-		#{memberNm},
-		#{memberPhone},
-		#{memberEmail},
-		now()
-		<if test="companyImg != null and companyImg !=''">
-		,#{companyImg}
+		<if test="memberImg != null and memberImg !=''">
+		,#{memberImg}
 		</if>
 		)
 </insert>
@@ -93,6 +58,34 @@
 		#{memberId},
 		#{personBirth},
 		#{personGender}
+		)
+</insert>
+
+<!-- 업체회원가입 -->
+<insert id="companyMemberJoin" parameterType="com.log4h.singletontrip.member.domain.CompanyVo">
+	INSERT INTO tb_member(
+		member_id,
+		member_level,
+		member_pw,
+		member_nm,
+		member_phone,
+		member_email,
+		member_reg_date
+		<if test="memberImg != null and memberImg !=''">
+		,member_img
+		</if>
+		)
+	VALUE(
+		#{memberId},
+		#{memberLevel},
+		#{memberPw},
+		#{memberNm},
+		#{memberPhone},
+		#{memberEmail},
+		now()
+		<if test="memberImg != null and memberImg !=''">
+		,#{memberImg}
+		</if>
 		)
 </insert>
 
@@ -113,6 +106,15 @@
 		#{companyNm}
 		)
 </insert>
+
+<!-- 업체타입리스트 가져오기 -->
+<select id="companyTypeList" resultType="com.log4h.singletontrip.member.domain.CompanyTypeVo">
+	SELECT
+		company_type_cd,
+		company_type_nm
+	FROM
+		tb_company_type
+</select>
 
 <!-- 개인회원 총 카운트 -->
 <select id="personTotalCount" parameterType="Map" resultType="int">
@@ -138,6 +140,7 @@
 		m.member_nm,
 		m.member_phone,
 		m.member_email,
+		m.member_img,
 		p.person_birth,
 		p.person_gender,
 		a.act_state_nm,
@@ -313,8 +316,8 @@
 	<if test="newPw != null and newPw !=''">
 		,member_pw=#{newPw}
 	</if>
-	<if test="personImg != null and personImg !=''">
-		,member_img=#{personImg}
+	<if test="memberImg != null and memberImg !=''">
+		,member_img=#{memberImg}
 	</if>
 	WHERE
 		member_id=#{memberId}
@@ -336,8 +339,8 @@
 	<if test="newPw != null and newPw !=''">
 		,member_pw=#{newPw}
 	</if>
-	<if test="companyImg != null and companyImg !=''">
-		,member_img=#{companyImg}
+	<if test="memberImg != null and memberImg !=''">
+		,member_img=#{memberImg}
 	</if>
 	WHERE
 		member_id=#{memberId}
@@ -373,6 +376,7 @@
 	AND
 		member_email=#{memberEmail}
 </select>
+
 <!-- 임시비밀번호 업데이트 -->
 <update id="memberPwUpdate" parameterType="Map">
 	UPDATE
@@ -401,6 +405,7 @@
 		)
 	
 </insert>
+
 <!-- 친구요청리스트 -->
 <select id="friendAddList" parameterType="String" resultType="com.log4h.singletontrip.member.domain.MemberVo">
 	SELECT
@@ -422,6 +427,7 @@
 	AND
 		f.approve_state_cd='1'
 </select>
+
 <!-- 친구요청 수락&거절 -->
 <update id="friendApprove" parameterType="Map">
 	UPDATE
@@ -435,6 +441,7 @@
 		friend_id=#{sessionId}
  		
 </update>
+
 <!-- 친구요청 수락하면 친구 요청한 쪽에 리스트 추가 -->
 <insert id="friendApproveAdd" parameterType="Map">
 	INSERT INTO tb_friend
@@ -453,6 +460,7 @@
 		)
 	
 </insert>
+
 <!-- 친구리스트 -->
 <select id="friendTotalList" parameterType="String" resultType="com.log4h.singletontrip.member.domain.MemberVo">
 	SELECT
@@ -469,6 +477,7 @@
 	AND
 		f.approve_state_cd='2'
 </select>
+
 <!-- 친구신청확인 -->
 <select id="friendCheckList" parameterType="String" resultType="com.log4h.singletontrip.member.domain.MemberVo">
 	SELECT
@@ -491,6 +500,7 @@
 		f.approve_state_cd='1'
 	
 </select>
+
 <!-- 친구삭제 -->
 <delete id="friendDelete" parameterType="Map">
 	DELETE FROM
@@ -500,4 +510,5 @@
 	OR
 		(member_id=#{friendId} AND friend_id=#{sessionId})
 </delete>
+
 </mapper>

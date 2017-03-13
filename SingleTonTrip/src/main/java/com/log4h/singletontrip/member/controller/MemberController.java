@@ -84,7 +84,7 @@ public class MemberController {
 	@RequestMapping(value="personJoin", method=RequestMethod.GET)
 	public ModelAndView personJoin(@RequestParam(value="memberLevel") int memberLevel){
 		ModelAndView mv = new ModelAndView("member/join/personJoin");
-
+		mv.addObject("memberLevel", memberLevel);
 		return mv;	
 	}
 	//업체 가입 폼 요청
@@ -93,7 +93,6 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView("member/join/companyJoin");
 		List<CompanyTypeVo> companyTypeList = memberService.companyTypeList();
 		mv.addObject("companyTypeList", companyTypeList);
-		mv.addObject("memberLevel", memberLevel);
 		mv.addObject("memberLevel", memberLevel);
 		return mv;	
 	}

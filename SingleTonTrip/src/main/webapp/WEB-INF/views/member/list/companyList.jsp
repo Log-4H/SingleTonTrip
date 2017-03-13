@@ -41,15 +41,15 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${companyList}" var="c">
-							<tr>
-								<td><img src="<c:url value='/images/${c.memberImg}'/>" class="img-rounded" width="100" height="100"></td>
-								<td><a href="<c:url value='companyDetail?memberId=${c.memberId}'/> ">${c.memberId}</a></td>
-								<td>${c.companyNm}</td>
-								<td>${c.memberPhone}</td>
-								<td>${c.companyTypeNm}</td>
-								<td>${c.companyAddress}</td>
-								<td><a href="personMain?pageId=${c.memberId}">상세보기</a></tb>		
-							</tr>
+								<tr>
+									<td><img src="<c:url value='/images/${c.memberImg}'/>" class="img-rounded" width="100" height="100"></td>
+									<td><a href="<c:url value='companyDetail?memberId=${c.memberId}'/> ">${c.memberId}</a></td>
+									<td>${c.companyNm}</td>
+									<td>${c.memberPhone}</td>
+									<td>${c.companyTypeNm}</td>
+									<td>${c.companyAddress}</td>
+									<td><a href="pageMain?pageId=${c.memberId}">상세보기</a></tb>		
+								</tr>
 							</c:forEach>
 						</tbody>
 					</table>

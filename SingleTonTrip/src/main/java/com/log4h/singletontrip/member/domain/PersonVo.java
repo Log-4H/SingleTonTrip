@@ -1,26 +1,26 @@
 package com.log4h.singletontrip.member.domain;
 
 public class PersonVo {
-	private String memberId;
-	private int memberLevel;
-	private String memberPw;
+	private String memberId; //멤버아이디
+	private int memberLevel;//멤버레벨
+	private String memberPw;//멤버비밀번호
 	private String newPw; //비밀번호변경시 newPw에 담아서 변경
-	private String memberNm;
-	private String memberPhone;
-	private String memberEmail;
-	private int memberReportCount;
-	private String memberRegDate;
-	private int actStateCd;
-	private String actStateNm;
-	private String memberDropDate;
-	private String memberDropReason;
-	private String personBirth;
-	private String personGender;
-	private String tripStateCd;
-	private String tripStateNm;
-	private int personTotalMileage;
-	private int friendState;
-	private String memberImg;
+	private String memberNm;//멤버이름
+	private String memberPhone;//멤버전화번호
+	private String memberEmail;//멤버이메일
+	private int memberReportCount;//멤버경고카운트
+	private String memberRegDate;//멤버생성일자
+	private int actStateCd;//활동상태코드
+	private String actStateNm;//활동상태이름
+	private String memberDropDate;//탈퇴날자
+	private String memberDropReason;//탈퇴이유
+	private String personBirth;//개인회원생일
+	private String personGender;//개인회원성별
+	private String tripStateCd;//여행상태코드
+	private String tripStateNm;//여행상태이름
+	private int personTotalMileage;//개인회원총마일리지
+	private int friendState;//친구상태
+	private String memberImg;//멤버이미지
 	
 	public String getMemberImg() {
 		return memberImg;

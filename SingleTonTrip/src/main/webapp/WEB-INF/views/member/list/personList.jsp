@@ -38,7 +38,7 @@
 							<c:forEach items="${personList}" var="p">
 								<tr>
 									<td><img src="<c:url value='/images/${p.memberImg}'/>" class="img-rounded" width="100" height="100"></td>
-									<td><a href="personMain?pageId=${p.memberId}">${p.memberId}</a></td>
+									<td><a href="pageMain?pageId=${p.memberId}">${p.memberId}</a></td>
 									<td>${p.memberNm}</td>
 										<c:if test="${sessionId ne p.memberId and p.friendState eq 0}">
 											<td><a href="<c:url value='friendAdd?memberId=${p.memberId}'/> ">신청하기</a></td>

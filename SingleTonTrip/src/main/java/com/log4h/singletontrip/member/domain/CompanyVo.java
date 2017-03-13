@@ -1,27 +1,27 @@
 package com.log4h.singletontrip.member.domain;
 
 public class CompanyVo {
-	private String memberId;
-	private int memberLevel;
-	private String newPw;
-	private String memberPw;
-	private String memberNm;
-	private String memberPhone;
-	private String memberEmail;
-	private int companyCrd;
-	private int companyTypeCd;
-	private String companyTypeNm;
-	private String companyNm;
-	private String companyAddress;
-	private String companyAddressSelect;
-	private String companyAddressDetail;
-	private int memberReportCount;
-	private String memberRegDate;
-	private int actStateCd;
-	private String actStateNm;
-	private String memberDropDate;
-	private String memberDropReason;
-	private String memberImg;
+	private String memberId;//멤버아이디
+	private int memberLevel;//멤버레벨
+	private String newPw;//비밀번호변경시 newPw에 담아서 변경
+	private String memberPw;//멤버비밀번호
+	private String memberNm;//멤버이름
+	private String memberPhone;//멤버전화번호
+	private String memberEmail;//멤버이메일
+	private int companyCrd;//업체사업자번호
+	private int companyTypeCd;//업체타입코드
+	private String companyTypeNm;//업체타임이름
+	private String companyNm;//업체명
+	private String companyAddress;//검색한 업체주소와 상세주소를 합해서 담아준다.
+	private String companyAddressSelect;//검색한업체주소
+	private String companyAddressDetail;//업체상세주소
+	private int memberReportCount;//경고횟수
+	private String memberRegDate;//생성일자
+	private int actStateCd;//활동상태코드
+	private String actStateNm;//활동상태이름
+	private String memberDropDate;//탈퇴날짜
+	private String memberDropReason;//탈퇴이유
+	private String memberImg;//이미지
 
 	
 	public String getCompanyNm() {

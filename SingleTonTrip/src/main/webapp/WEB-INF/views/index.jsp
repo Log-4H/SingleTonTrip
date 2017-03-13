@@ -4,7 +4,7 @@
 
 <c:import url="./module/top.jsp" />
 <div class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
-	<a href="personList">개인회원리스트</a><br>
+	
 
 	
 	<c:if test="${sessionId ne null }">
@@ -18,9 +18,6 @@
 	<a href="pageMain?pageId=company1">company1 포스트</a><br>
 	<a href="pageMain?pageId=company2">company2 포스트</a><br>
 	
-	<br><br><br>
-	<a href="reserveList">예약</a><br>
-	<a href="payList">결제</a><br>
-	<a href="mileageList">마일리지</a><br>
+
 </div>
 <c:import url="./module/footer.jsp"></c:import>

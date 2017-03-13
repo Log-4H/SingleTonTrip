@@ -79,8 +79,8 @@
 <h2 align="center">회원가입</h2>
 	<div style="width:100%;text-align:center!important;">
 		<div style="width:30%;margin-left:auto;margin-right:auto;">
-			<form action="companyJoin" method="post" enctype="multipart/form-data" id="form1 " style="text-align:center;">						
-				<input type="hidden" name="memberLevel" value="${memberLevel }">
+			<form action="companyJoin" method="post" enctype="multipart/form-data" id="form1">						
+				<input type="hidden" name="memberLevel" value="${memberLevel}">
 				<div>
 					프로필사진
 					<img id="blah" src="#" alt="your image" style="max-height: 100px; max-width: 100px"/><br>
