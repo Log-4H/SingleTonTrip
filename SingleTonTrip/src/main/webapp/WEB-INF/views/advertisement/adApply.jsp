@@ -47,7 +47,7 @@
 						<center>
 							<p>※광고에 사용 할 이미지 파일을 등록 해 주세요.</p>
 							<input type="file" name="imgFile">
-							<input type="text" name="adPageAddress" size="40" placeholder="광고 클릭시 이동할 페이지 주소"><br>
+							<input type="text" name="adPageAddress" size="40" placeholder="광고 클릭시 이동할 페이지 주소 ex) http://...."><br>
 							<input type="submit" value="신청"><br>
 							<a href="payAdd">결제하러 가기</a>
 						</center>

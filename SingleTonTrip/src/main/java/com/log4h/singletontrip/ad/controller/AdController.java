@@ -98,12 +98,12 @@ public class AdController {
 	public ModelAndView payback(
 			@RequestParam(value="memberId") String memberId,
 			@RequestParam(value="paymentTotalPrice") int paymentTotalPrice,
-			@RequestParam(value="paymentFinishDate") String paymentFinishDate){
-		ModelAndView mv = new ModelAndView("redirect:payback");
+			@RequestParam(value="paymentTargetNo") int paymentTargetNo){
+		ModelAndView mv = new ModelAndView("redirect:payCancelList");
 		Map<String,Object>map = new HashMap<String,Object>();
 		map.put("memberId", memberId);
 		map.put("paymentTotalPrice", paymentTotalPrice);
-		map.put("paymentFinishDate", paymentFinishDate);
+		map.put("paymentTargetNo", paymentTargetNo);
 		adService.payback(map);
 		
 		
