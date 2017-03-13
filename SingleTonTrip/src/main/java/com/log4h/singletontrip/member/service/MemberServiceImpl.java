@@ -25,11 +25,17 @@ public class MemberServiceImpl implements MemberService{
 
 	//로그인 처리
 	@Override
+	@Transactional
 	public LoginVo login(String loginId, String loginPw) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("loginId", loginId);
 		map.put("loginPw", loginPw);
 		LoginVo loginVo = memberDao.login(map);
+		if(loginVo != null && loginVo.getMemberLevel() == 3){
+			final int loginMileageCate = 2;
+			loginVo.setLoginMileageCate(loginMileageCate);
+			int	result = memberDao.addLoginMileage(loginVo);
+		}
 		return loginVo;
 	}
 	

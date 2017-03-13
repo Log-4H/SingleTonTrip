@@ -4,7 +4,14 @@ public class LoginVo {
 	private String memberId;
 	private int memberLevel;
 	private String memberNm;
+	private int loginMileageCate;
 	
+	public int getLoginMileageCate() {
+		return loginMileageCate;
+	}
+	public void setLoginMileageCate(int loginMileageCate) {
+		this.loginMileageCate = loginMileageCate;
+	}
 	public String getMemberId() {
 		return memberId;
 	}
@@ -25,7 +32,9 @@ public class LoginVo {
 	}
 	@Override
 	public String toString() {
-		return "LoginVo \n[memberId=" + memberId + ", memberLevel=" + memberLevel + ", memberNm=" + memberNm + "]";
+		return "LoginVo [memberId=" + memberId + ", memberLevel=" + memberLevel + ", memberNm=" + memberNm
+				+ ", loginMileageCate=" + loginMileageCate + "]";
 	}
+	
 	
 }

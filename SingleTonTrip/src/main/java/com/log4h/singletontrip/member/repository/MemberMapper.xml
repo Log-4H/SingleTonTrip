@@ -18,7 +18,20 @@
 	AND
 		member_pw = #{loginPw}
 </select>
-
+<!-- 로그인 성공시 마일리지 적립 -->
+<insert id="addLoginMileage" parameterType="com.log4h.singletontrip.member.domain.LoginVo" >
+	INSERT INTO tb_mileage(
+		person_id,
+		mileage_cate_cd,
+		mileage_use_date
+		) 
+	VALUES 
+		(
+		#{memberId},
+		#{loginMileageCate},
+		now()
+		)
+</insert>
 <!-- 개인회원가입 -->
 <insert id="personMemberJoin" parameterType="com.log4h.singletontrip.member.domain.PersonVo">
 	INSERT INTO tb_member(
