@@ -56,10 +56,16 @@ public class AdDaoImpl implements AdDao{
 		return sqlSession.update(AD_NS+"adRefuse",map);
 	}
 	
+	// 광고 신청 리스트에서 환불요청
+	@Override
+	public int paybackApply(int adNo){
+		return sqlSession.update(AD_NS+"paybackApply",adNo);
+	}
+	
 	// 환불리스트
 	@Override
-	public List<PaymentVo> paybackList(){
-		return sqlSession.selectList(AD_NS+"paybackList");
+	public List<PaymentVo> paybackList(LoginVo loginVo){
+		return sqlSession.selectList(AD_NS+"paybackList",loginVo);
 	}
 	
 	// 환불

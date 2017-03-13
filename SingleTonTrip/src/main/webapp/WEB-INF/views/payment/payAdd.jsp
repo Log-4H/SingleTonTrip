@@ -5,10 +5,8 @@
 <script src="<c:url value='/js/mileageUse.js'/>"></script>
 <div class="w3-container w3-content"
 	style="max-width: 1400px; margin-top: 130px">
+<h1 align="center">광고 결제</h1>
 	<div class="w3-col m7">
-		<h3>
-			<a href="index">홈</a>
-		</h3>
 		<c:choose>
 			<c:when test="${sessionLevel == 3}">
 				<form action="" method="post">

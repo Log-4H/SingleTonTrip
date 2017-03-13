@@ -21,11 +21,12 @@ public interface AdDao {
 	public int deletePayAdList(int adNo);
 	public int adApprove(Map<String,Object>map);
 	public int adRefuse(Map<String,Object>map);
+	public int paybackApply(int adNo);
 	public List<AdVo> selectAdList();
 	public int adImgUpload(AdVo adVo);
 	public String selectAdImg(AdVo adVo);
 	public String selectSameAd(Map<String,Object>map);
-	public List<PaymentVo> paybackList();
+	public List<PaymentVo> paybackList(LoginVo loginVo);
 	public int payback(Map<String,Object>map);
 	public int adDrop();
 	public int deleteOldAd();

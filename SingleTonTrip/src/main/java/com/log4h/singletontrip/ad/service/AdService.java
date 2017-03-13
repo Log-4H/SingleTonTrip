@@ -20,9 +20,10 @@ public interface AdService {
 	public int deleteAdApplyList(int adNo);
 	public int adApprove(Map<String,Object>map);
 	public int adRefuse(Map<String,Object>map);
+	public int paybackApply(int adNo);
 	public List<AdVo> selectAdList();
 	public int adImgUpload(AdVo adVo, MultipartFile imgFile);
-	public List<PaymentVo> paybackList();
+	public List<PaymentVo> paybackList(LoginVo loginVo);
 	public int payback(Map<String,Object>map);
 	public List<AdVo> selectUseAdMain();
 	public List<AdVo> selectUseAdHome();

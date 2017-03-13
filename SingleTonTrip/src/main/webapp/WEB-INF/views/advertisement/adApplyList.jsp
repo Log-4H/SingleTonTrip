@@ -15,10 +15,10 @@
 </script>
 <% response.sendRedirect("index"); %>
 </c:if>
-<h1>신청 리스트</h1>
 <h3><a href="<%= request.getContextPath() %>/index">홈</a></h3>
 <div class="w3-container w3-content"
 	style="max-width: 1400px; margin-top: 130px" align="center">
+<h1 align="center">광고 신청 리스트</h1>
 	<div class="w3-row-padding">
 		<div class="w3-col m12">
 			<div class="w3-card-2 w3-round w3-white">
@@ -61,6 +61,7 @@
 		 		<th>신청일</th>
 		 		<th>결제일</th>
 		 		<th>상태</th>
+		 		<th></th>
 		 	</tr>
 		<c:forEach var="a" items="${adApplyList}">
 		 	<tr>
@@ -71,6 +72,11 @@
 		 		<td>${a.adApplyDate}</td>
 		 		<td>${a.paymentFinishDate}</td>
 		 		<td>${a.approveStateNm}</td>
+		 		<td>
+		 			<c:if test="${a.paymentFinishDate != null}">
+		 				<a href="paybackApply?adNo=${a.adNo}">환불요청</a>
+		 			</c:if>
+		 		</td>
 		 	</tr>
 		</c:forEach>
 		</table>

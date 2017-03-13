@@ -82,12 +82,28 @@ public class AdController {
 		return mv;
 	}
 	
+	// 광고 신청목록에서 환불요청
+	@RequestMapping(value="paybackApply")
+	public ModelAndView paybackApply(
+			@RequestParam(value="adNo") int adNo){
+		ModelAndView mv = new ModelAndView();
+		adService.paybackApply(adNo);
+		mv.setViewName("redirect:adApplyList");
+		
+		return mv;
+	}
+	
 	// 환불 리스트
 	@RequestMapping(value="payCancelList")
-	public ModelAndView payCancelList(){
+	public ModelAndView payCancelList(
+			@ModelAttribute("sessionId") String sessionId,
+			@ModelAttribute("sessionLevel") int sessionLevel){
 		ModelAndView mv = new ModelAndView();
-		List<PaymentVo> payback = adService.paybackList();
-		mv.addObject("payback", payback);
+		LoginVo loginVo = new LoginVo();
+		loginVo.setMemberId(sessionId);
+		loginVo.setMemberLevel(sessionLevel);
+		List<PaymentVo> paybackList = adService.paybackList(loginVo);
+		mv.addObject("paybackList", paybackList);
 		mv.setViewName("payment/payCancelList");
 		
 		return mv;
@@ -169,7 +185,7 @@ public class AdController {
 		return mv;
 	}
 	
-	// 광고신청 리스트가기전 결제
+	// 결제
 	@RequestMapping(value="paymentAd", method=RequestMethod.POST)
 	public ModelAndView payment(@ModelAttribute("sessionId") String companyId,
 			@RequestParam(value="total") int total){

@@ -11,6 +11,7 @@
 <body>
 <div class="w3-container w3-content"
 	style="max-width: 1400px; margin-top: 130px" align="center">
+<h1 align="center">환불 리스트</h1>
 	<div class="w3-row-padding">
 		<div class="w3-col m12">
 			<div class="w3-card-2 w3-round w3-white">
@@ -26,7 +27,7 @@
 							<th>상태</th>
 							<th>여부</th>
 						</tr>
-						<c:forEach var="p" items="${payback}">
+						<c:forEach var="p" items="${paybackList}">
 							<tr>
 								<td>${p.memberId}</td>
 								<td>${p.paymentPrice}</td>
@@ -36,8 +37,10 @@
 								<td>${p.adminId}</td>
 								<td>${p.paymentStateNm}</td>
 								<td>
-									<a href="payback?memberId=${p.memberId}&paymentTotalPrice=${p.paymentTotalPrice}&paymentTargetNo=${p.paymentTargetNo}">환불</a>/
-									<a href="">취소</a>
+									<c:if test="${p.paymentPrice > 0}">
+										<a href="payback?memberId=${p.memberId}&paymentTotalPrice=${p.paymentTotalPrice}&paymentTargetNo=${p.paymentTargetNo}">환불</a>/
+									</c:if>
+									<a href="paybackCancel?paymentTargetNo=${p.paymentTargetNo}">취소</a>
 								</td>
 							</tr>
 						</c:forEach>

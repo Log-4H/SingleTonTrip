@@ -18,6 +18,7 @@
 <h3><a href="index">홈</a></h3>
 <div class="w3-container w3-content"
 	style="max-width: 1400px; margin-top: 130px" align="center">
+<h1 align="center">광고 신청</h1>
 	<form action="adApply" method="post" enctype="multipart/form-data">
 	<div class="w3-row-padding">
 		<div class="w3-col m12">
