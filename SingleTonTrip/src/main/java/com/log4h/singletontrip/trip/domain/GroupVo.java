@@ -4,6 +4,8 @@ public class GroupVo {
 	private int groupNo;
 	private int tripNo;
 	private String tripTitle;
+	private int tripPresentMember;
+	private int tripMaxMember;
 	private String leaderId;
 	private String personId;
 	private String groupMemberLevel;
@@ -87,6 +89,18 @@ public class GroupVo {
 		this.groupDropDate = groupDropDate;
 	}
 	
+	public int getTripPresentMember() {
+		return tripPresentMember;
+	}
+	public void setTripPresentMember(int tripPresentMember) {
+		this.tripPresentMember = tripPresentMember;
+	}
+	public int getTripMaxMember() {
+		return tripMaxMember;
+	}
+	public void setTripMaxMember(int tripMaxMember) {
+		this.tripMaxMember = tripMaxMember;
+	}
 	@Override
 	public String toString() {
 		return "GroupVo [groupNo=" + groupNo + ", tripNo=" + tripNo + ", tripTitle=" + tripTitle + ", personId="
