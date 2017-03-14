@@ -44,7 +44,11 @@
 	ON 
 		t.recruit_state_cd = rn.recruit_state_cd
 	WHERE
-		t.trip_theme_cd
+		t.trip_delete_date is null
+	<if test="memberId != null and memberId !=''">
+	AND		
+		t.person_id = #{memberId}
+	</if>	
 	<if test="memberId != null and memberId !=''">
 	AND		
 		t.person_id = #{memberId}
@@ -263,6 +267,8 @@ INSERT INTO	tb_group(
 		g.approve_state_cd = a.approve_state_cd
 	WHERE
 		g.person_id = #{personId}
+	AND
+		t.trip_delete_date is null
 	AND
 		g.group_member_level = #{groupMemberLevel}
 	ORDER BY g.group_no DESC
