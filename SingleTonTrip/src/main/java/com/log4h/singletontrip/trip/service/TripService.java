@@ -51,4 +51,6 @@ public interface TripService {
 	public int groupApplyCancel(int tripNo, String personId);
 	//모집종료시 여행삭제
 	public void recruitEnd();
+	//그룹탈퇴
+	public int groupMemberDrop(int tripNo, String personId);
 }

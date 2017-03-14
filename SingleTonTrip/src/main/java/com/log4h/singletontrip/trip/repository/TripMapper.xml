@@ -55,7 +55,7 @@
 	</if>
 	<if test="tripNo != null and tripNo !=''">
 	AND		
-		t.trip_no =#{tripNo}
+		t.trip_no = #{tripNo}
 	</if>
 	<if test="lastTripRow != null and lastTripRow !=''">
 	ORDER BY trip_reg_date DESC
@@ -385,7 +385,7 @@ INSERT INTO	tb_group(
 	<if test = "approveStateCd != null and approveStateCd == 2">
 		,trip_present_member = trip_present_member + 1
 	</if>
-	<if test = "drop != null and drop == 1">
+	<if test = "dropResult != null and dropResult > 0">
 		,trip_present_member = trip_present_member - 1
 	</if>
 	WHERE
@@ -434,6 +434,9 @@ INSERT INTO	tb_group(
 		tb_group
 	SET
 		group_drop_date = now()
+	<if test = "personId != null and personId !=''">
+		,approve_state_cd = 3
+	</if>
 	WHERE
 		trip_no = #{tripNo}
 	<if test = "personId != null and personId !=''">

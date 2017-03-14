@@ -263,4 +263,24 @@ public class TripController {
 		}
 		return mv;	
 	}
+	//그룹가입탈퇴
+	@RequestMapping(value="groupDrop", method=RequestMethod.POST)
+	public ModelAndView groupMemberDrop(@RequestParam(value="tripNo") int tripNo,
+			@ModelAttribute("sessionId") String sessionId,
+			@RequestParam(value="lastTripRow", defaultValue="5") int lastTripRow,
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage,
+			@RequestParam(value="groupMemberLevel", defaultValue="1") String groupMemberLevel){
+		ModelAndView mv = new ModelAndView("jsonView");
+		int result = tripService.groupMemberDrop(tripNo, sessionId);
+		if(result>0){
+			Map<String,Object> map = tripService.groupList(sessionId, groupMemberLevel, currentPage);
+			mv.addObject("currentPage", currentPage);
+			mv.addObject("groupList", map.get("groupList"));
+			mv.addObject("startPage", map.get("startPage"));
+			mv.addObject("pageSize", map.get("pageSize"));
+			mv.addObject("endPage", map.get("endPage"));
+			mv.addObject("lastPage", map.get("lastPage"));
+		}
+		return mv;	
+	}
 }

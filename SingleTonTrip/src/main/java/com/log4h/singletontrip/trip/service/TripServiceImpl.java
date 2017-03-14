@@ -281,5 +281,22 @@ public class TripServiceImpl implements TripService{
 		map.put("tripNo", tripNo);
 		map.put("personId", personId);
 		return tripDao.groupApplyCancel(map);
+	}
+	//그룹탈퇴
+	@Override
+	public int groupMemberDrop(int tripNo, String personId) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("tripNo", tripNo);
+		map.put("personId", personId);
+		int dropResult = tripDao.groupDelete(map); 
+		if(dropResult>0){
+			TripVo tripVo = tripDao.tripView(map);
+			map.put("recruitStateCd", tripVo.getRecruitStateCd());
+			map.put("dropResult", dropResult);
+			tripDao.tripRecruitUpdate(map);
+		}
+		return 0;
 	};
+	
+	
 }

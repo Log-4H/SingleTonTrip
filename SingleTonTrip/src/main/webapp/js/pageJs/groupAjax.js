@@ -48,19 +48,16 @@ function groupListAppend(groupList) {
 		html += "<span class='w3-right w3-opacity'>";
 		if(item.groupMemberLevel=="member"){
 			if (item.approveStateCd == 1) {
-				html += "<button type='button' class='btn btn-info applyCancelBtn' value='"+item.tripNo+"'>취소</button></span>";
+				html += "<button type='button' class='btn btn-info applyCancelBtn' value='"+item.tripNo+"'>취소</button>";
 			}else if (item.approveStateCd == 2) {
-				html += "<button type='button' class='btn btn-info groupDropBtn' value='"+item.tripNo+"'>탈퇴</button></span>";
+				html += "<button type='button' class='btn btn-info groupDropBtn' value='"+item.tripNo+"'>탈퇴</button>";
 			}
 		}else if(item.groupMemberLevel=="leader"){
 			if (item.tripPresentMember < item.tripMaxMember) {
-				html += "<button type='button' class='btn btn-info tripEndModalBtn' value='"+item.tripNo+"' data-dismiss='modal'>마감</button></span>";
-			}else{
-				html +="</span>";				
-			}
-			
+				html += "<button type='button' class='btn btn-info tripEndModalBtn' value='"+item.tripNo+"' data-dismiss='modal'>마감</button>";
+			}	
 		}
-
+		html +="</span>";			
 		if (item.approveStateCd == 1) {
 			html += "<span class='label label-warning'>";
 		}else if (item.approveStateCd == 2) {
@@ -70,13 +67,9 @@ function groupListAppend(groupList) {
 		}
 		html += item.approveStateNm+"</span>";
 		html += "<h4>";
-		if($("#pageId").val() == $("#sessionId").val() && item.approveStateCd==2){
 		html += "<a href='javascript:void(0)' class='groupView' value='"+item.tripNo+"'>";
-		}
 		html += item.tripTitle;
-		if($("#pageId").val() == $("#sessionId").val() && item.approveStateCd==2){
 		html += "</a>";
-		}
 		html += "</h4><br>";
 		html += "</div>";
 	})
@@ -267,6 +260,29 @@ $(document).on('click', '.applyCancelBtn', function() {
 	var groupMemberLevel = "member";
 	$.ajax({
 			url : "applyCancel",
+			type : "POST",
+			data : {
+				tripNo : tripNo, currentPage : currentPage, groupMemberLevel : groupMemberLevel
+			},
+			dataType : "json",
+			success : function(data) {
+				$("#currentPage").val(currentPage);
+				var html = "";
+				var groupList = data.groupList;
+				html = groupListAppend(groupList);
+				$("#groupList").empty();
+				$("#groupList").append(html);
+				$("#groupPaging").html(groupPaging(data.startPage, data.pageSize, data.endPage, data.lastPage));
+			}
+	});
+});
+//그룹탈퇴
+$(document).on('click', '.groupDropBtn', function() {
+	var tripNo = $(this).attr('value');
+	var currentPage = $("#currentPage").val();
+	var groupMemberLevel = "member";
+	$.ajax({
+			url : "groupDrop",
 			type : "POST",
 			data : {
 				tripNo : tripNo, currentPage : currentPage, groupMemberLevel : groupMemberLevel
