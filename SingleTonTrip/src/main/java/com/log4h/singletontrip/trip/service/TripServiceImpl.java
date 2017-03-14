@@ -197,7 +197,7 @@ public class TripServiceImpl implements TripService{
 						groupVo.setApproveStateCd(4);
 						groupVo.setPersonId("");
 						int applyDropResult = tripDao.groupApprove(groupVo);
-						return applyDropResult;
+						return tripRecruitUpdate;
 					}
 				}else{
 					return presentMemberUpdate;
@@ -261,13 +261,14 @@ public class TripServiceImpl implements TripService{
 	public void recruitEnd() {
 		List<TripVo> tripEndList = tripDao.selectRecruitEnd();
 		int tripNo = 0;
-		int tripDelete =0;
+		int tripRecruitUpdate =0;
 		for(int i=0; i<tripEndList.size(); i++){
 			tripNo = tripEndList.get(i).getTripNo();
-			tripDelete = tripDao.tripDelete(tripNo);
-			if(tripDelete>0){
-				Map<String, Object> map = new HashMap<String, Object>();
-				map.put("tripNo", tripNo);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("tripNo",tripNo);
+			map.put("recruitStateCd", 3);
+			tripRecruitUpdate = tripDao.tripRecruitUpdate(map);
+			if(tripRecruitUpdate>0){
 				int planDelete = tripDao.planDelete(map);
 				int applyDropResult = tripDao.groupDelete(map);
 			}

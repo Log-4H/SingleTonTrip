@@ -426,7 +426,9 @@ INSERT INTO	tb_group(
 	FROM
 		tb_trip
 	WHERE
-		trip_recruit_start_date &lt; now()
+		trip_recruit_end_date &lt; now()
+	AND
+		recruit_state_cd = 1 
 </select>
 <!-- 그룹 탈퇴 -->
 <update id="groupDelete" parameterType="map">

@@ -227,6 +227,7 @@ $(document).on('click', '.groupApproveBtn', function() {
 	var tripNo = $(this).attr('tripNo');
 	var approveStateCd = $(this).attr('value');
 	var personId = $(this).attr('personId');
+	console.log(personId);
 	console.log(tripNo);
 	console.log(approveStateCd);
 	$.ajax({
@@ -239,7 +240,9 @@ $(document).on('click', '.groupApproveBtn', function() {
 			success : function(data) {
 				var html = "";
 				var trip = data.trip;
+				console.log(trip);
 				var groupMemberList = data.groupMemberList;
+				console.log(groupMemberList);
 				html = groupViewAppend(trip);
 				$("#groupList").empty();
 				$("#groupPaging").html(
