@@ -256,6 +256,24 @@ public class TripServiceImpl implements TripService{
 		}
 		return tripDelete;
 	}
+	//여행기간만료 삭제
+	@Override
+	public void recruitEnd() {
+		List<TripVo> tripEndList = tripDao.selectRecruitEnd();
+		int tripNo = 0;
+		int tripDelete =0;
+		for(int i=0; i<tripEndList.size(); i++){
+			tripNo = tripEndList.get(i).getTripNo();
+			tripDelete = tripDao.tripDelete(tripNo);
+			if(tripDelete>0){
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("tripNo", tripNo);
+				int planDelete = tripDao.planDelete(map);
+				int applyDropResult = tripDao.groupDelete(map);
+			}
+		}
+	}
+	
 	//그룹가입취소
 	@Override
 	public int groupApplyCancel(int tripNo, String personId) {
@@ -263,5 +281,5 @@ public class TripServiceImpl implements TripService{
 		map.put("tripNo", tripNo);
 		map.put("personId", personId);
 		return tripDao.groupApplyCancel(map);
-	};	
+	};
 }

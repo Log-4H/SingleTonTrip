@@ -419,6 +419,15 @@ INSERT INTO	tb_group(
 	WHERE
 		trip_no = #{tripNo}
 </update>
+<!-- 기간만료 검색 -->
+<select id="selectRecruitEnd" resultType="com.log4h.singletontrip.trip.domain.TripVo">
+	SELECT
+		trip_no
+	FROM
+		tb_trip
+	WHERE
+		trip_recruit_start_date &lt; now()
+</select>
 <!-- 그룹 탈퇴 -->
 <update id="groupDelete" parameterType="map">
 	UPDATE 

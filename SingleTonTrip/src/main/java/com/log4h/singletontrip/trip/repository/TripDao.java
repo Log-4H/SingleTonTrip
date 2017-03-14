@@ -54,6 +54,8 @@ public interface TripDao {
 	public int tripUpdate(TripVo tripVo);
 	//여행삭제
 	public int tripDelete(int tripNo);
+	//여행모집기간 만료 검색
+	public List<TripVo> selectRecruitEnd();
 	//그룹삭제
 	public int groupDelete(Map<String, Object> map);
 	//그룹가입취소

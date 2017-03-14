@@ -5,16 +5,20 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.log4h.singletontrip.ad.repository.AdDao;
+import com.log4h.singletontrip.trip.service.TripService;
 
 @Component
 public class Scheduler {
 	@Autowired
 	private AdDao adDao;
+	@Autowired
+	private TripService tripService;
 	
 	@Scheduled(cron = "0 0 0 * * *")
 	public void schedule(){
 		System.out.println("=======SCHEDULER START=======");
         try {
+        	//*********************** 광고 ***************************
         	// 기간 지난 광고 내리기
         	adDao.adDrop();
         	// 광고 테이블 광고 끝난시점 부터 2년 지난 데이터 지우기
@@ -27,6 +31,9 @@ public class Scheduler {
         	if(deleteNotPayment>0){
         		adDao.deleteNotPaymentAd();
         	}
+        	//*********************** 여행 ***************************
+        	//모집종료일되면 삭제
+        	tripService.recruitEnd();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -139,4 +139,9 @@ public class TripDaoImpl implements TripDao{
 	public int groupApplyCancel(Map<String, Object> map) {
 		return sqlSession.delete(TRIP_NS+"groupApplyCancel", map);
 	}
+	//여행모집기간 만료 검색
+	@Override
+	public List<TripVo> selectRecruitEnd() {
+		return sqlSession.selectList(TRIP_NS+"selectRecruitEnd");
+	}
 }
