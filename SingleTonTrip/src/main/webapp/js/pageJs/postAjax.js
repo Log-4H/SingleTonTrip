@@ -279,7 +279,7 @@ function postAppend(postList) {
 			html += "<div class='w3-half'>";
 			html += "<img src='./images/"
 					+ item.postImg
-					+ "' style='width: 100%' class='w3-margin-bottom'>";
+					+ "' style='width: 100%' class='w3-margin-bottom' onclick='doImgPop(\"./images/"+item.postImg+"\")'>";
 			html += "</div>";
 			html += "</div>";
 		}

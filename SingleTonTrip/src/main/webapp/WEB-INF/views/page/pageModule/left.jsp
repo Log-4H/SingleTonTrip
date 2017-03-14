@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="<c:url value='/js/pageJs/groupAjax.js'/>"></script>
+<script src="<c:url value='/js/imageView.js'/>"></script>
 <c:import url="./group/groupList.jsp"></c:import>
 <input type="hidden" id="pageId" value="${pageId}">
 <input type="hidden" id="pageLevel" value="${pageLevel}">

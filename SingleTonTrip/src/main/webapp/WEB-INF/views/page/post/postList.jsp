@@ -31,7 +31,7 @@
 					<div class="w3-row-padding" style="margin: 0 -16px">
 						<div class="w3-half">
 							<img src="<c:url value='/images/${p.postImg}'/>"
-								style="width: 100%" class="w3-margin-bottom">
+								style="width: 100%" class="w3-margin-bottom" onclick='doImgPop("./images/${p.postImg}")'>
 						</div>
 					</div>
 				</c:if>

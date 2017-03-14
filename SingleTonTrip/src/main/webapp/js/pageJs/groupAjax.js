@@ -53,7 +53,12 @@ function groupListAppend(groupList) {
 				html += "<button type='button' class='btn btn-info groupDropBtn' value='"+item.tripNo+"'>탈퇴</button></span>";
 			}
 		}else if(item.groupMemberLevel=="leader"){
-			html += "<button type='button' class='btn btn-info tripEndModalBtn' value='"+item.tripNo+"' data-dismiss='modal'>마감</button></span>";
+			if (item.tripPresentMember < item.tripMaxMember) {
+				html += "<button type='button' class='btn btn-info tripEndModalBtn' value='"+item.tripNo+"' data-dismiss='modal'>마감</button></span>";
+			}else{
+				html +="</span>";				
+			}
+			
 		}
 
 		if (item.approveStateCd == 1) {
