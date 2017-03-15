@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/WEB-INF/views//module/top.jsp" />
+<c:import url="/WEB-INF/views/company/reserve/reserveDetail.jsp" />
 <body>
 	<div class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
 		<div class="w3-col m7">
@@ -46,7 +47,13 @@
 												<div class="col-md-5 col-md-offset-2">${i.reserveVo.person.memberPhone}</div>
 											</c:if>
 											<div class="col-md-5 col-md-offset-2">${i.reserveVo.room.company.companyAddress}</div>
-											<div class="col-md-3 col-md-offset-2 " align="center">${i.reserveVo.room.roomNm}</div>
+					
+											<div class="col-md-3 col-md-offset-2 " align="center">
+												<a href="#reserveDetailModal" title="상세보기" data-toggle="modal">
+													${i.reserveVo.room.roomNm}
+												</a>
+											</div>
+											
 										</div>
 										<div class="row">
 											<div class="col-md-3 col-md-offset-2">예약일 : ${i.paymentVo.paymentFinishDate }</div>
@@ -92,4 +99,5 @@
 		</div>
 		
 	</div>
+	
 <c:import url="/WEB-INF/views//module/footer.jsp" />
