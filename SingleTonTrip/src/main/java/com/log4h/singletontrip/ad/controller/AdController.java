@@ -240,37 +240,21 @@ public class AdController {
 		return mv;
 	}
 	
-	// 광고할 이미지 파일 가져오기 (메인)
-	@RequestMapping(value="/")
+	// 광고할 이미지 파일 가져오기
+	@RequestMapping(value="serviceAdList", method=RequestMethod.POST)
 	public ModelAndView selectUseAdMain(){
 		ModelAndView mv = new ModelAndView();
+		// 메인 광고
 		List<AdVo> mainAdList = adService.selectUseAdMain();
 		mv.addObject("mainAdList",mainAdList);
+		// 홈페이지 상단 광고
 		List<AdVo> homeAdList = adService.selectUseAdHome();
 		mv.addObject("homeAdList",homeAdList);
+		// 검색 상단 광고
 		List<AdVo> searchAdList = adService.selectUseAdSearch();
 		mv.addObject("searchAdList",searchAdList);
-		
+		mv.setViewName("jsonView");
 		return mv;
 	}
 	
-	// 광고할 이미지 파일 가져오기 (홈페이지)
-	@RequestMapping(value="asdff")
-	public ModelAndView selectUseAdHome(){
-		ModelAndView mv = new ModelAndView();
-		List<AdVo> homeAdList = adService.selectUseAdHome();
-		mv.addObject("homeAdList",homeAdList);
-		
-		return mv;
-	}
-	
-	// 광고할 이미지 파일 가져오기 (검색상단)
-	@RequestMapping(value="asdfff")
-	public ModelAndView selectUseAdSearch(){
-		ModelAndView mv = new ModelAndView();
-		List<AdVo> searchAdList = adService.selectUseAdSearch();
-		mv.addObject("searchAdList",searchAdList);
-		
-		return mv;
-	}
 }

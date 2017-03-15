@@ -1,20 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script>
+//프로필 요청 
+$(document).ready(function() {
+	$.ajax({
+		url : "serviceAdList",
+		type : "POST",
+		dataType : "json",
+		success : function(data) {
+			var homeAdList = data.homeAdList;
+			var html="";
+			$.each(homeAdList,function(key, item) {
+				html += "<p>여기 어떠세요?</p>"
+					+	"<a href='"+item.adPageAddress+"' target='_blank'>"
+					+	"<img src='./images/"+item.adImg+"' alt='' style='width:50%'>"
+					+	"</a>";
+			});
+			$("#adtest").html(html);
+			
+		}
+	})
+});
+</script>
 			<!-- Right Column -->
 			<div class="w3-col m2">
 				<div class="w3-card-2 w3-round w3-white w3-center">
-					<div class="w3-container">
-						<p>Upcoming Events:</p>
-						<img src="http://www.w3schools.com/w3images/forest.jpg"
-							alt="Forest" style="width: 100%;">
-						<p>
-							<strong>Holiday</strong>
-						</p>
-						<p>Friday 15:00</p>
-						<p>
-							<button class="w3-btn w3-btn-block w3-theme-l4">Info</button>
-						</p>
+					<div class="w3-container" id="adtest">
+					
 					</div>
 				</div>
 				<br>
@@ -40,18 +53,6 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<br>
-
-				<div class="w3-card-2 w3-round w3-white w3-padding-16 w3-center">
-					<p>ADS</p>
-				</div>
-				<br>
-
-				<div class="w3-card-2 w3-round w3-white w3-padding-32 w3-center">
-					<p>
-						<i class="fa fa-bug w3-xxlarge"></i>
-					</p>
 				</div>
 
 				
