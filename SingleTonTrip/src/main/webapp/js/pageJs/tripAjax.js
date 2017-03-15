@@ -299,21 +299,23 @@ function tripAppend(tripList) {
 		html += "<div class='w3-container w3-card-2 w3-white w3-round w3-margin'><br>";
 		html += "<span class='w3-right w3-opacity'>"
 				+ item.tripRegDate + "</span><br>";
-		if($("#pageId").val() == $("#sessionId").val()){
-			html += "<span class='w3-right w3-opacity'>";
-			if(item.recruitStateCd == 1){
-			html += "<button type='button' class='btn btn-primary tripModifyModalBtn' value='"+item.tripNo+"'>수정</button>";
-			html += "<button type='button' class='btn btn-primary tripEndModalBtn' value='"+item.tripNo+"'>마감</button>";
-			}else{
-				html += "<button type='button' class='btn btn-primary tripDeleteModalBtn' value='"+item.tripNo+"'>삭제</button>";
+		if($("#sessionLevel").val() == 3){
+			if($("#pageId").val() == $("#sessionId").val()){
+				html += "<span class='w3-right w3-opacity'>";
+				if(item.recruitStateCd == 1){
+				html += "<button type='button' class='btn btn-primary tripModifyModalBtn' value='"+item.tripNo+"'>수정</button>";
+				html += "<button type='button' class='btn btn-primary tripEndModalBtn' value='"+item.tripNo+"'>마감</button>";
+				}else{
+					html += "<button type='button' class='btn btn-primary tripDeleteModalBtn' value='"+item.tripNo+"'>삭제</button>";
+				}
+				html += "</span>";
+			}else if(item.recruitStateCd==1){
+				html += "<span class='w3-right w3-opacity'>";
+				html += "<button type='button' class='btn btn-primary tripJoinModalShow' value='"+item.tripNo+"'>참가신청</button>";
+				html += "</span>";
 			}
-			html += "</span>";
 		}else if($("#sessionId").val()==""){
 			html += "<span class='w3-right w3-opacity'>";
-			html += "</span>";
-		}else if(item.recruitStateCd==1){
-			html += "<span class='w3-right w3-opacity'>";
-			html += "<button type='button' class='btn btn-primary tripJoinModalShow' value='"+item.tripNo+"'>참가신청</button>";
 			html += "</span>";
 		}
 		if (item.recruitStateCd == 1) {

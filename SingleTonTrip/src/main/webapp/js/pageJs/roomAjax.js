@@ -7,30 +7,31 @@ $(document).on('click', '#roomTab', function() {
 		success : function(data) {
 			var html = "";
 			var roomList = data.roomList;
-			console.log(roomList);
 			html = roomListAppend(roomList);
 			$("#roomList").empty();
 			$("#roomList").append(html);
 		}
 	})
 });
-//여행 html추가
+//숙소 html추가
 function roomListAppend(roomList) {
 	var html = "";
 	$.each(roomList,function(key, item) {
 		var roomFacilityList = item.roomFacilityList
 		html += "<div class='w3-container w3-card-2 w3-white w3-round w3-margin'><br>";
-		if($("#pageId").val() == $("#sessionId").val()){
+		if($("#sessionLevel").val() == 2){
+			if($("#pageId").val() == $("#sessionId").val()){
+				html += "<span class='w3-right w3-opacity'>";
+				html += "<button type='button' class='btn btn-primary'>수정</button>";
+				html += "<button type='button' class='btn btn-primary'>삭제</button>";
+				html += "</span>";
+			}
+		}else if($("#sessionLevel").val() == 3){
 			html += "<span class='w3-right w3-opacity'>";
-			html += "<button type='button' class='btn btn-primary'>수정</button>";
-			html += "<button type='button' class='btn btn-primary'>삭제</button>";
+			html += "<button type='button' class='btn btn-primary roomReserveListModal' ddayOption='default' value='"+item.roomNo+"'>실시간예약</button>";
 			html += "</span>";
 		}else if($("#sessionId").val()==""){
 			html += "<span class='w3-right w3-opacity'>";
-			html += "</span>";
-		}else if(item.recruitStateCd==1){
-			html += "<span class='w3-right w3-opacity'>";
-			html += "<button type='button' class='btn btn-primary' value='"+item.roomNo+"'>실시간예약</button>";
 			html += "</span>";
 		}
 		html += "<h4>" + item.roomNm + "</h4><br>";
@@ -58,6 +59,88 @@ function roomListAppend(roomList) {
 		});
 		html += "</div>";
 	})
+	return html;
+}
+//실시간예약 modal
+$(document).on('click', '.roomReserveListModal', function() {
+	var roomNo = $(this).attr('value');
+	$('#roomReserveNo').val(roomNo);
+	$('#ddayYear').val(0);
+	$('#ddayMonth').val(0);
+	var ddayOption = 'default';
+	var ddayYear = $('#ddayYear').val();
+	var ddayMonth = $('#ddayMonth').val();
+	reserveCalendar(roomNo, ddayYear, ddayMonth, ddayOption);
+	$("#roomReserveListModal").modal('show');
+});
+//달력변경 modal
+$(document).on('click', '.calendarMoveBtn', function() {
+	var roomNo = $('#roomReserveNo').val();
+	var ddayOption = $(this).attr('ddayOption');
+	var ddayYear = $('#ddayYear').val();
+	var ddayMonth = $('#ddayMonth').val();
+	reserveCalendar(roomNo, ddayYear, ddayMonth, ddayOption);
+	$("#roomReserveListModal").modal('show');
+});
+//달력 load function
+function reserveCalendar(roomNo, ddayYear, ddayMonth, ddayOption){
+	$.ajax({
+		url : "calendar",
+		type : "POST",
+		data : {roomNo, ddayYear:ddayYear, ddayMonth:ddayMonth, ddayOption:ddayOption},
+		dataType : "json",
+		success : function(data) {
+			var html ="";
+			var calendarTitle = data.ddayYear+"년 "+(data.ddayMonth+1)+"월";
+			$("#calendarTitle").html(calendarTitle);
+			var calendarList = data.calendarList;
+			html = calenderAppend(calendarList);
+			$('#calendarListTbody').html(html);
+			$('#ddayYear').val(data.ddayYear);
+			$('#ddayMonth').val(data.ddayMonth);
+		}
+	})
+}
+//달력 추가 html
+function calenderAppend(calendarList){
+	var html = "";
+	var notThisMonthColor="#BDBDBD";
+	var sundayColor="#FF0000";
+	var weekdayColor="#000000";
+	var saturdayColor="#0000FF";
+	$.each(calendarList,function(key, item) {
+		if(key%7==0){
+			 html+= "<tr class='fc-week'>";
+		}
+		html+= "<td class='fc-day fc-widget-content'>";
+		html+= "<div style='min-height: 80px;'>";
+		html+= "<div class='fc-day-number' style='color:"
+		if(item.day > (key+1) || (key-item.day) > 27){
+			html+=notThisMonthColor;
+		}else{
+			if(key%7==0){
+				html+= sundayColor;
+			}else if((key%7)>0 && (key%7)<6){
+				html+= weekdayColor;
+			}else if(key%7==6){
+				html+= saturdayColor;
+			}
+		}
+		html+=";font-weight:bold;'>"+item.day;
+		if(item.reserveVo != null){
+			html+="<br>";
+			html+="예약중!";
+		}
+		html+="</div>";
+		html+= "<div class='fc-day-content'>";
+		html+= "<div style='position: relative; height: 25px;'> </div>";
+		html+= "</div>";
+		html+= "</div>";
+		html+= "</td>";
+		if(key%7==6){
+			 html+= "</tr>";
+		}
+	});
 	return html;
 }
 /*

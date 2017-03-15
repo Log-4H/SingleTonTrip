@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="<c:url value='/js/pageJs/roomAjax.js'/>"></script>
+<c:import url="./room/roomReserveList.jsp"></c:import>
 <div class="tab-pane fade" id="room">
 		<br>
 		<c:if test="${sessionId eq pageId}">

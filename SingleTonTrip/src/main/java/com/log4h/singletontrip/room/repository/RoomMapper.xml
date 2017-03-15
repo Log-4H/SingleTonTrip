@@ -38,4 +38,28 @@
 	WHERE
 		rf.room_no = #{roomNo}
 </select>
+<select id="roomReserveCheck" parameterType="map" resultType="com.log4h.singletontrip.room.domain.RoomReserveVo">
+	SELECT
+		re.room_no,
+		r.room_nm,
+		re.reserve_stay_day,
+		re.reserve_checkin_date,
+		re.reserve_checkout_date,
+		re.payment_state_cd,
+		ps.payment_state_nm
+	FROM
+		tb_reserve re
+	JOIN
+		tb_room r
+	ON
+		re.room_no = r.room_no
+	JOIN
+		tb_payment_state ps
+	ON
+		re.payment_state_cd = ps.payment_state_cd
+	WHERE
+		re.room_no = #{roomNo}
+	AND
+		(date(#{roomReserveDate}) BETWEEN reserve_checkin_date AND reserve_checkout_date)
+</select>
 </mapper>

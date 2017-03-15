@@ -250,6 +250,7 @@ INSERT INTO	tb_group(
 		t.trip_title,
 		t.trip_present_member,
 		t.trip_max_member,
+		t.recruit_state_cd,
 		g.person_id,
 		g.group_member_level,
 		g.approve_state_cd,

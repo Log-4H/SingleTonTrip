@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.log4h.singletontrip.room.domain.RoomReserveVo;
 import com.log4h.singletontrip.room.domain.RoomFacilityVo;
 import com.log4h.singletontrip.room.domain.RoomVo;
 
@@ -27,5 +28,10 @@ public class RoomDaoImpl implements RoomDao{
 	@Override
 	public List<RoomFacilityVo> roomFacilityList(int roomNo) {
 		return sqlSession.selectList(ROOM_NS+"roomFacilityList", roomNo);
+	}
+	
+	@Override
+	public RoomReserveVo roomReserveCheck(Map<String, Object> map) {
+		return sqlSession.selectOne(ROOM_NS+"roomReserveCheck", map);
 	}
 }

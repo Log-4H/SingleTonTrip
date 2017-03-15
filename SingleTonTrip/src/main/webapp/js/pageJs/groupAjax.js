@@ -42,7 +42,9 @@ $(document).on('click', '.pagingBtn', function() {
 //그룹리스트 html추가
 function groupListAppend(groupList) {
 	var html = "";
+	
 	$.each(groupList,function(key, item) {
+		console.log(item.recruitStateCd);
 		html += "<div class='w3-container w3-card-2 w3-white w3-round w3-margin'><br>";
 		html += "<span class='w3-right w3-opacity'>"+ item.groupApplyDate + "</span><br>";
 		html += "<span class='w3-right w3-opacity'>";
@@ -53,7 +55,7 @@ function groupListAppend(groupList) {
 				html += "<button type='button' class='btn btn-info groupDropBtn' value='"+item.tripNo+"'>탈퇴</button>";
 			}
 		}else if(item.groupMemberLevel=="leader"){
-			if (item.tripPresentMember < item.tripMaxMember) {
+			if (item.tripPresentMember < item.tripMaxMember && item.recruitStateCd == 1) {
 				html += "<button type='button' class='btn btn-info tripEndModalBtn' value='"+item.tripNo+"' data-dismiss='modal'>마감</button>";
 			}	
 		}

@@ -6,6 +6,7 @@ public class GroupVo {
 	private String tripTitle;
 	private int tripPresentMember;
 	private int tripMaxMember;
+	private int recruitStateCd;
 	private String leaderId;
 	private String personId;
 	private String groupMemberLevel;
@@ -100,6 +101,13 @@ public class GroupVo {
 	}
 	public void setTripMaxMember(int tripMaxMember) {
 		this.tripMaxMember = tripMaxMember;
+	}
+	
+	public int getRecruitStateCd() {
+		return recruitStateCd;
+	}
+	public void setRecruitStateCd(int recruitStateCd) {
+		this.recruitStateCd = recruitStateCd;
 	}
 	@Override
 	public String toString() {

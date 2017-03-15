@@ -7,6 +7,7 @@
 <input type="hidden" id="pageId" value="${pageId}">
 <input type="hidden" id="pageLevel" value="${pageLevel}">
 <input type="hidden" id="sessionId" value="${sessionId}">
+<input type="hidden" id="sessionLevel" value="${sessionLevel}">
 <script>
 	//프로필 요청 
 	$(document).ready(
@@ -128,7 +129,7 @@
 			<!-- Accordion -->
 			<div class="w3-card-2 w3-round">
 				<div class="w3-accordion w3-white">
-					<c:if test="${pageLevel == 2}">
+					<c:if test="${sessionLevel == 2}">
 						<button class="w3-btn-block w3-theme-l1 w3-left-align"
 							onclick="myFunction('reserveTab')">
 							<i class="fa fa-bars fa-fw w3-margin-right"></i> My Reserve
@@ -138,7 +139,7 @@
 							<p>reserve</p>
 						</div>
 					</c:if>
-					<c:if test="${pageLevel == 3}">
+					<c:if test="${sessionLevel == 3}">
 						<button class="w3-btn-block w3-theme-l1 w3-left-align"
 							onclick="myFunction('groupTab')">
 							<i class="fa fa-bars fa-fw w3-margin-right"></i> My Groups
