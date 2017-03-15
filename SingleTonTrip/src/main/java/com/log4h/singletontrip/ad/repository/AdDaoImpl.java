@@ -74,6 +74,12 @@ public class AdDaoImpl implements AdDao{
 		return sqlSession.update(AD_NS+"payback",map);
 	}
 	
+	// 환불 취소
+	@Override
+	public int paybackCancel(int paymentTargetNo){
+		return sqlSession.update(AD_NS+"paybackCancel",paymentTargetNo);
+	}
+	
 	// 광고 할 이미지파일 가져오기(메인)
 	@Override
 	public List<AdVo> selectUseAdMain(){

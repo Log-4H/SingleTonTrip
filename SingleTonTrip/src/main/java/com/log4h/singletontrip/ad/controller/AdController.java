@@ -126,6 +126,16 @@ public class AdController {
 		return mv;
 	}
 	
+	// 환불 취소
+	@RequestMapping(value="paybackCancel")
+	public ModelAndView paybackCancel(
+			@RequestParam(value="paymentTargetNo") int paymentTargetNo){
+		ModelAndView mv = new ModelAndView("redirect:payCancelList");
+		adService.paybackCancel(paymentTargetNo);
+		
+		return mv;
+	}
+	
 	// 광고 리스트
 	@RequestMapping(value="adList")
 	public ModelAndView adList(){

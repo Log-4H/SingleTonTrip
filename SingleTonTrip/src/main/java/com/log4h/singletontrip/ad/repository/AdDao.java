@@ -22,6 +22,7 @@ public interface AdDao {
 	public int adApprove(Map<String,Object>map);
 	public int adRefuse(Map<String,Object>map);
 	public int paybackApply(int adNo);
+	public int paybackCancel(int paymentTargetNo);
 	public List<AdVo> selectAdList();
 	public int adImgUpload(AdVo adVo);
 	public String selectAdImg(AdVo adVo);

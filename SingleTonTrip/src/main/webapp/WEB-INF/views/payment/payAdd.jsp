@@ -68,8 +68,6 @@
 												<th>#</th>
 												<th>결제 내용</th>
 												<th>가격</th>
-												<th>Age</th>
-												<th>City</th>
 												<th>취소</th>
 											</tr>
 										</thead>
@@ -80,8 +78,6 @@
 													<td>1</td>
 													<td>${list.adContent}</td>
 													<td>${list.adTotalPrice}</td>
-													<td>35</td>
-													<td>New York</td>
 													<td><a href="deleteAdApplyList?adNo=${list.adNo}"><button
 																type="button">취소</button></a></td>
 												</tr>

@@ -89,6 +89,12 @@ public class AdServiceImpl implements AdService{
 		return adDao.payback(map);
 	}
 	
+	// 환불 취소
+	@Override
+	public int paybackCancel(int paymentTargetNo){
+		return adDao.paybackCancel(paymentTargetNo);
+	}
+	
 	// 광고 이미지 등록(수정)
 	@Override
 	public int adImgUpload(AdVo adVo, MultipartFile imgFile){
