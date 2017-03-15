@@ -9,7 +9,7 @@
 					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 				</button>
 			</div>
-			<div class="modal-body" style="max-height: calc(100vh - 210px);  overflow-y: auto;">
+			<div class="modal-body">
 			<input type="hidden" id="roomReserveNo" value="">
 			<input type="hidden" id="ddayYear" value="0">
 			<input type="hidden" id="ddayMonth" value="0">
@@ -29,7 +29,7 @@
                                                 </button>
                                             </div> 
                                         </td>
-                                        <td class="fc-header-center"> <span class="fc-header-title">          <h2 id="calendarTitle">January 2014</h2>          </span>
+                                        <td class="fc-header-center"> <span class="fc-header-title"><h2 id="calendarTitle"></h2></span>
 
                                         </td>
                                         <td class="fc-header-right">

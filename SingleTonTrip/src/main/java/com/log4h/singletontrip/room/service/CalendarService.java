@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.log4h.singletontrip.room.domain.CalendarVo;
 import com.log4h.singletontrip.room.domain.RoomReserveVo;
 import com.log4h.singletontrip.room.repository.RoomDao;
 
-@Component
+@Service
 public class CalendarService {
 
 	@Autowired

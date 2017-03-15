@@ -80,7 +80,6 @@ $(document).on('click', '.calendarMoveBtn', function() {
 	var ddayYear = $('#ddayYear').val();
 	var ddayMonth = $('#ddayMonth').val();
 	reserveCalendar(roomNo, ddayYear, ddayMonth, ddayOption);
-	$("#roomReserveListModal").modal('show');
 });
 //달력 load function
 function reserveCalendar(roomNo, ddayYear, ddayMonth, ddayOption){
@@ -113,11 +112,7 @@ function calenderAppend(calendarList){
 		if(key%7==0){
 			 html+= "<tr class='fc-week'>";
 		}
-		
 		html+= "<td class='fc-day fc-widget-content'>";
-		if(item.reserveVo == null){
-			
-		}
 		html+= "<div style='min-height: 80px;'>";
 		html+= "<div class='fc-day-number' style='color:"
 		if(item.day > (key+1) || (key-item.day) > 27){
