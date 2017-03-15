@@ -18,6 +18,9 @@ body,h1 {font-family: "Raleway", sans-serif}
 body, html {height: 100%}
 </style>
 <body>
+<script src="<c:url value='/js/pageJs/groupAjax.js'/>"></script>
+<c:import url="/WEB-INF/views/page/group/groupList.jsp"></c:import>
+
 <!-- 상단바 -->
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
@@ -123,6 +126,13 @@ body, html {height: 100%}
 		<c:if test="${sessionLevel eq 3}">
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-account"></span>그룹</a>
+						<ul class="dropdown-menu">
+							<li><a href="javascript:void(0)" class="groupListModalShow" value="leader">생성한그룹</a></li>
+							<li><a href="javascript:void(0)" class="groupListModalShow" value="member">가입한그룹</a></li>
+						</ul>
+				</li>
 				<li><a href="#tour"><span class="glyphicon glyphicon-plane"></span>여행</a></li>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">친구<span class="badge">3</span></a>
