@@ -64,9 +64,9 @@
 			WHEN 
 				re.reserve_stay_day = 1 
 			THEN 
-				(date(#{roomReserveDate}) BETWEEN reserve_checkin_date AND reserve_checkout_date)
+				(date(#{date}) BETWEEN reserve_checkin_date AND reserve_checkout_date)
 	        ELSE 
-	        	(date(#{roomReserveDate}) BETWEEN reserve_checkin_date AND reserve_checkout_date-1)
+	        	(date(#{date}) BETWEEN reserve_checkin_date AND reserve_checkout_date-1)
         END
 </select>
 </mapper>

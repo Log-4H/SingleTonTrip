@@ -62,10 +62,11 @@ public class CalendarService {
 				calendar.setYear(dday.get(Calendar.YEAR));
 				calendar.setMonth(dday.get(Calendar.MONTH) + 1);
 				calendar.setDay((i + 1) - (firstWeek - 1));
-				String roomReserveDate = calendar.getYear()+"-"+calendar.getMonth()+"-"+calendar.getDay();
+				String date = calendar.getYear()+"-"+calendar.getMonth()+"-"+calendar.getDay();
+				calendar.setDate(date);
 				Map<String, Object> paramMap = new HashMap<String,Object>();
 				paramMap.put("roomNo", roomNo);
-				paramMap.put("roomReserveDate", roomReserveDate);
+				paramMap.put("date", date);
 				RoomReserveVo roomReserveVo = roomDao.roomReserveCheck(paramMap);
 				calendar.setReserveVo(roomReserveVo);
 			} else {

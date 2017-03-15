@@ -5,6 +5,7 @@ public class CalendarVo {
     private int month;
     private int day;
     private int week;
+    private String date;
     private RoomReserveVo reserveVo;
     public int getYear() {
         return year;
@@ -30,6 +31,12 @@ public class CalendarVo {
     public void setWeek(int week) {
         this.week = week;
     }
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
 	public RoomReserveVo getReserveVo() {
 		return reserveVo;
 	}

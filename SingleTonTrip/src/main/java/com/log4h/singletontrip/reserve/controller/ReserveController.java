@@ -52,7 +52,7 @@ public class ReserveController {
 		mv.addObject("endPage", getMap.get("endPage"));
 		mv.addObject("lastPage", getMap.get("lastPage"));
 		
-		mv.setViewName("/company/reserve/reserveList");
+		mv.setViewName("reserve/reserveList");
 		
 		return mv;
 		
