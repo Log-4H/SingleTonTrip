@@ -17,7 +17,6 @@
 body,h1 {font-family: "Raleway", sans-serif}
 body, html {height: 100%}
 </style>
-
 <body>
 <!-- 상단바 -->
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -32,7 +31,7 @@ body, html {height: 100%}
 		</div>
 			<form class="navbar-form navbar-left">
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search">
+					<input type="text" class="form-control" id="searchList" placeholder="Search">
 				<div class="input-group-btn">
 					<button class="btn btn-default" type="submit">
 							<i class="glyphicon glyphicon-search"></i>
@@ -54,14 +53,6 @@ body, html {height: 100%}
 		<c:if test="${sessionLevel eq 1}">
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
-			
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-search"></span>검색</a>
-						<ul class="dropdown-menu">
-							<li><a href="adminCompanyList">숙소</a></li>
-							<li><a href="personList">회원</a></li>
-						</ul>
-				</li>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-blackboard"></span>광고</a>
 						<ul class="dropdown-menu">
@@ -96,13 +87,6 @@ body, html {height: 100%}
 		<c:if test="${sessionLevel eq 2}">
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-search"></span>검색</a>
-						<ul class="dropdown-menu">
-							<li><a href="companyList">숙소</a></li>
-							<li><a href="personList">회원</a></li>
-						</ul>
-				</li>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-blackboard"></span>광고</a>
 						<ul class="dropdown-menu">
@@ -139,13 +123,6 @@ body, html {height: 100%}
 		<c:if test="${sessionLevel eq 3}">
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-search"></span>검색</a>
-						<ul class="dropdown-menu">
-							<li><a href="companyList">숙소</a></li>
-							<li><a href="personList">회원</a></li>
-						</ul>
-				</li>
 				<li><a href="#tour"><span class="glyphicon glyphicon-plane"></span>여행</a></li>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">친구<span class="badge">3</span></a>

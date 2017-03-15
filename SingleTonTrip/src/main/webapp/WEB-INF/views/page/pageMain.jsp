@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/WEB-INF/views/module/top.jsp"></c:import>
 <c:import url="/WEB-INF/views/module/left.jsp"></c:import>
-<c:import url="<c:url value='/WEB-INF/views/page/group/groupList.jsp'/>"></c:import>
 <input type="hidden" id="pageId" value="${pageId}">
 <input type="hidden" id="pageLevel" value="${pageLevel}">
 <input type="hidden" id="sessionId" value="${sessionId}">

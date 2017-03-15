@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="<c:url value='/js/pageJs/groupAjax.js'/>"></script>
+<c:import url="/WEB-INF/views/page/group/groupList.jsp"></c:import>
 <script src="<c:url value='/js/imageView.js'/>"></script>
 <script>
 	//프로필 요청 
