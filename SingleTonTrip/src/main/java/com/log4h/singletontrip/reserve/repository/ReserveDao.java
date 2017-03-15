@@ -22,11 +22,4 @@ public interface ReserveDao {
 
 	List<PaymentVo> adPayList(Map<String, Object> map);
 
-	int reservePayCount(Map<String, Object> payCountMap);
-
-	List<PaymentVo> reservePayList(Map<String, Object> map);
-
-
-
-
 }

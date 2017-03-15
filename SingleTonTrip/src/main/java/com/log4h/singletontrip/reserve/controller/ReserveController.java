@@ -64,23 +64,19 @@ public class ReserveController {
 			@ModelAttribute("sessionId") String sessionId,
 			@ModelAttribute("sessionLevel") int sessionLevel,
 			@RequestParam(value="currentPage", defaultValue="1") int currentPage,
-			@RequestParam(value="selectOption", defaultValue="0") int selectOption,
 			@RequestParam(value="selectValue", required=false) String selectValue			
 			){
 		ModelAndView mv = new ModelAndView();
 		
-		Map<String, Object> getMap = reserveService.getPayList(currentPage, sessionId, sessionLevel, selectOption, selectValue);
+		Map<String, Object> getMap = reserveService.getPayList(currentPage, sessionId, sessionLevel,selectValue);
 		mv.addObject("paymentCateList", getMap.get("paymentCateList"));
 		mv.addObject("currentPage", currentPage);
-		mv.addObject("selectOption", selectOption);
 		mv.addObject("selectValue", selectValue);
 		mv.addObject("startPage", getMap.get("startPage"));
 		mv.addObject("pageSize", getMap.get("pageSize"));
 		mv.addObject("endPage", getMap.get("endPage"));
 		mv.addObject("lastPage", getMap.get("lastPage"));
 		mv.addObject("adPayList", getMap.get("adPayList"));
-		mv.addObject("reservePayList", getMap.get("reservePayList"));
-		
 		mv.setViewName("/payment/payList");
 		
 		return mv;

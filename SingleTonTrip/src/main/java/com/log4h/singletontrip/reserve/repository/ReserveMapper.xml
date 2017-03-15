@@ -33,7 +33,6 @@
 			comm.member_id = r.company_id
 		<choose>
 			<when test="login.memberLevel == 3">
-					
 				WHERE
 					rsv.person_id = #{login.memberId}
 			</when>
@@ -89,7 +88,6 @@
 			comm.member_id = r.company_id
 		<choose>
 			<when test="login.memberLevel == 3">
-					
 				WHERE
 					rsv.person_id = #{login.memberId}
 			</when>
@@ -100,7 +98,8 @@
 			<otherwise>
 			</otherwise>
 		</choose>
-			
+		ORDER BY rsv.reserve_no
+		DESC LIMIT #{beginRow}, #{pagePerRow}
 	</select>
 	
 	<!-- paymentCate를 가져옴 -->
@@ -140,7 +139,7 @@
 	
 	<!-- 업체 광고 결제 내역 -->
 	<select id="adPayList" parameterType="Map" resultType="com.log4h.singletontrip.reserve.domain.PaymentVo">
-			SELECT 
+		SELECT 
 			pm.payment_no ,
 			pm.admin_id , 
 			pm.member_id ,
@@ -169,17 +168,17 @@
 				</when>
 				<otherwise>
 					<if test ="selectValue != null and selectValue !='' ">
-						AND
-							pm.member_id LIKE '%${selectValue}%'		
+						pm.member_id LIKE '%${selectValue}%'		
 					</if>
 				</otherwise>
 			</choose>
 		</where>
-		ORDER BY 	pm.payment_no DESC
+		ORDER BY 	pm.payment_no
+		DESC LIMIT #{beginRow}, #{pagePerRow}
 		
 	</select>
 	
-	<!-- 일반회원 결제 내역 count -->
+	<!-- 일반회원 결제 내역 count
 	<select id="reservePayCount" parameterType="Map" resultType="int">
 		SELECT 
 			COUNT(*)
@@ -209,7 +208,7 @@
 		</where>
 	</select>
 	
-	<!-- 일반회원 결제 내역 -->
+	일반회원 결제 내역
 	<select id="reservePayList" parameterType="Map" resultType="com.log4h.singletontrip.reserve.domain.PaymentVo">
 		SELECT 
 			pm.payment_no ,
@@ -253,8 +252,10 @@
 				</otherwise>
 			</choose>
 		</where>
-		ORDER BY 	pm.payment_no DESC
+		ORDER BY 	pm.payment_no 
+		DESC LIMIT #{beginRow}, #{pagePerRow}
 		
 	</select>
+	 -->
 
 </mapper>

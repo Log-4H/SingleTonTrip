@@ -54,62 +54,42 @@ public class ReserveServiceImpl implements ReserveService{
 
 	// get payList
 	@Override
-	public Map<String, Object> getPayList(int currentPage, String sessionId, int sessionLevel, int selectOption,
-			String selectValue) {
+	public Map<String, Object> getPayList(int currentPage, String sessionId, int sessionLevel, String selectValue) {
 		logger.debug(" >>>>>>> getPayList <<<<<<< ");
 		
 		LoginVo login = new LoginVo();
 		login.setMemberId(sessionId);
 		login.setMemberLevel(sessionLevel);
-		logger.debug("login에 담긴 값 : {} ", login);
+		logger.debug(" >>>>>>> login에 담긴 값 : {} ", login);
 		
-		// paymentCate를 가져온다
-		List<PaymentCateVo> paymentCateList = reserveDao.getPaymentCate();
-		logger.debug("paymentCate :{}", paymentCateList);
-		
+		/* 
+		 * paymentCate를 가져온다
+		 * List<PaymentCateVo> paymentCateList = reserveDao.getPaymentCate();
+		 * logger.debug(" >>>>>>> paymentCate :{}", paymentCateList);
+		 */
 		Map<String, Object> payCountMap = new HashMap<String, Object>();
-		payCountMap.put("selectOption", selectOption);
 		payCountMap.put("selectValue", selectValue);
 		payCountMap.put("login", login);
-		logger.debug(" >>>>>>> payTotalCountMap에 담긴 값 \n{}   ", payCountMap);
+		logger.debug(" >>>>>>> payCountMap에 담긴 값 {} ", payCountMap);
 		
 		Paging paging = new Paging();
+		
 		Map<String, Object> map = new HashMap<String,Object>();
 		
-		if(sessionLevel == 2 || sessionLevel == 1){
-			// 행의 수를 가져온다
-			int adPayCount = reserveDao.adPayCount(payCountMap);
-			logger.debug("\n >>>>>>> adPayTotalCount 값 : {} ",adPayCount);
-			
-			map = paging.pagingMethod(currentPage, adPayCount);
-			map.put("selectOption", selectOption);
-		    map.put("selectValue", selectValue);
-		    map.put("login", login);
-		    
-		    // pay 리스트를 가져온다
-		    List<PaymentVo> returnList = reserveDao.adPayList(map);
-		    
-		    map.put("adPayList", returnList);
-		    logger.debug(" >>>>>>> adReturn value : {}", returnList);
-			
-		}else if(sessionLevel == 3 || sessionLevel == 1){
-			// 행의 수를 가져온다
-			int reservePayCount = reserveDao.reservePayCount(payCountMap);
-			logger.debug("\n >>>>>>> reservePayTotalCount 값 : {} ",reservePayCount);
-			
-			map = paging.pagingMethod(currentPage, reservePayCount);
-			map.put("selectOption", selectOption);
-		    map.put("selectValue", selectValue);
-		    map.put("login", login);
-		    
-		    // pay 리스트를 가져온다
-		    List<PaymentVo> returnList = reserveDao.reservePayList(map);
-		    
-		    map.put("reservePayList", returnList);
-		 
-		    logger.debug(" >>>>>>> reserveReturn value : {}", returnList);
-		}
-		   map.put("paymentCateList", paymentCateList);
+		// 행의 수를 가져온다
+		int adPayCount = reserveDao.adPayCount(payCountMap);
+		logger.debug("\n >>>>>>> adPayTotalCount 값 : {} ",adPayCount);
+		
+		map = paging.pagingMethod(currentPage, adPayCount);
+	    map.put("selectValue", selectValue);
+	    map.put("login", login);
+	    
+	    // pay 리스트를 가져온다
+	    List<PaymentVo> returnList = reserveDao.adPayList(map);
+	    
+	    map.put("adPayList", returnList);
+	    logger.debug(" >>>>>>> adReturn value : {}", returnList);
+		
 	    return map;
 	}
 

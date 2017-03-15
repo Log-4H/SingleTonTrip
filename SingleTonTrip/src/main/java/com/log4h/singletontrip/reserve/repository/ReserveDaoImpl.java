@@ -43,15 +43,4 @@ public class ReserveDaoImpl implements ReserveDao{
 	public List<PaymentVo> adPayList(Map<String, Object> map) {
 		return sqlSession.selectList(RESERVE_NS+"adPayList", map);
 	}
-	// 일반회원 결제 내역 카운트
-	@Override
-	public int reservePayCount(Map<String, Object> payCountMap) {
-		return sqlSession.selectOne(RESERVE_NS+"reservePayCount",payCountMap);
-	}
-	// 일반회원 결제 내역 리스트
-	@Override
-	public List<PaymentVo> reservePayList(Map<String, Object> map) {
-		return sqlSession.selectList(RESERVE_NS+"reservePayList", map);
-	}
-
 }

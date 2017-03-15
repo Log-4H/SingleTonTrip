@@ -18,12 +18,14 @@
 											<a data-toggle="collapse" href="#collapse${status.index}">
 												<div class="row">
 													<div class="col-xs-12 col-sm-6 col-md-8" align="center">
-														<c:if test="${sessionLevel eq 2 || sessionLevel eq 1 }">
+													<c:choose>
+														<c:when test="${sessionLevel eq 2 || sessionLevel eq 1 }">
 															<h4 class="w3-opacity">${i.reserveVo.person.memberNm}</h4>
-														</c:if>
-														<c:if test="${sessionLevel eq 3} ">
+														</c:when>
+														<c:otherwise>
 															<h4 class="w3-opacity">${i.reserveVo.room.company.memberNm}</h4>
-														</c:if>
+														</c:otherwise>
+													</c:choose>
 													</div>
 													<div class="clearfix visible-xs"></div>
 													<div class="col-xs-6 col-md-2">
@@ -36,6 +38,7 @@
 											</a>
 										</h4>
 									</div>
+									
 									<div id="collapse${status.index}" class="panel-collapse collapse">
 										<br />
 										<div class="row">
