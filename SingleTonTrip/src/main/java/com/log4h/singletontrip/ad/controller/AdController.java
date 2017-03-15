@@ -253,17 +253,9 @@ public class AdController {
 		// 검색 상단 광고
 		List<AdVo> searchAdList = adService.selectUseAdSearch();
 		mv.addObject("searchAdList",searchAdList);
+		
 		mv.setViewName("jsonView");
 		return mv;
 	}
-	
-	@RequestMapping(value="main")
-	public ModelAndView Main(){
-		ModelAndView mv = new ModelAndView("main");
-		// 메인 광고
-		List<AdVo> mainAdList = adService.selectUseAdMain();
-		mv.addObject("mainAdList",mainAdList);
-		return mv;
-	}
-	
+		
 }
