@@ -2,7 +2,39 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="./module/top.jsp"></c:import>
-
+<script>
+// 광고 불러온다
+$(document).ready(function() {
+	$.ajax({
+		url : "serviceAdList",
+		type : "POST",
+		dataType : "json",
+		success : function(data) {
+			var mainAdList = data.mainAdList;
+			var html="";
+			$.each(mainAdList,function(key, item) {
+				if(key==0){
+					html+="<div class='item active slider-size'>";
+				}
+				else {
+					html+="<div class='item slider-size'>";
+				}
+				// 광고신청할 때 URL 입력했으면 그 주소로 가고 입력 안했으면 광고 신청한 사람의 페이지로 이동
+				if(item.adPageAddress == null || item.adPageAddress == ""){
+					html+="<a href='pageMain?pageId="+item.companyId+"' target='_blank'>";
+				} else {
+					html+="<a href='"+item.adPageAddress+"' target='_blank'>";
+				}
+				html+="<img class='img-responsive center-block' src='./images/"+item.adImg+"' style='width:100%; max-height:333px;'></a>";
+				html+="</div>";
+				html+="</div>";
+			});
+			$("#adList").html(html);
+			
+		}
+	})
+});
+</script>
 <!-- Page content -->
 <div class="w3-content w3-padding" style="max-width: 1564px">
 	<div class="w3-container w3-padding-32" id="projects">
@@ -14,36 +46,24 @@
 			<div id="myCarousel" class="carousel slide text-center"
 				data-ride="carousel">
 				<!-- Wrapper for slides -->
-				<div class="carousel-inner" role="listbox">
-					<div class="item active slider-size">
-						<img class="img-responsive center-block"
-							src="http://www.w3schools.com/w3images/parallax1.jpg">
-					</div>
-					<div class="item slider-size">
-						<img class="img-responsive center-block"
-							src="http://www.w3schools.com/w3images/team2.jpg">
-					</div>
-					<div class="item slider-size">
-						<img class="img-responsive center-block"
-							src="http://www.w3schools.com/w3images/team2.jpg">
-					</div>
+				<div class="carousel-inner" role="listbox" id="adList">
+				
 				</div>
 
 				<!-- Left and right controls -->
-				<a class="left carousel-control" href="#myCarousel" role="button"
-					data-slide="prev"> <span
-					class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> 
+					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 					<span class="sr-only">Previous</span>
-				</a> <a class="right carousel-control" href="#myCarousel" role="button"
-					data-slide="next"> <span
-					class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				</a> 
+				<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> 
+					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 					<span class="sr-only">Next</span>
 				</a>
 				<!-- Indicators -->
 				<ol class="carousel-indicators">
-					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-					<li data-target="#myCarousel" data-slide-to="1"></li>
-					<li data-target="#myCarousel" data-slide-to="2"></li>
+					<c:forEach var="m" items="${mainAdCount}">
+						<li data-target="#myCarousel" data-slide-to="${m.adNo}" class="active"></li>
+					</c:forEach>
 				</ol>
 			</div>
 			<div class="w3-col l3 m6 w3-margin-bottom"></div>

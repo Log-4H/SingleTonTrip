@@ -81,7 +81,8 @@
 			ad_reg_date = now(),
 			ad_end_date = ADDDATE(now(), INTERVAL ad_total_amount DAY),
 		</if>
-		admin_id = #{adminId},
+		tb_ad.admin_id = #{adminId},
+		tb_payment.admin_id = #{adminId},
 		payment_approve_date = now()
 	WHERE
 		ad_no = #{adNo}
@@ -117,12 +118,10 @@
 	WHERE
 		ad_no = #{adNo}
 </update>
-<!-- 광고 할 이미지파일 가져오기(메인) -->
-<select id="selectUseAdMain"
-		resultType="com.log4h.singletontrip.ad.domain.AdVo">
+<!-- 메인 광고 갯수 가져오기 -->
+<select id="mainAdCount" resultType="com.log4h.singletontrip.ad.domain.AdVo">
 	SELECT
-		ad_img,
-		ad_page_address
+		ad_no
 	FROM
 		tb_ad
 	WHERE
@@ -131,14 +130,30 @@
 		ad_group_cd = 1
 	AND
 		ad_reg_date <![CDATA[<]]> curdate()
-	ORDER BY rand() limit 1
+</select>
+<!-- 광고 할 이미지파일 가져오기(메인) -->
+<select id="selectUseAdMain"
+		resultType="com.log4h.singletontrip.ad.domain.AdVo">
+	SELECT
+		ad_img,
+		ad_page_address,
+		company_id
+	FROM
+		tb_ad
+	WHERE
+		ad_approve_state_cd = 2
+	AND
+		ad_group_cd = 1
+	AND
+		ad_reg_date <![CDATA[<]]> curdate()
 </select>
 <!-- 광고 할 이미지파일 가져오기(홈페이지상단) -->
 <select id="selectUseAdHome"
 		resultType="com.log4h.singletontrip.ad.domain.AdVo">
 	SELECT
 		ad_img,
-		ad_page_address
+		ad_page_address,
+		company_id
 	FROM
 		tb_ad
 	WHERE
@@ -154,7 +169,8 @@
 		resultType="com.log4h.singletontrip.ad.domain.AdVo">
 	SELECT
 		ad_img,
-		ad_page_address
+		ad_page_address,
+		company_id
 	FROM
 		tb_ad
 	WHERE

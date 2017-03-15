@@ -37,4 +37,5 @@ public interface AdDao {
 	public List<AdVo> selectUseAdMain();
 	public List<AdVo> selectUseAdHome();
 	public List<AdVo> selectUseAdSearch();
+	public List<AdVo> mainAdCount();
 }

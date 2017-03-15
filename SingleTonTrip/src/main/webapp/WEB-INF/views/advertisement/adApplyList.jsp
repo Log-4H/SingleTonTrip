@@ -13,9 +13,8 @@
 <script type="text/javascript">
 	alert('관리자 전용 페이지 입니다');
 </script>
-<% response.sendRedirect("index"); %>
+<c:redirect url="index"/>
 </c:if>
-<h3><a href="<%= request.getContextPath() %>/index">홈</a></h3>
 <div class="w3-container w3-content"
 	style="max-width: 1400px; margin-top: 130px" align="center">
 <h1 align="center">광고 신청 리스트</h1>
@@ -88,5 +87,4 @@
 	</div>
 </div>
 </body>
-<c:import url="../module/right.jsp"></c:import>
 </html>

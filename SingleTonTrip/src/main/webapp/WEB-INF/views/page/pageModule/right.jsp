@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
-//프로필 요청 
+// 광고 불러온다
 $(document).ready(function() {
 	$.ajax({
 		url : "serviceAdList",
@@ -12,12 +12,16 @@ $(document).ready(function() {
 			var homeAdList = data.homeAdList;
 			var html="";
 			$.each(homeAdList,function(key, item) {
-				html += "<p>여기 어떠세요?</p>"
-					+	"<a href='"+item.adPageAddress+"' target='_blank'>"
-					+	"<img src='./images/"+item.adImg+"' alt='' style='width:50%'>"
-					+	"</a>";
+				html += "<p>여기 어떠세요?</p>";
+				// 광고신청할 때 URL 입력했으면 그 주소로 가고 입력 안했으면 광고 신청한 사람의 페이지로 이동
+				if(item.adPageAddress == null || item.adPageAddress == ""){
+					html+="<a href='pageMain?pageId="+item.companyId+"' target='_blank'>";
+				} else {
+					html+="<a href='"+item.adPageAddress+"' target='_blank'>";
+				}
+				html+="<img src='./images/"+item.adImg+"' alt='' style='width:100%; max-height:150px;'></a>";
 			});
-			$("#adtest").html(html);
+			$("#adList").html(html);
 			
 		}
 	})
@@ -25,10 +29,8 @@ $(document).ready(function() {
 </script>
 			<!-- Right Column -->
 			<div class="w3-col m2">
-				<div class="w3-card-2 w3-round w3-white w3-center">
-					<div class="w3-container" id="adtest">
-					
-					</div>
+				<div class="w3-card-2 w3-round w3-white w3-center" id="adList">
+
 				</div>
 				<br>
 

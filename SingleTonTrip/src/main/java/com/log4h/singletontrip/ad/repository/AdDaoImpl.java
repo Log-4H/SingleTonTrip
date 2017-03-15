@@ -98,6 +98,12 @@ public class AdDaoImpl implements AdDao{
 		return sqlSession.selectList(AD_NS+"selectUseAdSearch");
 	}
 	
+	// 메인광고 카운트(갯수) 가져오기
+	@Override
+	public List<AdVo> mainAdCount(){
+		return sqlSession.selectList(AD_NS+"mainAdCount");
+	}
+	
 	// 광고 이미지 등록
 	@Override
 	public int adImgUpload(AdVo adVo){

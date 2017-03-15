@@ -162,4 +162,10 @@ public class AdServiceImpl implements AdService{
 	public List<AdVo> selectUseAdSearch(){
 		return adDao.selectUseAdSearch();
 	}
+	
+	// 메인광고 카운트(갯수) 가져오기
+	@Override
+	public List<AdVo> mainAdCount(){
+		return adDao.mainAdCount();
+	}
 }

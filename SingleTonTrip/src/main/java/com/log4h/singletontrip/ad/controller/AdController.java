@@ -257,4 +257,13 @@ public class AdController {
 		return mv;
 	}
 	
+	@RequestMapping(value="main")
+	public ModelAndView Main(){
+		ModelAndView mv = new ModelAndView("main");
+		// 메인 광고
+		List<AdVo> mainAdList = adService.selectUseAdMain();
+		mv.addObject("mainAdList",mainAdList);
+		return mv;
+	}
+	
 }
