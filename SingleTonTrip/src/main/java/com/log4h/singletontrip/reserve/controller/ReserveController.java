@@ -83,38 +83,22 @@ public class ReserveController {
 		
 	}
 	
-/*	
-	@RequestMapping(value="payAdd",method=RequestMethod.GET)
-	public ModelAndView payAdd(
+	// 예약
+	@RequestMapping(value="reserveAdd",method=RequestMethod.POST)
+	public ModelAndView reserveAdd(
 			@ModelAttribute("sessionId") String sessionId,
 			@ModelAttribute("sessionLevel") int sessionLevel,
-			@RequestParam(value="currentPage", defaultValue="1") int currentPage,
-			@RequestParam(value="selectOption", defaultValue="0") int selectOption,
-			@RequestParam(value="selectValue", required=false) String selectValue			
+			@RequestParam(value="roomNo") int roomNo,
+			@RequestParam(value="reserveCheckinDate") String reserveCheckinDate
 			){
 		ModelAndView mv = new ModelAndView();
+		logger.debug(" >>>>>>> reserveAdd <<<<<<< ");
 		
-		LoginVo login = new LoginVo();
-		login.setMemberId(sessionId);
-		login.setMemberLevel(sessionLevel);
-		logger.debug("login에 담긴 값 : {} ", login);
-		Map<String, Object> getMap = reserveService.getReserveList(currentPage,login, selectOption, selectValue);
-		logger.debug(" >>>>>>> getReserveList에서 리턴 받는 map : \n {} <<<<<<< ",getMap);
-		
-		mv.addObject("map", getMap);
-		mv.addObject("currentPage", currentPage);
-		mv.addObject("selectOption", selectOption);
-		mv.addObject("selectValue", selectValue);
-		mv.addObject("startPage", getMap.get("startPage"));
-		mv.addObject("pageSize", getMap.get("pageSize"));
-		mv.addObject("endPage", getMap.get("endPage"));
-		mv.addObject("lastPage", getMap.get("lastPage"));
-		
-		mv.setViewName("/payment/payAdd");
+		mv.setViewName("/reserve/reserveAdd");
 		
 		return mv;
 		
 	}
-	*/
+
 	
 }

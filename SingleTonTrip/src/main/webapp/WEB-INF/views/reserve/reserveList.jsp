@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/WEB-INF/views//module/top.jsp" />
-<c:import url="/WEB-INF/views/company/reserve/reserveDetail.jsp" />
+<c:import url="/WEB-INF/views/reserve/reserveDetail.jsp" />
 <body>
 	<div class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
 		<div class="w3-col m7">
@@ -43,11 +43,12 @@
 									<div id="collapse${status.index}" class="panel-collapse collapse">
 										<br />
 										<div class="row">
-											<c:if test="${sessionLevel eq 2 }">
-												<div class="col-md-5 col-md-offset-2">${i.reserveVo.person.memberPhone}</div>
+											<c:if test="${sessionLevel eq 2 || sessionLevel eq 1}">
+												<div class="col-md-5 col-md-offset-2">연락처 : ${i.reserveVo.person.memberPhone}</div>
 											</c:if>
-											<div class="col-md-5 col-md-offset-2">${i.reserveVo.room.company.companyAddress}</div>
-					
+											<c:if test="${sessionLevel eq 3 }">
+												<div class="col-md-5 col-md-offset-2">${i.reserveVo.room.company.companyAddress}</div>
+											</c:if>
 											<div class="col-md-3 col-md-offset-2 " align="center">
 												<a href="#reserveDetailModal" title="상세보기" data-toggle="modal">
 													${i.reserveVo.room.roomNm}
@@ -84,16 +85,19 @@
 			<!-- 페이징 -->
 			<div align = "center">
 				<c:if test="${startPage>1}">
-					<a
-						href="<c:url value='reserveList?currentPage=${startPage-pageSize}'/>">prev</a>
+					<a href="<c:url value='reserveList?currentPage=${startPage-pageSize}'/>">
+						<button type="button" class="btn btn-primary">prev</button>
+					</a>
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
-					<a
-						href="<c:url value='reserveList?currentPage=${i}'/>">${i}</a>
+					<a href="<c:url value='reserveList?currentPage=${i}'/>">
+						<button type="button" class="btn btn-primary">${i}</button>
+					</a>
 				</c:forEach>
 				<c:if test="${endPage ne lastPage}">
-					<a
-						href="<c:url value='reserveList?currentPage=${startPage+pageSize}'/>">next</a>
+					<a href="<c:url value='reserveList?currentPage=${startPage+pageSize}'/>">
+						<button type="button" class="btn btn-primary">next</button>
+					</a>
 				</c:if>
 			</div>
 		</div>
