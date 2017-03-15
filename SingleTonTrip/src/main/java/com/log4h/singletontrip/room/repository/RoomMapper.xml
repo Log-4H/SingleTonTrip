@@ -60,6 +60,13 @@
 	WHERE
 		re.room_no = #{roomNo}
 	AND
-		(date(#{roomReserveDate}) BETWEEN reserve_checkin_date AND reserve_checkout_date)
+		CASE
+			WHEN 
+				re.reserve_stay_day = 1 
+			THEN 
+				(date(#{roomReserveDate}) BETWEEN reserve_checkin_date AND reserve_checkout_date)
+	        ELSE 
+	        	(date(#{roomReserveDate}) BETWEEN reserve_checkin_date AND reserve_checkout_date-1)
+        END
 </select>
 </mapper>

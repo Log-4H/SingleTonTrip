@@ -112,7 +112,11 @@ function calenderAppend(calendarList){
 		if(key%7==0){
 			 html+= "<tr class='fc-week'>";
 		}
+		
 		html+= "<td class='fc-day fc-widget-content'>";
+		if(item.reserveVo == null){
+			
+		}
 		html+= "<div style='min-height: 80px;'>";
 		html+= "<div class='fc-day-number' style='color:"
 		if(item.day > (key+1) || (key-item.day) > 27){
@@ -127,13 +131,16 @@ function calenderAppend(calendarList){
 			}
 		}
 		html+=";font-weight:bold;'>"+item.day;
-		if(item.reserveVo != null){
-			html+="<br>";
-			html+="예약중!";
-		}
 		html+="</div>";
 		html+= "<div class='fc-day-content'>";
-		html+= "<div style='position: relative; height: 25px;'> </div>";
+		if(item.day <=(key+1) && (key-item.day)<27){
+			if(item.reserveVo != null){
+				html+="<h5 style='color:#FF0000;'>예약중</h5>";
+			}else{
+				html+="<a href='javascript:void(0)'><h5>예약가능</h5></a>";
+			}
+		}
+		html+= "<div style='position: relative; height: 25px;'></div>";
 		html+= "</div>";
 		html+= "</div>";
 		html+= "</td>";
