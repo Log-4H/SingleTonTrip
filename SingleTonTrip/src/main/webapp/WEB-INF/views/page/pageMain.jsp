@@ -2,7 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/WEB-INF/views/module/top.jsp"></c:import>
-<c:import url="./pageModule/left.jsp"></c:import>
+<c:import url="/WEB-INF/views/module/left.jsp"></c:import>
+<c:import url="<c:url value='/WEB-INF/views/page/group/groupList.jsp'/>"></c:import>
+<input type="hidden" id="pageId" value="${pageId}">
+<input type="hidden" id="pageLevel" value="${pageLevel}">
+<input type="hidden" id="sessionId" value="${sessionId}">
+<input type="hidden" id="sessionLevel" value="${sessionLevel}">
 <!-- Middle Column -->
 <div class="w3-col m7">
 	<div class="w3-row-padding">
@@ -28,4 +33,4 @@
 	</div>
 </div>
 <!-- End Middle Column -->
-<c:import url="./pageModule/right.jsp"></c:import>
+<c:import url="/WEB-INF/views/module/right.jsp"></c:import>

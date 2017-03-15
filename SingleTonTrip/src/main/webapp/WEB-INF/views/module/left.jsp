@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="<c:url value='/js/pageJs/groupAjax.js'/>"></script>
 <script src="<c:url value='/js/imageView.js'/>"></script>
-<c:import url="<c:url value='/WEB-INF/views/page/group/groupList.jsp'/>"></c:import>
-<input type="hidden" id="pageId" value="${pageId}">
-<input type="hidden" id="pageLevel" value="${pageLevel}">
-<input type="hidden" id="sessionId" value="${sessionId}">
-<input type="hidden" id="sessionLevel" value="${sessionLevel}">
 <script>
 	//프로필 요청 
 	$(document).ready(

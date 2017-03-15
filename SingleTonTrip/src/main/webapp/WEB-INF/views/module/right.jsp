@@ -6,7 +6,7 @@
 $(document).ready(function() {
 	$.ajax({
 		url : "serviceAdList",
-		type : "POST",
+		type : "GET",
 		dataType : "json",
 		success : function(data) {
 			var homeAdList = data.homeAdList;

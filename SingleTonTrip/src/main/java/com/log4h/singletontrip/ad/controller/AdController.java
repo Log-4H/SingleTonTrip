@@ -241,7 +241,7 @@ public class AdController {
 	}
 	
 	// 광고할 이미지 파일 가져오기
-	@RequestMapping(value="serviceAdList", method=RequestMethod.POST)
+	@RequestMapping(value="serviceAdList", method=RequestMethod.GET)
 	public ModelAndView selectUseAdMain(){
 		ModelAndView mv = new ModelAndView();
 		// 메인 광고
