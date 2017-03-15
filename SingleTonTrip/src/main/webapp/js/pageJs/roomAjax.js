@@ -104,6 +104,7 @@ function reserveCalendar(roomNo, ddayYear, ddayMonth, ddayOption){
 //달력 추가 html
 function calenderAppend(calendarList){
 	var html = "";
+	var roomNo = $('#roomReserveNo').val();
 	var notThisMonthColor="#BDBDBD";
 	var sundayColor="#FF0000";
 	var weekdayColor="#000000";
@@ -137,7 +138,11 @@ function calenderAppend(calendarList){
 			if(item.reserveVo != null){
 				html+="<h5 style='color:#FF0000;'>예약중</h5>";
 			}else{
-				html+="<a href='javascript:void(0)' class='roomReserveBtn' value='"+item.date+"'><h5>예약가능</h5></a>";
+				html+="<form action='reserveAdd' method='post'>";
+				html+="<input type='hidden' name='roomNo' value='"+roomNo+"'>";
+				html+="<input type='hidden' name='reserveCheckinDate' value='"+item.date+"'>";
+				html+="<button type='submit' class='btn btn-default'>예약</button>";
+				html+="</form>";
 			}
 		}
 		html+= "<div style='position: relative; height: 25px;'></div>";
