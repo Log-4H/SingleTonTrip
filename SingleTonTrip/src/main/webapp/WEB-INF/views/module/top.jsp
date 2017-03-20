@@ -114,7 +114,6 @@ body, html {height: 100%}
 						<ul class="dropdown-menu">
 							<li class="dropdown"><a href="pageMain?pageId=${sessionId}">페이지</a></li>
 							<li><a href="companyDetail?memberId=${sessionId}">업체정보</a></li>
-							<li><a href="mileageList">마일리지</a></li>
 							<li><a href="reserveList">예약정보</a></li>
 							<li><a href="payList">결제정보</a></li>
 						</ul>
@@ -150,7 +149,6 @@ body, html {height: 100%}
 							<li><a href="personDetail?memberId=${sessionId}">회원정보</a></li>
 							<li><a href="mileageList">마일리지</a></li>
 							<li><a href="reserveList">예약정보</a></li>
-							<li><a href="payList">결제정보</a></li>
 						</ul>
 				</li>
       			<li><a href="#"><span class="glyphicon glyphicon-headphones"></span>고객센터</a></li>

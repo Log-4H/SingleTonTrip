@@ -2,6 +2,7 @@ package com.log4h.singletontrip.board.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,7 +26,7 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	//FAQ등록
+	// FAQ등록
 	@RequestMapping(value="faqAdd" , method=RequestMethod.GET)
 	public ModelAndView faqAdd(){
 		ModelAndView mv = new ModelAndView();
@@ -35,7 +37,7 @@ public class BoardController {
 	return mv;	
 	}
 	
-	//FAQ등록처리
+	// FAQ등록처리
 	@RequestMapping(value="faqAdd" , method=RequestMethod.POST)
 	public ModelAndView faqAdd(BoardVo board,
 			@ModelAttribute("sessionId") String sessionId){
@@ -51,12 +53,27 @@ public class BoardController {
 	return mv;	
 	}
 	
-	//FAQ리스트
+	// FAQ리스트
 	@RequestMapping(value="faqList" , method=RequestMethod.GET)
-	public ModelAndView faqList(BoardVo board/*,
-			@ModelAttribute("sessionId") String sessionId*/){
-		logger.debug(" >>>>>>> faqAdd <<<<<<< ");
+	public ModelAndView faqList(
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage,					
+			@RequestParam(value="boardCateCd", defaultValue="1") int boardCateCd
+			){
+		logger.debug(" >>>>>>> faqList <<<<<<< ");
+		
 		ModelAndView mv = new ModelAndView();
+		
+		logger.debug(" >>>>>>> boardCateCd", boardCateCd);
+		Map<String, Object> getMap =  boardService.faqList(currentPage,boardCateCd);
+		logger.debug(" >>>>>>> faqList 에서 리턴 받는 map : \n {} <<<<<<< ",getMap);
+		
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("faqList", getMap.get("faqList"));
+		mv.addObject("startPage", getMap.get("startPage"));
+		mv.addObject("pageSize", getMap.get("pageSize"));
+		mv.addObject("endPage", getMap.get("endPage"));
+		mv.addObject("lastPage", getMap.get("lastPage"));
+		
 	    mv.setViewName("board/faq/faqList");
 	return mv;	
 	}

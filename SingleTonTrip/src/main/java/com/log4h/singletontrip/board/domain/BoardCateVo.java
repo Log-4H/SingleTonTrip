@@ -3,6 +3,7 @@ package com.log4h.singletontrip.board.domain;
 public class BoardCateVo {
 	private int boardCateCd;
 	private String boardCateNm;
+	
 	public int getBoardCateCd() {
 		return boardCateCd;
 	}

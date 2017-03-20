@@ -29,18 +29,35 @@
 		tb_board_cate
 	</select>
 	
-	<!-- FAQ List-->
-	<select id="faqList" parameterType="int" resultType="com.log4h.singletontrip.board.domain.BoardVo">
+	<!-- get count for faq-->
+	<select id="faqCount" parameterType="int" resultType="int">
 		SELECT
-			board_no,
-			board_cate_cd,
-			board_title,
-			board_content,
-			board_view_count
+			COUNT(*)
 		FROM
-			tb_board b
+			tb_board
 		WHERE
-			b.board_cate_cd = #{boardCateCd}
+			board_cate_cd = #{boardCateCd}
+	</select>
+	
+	<!-- FAQ List-->
+	<select id="faqList" parameterType="Map" resultType="com.log4h.singletontrip.board.domain.BoardVo">
+		SELECT 
+			board_no, 
+			member_id, 
+			board_cate_cd as 'boardCate.boardCateCd', 
+			board_title, 
+			board_content, 
+			board_reg_date, 
+			board_modify_date, 
+			board_delete_date, 
+			board_view_count
+		FROM tb_board
+		WHERE
+			board_cate_cd = #{boardCateCd}
+		ORDER BY
+			board_reg_date
+		DESC LIMIT #{beginRow}, #{pagePerRow}
+			
 	</select>
 
 </mapper>
