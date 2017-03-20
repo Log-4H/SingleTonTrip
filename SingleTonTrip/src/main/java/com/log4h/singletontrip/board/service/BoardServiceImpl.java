@@ -55,6 +55,7 @@ public class BoardServiceImpl implements BoardService{
 		Paging paging = new Paging();
 		
 		Map<String, Object> map = paging.pagingMethod(currentPage, faqCount);
+		map.put("boardCateCd", boardCateCd);
 		
 		List<BoardVo> returnList = boardDao.faqList(map);
 		logger.debug("faqList 리턴 값 : {} ", returnList);

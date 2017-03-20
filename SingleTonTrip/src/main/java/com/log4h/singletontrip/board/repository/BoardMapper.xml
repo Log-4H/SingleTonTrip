@@ -47,7 +47,7 @@
 			board_cate_cd as 'boardCate.boardCateCd', 
 			board_title, 
 			board_content, 
-			board_reg_date, 
+			DATE_FORMAT(board_reg_date, "%Y-%m-%d ") as 'boardRegDate' ,
 			board_modify_date, 
 			board_delete_date, 
 			board_view_count
