@@ -44,8 +44,9 @@ $("#form").submit(function(){
 
 <body>
 <c:import url="/WEB-INF/views/module/top.jsp" />
-<div class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
+<div align="center" class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
 	<form id="form" action="personModify" method="post" enctype="multipart/form-data" id="form1">
+		<h1>회원정보수정</h1>
 		<div>
 			프로필사진<br>
 			<img id="blah" src="#" alt="your image" style="max-height: 100px; max-width: 100px"/><br>
@@ -69,7 +70,7 @@ $("#form").submit(function(){
 		<div><input type="text" name="personBirth" value="${personVo.personBirth}"/></div>
 		<div>GENDER</div>
 		<div><input type="text" name="personGender" value="${personVo.personGender}"/></div>
-		<div><input type="submit" value="개인정보수정"/></div>
+		<div><input type="submit" value="정보수정"/></div>
 	</form>
 </div>
 <c:import url="/WEB-INF/views/module/footer.jsp"></c:import>

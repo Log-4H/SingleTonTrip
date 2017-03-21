@@ -57,7 +57,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 <div class="w3-padding-large" id="main">
   <!-- Header/Home -->
   <header class="w3-container w3-padding-32 w3-center w3-white" id="home">
-    <h1 class="w3-jumbo"><span class="w3-hide-small"></span>SingletonTrip.</h1>
+    <h1 class="w3-jumbo" ><span class="w3-hide-small"></span>SingletonTrip.</h1>
     <p>당신의 즐거운 여행을 위하여.</p>
     <p>2017-2-14~2017-3-29</p>
     <img src="<c:url value='/images/main.jpg'/>" alt="main" class="w3-image" width="992" height="1108">
@@ -120,30 +120,30 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     <!-- Grid for photos -->
     <div class="w3-row-padding" style="margin:0 -16px">
       <div class="w3-half">
-        <h3>허준</h3>
-        <li></li>
-        <li></li>
-        <li></li>
+        <h3>허준(팀장)</h3>
+        <li>마일리지</li>
+        <li>faq</li>
+        <li>예약관리</li>
       </div>
 
       <div class="w3-half">
         <h3>임문환</h3>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li>게시판관리</li>
+        <li>여행관리</li>
+        <li>그룹관리</li>
       </div>
 
       <div class="w3-half">
         <h3>황문규</h3>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li>로그인</li>
+        <li>회원관리</li>
+        <li>친구관리</li>
       </div>
 
       <div class="w3-half">
         <h3>김의현</h3>
-          <li></li>
-          <li></li>
+          <li>광고관리</li>
+          <li>결제관리</li>
           <li></li>
       </div>
     <!-- End photo grid -->
