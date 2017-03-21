@@ -29,17 +29,17 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     <i class="fa fa-home w3-xxlarge"></i>
     <p>HOME</p>
   </a>
-  <a class="w3-padding-large w3-hover-black" href="#about">
+  <a class="w3-padding-large w3-hover-black" href="#project">
     <i class="fa fa-user w3-xxlarge"></i>
-    <p>ABOUT</p>
+    <p>프로젝트소개</p>
   </a>
-  <a class="w3-padding-large w3-hover-black" href="#photos">
+  <a class="w3-padding-large w3-hover-black" href="#team">
     <i class="fa fa-eye w3-xxlarge"></i>
-    <p>PHOTOS</p>
+    <p>팀소개</p>
   </a>
-  <a class="w3-padding-large w3-hover-black" href="#contact">
+  <a class="w3-padding-large w3-hover-black" href="#ERD">
     <i class="fa fa-envelope w3-xxlarge"></i>
-    <p>CONTACT</p>
+    <p>ERD</p>
   </a>
 </nav>
 
@@ -47,9 +47,9 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
   <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
     <a class="w3-bar-item w3-button" style="width:25% !important" href="#">HOME</a>
-    <a class="w3-bar-item w3-button" style="width:25% !important" href="#about">ABOUT</a>
-    <a class="w3-bar-item w3-button" style="width:25% !important" href="#photos">PHOTOS</a>
-    <a class="w3-bar-item w3-button" style="width:25% !important" href="#contact">CONTACT</a>
+    <a class="w3-bar-item w3-button" style="width:25% !important" href="#project">프로젝트소개</a>
+    <a class="w3-bar-item w3-button" style="width:25% !important" href="#team">팀소개</a>
+    <a class="w3-bar-item w3-button" style="width:25% !important" href="#ERD">ERD</a>
   </div>
 </div>
 
@@ -57,14 +57,15 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 <div class="w3-padding-large" id="main">
   <!-- Header/Home -->
   <header class="w3-container w3-padding-32 w3-center w3-white" id="home">
-    <h1 class="w3-jumbo" ><span class="w3-hide-small"></span>SingletonTrip.</h1>
+  	<h1 class="w3-jumbo" ><span class="w3-hide-small"></span>SingletonTrip.</h1>
     <p>당신의 즐거운 여행을 위하여.</p>
+    <a href="index">프로젝트로 이동</a>
     <p>2017-2-14~2017-3-29</p>
     <img src="<c:url value='/images/main.jpg'/>" alt="main" class="w3-image" width="992" height="1108">
   </header>
 
   <!-- About Section -->
-  <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
+  <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="project">
     <h2>프로젝트 소개</h2>
     <hr style="width:200px" class="w3-opacity">
     <p>"sigleton" 야구에서, 주어진 회에 한 번의 기회로 득점이 되는 것. + "trip" 여행.<br>
@@ -113,7 +114,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 
 
   <!-- Portfolio Section -->
-  <div class="w3-padding-64 w3-content" id="photos">
+  <div class="w3-padding-64 w3-content" id="team">
     <h2>팀소개 및 역활분담</h2>
     <hr style="width:250px" class="w3-opacity">
 
@@ -152,7 +153,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
   </div>
 
   <!-- Contact Section -->
-  <div class="w3-padding-64 w3-content w3-text-grey" id="contact">
+  <div class="w3-padding-64 w3-content w3-text-grey" id="ERD">
     <h2>ERD</h2>
     <hr style="width:200px" class="w3-opacity">
 

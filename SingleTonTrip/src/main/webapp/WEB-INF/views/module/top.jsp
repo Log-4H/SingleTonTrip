@@ -15,6 +15,8 @@
 <style>
 body,h1 {font-family: "Raleway", sans-serif}
 body, html {height: 100%}
+.jumbotron {
+background-color: #FFFFFF;}
 </style>
 <body>
 <script src="<c:url value='/js/pageJs/groupAjax.js'/>"></script>
@@ -44,6 +46,7 @@ body, html {height: 100%}
 		<c:if test="${sessionId eq null }">
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
+				<li><a href="intro">소개</a></li>
 				<li><a href="companyList"><span class="glyphicon glyphicon-bed"></span>숙소</a></li>
 				<li><a href="#tour"><span class="glyphicon glyphicon-plane"></span>여행</a></li>
 			    <li><a href="login"> <!-- id="myBtn" --><span class="glyphicon glyphicon-log-in"></span> 로그인</a></li>

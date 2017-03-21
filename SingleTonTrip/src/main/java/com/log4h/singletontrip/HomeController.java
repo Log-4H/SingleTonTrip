@@ -23,9 +23,9 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("post");
 		return mv;
 	}
-	@RequestMapping(value="test", method=RequestMethod.GET)
+	@RequestMapping(value="intro", method=RequestMethod.GET)
 	public ModelAndView test(){
-		ModelAndView mv = new ModelAndView("test");
+		ModelAndView mv = new ModelAndView("intro");
 		return mv;
 	}
 	@RequestMapping(value="error", method=RequestMethod.GET)
