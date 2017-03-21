@@ -120,7 +120,9 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 
     <!-- Grid for photos -->
     <div class="w3-row-padding" style="margin:0 -16px">
+      
       <div class="w3-half">
+        
         <h3>허준(팀장)</h3>
         <li>마일리지</li>
         <li>faq</li>
