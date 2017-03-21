@@ -335,8 +335,8 @@ public class MemberController {
 	//친구추가
 	@RequestMapping(value="friendAdd", method=RequestMethod.GET)
 	public ModelAndView friendAdd(
-			@ModelAttribute("sessionId")String memberId,
-			@RequestParam(value="memberId")String friendId){
+			@ModelAttribute("sessionId") String memberId,
+			@RequestParam(value="memberId") String friendId){
 		ModelAndView mv = new ModelAndView();
 		int result = memberService.friendAdd(memberId, friendId);
 		if(result>0){
@@ -374,7 +374,8 @@ public class MemberController {
 	//친구리스트
 	@RequestMapping(value="friendTotalList", method=RequestMethod.GET)
 	public ModelAndView friendTotalList(
-			@ModelAttribute("sessionId") String sessionId){	
+			@ModelAttribute("sessionId") String sessionId,
+			@ModelAttribute("pageId") String pageId){	
 		ModelAndView mv = new ModelAndView("friend/friendTotalList");
 		List<MemberVo> friendTotalList = memberService.friendTotalList(sessionId);
 		mv.addObject("friendTotalList", friendTotalList);
@@ -400,5 +401,15 @@ public class MemberController {
 			mv.setViewName("redirect:friendTotalList");
 		}
 	 	return mv;	
+	}
+	//친구체크
+	@RequestMapping(value="pageFriendCheck", method=RequestMethod.GET)
+	public ModelAndView pageFriendCheck(
+			@ModelAttribute("sessionId") String sessionId,
+			@ModelAttribute("pageId") String pageId){	
+		ModelAndView mv = new ModelAndView("jsonView");
+		MemberVo pageFriendCheck = memberService.pageFriendCheck(pageId,sessionId);
+		mv.addObject("pageFriendCheck", pageFriendCheck);
+		return mv;
 	}
 }

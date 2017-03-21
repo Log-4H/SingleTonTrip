@@ -62,6 +62,8 @@ public interface MemberDao {
 	public List<MemberVo> friendCheckList(String sessionId);
 	// 친구삭제
 	public int friendDelete(Map<String, Object> map);
+	//페이지 친구확인
+	public MemberVo pageFriendCheck(Map<String, Object> map);
 	
 	
 }

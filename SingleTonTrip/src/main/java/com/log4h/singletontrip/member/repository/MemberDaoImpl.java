@@ -118,7 +118,6 @@ public class MemberDaoImpl implements MemberDao{
 	// 친구추가
 	@Override
 	public int friendAdd(Map<String, Object> map) {
- 
 		return sqlSession.insert(MEMBER_NS+"friendAdd", map);
 	}
 	// 친구요청리스트
@@ -151,7 +150,8 @@ public class MemberDaoImpl implements MemberDao{
 	public int friendDelete(Map<String, Object> map) {
 		return sqlSession.delete(MEMBER_NS+"friendDelete", map);
 	}
-	
-	
-
+	@Override
+	public MemberVo pageFriendCheck(Map<String, Object> map) {
+		return sqlSession.selectOne(MEMBER_NS+"pageFriendCheck", map);
+	}
 }

@@ -46,4 +46,6 @@ public interface MemberService {
 	public List<MemberVo> friendCheckList(String sessionId);
 	//친구삭제
 	public int friendDelete(String friendId, String sessionId);
+	//페이지친구확인
+	public MemberVo pageFriendCheck(String pageId, String sessionId);
 }

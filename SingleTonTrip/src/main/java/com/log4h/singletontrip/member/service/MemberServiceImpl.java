@@ -207,6 +207,13 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.friendDelete(map);
 	}
 
+	@Override
+	public MemberVo pageFriendCheck(String pageId, String sessionId) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pageId", pageId);
+		map.put("sessionId", sessionId);
+		return memberDao.pageFriendCheck(map);
+	}
 
 	
 }

@@ -18,7 +18,7 @@
 			<c:if test="${pageLevel == 3}">
 			<li class="nav" id="tripTab"><a href="#trip" data-toggle="tab">Trip</a></li>
 			</c:if>
-			
+			<li class="nav" id="tripTab"><a href="#trip" data-toggle="tab">Trip</a></li>
 		</ul>
 		<div id="pageTabContent" class="tab-content">
 			<c:import url="./post/postList.jsp"></c:import>
