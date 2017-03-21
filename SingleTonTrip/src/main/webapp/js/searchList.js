@@ -1,17 +1,16 @@
 $(document).on('click', '.searchPersonPaging', function() {
-	var currentPage = $(this).attr('value');
-	console.log(currentPage);
+	var personCurrentPage = $(this).attr('value');
 	var value = $("#searchValue").val();
-	$('#searchPersonList').scrollTop(0);
+	var pos=$("#personResult").position().top;
+	$("html, body").animate({scrollTop:pos},'speed');
 	$.ajax({
 		url : "searchPersonList",
 		type : "POST",
 		data : {
-			currentPage : currentPage, value : value
+			personCurrentPage : personCurrentPage, value : value
 		},
 		dataType : "json",
 		success : function(data) {
-			$("#personCurrentPage").val(currentPage);
 			var bodyHtml = "";
 			var pagingHtml = "";
 			var personMap = data.personMap;
@@ -24,43 +23,41 @@ $(document).on('click', '.searchPersonPaging', function() {
 });
 
 $(document).on('click', '.searchCompanyPaging', function() {
-	var currentPage = $(this).attr('value');
+	var companyCurrentPage = $(this).attr('value');
 	var value = $("#searchValue").val();
-	console.log(currentPage);
-	$('#searchCompanyList').scrollTop(0);
+	var pos=$("#companyResult").position().top;
+	$("html, body").animate({scrollTop:pos},'speed');
 	$.ajax({
 		url : "searchCompanyList",
 		type : "POST",
 		data : {
-			currentPage : currentPage, value : value
+			companyCurrentPage : companyCurrentPage, value : value
 		},
 		dataType : "json",
 		success : function(data) {
-			$("#companyCurrentPage").val(currentPage);
 			var bodyHtml = "";
 			var pagingHtml = "";
 			var companyMap = data.companyMap;
 			bodyHtml = searchCompanyListHtml(companyMap.searchCompanyList);
-			pagingHtml = searchPagingHtml("searchCompanyPaging",companyMap.startPage, companyMap.pageSize, companyMap.endPage, companyMap.lastPage);
+			pagingHtml = searchPagingHtml("searchCompanyPaging", companyMap.startPage, companyMap.pageSize, companyMap.endPage, companyMap.lastPage);
 			$("#searchCompanyList").html(bodyHtml);
 			$("#searchCompanyPaging").html(pagingHtml);
 		}
 	})
 });
 $(document).on('click', '.searchTripPaging', function() {
+	var tripCurrentPage = $(this).attr('value');
 	var value = $("#searchValue").val();
-	var currentPage = $(this).attr('value');
-	$('#searchTripList').scrollTop(0);
-	console.log(currentPage);
+	var pos=$("#tripResult").position().top;
+	$("html, body").animate({scrollTop:pos},'speed');
 	$.ajax({
 		url : "searchTripList",
 		type : "POST",
 		data : {
-			currentPage : currentPage, value : value
+			tripCurrentPage : tripCurrentPage, value : value
 		},
 		dataType : "json",
 		success : function(data) {
-			$("#tripCurrentPage").val(currentPage);
 			var bodyHtml = "";
 			var pagingHtml = "";
 			var tripMap = data.tripMap;

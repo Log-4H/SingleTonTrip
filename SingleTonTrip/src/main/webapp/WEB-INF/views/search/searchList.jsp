@@ -13,10 +13,9 @@
 <div class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
 <div class="w3-row-padding">
 <input type="hidden" id="searchValue" value="${value}">
-<input type="hidden" id="personCurrentPage" value="1">
-<input type="hidden" id="companyCurrentPage" value="1">
-<input type="hidden" id="tripCurrentPage" value="1">
 	<div class="w3-col m12">
+		<br id="personResult">
+		<br>
 		<h2 align="center">회원검색결과</h2><br>
 			<div class="w3-card-2 w3-round w3-white">
 				<div class="w3-container w3-padding">
@@ -31,6 +30,7 @@
 							</tr>
 						</thead>
 						<tbody id="searchPersonList">
+							<c:if test="${personMap.searchPersonList.size() >= 1 }">
 							<c:forEach items="${personMap.searchPersonList}" var="p" >
 								<tr>
 									<td><img src="./images/${p.memberImg}" class="img-rounded" width="100" height="100"></td>
@@ -40,6 +40,12 @@
 									<td>${p.personBirth}</td>
 								</tr>
 							</c:forEach>
+							</c:if>
+							<c:if test="${personMap.searchPersonList.size() < 1 }">
+								<tr>
+								<td colspan="5" align="center"><strong>검색결과가없습니다</strong></td>
+								</tr>
+							</c:if>
 						</tbody>	
 					</table>
 					<div id="searchPersonPaging" align="center">
@@ -55,7 +61,9 @@
 					</div>
 				</div>
 			</div>
-			<br><h2 align="center">숙소검색결과</h2><br>
+			<br id="companyResult">
+			<br>
+			<h2 align="center" >숙소검색결과</h2><br>
 			<div class="w3-card-2 w3-round w3-white">
 				<div class="w3-container w3-padding">
 					<table class="table">
@@ -70,6 +78,7 @@
 							</tr>
 						</thead>
 						<tbody id="searchCompanyList">
+						<c:if test="${companyMap.searchCompanyList.size() >= 1 }">
 						<c:forEach items="${companyMap.searchCompanyList}" var="c" >
 								<tr>
 									<td><img src="./images/${c.memberImg}" class="img-rounded" width="100" height="100"></td>
@@ -80,6 +89,12 @@
 									<td>${c.companyTypeNm}</td>
 								</tr>
 							</c:forEach>
+							</c:if>
+							<c:if test="${companyMap.searchCompanyList.size() < 1 }">
+								<tr>
+								<td colspan="6" align="center"><strong>검색결과가없습니다</strong></td>
+								</tr>
+							</c:if>
 						</tbody>	
 					</table>
 					<div id="searchCompanyPaging" align="center">
@@ -95,7 +110,9 @@
 					</div>
 				</div>
 			</div>
-			<br><h2 align="center">여행검색결과</h2><br>
+			<br id="tripResult">
+			<br>
+			<h2 align="center">여행검색결과</h2><br>
 			<div class="w3-card-2 w3-round w3-white">
 				<div class="w3-container w3-padding">
 					<table class="table">
@@ -108,6 +125,7 @@
 							</tr>
 						</thead>
 						<tbody id="searchTripList">
+							<c:if test="${tripMap.searchTripList.size() >= 1 }">
 							<c:forEach items="${tripMap.searchTripList}" var="t" >
 								<tr>
 									<td>${t.tripThemeNm}</td>
@@ -123,6 +141,12 @@
 									<td>${t.tripStartDate} ~ ${t.tripEndDate }</td>
 								</tr>
 							</c:forEach>
+							</c:if>
+							<c:if test="${tripMap.searchTripList.size() < 1 }">
+								<tr>
+								<td colspan="4" align="center"><strong>검색결과가없습니다</strong></td>
+								</tr>
+							</c:if>
 						</tbody>	
 					</table>
 					<div id="searchTripPaging" align="center">
