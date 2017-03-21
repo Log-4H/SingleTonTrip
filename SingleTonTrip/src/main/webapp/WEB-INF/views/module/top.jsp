@@ -12,7 +12,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 <style>
 body,h1 {font-family: "Raleway", sans-serif}
 body, html {height: 100%}
@@ -32,11 +31,11 @@ body, html {height: 100%}
 			</button>
 			<a class="navbar-brand" href="index">SigletonTrip</a>
 		</div>
-			<form class="navbar-form navbar-left">
+			<form class="navbar-form navbar-left" id="searchListForm" action="searchList" method="post">
 				<div class="input-group">
-					<input type="text" class="form-control" id="searchList" placeholder="Search">
+					<input type="text" class="form-control" name="value" placeholder="Search">
 				<div class="input-group-btn">
-					<button class="btn btn-default" type="submit">
+					<button class="btn btn-default" type="submit" id="searchListBtn">
 							<i class="glyphicon glyphicon-search"></i>
 					</button>
 				</div>

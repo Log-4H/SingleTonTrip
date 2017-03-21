@@ -1,14 +1,15 @@
 package com.log4h.singletontrip.admin.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.log4h.singletontrip.member.domain.CompanyVo;
-import com.log4h.singletontrip.member.domain.PersonVo;
-import com.log4h.singletontrip.trip.domain.TripVo;
+import com.log4h.singletontrip.admin.domain.SearchCompanyVo;
+import com.log4h.singletontrip.admin.domain.SearchPersonVo;
+import com.log4h.singletontrip.admin.domain.SearchTripVo;
 
 @Repository
 public class AdminDaoImpl implements AdminDao{
@@ -16,19 +17,32 @@ public class AdminDaoImpl implements AdminDao{
 	private SqlSessionTemplate sqlSession;
 
 	private final String ADMIN_NS = "adminMapper.";
-
+	
 	@Override
-	public List<PersonVo> searchPersonList(String value) {
-		return sqlSession.selectList(ADMIN_NS+"searchPersonList", value);
+	public int searchPersonCount(String value) {
+		return sqlSession.selectOne(ADMIN_NS+"searchPersonCount", value);
+	}
+	@Override
+	public List<SearchPersonVo> searchPersonList(Map<String, Object> map) {
+		return sqlSession.selectList(ADMIN_NS+"searchPersonList", map);
+	}
+	@Override
+	public int searchCompanyCount(String value) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(ADMIN_NS+"searchCompanyCount", value);
 	}
 
 	@Override
-	public List<CompanyVo> searchCompanyList(String value) {
-		return sqlSession.selectList(ADMIN_NS+"searchCompanyList", value);
+	public List<SearchCompanyVo> searchCompanyList(Map<String, Object> map) {
+		return sqlSession.selectList(ADMIN_NS+"searchCompanyList", map);
 	}
-
 	@Override
-	public List<TripVo> searchTripList(String value) {
-		return sqlSession.selectList(ADMIN_NS+"searchTripList", value);
+	public int searchTripCount(String value) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(ADMIN_NS+"searchTripCount", value);
+	}
+	@Override
+	public List<SearchTripVo> searchTripList(Map<String, Object> map) {
+		return sqlSession.selectList(ADMIN_NS+"searchTripList", map);
 	}
 }

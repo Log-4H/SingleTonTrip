@@ -3,42 +3,139 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="adminMapper">
-<select id="searchPersonList" parameterType="String" resultType="com.log4h.singletontrip.member.domain.PersonVo">
+<select id="searchPersonCount" parameterType="string" resultType="int">
 	SELECT
-		*
+		COUNT(*)
 	FROM
-		tb_member
+		tb_member m
+	JOIN
+		tb_person p
+	ON
+		m.member_id = p.person_id
 	WHERE
-		member_level = 3
+		m.member_level = 3
 	AND
-		concat(member_nm, member_id, member_email, member_phone) regexp #{value};
+		m.act_state_cd = 1
+	AND
+		concat(m.member_nm, m.member_id, m.member_email, m.member_phone) regexp #{value}
 </select>
-<select id="searchCompanyList" parameterType="String" resultType="com.log4h.singletontrip.member.domain.CompanyVo" >
+<select id="searchPersonList" parameterType="map" resultType="com.log4h.singletontrip.admin.domain.SearchPersonVo">
 	SELECT
-		*
+		m.member_id,
+		m.member_nm,
+		m.member_img,
+		p.person_birth,
+		p.person_gender
 	FROM
-		tb_member
+		tb_member m
+	JOIN
+		tb_person p
+	ON
+		m.member_id = p.person_id
 	WHERE
-		member_level = 2
+		m.member_level = 3
 	AND
-		concat(member_nm, member_id, member_email, member_phone) regexp #{value};
+		m.act_state_cd = 1
+	AND
+		concat(m.member_nm, m.member_id, m.member_email, m.member_phone) regexp #{value}
+	ORDER BY m.member_reg_date
+	DESC LIMIT #{beginRow}, #{pagePerRow}
 </select>
-<select id="searchTripList" parameterType="String" resultType="com.log4h.singletontrip.trip.domain.TripVo">
+
+<select id="searchCompanyCount" parameterType="string" resultType="int">
 	SELECT
-		*
+		COUNT(*)
+	FROM
+		tb_member m
+	JOIN
+		tb_company c
+	ON
+		m.member_id = c.company_id
+	JOIN
+		tb_company_type ct
+	ON
+		c.company_type_cd = ct.company_type_cd
+	WHERE
+		m.member_level = 2
+	AND
+		m.act_state_cd = 1
+	AND
+		concat(m.member_nm, c.company_nm, ct.company_type_nm, c.company_address, m.member_id, m.member_email, m.member_phone) regexp #{value}
+</select>
+<select id="searchCompanyList" parameterType="map" resultType="com.log4h.singletontrip.admin.domain.SearchCompanyVo" >
+	SELECT
+		m.member_id,
+		c.company_nm,
+		m.member_img,
+		m.member_phone,
+		c.company_address,
+		ct.company_type_nm
+	FROM
+		tb_member m
+	JOIN
+		tb_company c
+	ON
+		m.member_id = c.company_id
+	JOIN
+		tb_company_type ct
+	ON
+		c.company_type_cd = ct.company_type_cd
+	WHERE
+		m.member_level = 2
+	AND
+		m.act_state_cd = 1
+	AND
+		concat(m.member_nm, c.company_nm, ct.company_type_nm, c.company_address, m.member_id, m.member_email, m.member_phone) regexp #{value}
+	ORDER BY m.member_reg_date
+	DESC LIMIT #{beginRow}, #{pagePerRow}
+</select>
+<select id="searchTripCount" parameterType="string" resultType="int">
+	SELECT
+		COUNT(*)
 	FROM
 		tb_trip t
+	JOIN
+		tb_trip_theme tn
+	ON 
+		t.trip_theme_cd = tn.trip_theme_cd
 	JOIN
 		tb_region r
 	ON 
 		t.region_cd = r.region_cd
 	JOIN
-		tb_trip_theme tt
-	ON
-		t.trip_theme_cd = tt.trip_theme_cd
+		tb_recruit_state rn
+	ON 
+		t.recruit_state_cd = rn.recruit_state_cd
 	WHERE
 		t.recruit_state_cd = 1
 	AND
-		concat(t.trip_theme_cd, r.region_do, r.region_si, t.trip_title, t.trip_content, t.trip_tag) regexp #{value};
+		concat(t.trip_theme_cd, r.region_do, r.region_si, t.trip_title, t.trip_content, t.trip_tag) regexp #{value}
+</select>
+<select id="searchTripList" parameterType="map" resultType="com.log4h.singletontrip.admin.domain.SearchTripVo">
+	SELECT
+		t.trip_no,
+		t.person_id,
+		tn.trip_theme_nm,
+		r.region_do,
+		r.region_si,
+		t.trip_title,
+		t.trip_start_date,
+		t.trip_end_date
+	FROM
+		tb_trip t
+	JOIN
+		tb_trip_theme tn
+	ON 
+		t.trip_theme_cd = tn.trip_theme_cd
+	JOIN
+		tb_region r
+	ON 
+		t.region_cd = r.region_cd
+	WHERE
+		t.recruit_state_cd = 1
+	AND
+		concat(t.trip_theme_cd, r.region_do, r.region_si, t.trip_title, t.trip_content, t.trip_tag) regexp #{value}
+	ORDER BY t.trip_start_date
+	DESC LIMIT #{beginRow}, #{pagePerRow}
 </select>
 </mapper>
