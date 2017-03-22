@@ -28,9 +28,9 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("intro");
 		return mv;
 	}
-	@RequestMapping(value="error", method=RequestMethod.GET)
+	@RequestMapping(value="test", method=RequestMethod.GET)
 	public ModelAndView error(){
-		ModelAndView mv = new ModelAndView("error");
+		ModelAndView mv = new ModelAndView("test/body");
 		return mv;
 	}
 }
