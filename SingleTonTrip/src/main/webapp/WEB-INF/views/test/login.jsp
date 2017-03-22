@@ -11,7 +11,7 @@
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
 						<div class="card card-signup">
-							<form class="form" method="" action="">
+							<form class="form" method="post" action="login" id="login" onsubmit="return check()">
 								<div class="header header-primary text-center">
 									<h4>Login</h4>
 									<div class="social-line">
@@ -30,16 +30,16 @@
 
 									<div class="input-group">
 										<span class="input-group-addon">
-											<i class="material-icons">face</i>
+											<i class="material-icons">done</i>
 										</span>
-										<input type="text" class="form-control" placeholder="아이디" value="admin1">
+										<input type="text" class="form-control" id="loginId" name="loginId" placeholder="아이디" value="admin1">
 									</div>
 
 									<div class="input-group">
 										<span class="input-group-addon">
 											<i class="material-icons">lock_outline</i>
 										</span>
-										<input type="password" placeholder="비밀번호" class="form-control" value="admin"/>
+										<input type="password" class="form-control" id="loginPw" name="loginPw" placeholder="비밀번호" value="admin"/>
 									</div>
 									<div class="checkbox">
 										<label>
@@ -47,9 +47,6 @@
 											아이디저장
 										</label>
 									</div>
-									
-										<ul><a href="memberIdFind"><button class="btn btn-primary btn-simple">아이디찾기</button></a>
-    									<a href="memberPwFind"><button class="btn btn-primary btn-simple">비밀번호찾기</button></a></ul>
     									
 									<!-- If you want to add a checkbox to this form, uncomment this code
 
@@ -64,10 +61,29 @@
 									<button type="submit" class="btn btn-simple btn-primary btn-lg">로그인</button>
 								</div>
 							</form>
+								<div class="footer text-center">
+									<a href="memberIdFind"><button class="btn btn-primary btn-simple">아이디찾기</button></a>
+									<a href="memberPwFind"><button class="btn btn-primary btn-simple">비밀번호찾기</button></a>
+								</div>
 						</div>
 					</div>
 				</div>
 			</div>
 <c:import url="/WEB-INF/views/test/footer.jsp"></c:import>
+<script type="text/javascript">
+function loginCheck() {
+  if(login.loginId.value == "") {
+    alert("아이디를 입력해 주세요.");
+    login.loginId.focus();
+    return false;
+  }
+  else if(login.loginPw.value == "") {
+    alert("비밀번호를 입력해 주세요.");
+    login.loginPw.focus();
+    return false;
+  }
+  else return true;
+}
+</script>
 </body>
 </html>
