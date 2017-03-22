@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:import url="/WEB-INF/views/test/top.jsp"></c:import>
+<body class="profile-page">
+<c:import url="/WEB-INF/views/test/nav.jsp"></c:import>
    <div class="wrapper">
 		<div class="header header-filter" style="background-image: url('./assets/img/examples/city.jpg');"></div>
 
@@ -100,3 +102,5 @@
 	        </div>
 		</div>
 <c:import url="/WEB-INF/views/test/footer.jsp"></c:import>
+</body>
+</html>
