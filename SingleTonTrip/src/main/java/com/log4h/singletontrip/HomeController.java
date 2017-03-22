@@ -33,4 +33,9 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("test/body");
 		return mv;
 	}
+	@RequestMapping(value="login2", method=RequestMethod.GET)
+	public ModelAndView login(){
+		ModelAndView mv = new ModelAndView("test/login");
+		return mv;
+	}
 }
