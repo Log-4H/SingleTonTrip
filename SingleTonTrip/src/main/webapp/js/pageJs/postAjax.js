@@ -5,8 +5,8 @@ function fileInfo(f) {
 	var reader = new FileReader();
 	reader.onload = function(rst) {
 		var html = "";
-		html += "<button type='button' onclick='postImgDelete()'>이미지 삭제</button>";
 		html += postImgAppend(rst.target.result);
+		html += "<button type='button' class='btn' onclick='postImgDelete()'>이미지 삭제</button>";
 		$("#postInputImg").append(html);
 	}
 	reader.readAsDataURL(file[0]);
@@ -260,31 +260,27 @@ $(document).on('click', '.commentDelete', function() {
 function postAppend(postList) {
 	var html = "";
 	$.each(postList,function(key, item) {
-		html += "<div class='w3-container w3-card-2 w3-white w3-round w3-margin'><br>";
-		html += "<span class='w3-right w3-opacity'>"
-				+ item.postRegDate + "</span><br>";
+		html += "<div class='card'>";
+		html += "<div align='right'>";
 		if($("#pageId").val() == $("#sessionId").val()){
-			html += "<span class='w3-right w3-opacity'>";
-			html += "<button type='button' class='btn btn-primary' onclick='postModifyModalShow("
+			html += "<button type='button' class='btn' onclick='postModifyModalShow("
 					+ item.postNo + ")'>수정</button>";
-			html += "<button type='button' class='btn btn-primary' onclick='postDeleteModalShow("
+			html += "<button type='button' class='btn' onclick='postDeleteModalShow("
 					+ item.postNo + ")'>삭제</button>";
-			html += "</span>";
 		}
-		html += "<h4>" + item.postTitle + "</h4><br>";
-		html += "<hr class='w3-clear'>";
-		html += "<p>" + item.postContent + "</p>";
+		html+="</div>";
+		html+="<div class='card-header'>";
+		html += "<h3><strong>" + item.postTitle + "</strong></h3>";
+		html+="</div>";
+		html+="<div class='card-block'>";
 		if (item.postImg != null) {
-			html += "<div class='w3-row-padding' style='margin:0 -16px'>";
-			html += "<div class='w3-half'>";
-			html += "<img src='./images/"
-					+ item.postImg
-					+ "' style='width: 100%' class='w3-margin-bottom' onclick='doImgPop(\"./images/"+item.postImg+"\")'>";
-			html += "</div>";
-			html += "</div>";
+			html += "<img src='./images/"+ item.postImg
+					+ "' style='width: 50%; height:50%' onclick='doImgPop(\"./images/"+item.postImg+"\")'>";
 		}
-		html += "<hr class='w3-clear'>";
-		html += "<button type='button' class='w3-btn w3-theme-d2 w3-margin-bottom commentListBtn' value='"
+		html += "<br>";
+		html += "<p class='card-text'>" + item.postContent + "</p>";
+		html+="<div class='card-block'>";
+		html += "<button type='button' class='commentListBtn' value='"
 				+ item.postNo
 				+ "''><i class='fa fa-comment'></i>  Comment</button> ";
 		html += "<input type='hidden' id='lastCommentRow"
@@ -294,6 +290,12 @@ function postAppend(postList) {
 		html += "<div id='commentList" + item.postNo + "'>";
 		html += "</div>";
 		html += "</div>";
+		html += "</div>";
+		html+="<div class='card-footer text-muted'>";
+		html+="<h6>"+item.postRegDate+"</h6>";
+		html += "</div>";
+		html += "</div>";
+		html+="<br><br>";
 	})
 	return html;
 }
@@ -302,48 +304,49 @@ function postAppend(postList) {
 function postCommentAppend(postNo, postCommentList) {
 	var html = "";
 	if($("#sessionId").val()!=""){
-	html += "<input type='text' id='comment" + postNo + "'>";
-	html += "<button type='button' class='commentAddBtn' value='" + postNo
+	html += "<input type='text' id='comment" + postNo + "'> ";
+	html += " <button type='button' class='btn commentAddBtn' value='" + postNo
 			+ "'>댓글등록</button>";
 	}
-	html += "<button class='commentListAdd' value='" + postNo
-			+ "'>댓글더보기</button>";
-	html += "<table border='1'>";
+	html += "<div align='center'>";
+	html += "<table class='table'>";
 	html += "<thead>";
 	html += "<tr>";
-	html += "<td>ID</td>";
-	html += "<td>Content</td>";
-	html += "<td>regDate</td>";
-	html += "<td></td>";
+	html += "<th>ID</th>";
+	html += "<th>Content</th>";
+	html += "<th>regDate</th>";
+	html += "<th>Delete</th>";
 	html += "</tr>";
 	html += "</thead>";
 	html += "<tbody id='tbody" + postNo + "'>";
 	$.each(postCommentList,function(key, item) {
+		console.log($("#pageId").val());
+		console.log($("#sessionId").val());
+		console.log(item.memberId);
 		html += "<tr>";
 		html += "<td>" + item.memberId + "</td>";
 		html += "<td>" + item.postCommentContent + "</td>";
 		html += "<td>" + item.postCommentRegDate + "</td>";
 		html += "<td>";
 		if($("#pageId").val() == $("#sessionId").val() || $("#sessionId").val() == item.memberId){
-		html += "<a class='commentDelete' postno='"+ postNo+ "' value='"+ item.postCommentNo+ "'>" ;
-		html += "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>";
+			html +="<button type='button' class='btn btn-danger btn-simple btn-xs commentDelete' "
+				+ "postno='"+ postNo+ "' value='"+ item.postCommentNo+ "'>" 
+				+"<i class='fa fa-times'></i></button>";
 		}
 		html += "</td>";
 		html += "</tr>";
 	})
 	html += "</tbody>";
 	html += "</table>";
+	html += "<button class='btn commentListAdd' value='" + postNo
+	+ "'>댓글더보기</button>";
+	html += "</div>";
 	return html;
 }
 
 // 포스트 이미지 html추가
 function postImgAppend(img) {
 	var html = "";
-	html += "<div class='w3-row-padding' style='margin:0 -16px'>";
-	html += "<div class='w3-half'>";
-	html += "<img src='" + img
-			+ "' style='width: 100%' class='w3-margin-bottom'>";
-	html += "</div>";
-	html += "</div>";
+	html += "<img src='" + img+ "' style='width: 50%; height:50%'><br>";
 	return html;
 }
