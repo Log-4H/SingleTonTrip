@@ -21,6 +21,7 @@
 	<!-- CSS Files -->
     <link href="./assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="./assets/css/material-kit.css" rel="stylesheet"/>
+    <link href="./assets/css/demo.css" rel="stylesheet" />
     
     <!--   Core JS Files   -->
 	<script src="./assets/js/jquery.min.js" type="text/javascript"></script>
@@ -33,53 +34,51 @@
 	<!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
 	<script src="./assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
 
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 	<!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
 	<script src="./assets/js/material-kit.js" type="text/javascript"></script>
 
 </head>
 
 <body class="profile-page">
-	<nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
-    	<div class="container">
-        	<!-- Brand and toggle get grouped for better mobile display -->
-        	<div class="navbar-header">
-        		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
-            		<span class="sr-only">Toggle navigation</span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-        		</button>
-        		<a class="navbar-brand" href="http://www.creative-tim.com">Creative Tim</a>
-        	</div>
+	<nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button id="menu-toggle" type="button" class="navbar-toggle" data-target="#navigation-doc">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar bar1"></span>
+        <span class="icon-bar bar2"></span>
+        <span class="icon-bar bar3"></span>
+      </button>
+      <a href="http://www.creative-tim.com">
+           <div class="logo-container">
+                <div class="logo">
+                    <img src="assets/img/logo.png" alt="Creative Tim Logo">
+                </div>
+                <div class="brand">
+                    Creative Tim
+                </div>
+            </div>
+      </a>
+    </div>
 
-        	<div class="collapse navbar-collapse" id="navigation-example">
-        		<ul class="nav navbar-nav navbar-right">
-					<li>
-    					<a href="../components-documentation.html" target="_blank">
-    						Components
-    					</a>
-    				</li>
-    				<li>
-						<a href="http://demos.creative-tim.com/material-kit-pro/presentation.html?ref=utp-freebie" target="_blank">
-							<i class="material-icons">unarchive</i> Upgrade to PRO
-						</a>
-    				</li>
-		            <li>
-		                <a href="https://twitter.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-							<i class="fa fa-twitter"></i>
-						</a>
-		            </li>
-		            <li>
-		                <a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-							<i class="fa fa-facebook-square"></i>
-						</a>
-		            </li>
-					<li>
-		                <a href="https://www.instagram.com/CreativeTimOfficial" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-							<i class="fa fa-instagram"></i>
-						</a>
-		            </li>
-        		</ul>
-        	</div>
-    	</div>
-    </nav>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navigation-doc">
+		<ul  class="nav navbar-nav navbar-right">
+			<li>
+				<a href="index.html">Back to Kit</a>
+			</li>
+			<li>
+                <a href="https://github.com/timcreative/material-kit/issues">Have an issue?</a>
+            </li>
+			<li>
+				<a href="http://demos.creative-tim.com/material-kit-pro/presentation.html?ref=utp-freebie" target="_blank">
+					<i class="material-icons">unarchive</i> Upgrade to PRO
+				</a>
+			</li>
+    	</ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
