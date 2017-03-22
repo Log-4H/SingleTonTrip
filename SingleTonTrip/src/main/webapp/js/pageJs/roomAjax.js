@@ -136,7 +136,7 @@ function calenderAppend(calendarList){
 				html+="<form action='reserveAdd' method='post'>";
 				html+="<input type='hidden' name='roomNo' value='"+roomNo+"'>";
 				html+="<input type='hidden' name='reserveCheckinDate' value='"+item.date+"'>";
-				html+="<button type='submit' class='btn btn-default'>예약</button>";
+				html+="<button type='submit' class='btn btn-info'>예약</button>";
 				html+="</form>";
 			}
 		}

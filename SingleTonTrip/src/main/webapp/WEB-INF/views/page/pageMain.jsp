@@ -3,6 +3,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:import url="/WEB-INF/views/test/top.jsp"></c:import>
+<!-- modal -->
+<c:if test="${sessionId eq pageId}">
+<c:import url="./post/postModify.jsp"></c:import>
+<c:import url="./post/postDelete.jsp"></c:import>
+<c:import url="./trip/tripAdd.jsp"></c:import>
+<c:import url="./trip/tripModify.jsp"></c:import>
+<c:import url="./trip/tripEnd.jsp"></c:import>
+<c:import url="./trip/tripDelete.jsp"></c:import>
+<c:import url="./trip/planAdd.jsp"></c:import>
+<c:import url="./trip/planModify.jsp"></c:import>
+<c:import url="./trip/planDelete.jsp"></c:import>
+</c:if>
+<c:import url="./room/roomReserveList.jsp"></c:import>
+<c:import url="./trip/tripJoin.jsp"></c:import>
 <script src="<c:url value='/js/imageView.js'/>"></script>
 <script>
 	//프로필 요청 
@@ -112,75 +126,48 @@
 	                        </div>
 	                    </div>
 	                </div>
-	                <div class="description text-center">
-                        <p>An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>
-	                </div>
-
 					<div class="row">
 						<div class="col-md-6 col-md-offset-3">
 							<div class="profile-tabs">
 			                    <div class="nav-align-center">
 									<ul class="nav nav-pills" role="tablist">
-										<li class="active">
-											<a href="#studio" role="tab" data-toggle="tab">
-												<i class="material-icons">camera</i>
-												Studio
-											</a>
-										</li>
-										<li>
-				                            <a href="#work" role="tab" data-toggle="tab">
+										<li class="active" id="postTab">
+				                            <a href="#post" role="tab" data-toggle="tab">
 												<i class="material-icons">palette</i>
-												Work
+												Post
 				                            </a>
 				                        </li>
-				                        <li>
-				                            <a href="#shows" role="tab" data-toggle="tab">
+										<c:if test="${pageLevel == 2}">
+										<li id="roomTab">
+											<a href="#room" role="tab" data-toggle="tab">
+												<i class="material-icons">camera</i>
+												Room
+											</a>
+										</li>
+										</c:if>
+										<c:if test="${pageLevel == 3}">
+										<li id="tripTab">
+											<a href="#trip" role="tab" data-toggle="tab">
+												<i class="material-icons">camera</i>
+												Trip
+											</a>
+										</li>
+										</c:if>
+				                        <li id="evaluationTab">
+				                            <a href="#evaluation" role="tab" data-toggle="tab">
 												<i class="material-icons">favorite</i>
-				                                Favorite
+				                                Evaluation
 				                            </a>
 				                        </li>
 				                    </ul>
-
 				                    <div class="tab-content gallery">
-										<div class="tab-pane active" id="studio">
-				                            <div class="row">
-												<div class="col-md-6">
-													<img src="./assets/img/examples/chris1.jpg" class="img-rounded" />
-													<img src="./assets/img/examples/chris0.jpg" class="img-rounded" />
-												</div>
-												<div class="col-md-6">
-													<img src="./assets/img/examples/chris3.jpg" class="img-rounded" />
-													<img src="./assets/img/examples/chris4.jpg" class="img-rounded" />
-												</div>
-				                            </div>
-				                        </div>
-				                        <div class="tab-pane text-center" id="work">
-											<div class="row">
-												<div class="col-md-6">
-													<img src="./assets/img/examples/chris5.jpg" class="img-rounded" />
-													<img src="./assets/img/examples/chris7.jpg" class="img-rounded" />
-													<img src="./assets/img/examples/chris9.jpg" class="img-rounded" />
-												</div>
-												<div class="col-md-6">
-													<img src="./assets/img/examples/chris6.jpg" class="img-rounded" />
-													<img src="./assets/img/examples/chris8.jpg" class="img-rounded" />
-												</div>
-											</div>
-				                        </div>
-										<div class="tab-pane text-center" id="shows">
-											<div class="row">
-												<div class="col-md-6">
-													<img src="./assets/img/examples/chris4.jpg" class="img-rounded" />
-													<img src="./assets/img/examples/chris6.jpg" class="img-rounded" />
-												</div>
-												<div class="col-md-6">
-													<img src="./assets/img/examples/chris7.jpg" class="img-rounded" />
-													<img src="./assets/img/examples/chris5.jpg" class="img-rounded" />
-													<img src="./assets/img/examples/chris9.jpg" class="img-rounded" />
-												</div>
-											</div>
-				                        </div>
-
+				                        <c:import url="./post/postList.jsp"></c:import>
+										<c:if test="${pageLevel == 2}">
+										<c:import url="./room/roomList.jsp"></c:import>
+										</c:if>
+										<c:if test="${pageLevel == 3}">
+										<c:import url="./trip/tripList.jsp"></c:import>
+										</c:if>
 				                    </div>
 								</div>
 							</div>
@@ -192,5 +179,6 @@
 	        </div>
 		</div>
 <c:import url="/WEB-INF/views/test/footer.jsp"></c:import>
+</div>
 </body>
 </html>
