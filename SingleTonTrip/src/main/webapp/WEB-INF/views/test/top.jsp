@@ -5,8 +5,8 @@
 <title>싱글톤트립 - 여행혼자갈꺼야?</title>
 <head>
 	<meta charset="utf-8" />
-	<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-	<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" href="./assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<title>Profile Page - Material Kit by Creative Tim</title>
@@ -34,7 +34,6 @@
 	<!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
 	<script src="./assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
 
-	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 	<!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
 	<script src="./assets/js/material-kit.js" type="text/javascript"></script>
 
