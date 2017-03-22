@@ -25,12 +25,11 @@
 			            </div>
 	     			</li>
 	     			<li>
-						<form class="navbar-form navbar-left" id="searchListForm" action="searchList" method="post">
+						<form class="navbar-form navbar-left" id="searchListForm" action="searchList" method="post" name="searchListForm">
 							<div class="input-group">
 								<input type="text" name="value" placeholder="Search" style="color: #000000;">
 							<div class="input-group-btn">
-								<a href="intro"><i class="material-icons" style="color: #ffffff;">search</i></a>
-									
+								<a href="javascript:searchListForm.submit()"><i class="material-icons" style="color: #ffffff;">search</i></a>
 							</div>
 							</div>
 						</form>

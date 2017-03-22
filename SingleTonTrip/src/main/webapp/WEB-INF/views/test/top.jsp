@@ -36,7 +36,14 @@
 
 	<!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
 	<script src="./assets/js/material-kit.js" type="text/javascript"></script>
-
+	
+	
+	<script src="<c:url value='/js/imageView.js'/>"></script>
+	<script src="<c:url value='/js/pageJs/groupAjax.js'/>"></script>
+	<c:import url="/WEB-INF/views/page/group/groupList.jsp"></c:import>
+	
+	<script src="<c:url value='/js/pageJs/tripAjax.js'/>"></script>
+	<c:import url="/WEB-INF/views/page/trip/tripEnd.jsp"></c:import>
 </head>
 
 	

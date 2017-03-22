@@ -9,7 +9,6 @@
 <c:import url="./post/postDelete.jsp"></c:import>
 <c:import url="./trip/tripAdd.jsp"></c:import>
 <c:import url="./trip/tripModify.jsp"></c:import>
-<c:import url="./trip/tripEnd.jsp"></c:import>
 <c:import url="./trip/tripDelete.jsp"></c:import>
 <c:import url="./trip/planAdd.jsp"></c:import>
 <c:import url="./trip/planModify.jsp"></c:import>
@@ -17,7 +16,7 @@
 </c:if>
 <c:import url="./room/roomReserveList.jsp"></c:import>
 <c:import url="./trip/tripJoin.jsp"></c:import>
-<script src="<c:url value='/js/imageView.js'/>"></script>
+
 <script>
 	//프로필 요청 
 	$(document).ready(
