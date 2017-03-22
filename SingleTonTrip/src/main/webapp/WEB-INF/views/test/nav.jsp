@@ -26,6 +26,11 @@
         	<div class="collapse navbar-collapse" id="navigation-example">
         		<ul class="nav navbar-nav navbar-right">
 					<li>
+    					<a href="joinBegin" target="_blank">
+    						Sign Up
+    					</a>
+    				</li>
+					<li>
     					<a href="../components-documentation.html" target="_blank">
     						Components
     					</a>

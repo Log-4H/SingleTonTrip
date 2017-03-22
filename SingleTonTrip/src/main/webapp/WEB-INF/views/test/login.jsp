@@ -32,19 +32,25 @@
 										<span class="input-group-addon">
 											<i class="material-icons">face</i>
 										</span>
-										<input type="text" class="form-control" placeholder="아이디">
+										<input type="text" class="form-control" placeholder="아이디" value="admin1">
 									</div>
 
 									<div class="input-group">
 										<span class="input-group-addon">
 											<i class="material-icons">lock_outline</i>
 										</span>
-										<input type="password" placeholder="비밀번호" class="form-control" />
+										<input type="password" placeholder="비밀번호" class="form-control" value="admin"/>
 									</div>
-										<p>회원이 아니십니까? <a href="joinBegin">회원가입</a></p>
-    									<p>아이디가 기억나지않을땐 <a href="memberIdFind">아이디찾기</a></p>
-    									<p>비밀번호가 생각나지않을땐 <a href="memberPwFind">비밀번호찾기</a></p>
-
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name="optionsCheckboxes" checked>
+											아이디저장
+										</label>
+									</div>
+									
+										<ul><a href="memberIdFind"><button class="btn btn-primary btn-simple">아이디찾기</button></a>
+    									<a href="memberPwFind"><button class="btn btn-primary btn-simple">비밀번호찾기</button></a></ul>
+    									
 									<!-- If you want to add a checkbox to this form, uncomment this code
 
 									<div class="checkbox">
@@ -55,7 +61,7 @@
 									</div> -->
 								</div>
 								<div class="footer text-center">
-									<a href="#pablo" class="btn btn-simple btn-primary btn-lg">로그인</a>
+									<button type="submit" class="btn btn-simple btn-primary btn-lg">로그인</button>
 								</div>
 							</form>
 						</div>
