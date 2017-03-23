@@ -1,72 +1,82 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 <c:import url="/WEB-INF/views/module/top.jsp" />
-<script src="<c:url value='/js/searchList.js'/>"></script>
-<div class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
-<div class="w3-row-padding">
-<input type="hidden" id="searchValue" value="${value}">
-	<div class="w3-col m12">
-		<br id="personResult">
-		<br>
-		<h2 align="center">회원검색결과</h2><br>
-			<div class="w3-card-2 w3-round w3-white">
-				<div class="w3-container w3-padding">
-					<table class="table">
-						<thead>
-							<tr>
-								<td>사진</td>
-								<td>ID</td>
-								<td>이름</td>
-								<td>성별</td>
-								<td>생년월일</td>
-							</tr>
-						</thead>
-						<tbody id="searchPersonList">
-							<c:if test="${personMap.searchPersonList.size() >= 1 }">
-							<c:forEach items="${personMap.searchPersonList}" var="p" >
-								<tr>
-									<td><img src="./images/${p.memberImg}" class="img-rounded" width="100" height="100"></td>
-									<td><a href="pageMain?pageId=${p.memberId }">${p.memberId}</a></td>
-									<td>${p.memberNm}</td>
-									<td>${p.personGender}</td>
-									<td>${p.personBirth}</td>
-								</tr>
-							</c:forEach>
-							</c:if>
-							<c:if test="${personMap.searchPersonList.size() < 1 }">
-								<tr>
-								<td colspan="5" align="center"><strong>검색결과가없습니다</strong></td>
-								</tr>
-							</c:if>
-						</tbody>	
-					</table>
-					<div id="searchPersonPaging" align="center">
-						<c:if test="${personMap.startPage>1}">
-							<a href="javascript:void(0)" class="searchPersonPaging" value="${personMap.startPage - personMap.pageSize}">prev</a>
-						</c:if>
-						<c:forEach var="i" begin="${personMap.startPage}" end="${personMap.endPage}" step="1">
-							<a href="javascript:void(0)" class="searchPersonPaging" value="${i}">${i }</a>
-						</c:forEach>
-						<c:if test="${personMap.endPage ne personMap.lastPage}">
-							<a href="javascript:void(0)" class="searchPersonPaging" value="${personMap.startPage + personMap.pageSize}">next</a>
-						</c:if>
+
+<body class="profile-page">
+	<c:import url="/WEB-INF/views/module/nav.jsp" />
+	<div class="wrapper">
+		<div class="header header-filter"
+			style="background-image: url('./assets/img/examples/city.jpg');"></div>
+
+		<div class="main main-raised">
+			<div class="profile-content">
+				<div class="container-fluid">
+					<div class="row" style="height: 200px; margin-top: 80px">
+						<div class="col-md-6 col-md-offset-3">
+							<div class="card card-signup">
+								<div class="header header-primary text-center" style="height: 80px;">
+									<h4>회원검색결과</h4>
+								</div>
+									<div class="content">
+										<table class="table">
+											<thead>
+												<tr>
+													<td>사진</td>
+													<td>ID</td>
+													<td>이름</td>
+													<td>성별</td>
+													<td>생년월일</td>
+												</tr>
+											</thead>
+											<tbody id="searchPersonList">
+												<c:if test="${personMap.searchPersonList.size() >= 1 }">
+												<c:forEach items="${personMap.searchPersonList}" var="p" >
+													<tr>
+														<td><img src="./images/${p.memberImg}" class="img-rounded" width="100" height="100"></td>
+														<td><a href="pageMain?pageId=${p.memberId }">${p.memberId}</a></td>
+														<td>${p.memberNm}</td>
+														<td>${p.personGender}</td>
+														<td>${p.personBirth}</td>
+													</tr>
+												</c:forEach>
+												</c:if>
+												<c:if test="${personMap.searchPersonList.size() < 1 }">
+													<tr>
+													<td colspan="5" align="center"><strong>검색결과가없습니다</strong></td>
+													</tr>
+												</c:if>
+											</tbody>	
+										</table>
+										<div id="searchPersonPaging" align="center">
+											<c:if test="${personMap.startPage>1}">
+												<a href="javascript:void(0)" class="searchPersonPaging" value="${personMap.startPage - personMap.pageSize}">prev</a>
+											</c:if>
+											<c:forEach var="i" begin="${personMap.startPage}" end="${personMap.endPage}" step="1">
+												<a href="javascript:void(0)" class="searchPersonPaging" value="${i}">${i }</a>
+											</c:forEach>
+											<c:if test="${personMap.endPage ne personMap.lastPage}">
+												<a href="javascript:void(0)" class="searchPersonPaging" value="${personMap.startPage + personMap.pageSize}">next</a>
+											</c:if>
+										</div>
+										
+										
+									</div>
+							</div>
+						</div>
+						
 					</div>
 				</div>
-			</div>
-			<br id="companyResult">
-			<br>
-			<h2 align="center" >숙소검색결과</h2><br>
-			<div class="w3-card-2 w3-round w3-white">
-				<div class="w3-container w3-padding">
-					<table class="table">
+				<div class="container-fluid">
+					<div class="row" style="height: 200px; margin-top: 40px">
+						<div class="col-md-6 col-md-offset-3">
+							<div class="card card-signup">
+								<div class="header header-primary text-center" style="height: 80px;">
+									<h4>숙소검색결과</h4>
+								</div>
+									<div class="content">
+										<table class="table">
 						<thead>
 							<tr>
 								<td>사진</td>
@@ -108,14 +118,24 @@
 							<a href="javascript:void(0)" class="searchCompanyPaging" value="${companyMap.startPage+ companyMap.pageSize}">next</a>
 						</c:if>
 					</div>
+					
+										
+										
+									</div>
+							</div>
+						</div>
+						
+					</div>
 				</div>
-			</div>
-			<br id="tripResult">
-			<br>
-			<h2 align="center">여행검색결과</h2><br>
-			<div class="w3-card-2 w3-round w3-white">
-				<div class="w3-container w3-padding">
-					<table class="table">
+								<div class="container-fluid">
+					<div class="row" style="height: 200px; margin-top: 40px">
+						<div class="col-md-6 col-md-offset-3">
+							<div class="card card-signup">
+								<div class="header header-primary text-center" style="height: 80px;">
+									<h4>여행검색결과</h4>
+								</div>
+									<div class="content">
+										<table class="table">
 						<thead>
 							<tr>
 								<td>테마</td>
@@ -160,11 +180,20 @@
 							<a href="javascript:void(0)" class="searchTripPaging" value="${tripMap.startPage+ tripMap.pageSize}">next</a>
 						</c:if>
 					</div>
+					
+										
+										
+									</div>
+							</div>
+						</div>
+						
+					</div>
 				</div>
 			</div>
+			
 		</div>
+		
 	</div>
-</div>
-<c:import url="/WEB-INF/views/module/footer.jsp"></c:import>
+	<c:import url="/WEB-INF/views//module/footer.jsp" />
 </body>
 </html>

@@ -24,8 +24,8 @@
 											<thead>
 												<tr>
 													<th>ID</th>
-													<th>Name</th>
-													<th class="text-right">State</th>
+													<th>이름</th>
+													<th class="text-right">상태</th>
 												</tr>
 											</thead>
 											<tbody>

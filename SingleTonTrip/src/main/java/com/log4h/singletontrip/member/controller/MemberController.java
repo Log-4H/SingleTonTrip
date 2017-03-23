@@ -163,6 +163,27 @@ public class MemberController {
 		return mv;	
 	}
 	
+	//관리개인회원리스트
+	@RequestMapping(value="adminPersonList", method=RequestMethod.GET)
+	public ModelAndView adminPersonList(
+			@ModelAttribute("sessionId") String sessionId,
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage,
+			@RequestParam(value="selectOption", required=false) String selectOption,
+			@RequestParam(value="selectValue", required=false) String selectValue
+			){
+		Map<String, Object> map = memberService.personList(currentPage, selectOption, selectValue, sessionId);
+		ModelAndView mv = new ModelAndView("member/list/adminPersonList");
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("selectOption", selectOption);
+		mv.addObject("selectValue", selectValue);
+		mv.addObject("personList", map.get("personList"));
+		mv.addObject("startPage", map.get("startPage"));
+		mv.addObject("pageSize", map.get("pageSize"));
+		mv.addObject("endPage", map.get("endPage"));
+		mv.addObject("lastPage", map.get("lastPage"));
+		return mv;	
+	}
+	
 	//관리자업체회원리스트
 	@RequestMapping(value="adminCompanyList", method=RequestMethod.GET)
 	public ModelAndView adminCompanyList(
@@ -374,8 +395,7 @@ public class MemberController {
 	//친구리스트
 	@RequestMapping(value="friendTotalList", method=RequestMethod.GET)
 	public ModelAndView friendTotalList(
-			@ModelAttribute("sessionId") String sessionId,
-			@ModelAttribute("pageId") String pageId){	
+			@ModelAttribute("sessionId") String sessionId){	
 		ModelAndView mv = new ModelAndView("friend/friendTotalList");
 		List<MemberVo> friendTotalList = memberService.friendTotalList(sessionId);
 		mv.addObject("friendTotalList", friendTotalList);

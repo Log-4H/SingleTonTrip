@@ -52,9 +52,16 @@
 							<li><a href="payCancelList">환불 리스트</a></li>
 						</ul>
 				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="material-icons">settings</i>회원관리</a>
+						<ul class="dropdown-menu">
+							<li><a href="adminCompanyList">업체</a></li>
+							<li><a href="adminPersonList">회원</a></li>
+						</ul>
+				</li>
 				<li><a href="#tour"><i class="material-icons">flight_takeoff</i>여행</a></li>
 				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="material-icons">supervisor_account</i>친구</a>
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="material-icons">person_add</i>친구</a>
 						<ul class="dropdown-menu">
 							<li><a href="friendAddList">친구요청리스트</a></li>
 							<li><a href="friendCheckList">친구신청확인</a></li>
@@ -86,9 +93,10 @@
 							<li><a href="payCancelList">환불 리스트</a></li>
 						</ul>
 				</li>
+				<li><a href="companyList"><i class="material-icons">business</i>숙소</a></li>
 				<li><a href="#tour"><i class="material-icons">flight_takeoff</i>여행</a></li>
 				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="material-icons">supervisor_account</i>친구</a>
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="material-icons">person_add</i>친구</a>
 						<ul class="dropdown-menu">
 							<li><a href="friendAddList">친구요청리스트</a></li>
 							<li><a href="friendCheckList">친구신청확인</a></li>
@@ -116,9 +124,10 @@
 							<li><a href="javascript:void(0)" class="groupListModalShow" value="member">가입한그룹</a></li>
 						</ul>
 				</li>
+				<li><a href="companyList"><i class="material-icons">business</i>숙소</a></li>
 				<li><a href="#tour"><i class="material-icons">flight_takeoff</i>여행</a></li>
 				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="material-icons">supervisor_account</i>친구</a>
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="material-icons">person_add</i>친구</a>
 						<ul class="dropdown-menu">
 							<li><a href="friendAddList">친구요청리스트</a></li>
 							<li><a href="friendCheckList">친구신청확인</a></li> 

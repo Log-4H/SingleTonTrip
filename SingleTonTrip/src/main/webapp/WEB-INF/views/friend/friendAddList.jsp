@@ -24,8 +24,8 @@
 											<thead>
 												<tr>
 													<th>ID</th>
-													<th>Name</th>
-													<th>State</th>
+													<th>이름</th>
+													<th>상태</th>
 													<th class="text-right">수락&거절</th>		
 												</tr>
 											</thead>

@@ -24,7 +24,7 @@
 												<thead>
 													<tr>
 														<th>ID</th>
-														<th>Name</th>
+														<th>이름</th>
 														<th class="text-right">삭제</th>		
 													</tr>
 												</thead>
