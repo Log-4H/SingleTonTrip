@@ -34,4 +34,12 @@ public class EvaluationDaoImpl implements EvaluationDao{
 	public int personEvaluationAdd(PersonEvaluationVo personEvaluationVo) {
 		return sqlSession.insert(EVALUATION_NS+"personEvaluationAdd", personEvaluationVo);
 	}
+	@Override
+	public List<CompanyEvaluationVo> companyEvaluationList(Map<String, Object> map) {
+		return sqlSession.selectList(EVALUATION_NS+"companyEvaluationList", map);
+	}
+	@Override
+	public List<PersonEvaluationVo> personEvaluationList(Map<String, Object> map) {
+		return sqlSession.selectList(EVALUATION_NS+"personEvaluationList", map);
+	}
 }

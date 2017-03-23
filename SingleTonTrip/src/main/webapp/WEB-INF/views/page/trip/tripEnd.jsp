@@ -5,6 +5,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 		<input type="hidden" name="tripNo" id="tripEndNo" value="">
+		<input type="hidden" class="lastTripRow" name="lastTripRow" value="5">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">×</span><span class="sr-only">Close</span>

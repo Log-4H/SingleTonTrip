@@ -48,7 +48,14 @@
 											<tbody>
 												<c:forEach items="${companyList}" var="c">
 													<tr>
-														<td><img src="<c:url value='/images/${c.memberImg}'/>" class="img-rounded" width="100" height="100"></td>
+														<c:choose>
+														<c:when test="${c.memberImg ne null}">
+														<td><img src="./images/${c.memberImg}" class="img-rounded" width="100" height="100"></td>
+														</c:when>
+														<c:otherwise>
+														<td><img src="./images/Company.jpg" class="img-rounded" width="100" height="100"></td>
+														</c:otherwise>
+														</c:choose>
 														<td><a href="<c:url value='companyDetail?memberId=${c.memberId}'/> ">${c.memberId}</a></td>
 														<td>${c.companyNm}</td>
 														<td>${c.memberPhone}</td>

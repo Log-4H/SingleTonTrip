@@ -4,6 +4,9 @@ public class CompanyEvaluationVo {
 	private int companyEvaluationNo;
 	private int reserveNo;
 	private String memberId;
+	private String memberNm;
+	private String memberImg;
+	private String personGender;
 	private String companyId;
 	private int companyEvaluationRating;
 	private String companyEvaluationContent;
@@ -50,5 +53,24 @@ public class CompanyEvaluationVo {
 	public void setCompanyEvaluationRegDate(String companyEvaluationRegDate) {
 		this.companyEvaluationRegDate = companyEvaluationRegDate;
 	}
-
+	public String getMemberNm() {
+		return memberNm;
+	}
+	public void setMemberNm(String memberNm) {
+		this.memberNm = memberNm;
+	}
+	public String getMemberImg() {
+		return memberImg;
+	}
+	public void setMemberImg(String memberImg) {
+		this.memberImg = memberImg;
+	}
+	public String getPersonGender() {
+		return personGender;
+	}
+	public void setPersonGender(String personGender) {
+		this.personGender = personGender;
+	}
+	
+	
 }

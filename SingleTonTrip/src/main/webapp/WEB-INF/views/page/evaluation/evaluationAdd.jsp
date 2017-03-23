@@ -50,7 +50,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" id="evaluationAddBtn" class="btn btn-primary" data-dismiss="modal" style="display:none;">Add</button>
+				<button type="button" id="evaluationAddBtn" class="btn btn-primary" pageLevel="${pageLevel}" data-dismiss="modal" style="display:none;">Add</button>
 			</div>
 		</div>
 	</div>

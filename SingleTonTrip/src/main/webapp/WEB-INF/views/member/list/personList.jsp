@@ -43,12 +43,26 @@
 											<tbody>
 												<c:forEach items="${personList}" var="p">
 													<tr>
-														<td><img src="<c:url value='/images/${p.memberImg}'/>" class="img-rounded" width="100" height="100"></td>
+														<td>
+														<c:choose>
+														<c:when test="${p.memberImg ne null}">
+															<img src="./images/${p.memberImg}" class="img-rounded" width="100" height="100">
+														</c:when>
+														<c:when test="${p.personGender == 'M'}">
+															<img src="./images/Male.png" class="img-rounded" width="100" height="100">
+														</c:when>
+														<c:when test="${p.personGender == 'F'}">
+															<img src="./images/Female.png" class="img-rounded" width="100" height="100">
+														</c:when>
+														</c:choose>
+														</td>
 														<td><a href="pageMain?pageId=${p.memberId}">${p.memberId}</a></td>
 														<td>${p.memberNm}</td>
+														<td>
 															<c:if test="${sessionId ne p.memberId and p.friendState eq 0}">
-																<td><a href="<c:url value='friendAdd?memberId=${p.memberId}'/> ">신청하기</a></td>
+																<a href="<c:url value='friendAdd?memberId=${p.memberId}'/> ">신청하기</a>
 															</c:if>
+														</td>
 													</tr>
 												</c:forEach>
 											</tbody>

@@ -155,3 +155,5 @@
 		</div>
 	</div>
    </nav>
+<input type="hidden" id="sessionId" value="${sessionId}">
+<input type="hidden" id="sessionLevel" value="${sessionLevel}">

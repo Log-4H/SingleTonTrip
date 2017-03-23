@@ -23,6 +23,7 @@
 										<table class="table">
 											<thead>
 												<tr>
+													<th>사진</th>
 													<th>ID</th>
 													<th>이름</th>
 													<th>상태</th>
@@ -32,7 +33,8 @@
 											<tbody>
 												<c:forEach items="${friendAddList}" var="f">
 												<tr>
-													<td>${f.memberId}</td>
+													<td></td>
+													<td><a href="pageMain?pageId=${f.memberId}">${f.memberId}</a></td>
 													<td>${f.memberNm}</td>
 													<td>${f.approveStateNm}</td>
 													<td class="text-right">

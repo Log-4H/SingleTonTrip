@@ -125,6 +125,8 @@ $(document).on('click', '.groupView', function() {
 });
 //그룹상세보기 html추가
 function groupViewAppend(trip) {
+	console.log(trip.personId);
+	console.log($("#sessionId").val());
 	var html = "";
 	html += "<div><br>";
 	html += "<div align='right'>모집기간 : " ;

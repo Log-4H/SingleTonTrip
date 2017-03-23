@@ -28,7 +28,7 @@ public class PostServiceImpl implements PostService{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("memberId", memberId);
 		map.put("lastPostRow", lastPostRow);
-		List<PostVo> postList = postDao.postList(map);		
+		List<PostVo> postList = postDao.postList(map);
 		return postList;
 	}
 	

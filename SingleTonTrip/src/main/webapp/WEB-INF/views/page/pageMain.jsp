@@ -105,8 +105,7 @@
 <body class="profile-page">
 <input type="hidden" id="pageId" value="${pageId}">
 <input type="hidden" id="pageLevel" value="${pageLevel}">
-<input type="hidden" id="sessionId" value="${sessionId}">
-<input type="hidden" id="sessionLevel" value="${sessionLevel}">
+
 <c:import url="/WEB-INF/views/module/nav.jsp"></c:import>
    <div class="wrapper">
 		<div class="header header-filter" style="background-image: url('./assets/img/examples/city.jpg');"></div>

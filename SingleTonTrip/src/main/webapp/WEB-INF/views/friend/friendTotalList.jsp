@@ -23,6 +23,7 @@
 											<table class="table">
 												<thead>
 													<tr>
+														<th>사진</th>
 														<th>ID</th>
 														<th>이름</th>
 														<th class="text-right">삭제</th>		
@@ -31,7 +32,8 @@
 												<tbody>
 													<c:forEach items="${friendTotalList}" var="f">
 													<tr>
-														<td>${f.friendId}</td>
+														<td></td>
+														<td><a href="pageMain?pageId=${f.friendId}">${f.friendId}</a></td>
 														<td>${f.memberNm}</td>
 														<td class="text-right">
 															<a href="<c:url value='friendDelete?friendId=${f.friendId}'/>"><button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">

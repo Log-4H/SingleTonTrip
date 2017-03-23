@@ -16,4 +16,8 @@ public interface EvaluationDao {
 	public int companyEvaluationAdd(CompanyEvaluationVo companyEvaluationVo);
 	
 	public int personEvaluationAdd(PersonEvaluationVo personEvaluationVo);
+
+	public List<CompanyEvaluationVo> companyEvaluationList(Map<String,Object> map);
+	
+	public List<PersonEvaluationVo> personEvaluationList(Map<String,Object> map);
 }

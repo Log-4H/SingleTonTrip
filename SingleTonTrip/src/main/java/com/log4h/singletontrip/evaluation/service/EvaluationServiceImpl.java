@@ -41,7 +41,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 			companyEvaluationVo.setMemberId(memberId);
 			companyEvaluationVo.setCompanyId(pageId);
 			companyEvaluationVo.setReserveNo(selectEvaluationList);
-			companyEvaluationVo.setCompanyEvaluationContent(evaluationAddContent);
+			companyEvaluationVo.setCompanyEvaluationContent(evaluationAddContent.replaceAll("\r\n", "<br>"));
 			companyEvaluationVo.setCompanyEvaluationRating(evaluationAddRating);
 			result = evaluationDao.companyEvaluationAdd(companyEvaluationVo);
 		}else if(pageLevel ==3){
@@ -49,10 +49,28 @@ public class EvaluationServiceImpl implements EvaluationService {
 			personEvaluationVo.setMemberId(memberId);
 			personEvaluationVo.setPersonId(pageId);
 			personEvaluationVo.setTripNo(selectEvaluationList);
-			personEvaluationVo.setPersonEvaluationContent(evaluationAddContent);
+			personEvaluationVo.setPersonEvaluationContent(evaluationAddContent.replaceAll("\r\n", "<br>"));
 			personEvaluationVo.setPersonEvaluationRating(evaluationAddRating);
 			result = evaluationDao.personEvaluationAdd(personEvaluationVo);
 		}
 		return result;
+	}
+
+	@Override
+	public List<CompanyEvaluationVo> companyEvaluationList(String pageId, int lastEvaluationRow) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pageId", pageId);
+		map.put("lastEvaluationRow", lastEvaluationRow);
+		List<CompanyEvaluationVo> evaluationList = evaluationDao.companyEvaluationList(map);
+		return evaluationList;
+	}
+
+	@Override
+	public List<PersonEvaluationVo> personEvaluationList(String pageId, int lastEvaluationRow) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pageId", pageId);
+		map.put("lastEvaluationRow", lastEvaluationRow);
+		List<PersonEvaluationVo> evaluationList = evaluationDao.personEvaluationList(map);
+		return evaluationList;
 	}
 }

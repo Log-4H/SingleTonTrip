@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.log4h.singletontrip.evaluation.domain.CompanyEvaluationVo;
 import com.log4h.singletontrip.evaluation.domain.EvaluationCheckVo;
+import com.log4h.singletontrip.evaluation.domain.PersonEvaluationVo;
 import com.log4h.singletontrip.evaluation.service.EvaluationService;
 
 @SessionAttributes({"sessionId", "sessionNm", "sessionLevel", "pageId"})
@@ -38,9 +40,34 @@ public class EvaluationController {
 			@RequestParam(value="pageLevel") int pageLevel,
 			@RequestParam(value="selectEvaluationList") int selectEvaluationList,
 			@RequestParam(value="evaluationAddContent") String evaluationAddContent,
-			@RequestParam(value="evaluationAddRating") int evaluationAddRating){
+			@RequestParam(value="evaluationAddRating") int evaluationAddRating,
+			@RequestParam(value="lastEvaluationRow", defaultValue="5") int lastEvaluationRow){
 		ModelAndView mv = new ModelAndView("jsonView");
 		int result = evaluationService.evaluationAdd(sessionId, pageId, pageLevel, selectEvaluationList , evaluationAddContent, evaluationAddRating);
+		if(result > 0){
+			if(pageLevel == 2){
+				List<CompanyEvaluationVo> evaluationList = evaluationService.companyEvaluationList(pageId, lastEvaluationRow);
+				mv.addObject("evaluationList", evaluationList);
+			}else if(pageLevel ==3){
+				List<PersonEvaluationVo> evaluationList = evaluationService.personEvaluationList(pageId, lastEvaluationRow);
+				mv.addObject("evaluationList", evaluationList);
+			}
+		}
+		return mv;	
+	}
+	//업체평가등록
+	@RequestMapping(value="evaluationList")
+	public ModelAndView evaluationAdd(@ModelAttribute("pageId") String pageId,
+			@RequestParam(value="pageLevel") int pageLevel,
+			@RequestParam(value="lastEvaluationRow", defaultValue="5") int lastEvaluationRow){
+		ModelAndView mv = new ModelAndView("jsonView");
+		if(pageLevel == 2){
+			List<CompanyEvaluationVo> evaluationList = evaluationService.companyEvaluationList(pageId, lastEvaluationRow);
+			mv.addObject("evaluationList", evaluationList);
+		}else if(pageLevel ==3){
+			List<PersonEvaluationVo> evaluationList = evaluationService.personEvaluationList(pageId, lastEvaluationRow);
+			mv.addObject("evaluationList", evaluationList);
+		}
 		return mv;	
 	}
 }

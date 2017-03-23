@@ -4,6 +4,9 @@ public class PersonEvaluationVo {
 	private int personEvaluationNo;
 	private int tripNo;
 	private String memberId;
+	private String memberNm;
+	private String memberImg;
+	private String personGender;
 	private String personId;
 	private int personEvaluationRating;
 	private String personEvaluationContent;
@@ -50,5 +53,24 @@ public class PersonEvaluationVo {
 	public void setPersonEvaluationRegDate(String personEvaluationRegDate) {
 		this.personEvaluationRegDate = personEvaluationRegDate;
 	}
+	public String getMemberNm() {
+		return memberNm;
+	}
+	public void setMemberNm(String memberNm) {
+		this.memberNm = memberNm;
+	}
+	public String getMemberImg() {
+		return memberImg;
+	}
+	public void setMemberImg(String memberImg) {
+		this.memberImg = memberImg;
+	}
+	public String getPersonGender() {
+		return personGender;
+	}
+	public void setPersonGender(String personGender) {
+		this.personGender = personGender;
+	}
+	
 	
 }
