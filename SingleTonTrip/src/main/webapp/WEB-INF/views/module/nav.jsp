@@ -133,6 +133,7 @@
 			        	<ul class="dropdown-menu">
 							<li><a href="logout"> 로그아웃</a></li>
 							<li><a href="pageMain?pageId=${sessionId}">페이지</a></li>
+							<li><a href="personDetail?memberId=${sessionId}">회원정보</a></li>
 							<li><a href="mileageList">마일리지</a></li>
 							<li><a href="reserveList">예약정보</a></li>
 							<li><a href="payList">결제정보</a></li>
