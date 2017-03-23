@@ -9,7 +9,7 @@
 		<div class="header header-filter" style="background-image: url('./assets/img/city.jpg'); background-size: cover; background-position: top center;">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+					<div>
 						<div class="card card-signup">
 							
 								<div class="header header-primary text-center">
@@ -27,20 +27,22 @@
 									</div>
 								</div>
 								<div class="content">
-
-									<br><br><br><br>
-						
-						
-			                   
-				                    <br><br><br><br><br><br><br><br>
-				               
-
-				        
-				        
-				        
-
+									<br><br>
+								<div align="center">
+									<c:import url='terms.jsp'></c:import><br>
+								</div>
 								
-    									
+									<div align="center" class="checkbox">
+										<label>
+											약관 동의 하시겠습니까?
+											<input type="checkbox" name="optionsCheckboxes">
+										</label>
+									</div>
+								
+				               <br>
+				               	<div align="center">
+				               		<a href="companyJoin?memberLevel=${memberLevel}"><button class="btn btn-primary">다음</button></a>
+								</div>
 									<!-- If you want to add a checkbox to this form, uncomment this code
 
 									<div class="checkbox">
