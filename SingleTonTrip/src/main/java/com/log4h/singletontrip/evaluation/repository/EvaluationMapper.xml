@@ -117,10 +117,72 @@
 		ce.member_id = p.person_id
 	WHERE
 		ce.company_id = #{pageId}
+	<if test="lastEvaluationRow != null and lastEvaluationRow !=null">
+	ORDER BY ce.company_evaluation_reg_date DESC
+	LIMIT 0, #{lastEvaluationRow}
+	</if>
+</select>
+<select id="personEvaluationList" parameterType="map" resultType="com.log4h.singletontrip.evaluation.domain.PersonEvaluationVo">
+	SELECT
+		pe.person_evaluation_no,	
+		pe.member_id,
+		m.member_nm,
+		m.member_img,
+		p.person_gender,
+		pe.person_evaluation_rating,
+		pe.person_evaluation_content,
+		pe.person_evaluation_reg_date
+	FROM
+		tb_person_evaluation pe
+	JOIN
+		tb_member m
+	ON
+		pe.member_id = m.member_id
+	JOIN
+		tb_person p
+	ON
+		pe.member_id = p.person_id
+	WHERE
+		pe.person_id = #{pageId}
+	<if test="lastEvaluationRow != null and lastEvaluationRow !=null">
+	ORDER BY pe.person_evaluation_reg_date DESC
+	LIMIT 0, #{lastEvaluationRow}
+	</if>
+</select>
+
+
+
+
+
+
+
+
+<select id="companyEvaluationRating" parameterType="map" resultType="com.log4h.singletontrip.evaluation.domain.CompanyEvaluationVo">
+	SELECT
+		ce.company_evaluation_no,	
+		ce.member_id,
+		m.member_nm,
+		m.member_img,
+		p.person_gender,
+		ce.company_evaluation_rating,
+		ce.company_evaluation_content,
+		ce.company_evaluation_reg_date
+	FROM
+		tb_company_evaluation ce
+	JOIN
+		tb_member m
+	ON
+		ce.member_id = m.member_id
+	JOIN
+		tb_person p
+	ON
+		ce.member_id = p.person_id
+	WHERE
+		ce.company_id = #{pageId}
 	ORDER BY ce.company_evaluation_reg_date DESC
 	LIMIT 0, #{lastEvaluationRow}
 </select>
-<select id="personEvaluationList" parameterType="map" resultType="com.log4h.singletontrip.evaluation.domain.PersonEvaluationVo">
+<select id="personEvaluationRating" parameterType="map" resultType="com.log4h.singletontrip.evaluation.domain.PersonEvaluationVo">
 	SELECT
 		pe.person_evaluation_no,	
 		pe.member_id,

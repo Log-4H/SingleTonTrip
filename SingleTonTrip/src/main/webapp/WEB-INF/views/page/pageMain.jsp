@@ -19,7 +19,7 @@
 <c:import url="./room/roomReserveList.jsp"></c:import>
 <c:import url="./trip/tripJoin.jsp"></c:import>
 <body class="profile-page">
-<script src="<c:url value='/js/pageMain.js'/>"></script>
+<script src="<c:url value='/js/pageJs/pageMain.js'/>"></script>
 <input type="hidden" id="pageId" value="${pageId}">
 <input type="hidden" id="pageLevel" value="${pageLevel}">
 

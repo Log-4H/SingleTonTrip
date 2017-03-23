@@ -57,7 +57,7 @@ public class EvaluationController {
 	}
 	//업체평가등록
 	@RequestMapping(value="evaluationList")
-	public ModelAndView evaluationAdd(@ModelAttribute("pageId") String pageId,
+	public ModelAndView evaluationList(@ModelAttribute("pageId") String pageId,
 			@RequestParam(value="pageLevel") int pageLevel,
 			@RequestParam(value="lastEvaluationRow", defaultValue="5") int lastEvaluationRow){
 		ModelAndView mv = new ModelAndView("jsonView");
@@ -70,4 +70,5 @@ public class EvaluationController {
 		}
 		return mv;	
 	}
+
 }
