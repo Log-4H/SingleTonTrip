@@ -1,43 +1,62 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 <c:import url="/WEB-INF/views/module/top.jsp" />
-<div class="w3-container w3-content" style="max-width: 1400px; margin-top: 130px">
-<h2 align="center">친구리스트</h2><br>
-	<div class="w3-row-padding">
-		<div class="w3-col m12">
-			<div class="w3-card-2 w3-round w3-white">
-				<div class="w3-container w3-padding">
-					<table class="table">
-						<thead>
-							<tr>
-								<td>ID</td>
-								<td>Name</td>
-								<td>삭제</td>		
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${friendTotalList}" var="f">
-							<tr>
-								<td>${f.friendId}</td>
-								<td>${f.memberNm}</td>
-								<td><a href="<c:url value='friendDelete?friendId=${f.friendId}'/> ">삭제</a></td>	
-							</tr>
-							</c:forEach>
-						</tbody>
-					</table>
+
+<body class="profile-page">
+	<c:import url="/WEB-INF/views/module/nav.jsp" />
+	<div class="wrapper">
+		<div class="header header-filter"
+			style="background-image: url('./assets/img/examples/city.jpg');"></div>
+
+		<div class="main main-raised">
+			<div class="profile-content">
+				<div class="container-fluid">
+					<div class="row" style="height: 1400px; margin-top: 80px">
+						<div class="col-md-6 col-md-offset-3">
+							<div class="card card-signup">
+								<div class="header header-primary text-center" style="height: 80px;">
+									<h4>친구요청리스트</h4>
+								</div>
+									<div class="content">
+											<table class="table">
+												<thead>
+													<tr>
+														<th>ID</th>
+														<th>Name</th>
+														<th class="text-right">삭제</th>		
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach items="${friendTotalList}" var="f">
+													<tr>
+														<td>${f.friendId}</td>
+														<td>${f.memberNm}</td>
+														<td class="text-right">
+															<a href="<c:url value='friendDelete?friendId=${f.friendId}'/>"><button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+										                    	<i class="fa fa-times"></i>
+										                	</button></a>
+										                </td>
+													</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+															
+
+										
+										
+									</div>
+									
+								
+							</div>
+
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<c:import url="/WEB-INF/views/module/footer.jsp"></c:import>
+	<c:import url="/WEB-INF/views//module/footer.jsp" />
 </body>
 </html>

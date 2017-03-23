@@ -151,6 +151,7 @@ public class MemberServiceImpl implements MemberService{
 	public int companyModify(CompanyVo companyVo, MultipartFile imgFile) {
 		ImageUpload imageUpload = new ImageUpload();
 		String companyImg = imageUpload.uploadImage(imgFile);
+		companyVo.setCompanyAddress(companyVo.getCompanyAddressSelect()+companyVo.getCompanyAddressDetail());
 		if(companyImg!=null){
 			companyVo.setMemberImg(companyImg);
 		}

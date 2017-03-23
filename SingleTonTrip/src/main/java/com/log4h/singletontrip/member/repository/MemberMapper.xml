@@ -279,6 +279,7 @@
 		m.member_email,
 		m.member_report_count,
 		m.member_img,
+		c.company_nm,
 		c.company_crd,
 		t.company_type_cd,
 		t.company_type_nm,
@@ -335,6 +336,8 @@
 	WHERE
 		member_id=#{memberId}
 	AND
+		person_id=#{memberId}
+	AND
 		member_pw=#{memberPw}
 </update>
 
@@ -346,6 +349,7 @@
 		member_nm=#{memberNm},
 		member_phone=#{memberPhone},
 		member_email=#{memberEmail},
+		company_nm=#{companyNm},
 		company_type_cd=#{companyTypeCd},
 		company_crd=#{companyCrd},
 		company_Address=#{companyAddress}
@@ -357,6 +361,8 @@
 	</if>
 	WHERE
 		member_id=#{memberId}
+	AND
+		company_id=#{memberId}
 	AND
 		member_pw=#{memberPw}
 </update>

@@ -257,7 +257,7 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		int result = memberService.personModify(personVo, imgFile);
 		if(result>0){
-			mv.setViewName("redirect:personList");
+			mv.setViewName("test/main2");
 		}else{
 			mv.setViewName("redirect:error");
 		}
@@ -271,7 +271,7 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		int result = memberService.companyModify(companyVo, imgFile);
 		if(result>0){
-			mv.setViewName("redirect:companyList");
+			mv.setViewName("test/main2");
 		}else{
 			mv.setViewName("redirect:error");
 		}

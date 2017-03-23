@@ -28,7 +28,7 @@
 									</div>
 								</div>
 								<div class="content" align="center">
-									<div class="input-group" align="center">
+									<div class="input-group">
 										<span class="input-group-addon">
 											<i class="material-icons">photo</i>
 										</span>
@@ -80,7 +80,7 @@
 									
 									<div class="input-group">
 										<span class="input-group-addon">
-											<i class="material-icons">mail_outline</i>
+											<i class="material-icons">cake</i>
 										</span>
 										<input type="date" class="form-control" name="personBirth"/>
 									</div>

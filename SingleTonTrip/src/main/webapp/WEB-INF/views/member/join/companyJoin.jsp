@@ -27,7 +27,7 @@
 										</a>
 									</div>
 								</div>
-								<div class="content">
+								<div class="content"  align="center">
 									<div class="input-group">
 										<span class="input-group-addon">
 											<i class="material-icons">photo</i>
