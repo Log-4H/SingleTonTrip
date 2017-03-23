@@ -19,7 +19,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" id="planDeleteBtn" class="btn btn-primary" data-dismiss="modal">Delete</button>
+				<button type="button" id="planDeleteBtn" class="btn btn-danger" data-dismiss="modal">Delete</button>
 			</div>
 		</div>
 	</div>

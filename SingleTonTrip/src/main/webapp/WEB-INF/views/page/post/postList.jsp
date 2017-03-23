@@ -5,20 +5,21 @@
 <div class="tab-pane active" id="post">
 	<div class="row">
 		<input type="hidden" class="lastPostRow" name="lastPostRow" value="10">
-		<br>
 		<c:if test="${sessionId eq pageId}">
-			<c:import url="./post/postAdd.jsp"></c:import>
+		<button type="button" class="btn btn-primary"
+			onclick="postAddModalShow()">
+			<i class="fa fa-pencil"></i>  포스트 등록
+		</button>
 		</c:if>
-		<br><br><br>
 		<div id="postList">
 			<c:forEach items="${postList}" var="p">
 			<div class="card">
 			  <div align="right">
 						<c:if test="${sessionId eq pageId}">
-					<button type="button" class="btn"
-						onclick="postModifyModalShow(${p.postNo})">수정</button>
-					<button type="button" class="btn"
-						onclick="postDeleteModalShow(${p.postNo})">삭제</button>
+					<button type="button" class="btn btn-info"
+						onclick="postModifyModalShow(${p.postNo})"><i class="fa fa-edit"></i></button>
+					<button type="button" class="btn btn-danger"
+						onclick="postDeleteModalShow(${p.postNo})"><i class="fa fa-times"></i></button>
 				</c:if>
 				</div>
 				<div class="card-header">

@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:import url="./module/top.jsp" />
+<c:import url="./module/nav.jsp" />
 	<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:50px">
 
 	<div class="jumbotron text-center">

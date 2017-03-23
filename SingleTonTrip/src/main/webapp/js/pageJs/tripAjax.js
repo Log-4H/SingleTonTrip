@@ -296,28 +296,22 @@ $(document).on('click', '#planDeleteBtn', function() {
 function tripAppend(tripList) {
 	var html = "";
 	$.each(tripList,function(key, item) {
-		html += "<div class='w3-container w3-card-2 w3-white w3-round w3-margin'><br>";
-		html += "<span class='w3-right w3-opacity'>"
-				+ item.tripRegDate + "</span><br>";
+		html += "<div class='card'>";
+		html += "<div align='right'>";
 		if($("#sessionLevel").val() == 3){
 			if($("#pageId").val() == $("#sessionId").val()){
-				html += "<span class='w3-right w3-opacity'>";
 				if(item.recruitStateCd == 1){
-				html += "<button type='button' class='btn btn-primary tripModifyModalBtn' value='"+item.tripNo+"'>수정</button>";
-				html += "<button type='button' class='btn btn-primary tripEndModalBtn' value='"+item.tripNo+"'>마감</button>";
+				html += "<button type='button' class='btn btn-info tripModifyModalBtn' value='"+item.tripNo+"'><i class='fa fa-edit'></i></button>";
+				html += "<button type='button' class='btn btn-success tripEndModalBtn' value='"+item.tripNo+"'><i class='material-icons'>check</i></button>";
 				}else{
-					html += "<button type='button' class='btn btn-primary tripDeleteModalBtn' value='"+item.tripNo+"'>삭제</button>";
+					html += "<button type='button' class='btn btn-danger tripDeleteModalBtn' value='"+item.tripNo+"'><i class='fa fa-times'></i></button>";
 				}
-				html += "</span>";
 			}else if(item.recruitStateCd==1){
-				html += "<span class='w3-right w3-opacity'>";
-				html += "<button type='button' class='btn btn-primary tripJoinModalShow' value='"+item.tripNo+"'>참가신청</button>";
-				html += "</span>";
+				html += "<button type='button' class='btn btn-success tripJoinModalShow' value='"+item.tripNo+"'><i class='fa fa-user'></i></button>";
 			}
-		}else if($("#sessionId").val()==""){
-			html += "<span class='w3-right w3-opacity'>";
-			html += "</span>";
 		}
+		html+="</div>";
+		html+="<div class='card-header'><br><br>";
 		if (item.recruitStateCd == 1) {
 			html += "<span class='label label-success'>";
 		} else if (item.recruitStateCd == 2) {
@@ -327,53 +321,61 @@ function tripAppend(tripList) {
 		}
 		html += item.recruitStateNm;
 		html += "</span>";
-		html += "<h4>" + item.tripTitle + "</h4><br>";
-		html += "<hr class='w3-clear'>";
-		html += "<p>" + item.tripThemeNm + "</p>";
+		html += "<h3><strong>" + item.tripTitle + "</strong></h3>";
+		html+="</div>";
+		html+="<div class='card-block'>";
+		html += "<p class='card-text'>" + item.tripThemeNm + "</p>";
 		if(item.regionDo!=item.regionSi){
-			html += "<p>" + item.regionDo + " " + item.regionSi + "</p>";
+			html += "<p class='card-text'>" + item.regionDo + " " + item.regionSi + "</p>";
 		}else{
-			html += "<p>" + item.regionDo + "</p>";
+			html += "<p class='card-text'>" + item.regionDo + "</p>";
 		}
-		html += "<hr class='w3-clear'>";
-		html += "<p>" + item.tripContent + "</p>";
-		html += "<hr class='w3-clear'>";
-		html += "<div id='tripDetail" + item.tripNo
+		html +="</div>";
+		html += "<hr>";
+		html += "<h4>" + item.tripContent + "</h4>";
+		html += "<hr>";
+		html += "<div class='card-block' id='tripDetail" + item.tripNo
 				+ "'></div>";
-		html += "<button type='button' class='w3-btn w3-theme-d2 w3-margin-bottom tripDetailBtn' value='"
+		html +="<div class='card-block'>";
+		html += "<button type='button' class='btn btn-primary tripDetailBtn' value='"
 				+ item.tripNo + "''>";
-		html += "<i class='fa fa-comment'></i>  상세보기</button> ";
+		html += "상세보기</button> ";
 		html += "<input type='hidden' id='tripFlag"
 				+ item.tripNo + "' value='close'>";
 		html += "</div>";
+		html +="<div class='card-footer text-muted'>";
+		html +="<h6>"+item.tripRegDate+"</h6>";
+		html += "</div>";
+		html += "</div>";
+		html +="<br><br>";
+		
 	})
 	return html;
 }
 //여행상세보기 html추가
 function tripDetailAppend(trip, planList) {
 	var html = "";
-	html += "<p>참여인원(현재인원/총인원) : " + trip.tripPresentMember + " / "
+	html += "<p class='card-text'>참여인원(현재인원/총인원) : " + trip.tripPresentMember + " / "
 			+ trip.tripMaxMember + "</p>";
-	html += "<p>여행기간 : " + trip.tripStartDate + " ~ " + trip.tripEndDate
+	html += "<p class='card-text'>여행기간 : " + trip.tripStartDate + " ~ " + trip.tripEndDate
 			+ "</p>";
-	html += "<p>예상경비(1인경비/총경비) : " + trip.tripPerPrice + " / "
+	html += "<p class='card-text'>예상경비(1인경비/총경비) : " + trip.tripPerPrice + " / "
 			+ trip.tripTotalPrice + "</p>";
-	html += "<p>모집기간 : " + trip.tripRecruitStartDate + " ~ "
+	html += "<p class='card-text'>모집기간 : " + trip.tripRecruitStartDate + " ~ "
 			+ trip.tripRecruitEndDate + "</p>";
-	html += "<p>태그 : #" + trip.tripTag + "</p>";
-	html += "<hr class='w3-clear'>";
+	html += "<p class='card-text'>태그 : #" + trip.tripTag + "</p>";
 	if($("#pageId").val() == $("#sessionId").val()){
 		html += "<button type='button' class='btn btn-primary planAddModalBtn' value='"+trip.tripNo+"'>일정등록</button>";
 	}
-	html += "<hr class='w3-clear'>";
+	html += "<hr>";
 	if(planList.length!=0){
 		$.each(planList, function(key, item) {
 			if($("#pageId").val() == $("#sessionId").val()){
 				html += "<div align='right'>";
-				html += "<a class='planModifyShow' value='"+ item.planNo+ "'>" ;
-				html += "<span class='glyphicon glyphicon-wrench' aria-hidden='true'></span></a>";
-				html += "<a class='planDeleteShow' tripNo='"+trip.tripNo+"' value='"+ item.planNo+ "'>" ;
-				html += "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>";
+				html += "<button type='button' class='btn btn-info btn-simple btn-xs planModifyShow' value='"+ item.planNo+ "'>" ;
+				html += "<i class='fa fa-edit'></i></button>";
+				html += "<button type='button' class='btn btn-danger btn-simple btn-xs planDeleteShow' tripNo='"+trip.tripNo+"' value='"+ item.planNo+ "'>" ;
+				html += "<i class='fa fa-times'></i></button>";
 				html += "</div>"
 			}
 			html += "<p>일정No : " + key + "</p>";
@@ -382,9 +384,9 @@ function tripDetailAppend(trip, planList) {
 			html += "<p>시간 : " + item.planStartTime + " ~ " + item.planEndTime
 					+ "</p>";
 			html += "<p>예상비용: " + item.planPrice + "</p>";
-			html += "<hr class='w3-clear'>";
+			html += "<hr>";
 		});
-		html += "<div class='googleMap' id='google_map"+trip.tripNo+"' style='max-width:350px; height:350px;'></div>";
+		html += "<div class='googleMap' id='google_map"+trip.tripNo+"' style='max-width:700px; height:350px;'></div>";
 	}
 	return html;
 }

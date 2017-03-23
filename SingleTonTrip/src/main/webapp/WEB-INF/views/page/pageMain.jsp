@@ -2,9 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<c:import url="/WEB-INF/views/test/top.jsp"></c:import>
+<c:import url="/WEB-INF/views/module/top.jsp"></c:import>
 <!-- modal -->
 <c:if test="${sessionId eq pageId}">
+<c:import url="./post/postAdd.jsp"></c:import>
 <c:import url="./post/postModify.jsp"></c:import>
 <c:import url="./post/postDelete.jsp"></c:import>
 <c:import url="./trip/tripAdd.jsp"></c:import>
@@ -16,7 +17,6 @@
 </c:if>
 <c:import url="./room/roomReserveList.jsp"></c:import>
 <c:import url="./trip/tripJoin.jsp"></c:import>
-
 <script>
 	//프로필 요청 
 	$(document).ready(
@@ -107,7 +107,7 @@
 <input type="hidden" id="pageLevel" value="${pageLevel}">
 <input type="hidden" id="sessionId" value="${sessionId}">
 <input type="hidden" id="sessionLevel" value="${sessionLevel}">
-<c:import url="/WEB-INF/views/test/nav.jsp"></c:import>
+<c:import url="/WEB-INF/views/module/nav.jsp"></c:import>
    <div class="wrapper">
 		<div class="header header-filter" style="background-image: url('./assets/img/examples/city.jpg');"></div>
 
@@ -177,7 +177,7 @@
 	            </div>
 	        </div>
 		</div>
-<c:import url="/WEB-INF/views/test/footer.jsp"></c:import>
+<c:import url="/WEB-INF/views/module/footer.jsp"></c:import>
 </div>
 </body>
 </html>

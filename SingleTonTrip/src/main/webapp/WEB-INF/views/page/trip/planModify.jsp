@@ -52,7 +52,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" id="planModifyBtn" class="btn btn-primary" data-dismiss="modal">Modify</button>
+				<button type="button" id="planModifyBtn" class="btn btn-info" data-dismiss="modal">Modify</button>
 			</div>
 		</div>
 	</div>

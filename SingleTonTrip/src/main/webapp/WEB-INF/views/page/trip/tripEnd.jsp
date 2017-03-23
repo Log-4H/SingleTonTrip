@@ -18,7 +18,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" id="tripEndBtn" class="btn btn-primary" data-dismiss="modal">End</button>
+				<button type="button" id="tripEndBtn" class="btn btn-success" data-dismiss="modal">End</button>
 			</div>
 		</div>
 	</div>

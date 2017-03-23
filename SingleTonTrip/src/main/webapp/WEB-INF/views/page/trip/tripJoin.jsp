@@ -19,7 +19,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" id="tripJoinBtn" class="btn btn-primary" data-dismiss="modal" style="display:none;">Join</button>
+				<button type="button" id="tripJoinBtn" class="btn btn-success" data-dismiss="modal" style="display:none;">Join</button>
 			</div>
 		</div>
 	</div>

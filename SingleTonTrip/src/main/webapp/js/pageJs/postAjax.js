@@ -24,7 +24,12 @@ function fileModalInfo(f) {
 	}
 	reader.readAsDataURL(file[0]);
 }
-
+//포스트 등록 modal
+function postAddModalShow() {
+	$("#postAddForm")[0].reset();
+	$("#postInputImg").empty();
+	$("#postAddModal").modal('show');
+};
 // 포스트 등록
 $(document).on('click', '#postAddBtn', function() {
 	var formData = new FormData($("#postAddForm")[0]);
@@ -263,10 +268,10 @@ function postAppend(postList) {
 		html += "<div class='card'>";
 		html += "<div align='right'>";
 		if($("#pageId").val() == $("#sessionId").val()){
-			html += "<button type='button' class='btn' onclick='postModifyModalShow("
-					+ item.postNo + ")'>수정</button>";
-			html += "<button type='button' class='btn' onclick='postDeleteModalShow("
-					+ item.postNo + ")'>삭제</button>";
+			html += "<button type='button' class='btn btn-info' onclick='postModifyModalShow("
+					+ item.postNo + ")'><i class='fa fa-edit'></i></button>";
+			html += "<button type='button' class='btn btn-danger' onclick='postDeleteModalShow("
+					+ item.postNo + ")'><i class='fa fa-times'></i></button>";
 		}
 		html+="</div>";
 		html+="<div class='card-header'>";
