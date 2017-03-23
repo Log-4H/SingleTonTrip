@@ -110,6 +110,7 @@ public class AdController {
 		mv.addObject("lastPage",map.get("lastPage"));		
 		mv.setViewName("payment/payCancelList");
 		
+		
 		return mv;
 	}
 	
