@@ -59,4 +59,40 @@
 	AND
 		t.person_id = #{pageId}
 </select>
+<insert id="companyEvaluationAdd" parameterType="com.log4h.singletontrip.evaluation.domain.CompanyEvaluationVo">
+	INSERT INTO tb_company_evaluation(
+		reserve_no,
+		member_id,
+		company_id,
+		company_evaluation_rating,
+		company_evaluation_content,
+		company_evaluation_reg_date
+	)
+	VALUES(
+		#{reserveNo},
+		#{memberId},
+		#{companyId},
+		#{companyEvaluationRating},
+		#{companyEvaluationContent},
+		now()
+	)
+</insert>
+<insert id="personEvaluationAdd" parameterType="com.log4h.singletontrip.evaluation.domain.PersonEvaluationVo">
+	INSERT INTO tb_person_evaluation(
+		trip_no,
+		member_id,
+		person_id,
+		person_evaluation_rating,
+		person_evaluation_content,
+		person_evaluation_reg_date
+	)
+	VALUES(
+		#{tripNo},
+		#{memberId},
+		#{personId},
+		#{personEvaluationRating},
+		#{personEvaluationContent},
+		now()
+	)
+</insert>
 </mapper>

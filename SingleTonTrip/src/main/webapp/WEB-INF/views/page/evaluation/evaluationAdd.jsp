@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="modal fade" id="evaluationAddModal" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -17,6 +18,7 @@
 			</div>
 			<div class="modal-body" id="evaluationAddBody" style="display:none;">
 			<form class="form-horizontal" id="evaluationAddForm">
+			<input type="hidden" value="${pageLevel}" name="pageLevel">
 				<div class="form-group">
 					<label for="selectEvaluationList" class="col-lg-2 control-label">평가 항목 선택</label>
 					<div class="col-lg-10">
@@ -26,11 +28,24 @@
 					</div>
 				</div>
 				<div class="form-group">
-						<label for="evaluationAddContent" class="col-lg-2 control-label">Content</label>
-						<div class="col-lg-10">
-							<textarea class="form-control" rows="5" id="evaluationAddContent" name="evaluationAddContent" style="resize:none;" placeholder="input Content"></textarea>
-						</div>
+					<label for="evaluationAddContent" class="col-lg-2 control-label">점수</label>
+					<div class="col-lg-10">
+						<span class="star-input">
+						  <span class="input">
+						  	<c:forEach begin="1" end="10" step="1" var="i">
+						    <input type="radio" class="evaluationAddRating" name="evaluationAddRating" id="p${i}" value="${i}"><label for="p${i}">${i}</label>
+						  </c:forEach>
+						  </span>
+						</span>
 					</div>
+				</div>
+				<div class="form-group">
+					<label for="evaluationAddContent" class="col-lg-2 control-label">Content</label>
+					<div class="col-lg-10">
+						<textarea class="form-control" rows="5" id="evaluationAddContent" name="evaluationAddContent" style="resize:none;" placeholder="input Content"></textarea>
+					</div>
+				</div>
+				
 			</form>
 			</div>
 			<div class="modal-footer">

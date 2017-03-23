@@ -30,4 +30,17 @@ public class EvaluationController {
 		mv.addObject("checkList", checkList);
 		return mv;	
 	}
+	
+	//업체평가등록
+	@RequestMapping(value="evaluationAdd")
+	public ModelAndView evaluationAdd(@ModelAttribute("pageId") String pageId,
+			@ModelAttribute("sessionId") String sessionId,
+			@RequestParam(value="pageLevel") int pageLevel,
+			@RequestParam(value="selectEvaluationList") int selectEvaluationList,
+			@RequestParam(value="evaluationAddContent") String evaluationAddContent,
+			@RequestParam(value="evaluationAddRating") int evaluationAddRating){
+		ModelAndView mv = new ModelAndView("jsonView");
+		int result = evaluationService.evaluationAdd(sessionId, pageId, pageLevel, selectEvaluationList , evaluationAddContent, evaluationAddRating);
+		return mv;	
+	}
 }

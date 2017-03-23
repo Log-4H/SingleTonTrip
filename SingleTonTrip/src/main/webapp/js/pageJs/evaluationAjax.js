@@ -39,3 +39,15 @@ $(document).on('click', '#evaluationAddModalBtn', function() {
 		}
 	})
 });
+//평가등록
+$(document).on('click', '#evaluationAddBtn', function() {
+	$.ajax({
+		url : "evaluationAdd",
+		type : "POST",
+		data : $("#evaluationAddForm").serialize(),
+		dataType : "json",
+		success : function(data) {
+			
+		}
+	})
+});

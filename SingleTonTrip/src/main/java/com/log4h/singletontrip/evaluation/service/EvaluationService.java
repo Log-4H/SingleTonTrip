@@ -8,4 +8,6 @@ public interface EvaluationService {
 
 	public List<EvaluationCheckVo> evaluationCheck(String memberId, String pageId, int pageLevel);
 	
+	public int evaluationAdd(String memberId, String pageId, int pageLevel, int selectEvaluationList, String evaluationAddContent, int evaluationAddRating);
+	
 }

@@ -7,7 +7,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.log4h.singletontrip.evaluation.domain.CompanyEvaluationVo;
 import com.log4h.singletontrip.evaluation.domain.EvaluationCheckVo;
+import com.log4h.singletontrip.evaluation.domain.PersonEvaluationVo;
 
 @Repository
 public class EvaluationDaoImpl implements EvaluationDao{
@@ -23,5 +25,13 @@ public class EvaluationDaoImpl implements EvaluationDao{
 	@Override
 	public List<EvaluationCheckVo> personEvaluationCheck(Map<String, Object> map) {
 		return sqlSession.selectList(EVALUATION_NS+"personEvaluationCheck", map);
+	}
+	@Override
+	public int companyEvaluationAdd(CompanyEvaluationVo companyEvaluationVo) {
+		return sqlSession.insert(EVALUATION_NS+"companyEvaluationAdd", companyEvaluationVo);
+	}
+	@Override
+	public int personEvaluationAdd(PersonEvaluationVo personEvaluationVo) {
+		return sqlSession.insert(EVALUATION_NS+"personEvaluationAdd", personEvaluationVo);
 	}
 }
