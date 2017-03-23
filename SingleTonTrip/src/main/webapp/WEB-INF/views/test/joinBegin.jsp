@@ -11,9 +11,8 @@
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
 						<div class="card card-signup">
-							<form class="form" method="post" action="login" id="login" onsubmit="return check()">
+							
 								<div class="header header-primary text-center">
-									<h3>SingletonTrip</h3>
 									<h4>회원가입</h4>
 									<div class="social-line">
 										<a href="#pablo" class="btn btn-simple btn-just-icon">
@@ -29,25 +28,32 @@
 								</div>
 								<div class="content">
 
-									<div class="input-group">
-										<span class="input-group-addon">
-											<i class="material-icons">done</i>
-										</span>
-										<input type="text" class="form-control" id="loginId" name="loginId" placeholder="아이디" value="admin1">
-									</div>
+						<br><br><br><br>
+						
+						
+			                    <div class="nav-align-center">
+									<ul class="nav nav-pills" >
+										<li class="active">
+											<a href="<c:url value='joinTerms?memberLevel=3'/>" >
+												<i class="material-icons">assignment_ind</i>
+												개인회원
+											</a>
+										</li>
+										<li>
+				                            <a href="<c:url value='joinTerms?memberLevel=2'/>" >
+												<i class="material-icons">business</i>
+												업체회원
+				                            </a>
+				                        </li>
+				                    </ul>
+				                    <br><br><br><br><br><br><br><br>
+				                  </div>
 
-									<div class="input-group">
-										<span class="input-group-addon">
-											<i class="material-icons">lock_outline</i>
-										</span>
-										<input type="password" class="form-control" id="loginPw" name="loginPw" placeholder="비밀번호" value="admin"/>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name="optionsCheckboxes" checked>
-											아이디저장
-										</label>
-									</div>
+				        
+				        
+				        
+
+								
     									
 									<!-- If you want to add a checkbox to this form, uncomment this code
 
@@ -58,33 +64,13 @@
 										</label>
 									</div> -->
 								</div>
-								<div class="footer text-center">
-									<button type="submit" class="btn btn-simple btn-primary btn-lg">로그인</button>
-								</div>
-							</form>
-								<div class="footer text-center">
-									<a href="memberIdFind"><button class="btn btn-primary btn-simple">아이디찾기</button></a>
-									<a href="memberPwFind"><button class="btn btn-primary btn-simple">비밀번호찾기</button></a>
-								</div>
+							
+							
+								
 						</div>
 					</div>
 				</div>
 			</div>
 <c:import url="/WEB-INF/views/test/footer.jsp"></c:import>
-<script type="text/javascript">
-function loginCheck() {
-  if(login.loginId.value == "") {
-    alert("아이디를 입력해 주세요.");
-    login.loginId.focus();
-    return false;
-  }
-  else if(login.loginPw.value == "") {
-    alert("비밀번호를 입력해 주세요.");
-    login.loginPw.focus();
-    return false;
-  }
-  else return true;
-}
-</script>
 </body>
 </html>

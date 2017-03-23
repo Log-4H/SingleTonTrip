@@ -65,7 +65,7 @@ public class MemberController {
 	//개인 & 업체회원 선택 폼
 	@RequestMapping(value="joinBegin", method=RequestMethod.GET)
 	public ModelAndView joinBegin(){
-		ModelAndView mv = new ModelAndView("member/join/joinBegin");
+		ModelAndView mv = new ModelAndView("test/joinBegin");
 		return mv;	
 	}
 	//개인 & 업체약관폼
