@@ -3,8 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:import url="/WEB-INF/views/module/top.jsp" />
-
 <body class="profile-page">
+<input type="hidden" id="searchValue" value="${value }">
+<script src="<c:url value='/js/searchList.js'/>"></script>
 	<c:import url="/WEB-INF/views/module/nav.jsp" />
 	<div class="wrapper">
 		<div class="header header-filter"
@@ -12,9 +13,9 @@
 		<div class="main main-raised">
 			<div class="profile-content">
 				<div class="container-fluid">
-					<div class="row" style="height: 300px; margin-top: 80px">
+					<div class="row" style=" margin-top: 80px">
 						<div class="col-md-6 col-md-offset-3">
-							<div class="card card-signup">
+							<div class="card card-signup" id="personResult">
 								<div class="header header-primary text-center"
 									style="height: 80px;">
 									<h4>회원검색결과</h4>
@@ -84,11 +85,11 @@
 						</div>
 
 					</div>
-				</div>
+				</div><br><br><br>
 				<div class="container-fluid">
-					<div class="row" style="height: 300px; margin-top: 40px">
+					<div class="row" style="margin-top: 40px">
 						<div class="col-md-6 col-md-offset-3">
-							<div class="card card-signup">
+							<div class="card card-signup" id="companyResult">
 								<div class="header header-primary text-center"
 									style="height: 80px;">
 									<h4>숙소검색결과</h4>
@@ -154,11 +155,11 @@
 						</div>
 
 					</div>
-				</div>
+				</div><br><br><br>
 				<div class="container-fluid">
-					<div class="row" style="height: 300px; margin-top: 40px">
+					<div class="row" style=" margin-top: 40px">
 						<div class="col-md-6 col-md-offset-3">
-							<div class="card card-signup">
+							<div class="card card-signup" id="tripResult">
 								<div class="header header-primary text-center"
 									style="height: 80px;">
 									<h4>여행검색결과</h4>

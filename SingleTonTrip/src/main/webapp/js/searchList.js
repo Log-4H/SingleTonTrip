@@ -75,7 +75,13 @@ function searchPersonListHtml(searchPersonList) {
 	$.each(searchPersonList,function(key, item) {
 		html+="<tr>";
 		html+="<td>";
-		html+="<img src='./images/"+item.memberImg+"' class='img-rounded' width='100' height='100'>";
+		if(item.memberImg != null){
+			html+="<img src='./images/"+item.memberImg+"'  class='img-rounded' width='100' height='100'>";
+		}else if(item.personGender =='M'){
+			html+="<img src='./images/Male.png' class='img-rounded' width='100' height='100'>";
+		}else if(item.personGender =='F'){
+			html+="<img src='./images/Female.png' class='img-rounded' width='100' height='100'>";
+		}
 		html+="</td>";
 		html+="<td><a href='pageMain?pageId="+item.memberId+"'>"+item.memberId+"</a></td>";
 		html+="<td>"+item.memberNm+"</td>";
@@ -90,7 +96,11 @@ function searchCompanyListHtml(searchCompanyList) {
 	$.each(searchCompanyList,function(key, item) {
 		html+="<tr>";
 		html+="<td>";
-		html+="<img src='./images/"+item.memberImg+"'  class='img-rounded' width='100' height='100'>";
+		if(item.memberImg != null){
+			html+="<img src='./images/"+item.memberImg+"'  class='img-rounded' width='100' height='100'>";
+		}else{
+			html+="<img src='./images/Company.jpg' class='img-rounded' width='100' height='100'>";
+		}
 		html+="</td>";
 		html+="<td><a href='pageMain?pageId="+item.memberId+"'>"+item.memberId+"</a></td>";
 		html+="<td>"+item.companyNm+"</td>";
