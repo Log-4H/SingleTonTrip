@@ -430,6 +430,7 @@
 	SELECT
 		 f.member_id,
 		 m.member_nm,
+		 m.member_img,
 		 a.approve_state_nm
 	FROM
 		tb_friend f
@@ -483,7 +484,8 @@
 <select id="friendTotalList" parameterType="String" resultType="com.log4h.singletontrip.member.domain.MemberVo">
 	SELECT
 		 f.friend_id,
-		 m.member_nm
+		 m.member_nm,
+		 m.member_img
 	FROM
 		tb_friend f
 	JOIN
@@ -501,6 +503,7 @@
 	SELECT
 		 f.friend_id,
 		 m.member_nm,
+		 m.member_img,
 		 a.approve_state_nm
 	FROM
 		tb_friend f

@@ -17,7 +17,7 @@
 						<div class="col-md-6 col-md-offset-3">
 							<div class="card card-signup">
 								<div class="header header-primary text-center" style="height: 80px;">
-									<h4>친구요청리스트</h4>
+									<h4>친구신청확인</h4>
 								</div>
 									<div class="content">
 										<table class="table">
@@ -32,7 +32,16 @@
 											<tbody>
 												<c:forEach items="${friendCheckList}" var="f">
 												<tr>
-													<td></td>
+													<c:choose>
+															<c:when test="${f.memberImg ne null}">
+																<td><img src="./images/${f.memberImg}"
+																	class="img-rounded" width="100" height="100"></td>
+															</c:when>
+															<c:otherwise>
+																<td><img src="./images/Male.png"
+																	class="img-rounded" width="100" height="100"></td>
+															</c:otherwise>
+														</c:choose>
 													<td><a href="pageMain?pageId=${f.friendId}">${f.friendId}</a></td>
 													<td>${f.memberNm}</td>
 													<td class="text-right">${f.approveStateNm}</td>

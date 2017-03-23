@@ -3,6 +3,7 @@ package com.log4h.singletontrip.member.domain;
 public class MemberVo {
 	private String memberId;
 	private String memberPw;
+	private String memberImg;
 	private String memberEmail;
 	private String memberNm;
 	private String approveStateNm;
@@ -51,6 +52,13 @@ public class MemberVo {
 	}
 	public void setMemberNm(String memberNm) {
 		this.memberNm = memberNm;
+	}
+	
+	public String getMemberImg() {
+		return memberImg;
+	}
+	public void setMemberImg(String memberImg) {
+		this.memberImg = memberImg;
 	}
 	@Override
 	public String toString() {

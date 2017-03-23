@@ -33,15 +33,24 @@
 											<tbody>
 												<c:forEach items="${friendAddList}" var="f">
 												<tr>
-													<td></td>
+													<c:choose>
+														<c:when test="${f.memberImg ne null}">
+															<td><img src="./images/${f.memberImg}"
+																class="img-rounded" width="100" height="100"></td>
+														</c:when>
+														<c:otherwise>
+																<td><img src="./images/Male.png"
+																	class="img-rounded" width="100" height="100"></td>
+															</c:otherwise>
+													</c:choose>
 													<td><a href="pageMain?pageId=${f.memberId}">${f.memberId}</a></td>
 													<td>${f.memberNm}</td>
 													<td>${f.approveStateNm}</td>
 													<td class="text-right">
-														<a href="<c:url value='friendApprove?memberId=${f.memberId}&&approveStateCd=2'/> "><button type="button" rel="tooltip" title="View Profile" class="btn btn-info btn-simple btn-xs">
+														<a href="<c:url value='friendApprove?memberId=${f.memberId}&&approveStateCd=2'/> "><button type="button" class="btn btn-info btn-simple btn-xs">
 										                    <i class="material-icons">person_add</i>
 										                </button></a>
-										                <a href="<c:url value='friendApprove?memberId=${f.memberId}&&approveStateCd=3'/> "><button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+										                <a href="<c:url value='friendApprove?memberId=${f.memberId}&&approveStateCd=3'/> "><button type="button" class="btn btn-danger btn-simple btn-xs">
 										                    <i class="fa fa-times"></i>
 										                </button></a>
 													</td>	
