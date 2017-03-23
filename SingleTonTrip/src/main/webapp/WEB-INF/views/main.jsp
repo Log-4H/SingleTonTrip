@@ -42,11 +42,11 @@ $(document).ready(function() {
             <div class="container">
                 <div class="row">
 					<div class="col-md-6">
-						<h1 class="title">Write the best title for your page.</h1>
-	                    <h4>Every landing page needs a small description after the big bold title, that's why we added this text here. Add here all the information that can make you or your product create the first impression.</h4>
+						<h1 class="title">SingleTon Trip</h1>
+	                    <h4>테스트중</h4>
 	                    <br />
-	                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-danger btn-raised btn-lg">
-							<i class="fa fa-play"></i> Watch video
+	                    <a href="" class="btn btn-danger btn-raised btn-lg">
+							<i class="fa fa-play"></i> 소개로
 						</a>
 					</div>
                 </div>
