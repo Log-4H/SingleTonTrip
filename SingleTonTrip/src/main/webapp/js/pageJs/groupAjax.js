@@ -190,7 +190,7 @@ function groupMemberListAppend(tripNo, groupMemberList, approveStateCd){
 		groupApplyDate = item.groupApplyDate.substr(0,10);
 		html +="<tr>";
 		html +="<td>"+key+"</td>";
-		html +="<td>"+item.personId+"</td>";
+		html +="<td><a href='pageMain?pageId="+item.personId+"'>"+item.personId+"</a></td>";
 		html +="<td>"+item.memberNm+"</td>";
 		html +="<td>"+item.groupMemberLevel+"</td>";
 		html +="<td>"+groupApplyDate+"</td>";
