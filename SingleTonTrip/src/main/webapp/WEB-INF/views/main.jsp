@@ -117,7 +117,7 @@ $(document).ready(function() {
 						<div class="row">
 							<div class="col-md-4">
 			                    <div class="team-player">
-			                        <img src="../assets/img/avatar.jpg" alt="Thumbnail Image" class="img-raised img-circle">
+			                        <img src="./assets/img/avatar.jpg" alt="Thumbnail Image" class="img-raised img-circle">
 			                        <h4 class="title">Gigi Hadid <br />
 										<small class="text-muted">Model</small>
 									</h4>
@@ -129,7 +129,7 @@ $(document).ready(function() {
 			                </div>
 			                <div class="col-md-4">
 			                    <div class="team-player">
-			                        <img src="../assets/img/christian.jpg" alt="Thumbnail Image" class="img-raised img-circle">
+			                        <img src="./assets/img/christian.jpg" alt="Thumbnail Image" class="img-raised img-circle">
 			                        <h4 class="title">Christian Louboutin<br />
 										<small class="text-muted">Designer</small>
 									</h4>
@@ -140,7 +140,7 @@ $(document).ready(function() {
 			                </div>
 			                <div class="col-md-4">
 			                    <div class="team-player">
-			                        <img src="../assets/img/kendall.jpg" alt="Thumbnail Image" class="img-raised img-circle">
+			                        <img src="./assets/img/kendall.jpg" alt="Thumbnail Image" class="img-raised img-circle">
 			                        <h4 class="title">Kendall Jenner<br />
 										<small class="text-muted">Model</small>
 									</h4>

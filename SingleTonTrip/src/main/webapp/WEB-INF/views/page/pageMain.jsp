@@ -18,91 +18,8 @@
 <c:import url="./evaluation/evaluationAdd.jsp"></c:import>
 <c:import url="./room/roomReserveList.jsp"></c:import>
 <c:import url="./trip/tripJoin.jsp"></c:import>
-<script>
-	//프로필 요청 
-	$(document).ready(
-			function() {
-				if ($("#pageLevel").val() == 2) {
-					companyDetail();
-				} else if ($("#pageLevel").val() == 3) {
-					personDetail();
-				}
-				;
-
-				//개인회원 프로필
-				function personDetail() {
-					$.ajax({
-						url : "personDetail",
-						type : "POST",
-						dataType : "json",
-						success : function(data) {
-							var html = "";
-							var person = data.person;
-							var profileImg = "";
-							if (person.memberImg != null) {
-								profileImg = "./images/" + person.memberImg;
-							} else if (person.personGender == "F") {
-								profileImg = "./images/Female.png";
-							} else {
-								profileImg = "./images/Male.png";
-							}
-							$("#profileImg").attr("src", profileImg);
-							$("#profileImg").attr("src", profileImg);
-							html += "<h3 class='title'>" + person.memberNm
-									+ "</h3>";
-							html += "<h6>"
-									+ person.personBirth + "</h6>";
-							html += "<h6>"
-									+ person.personGender + "</h6>";
-							html += "<h6>"
-									+ person.memberEmail + "</h6>";
-							html += "<h6>"
-									+ person.tripStateNm + "</h6>";
-
-							$("#profileContent").html(html);
-						}
-					})
-				}
-				;
-
-				//업체회원프로필
-				function companyDetail() {
-					$.ajax({
-						url : "companyDetail",
-						type : "POST",
-						dataType : "json",
-						success : function(data) {
-							var html = "";
-							var company = data.company;
-							var profileImg = "";
-							if (company.memberImg != null) {
-								profileImg = "./images/" + company.memberImg;
-							} else {
-								profileImg = "./images/Company.jpg";
-							}
-							$("#profileImg").attr("src", profileImg);
-							$("#profileImg").attr("src", profileImg);
-
-							html += "<h3 class='title'>" + company.companyNm
-									+ "</h3>";
-							html += "<h6>" + company.memberNm
-									+ "</h6>";
-							html += "<h6>"
-									+ company.companyTypeNm + "</h6>";
-							html += "<h6>"
-									+ company.memberPhone + "</h6>";
-							html += "<h6>"
-									+ company.memberEmail + "</h6>";
-
-							$("#profileContent").html(html);
-						}
-					})
-				}
-				;
-
-			});
-</script>
 <body class="profile-page">
+<script src="<c:url value='/js/pageMain.js'/>"></script>
 <input type="hidden" id="pageId" value="${pageId}">
 <input type="hidden" id="pageLevel" value="${pageLevel}">
 
@@ -117,6 +34,15 @@
 	                    <div class="profile">
 	                        <div class="avatar">
 	                            <img src="" alt="Circle Image" id="profileImg" class="img-circle img-responsive img-raised">
+	                            <div>
+		                            <button type='button' id='friendApproveBtn' class='btn btn-info btn-simple btn-xs pageFriendAddBtn' style='display:none;'>
+									<i class='fa fa-user-plus' aria-hidden='true'></i></button>
+									<c:if test="${sessionId ne null && sessionId ne pageId }">
+									<a href='reportAdd?reportId=${pageId}'>
+									<button type='button' class='btn btn-danger btn-simple btn-xs pageFriendAddBtn'>
+									<i class='fa fa-bell' aria-hidden='true'></i></button></a>
+									</c:if>
+	                            </div>
 	                        </div>
 	                        <div class="name" id="profileContent">
 	                            <h3 class="title"></h3>

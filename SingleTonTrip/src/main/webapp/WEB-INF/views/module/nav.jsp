@@ -13,15 +13,18 @@
 	            <span class="icon-bar"></span>
 	            <span class="icon-bar"></span>
        		</button>
-
+					<a href="main">
 		           <div class="logo-container">
 		                <div class="logo">
-		                    <img src="assets/img/logo.png" alt="Creative Tim Logo">
+		                   <img src="assets/img/logo.png" alt="Creative Tim Logo">
 		                </div>
 		                <div class="brand">
-		                    Singleton Trip
-		                </div>
+		                   Singleton Trip
+						</div>
 		            </div>
+		             </a>
+		            
+
 					
  	  	</div>
 		
