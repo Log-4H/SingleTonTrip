@@ -68,10 +68,14 @@ public class AdDaoImpl implements AdDao{
 		return sqlSession.update(AD_NS+"paybackApply",adNo);
 	}
 	
+	public int paybackListCount(LoginVo loginVo){
+		return sqlSession.selectOne(AD_NS+"paybackListCount",loginVo);
+	}
+	
 	// 환불리스트
 	@Override
-	public List<PaymentVo> paybackList(LoginVo loginVo){
-		return sqlSession.selectList(AD_NS+"paybackList",loginVo);
+	public List<PaymentVo> paybackList(Map<String,Object>map){
+		return sqlSession.selectList(AD_NS+"paybackList",map);
 	}
 	
 	// 환불

@@ -95,13 +95,19 @@ public class AdController {
 	@RequestMapping(value="payCancelList")
 	public ModelAndView payCancelList(
 			@ModelAttribute("sessionId") String sessionId,
-			@ModelAttribute("sessionLevel") int sessionLevel){
+			@ModelAttribute("sessionLevel") int sessionLevel,
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage){
 		ModelAndView mv = new ModelAndView();
 		LoginVo loginVo = new LoginVo();
 		loginVo.setMemberId(sessionId);
 		loginVo.setMemberLevel(sessionLevel);
-		List<PaymentVo> paybackList = adService.paybackList(loginVo);
-		mv.addObject("paybackList", paybackList);
+		Map<String,Object>map = adService.paybackList(loginVo,currentPage);
+		mv.addObject("currentPage",currentPage);
+		mv.addObject("paybackList",map.get("paybackList"));
+		mv.addObject("startPage",map.get("startPage"));
+		mv.addObject("pageSize",map.get("pageSize"));
+		mv.addObject("endPage",map.get("endPage"));
+		mv.addObject("lastPage",map.get("lastPage"));		
 		mv.setViewName("payment/payCancelList");
 		
 		return mv;

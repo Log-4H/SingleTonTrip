@@ -99,8 +99,14 @@ public class AdServiceImpl implements AdService{
 	
 	// 환불 리스트
 	@Override
-	public List<PaymentVo> paybackList(LoginVo loginVo){
-		return adDao.paybackList(loginVo);
+	public Map<String,Object> paybackList(LoginVo loginVo,int currentPage){
+		Paging paging = new Paging();
+		int totalCount = adDao.paybackListCount(loginVo);
+		Map<String,Object> map = paging.pagingMethod(currentPage, totalCount);
+		List<PaymentVo> paybackList = adDao.paybackList(map);
+		map.put("paybackList", paybackList);
+		
+		return map;
 	}
 	
 	// 환불

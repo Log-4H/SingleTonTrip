@@ -194,8 +194,25 @@
 		ad_reg_date <![CDATA[<]]> curdate()
 	ORDER BY rand() limit 1
 </select>
+<!-- 환불 리스트 카운트 -->
+<select id="paybackListCount" parameterType="com.log4h.singletontrip.member.domain.LoginVo"
+		resultType="int">
+	SELECT
+		COUNT(*)
+	FROM
+		tb_payment a
+	JOIN
+		tb_payment_state b
+	ON
+		a.payment_state_cd = b.payment_state_cd
+	WHERE
+		a.payment_state_cd > 2
+	<if test="memberLevel > 1">
+		AND member_id = #{memberId}
+	</if>		
+</select>
 <!-- 환불 페이지 -->
-<select id="paybackList" parameterType="com.log4h.singletontrip.member.domain.LoginVo"
+<select id="paybackList" parameterType="map"
 		resultType="com.log4h.singletontrip.reserve.domain.PaymentVo">
 	SELECT
 		admin_id,
@@ -217,6 +234,8 @@
 	<if test="memberLevel > 1">
 		AND member_id = #{memberId}
 	</if>
+	ORDER BY payment_target_no
+	DESC LIMIT #{beginRow}, #{pagePerRow}
 </select>
 <!-- 환불 -->
 <update id="payback" parameterType="map">

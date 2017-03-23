@@ -27,7 +27,7 @@ public interface AdDao {
 	public int adImgUpload(AdVo adVo);
 	public String selectAdImg(AdVo adVo);
 	public String selectSameAd(Map<String,Object>map);
-	public List<PaymentVo> paybackList(LoginVo loginVo);
+	public List<PaymentVo> paybackList(Map<String,Object>map);
 	public int payback(Map<String,Object>map);
 	public int adDrop();
 	public int deleteOldAd();
@@ -40,4 +40,5 @@ public interface AdDao {
 	public List<AdVo> mainAdCount();
 	public int adApplyListCount();
 	public int adListCount();
+	public int paybackListCount(LoginVo loginVo);
 }
