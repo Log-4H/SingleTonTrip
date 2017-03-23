@@ -36,8 +36,9 @@
 
 	<!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
 	<script src="./assets/js/material-kit.js" type="text/javascript"></script>
-	
+
 	<link href="./css/star-rating.css" rel="stylesheet" />
+	<script src="./js/star-rating.js" type="text/javascript"></script>
 	
 	<script src="<c:url value='/js/imageView.js'/>"></script>
 	<script src="<c:url value='/js/pageJs/groupAjax.js'/>"></script>

@@ -100,7 +100,13 @@ $(document).on('click', '#addEvaluationList', function() {
 function evaluationListHtml(evaluationList, pageLevel){
 	var html="";
 	$.each(evaluationList,function(key, item) {
+		if(pageLevel == 2){
+			var rating = item.companyEvaluationRating * 20;
+		}else if(pageLevel ==3){
+			var rating = item.personEvaluationRating * 20;
+		}
 		html += "<blockquote>";
+		
 		html += "<div class='row'>";
 		html += "<div class='col-sm-2'>";
 		html += "<a href='pageMain?pageId="+item.memberId+"'>"
@@ -115,29 +121,20 @@ function evaluationListHtml(evaluationList, pageLevel){
 		html += " style='max-width: 150px; max-height: 150px;' class='img-rounded img-responsive'>";
 		html += "</a>"
 		html += "</div>";
+		html += "<div class='col-sm-8'>";
 		html += "<div>";
-		html += "<div>";
-		html += "<p align='right'>";
+		html += "<p align='right' style='font-size : 70%;'>";
 		if(pageLevel == 2){
 			html += item.companyEvaluationRegDate;
 		}else if(pageLevel ==3){
 			html += item.personEvaluationRegDate;
 		}
 		html += "</p>";
-		html += "<p align='left'>";
-		html += "<span class='star-input'>";
-		html += "<span class='input'>";
-		if(pageLevel == 2){
-			html += "<input type='radio' name='star-input' id='p"+item.companyEvaluationRating+"' value='"+item.companyEvaluationRating+"' checked='checked' disabled><label for='p"+item.companyEvaluationRating+"'>"+item.companyEvaluationRating+"</label>";
-			html += "</span>";
-			html += "<b>"+item.companyEvaluationRating+"</b>점";
-		}else if(pageLevel ==3){
-			html += "<input type='radio' name='star-input' id='p"+item.personEvaluationRating+"' value='"+item.personEvaluationRating+"' checked='checked' disabled><label for='p"+item.personEvaluationRating+"'>"+item.personEvaluationRating+"</label>";
-			html += "</span> ";
-			html += " <b>"+item.personEvaluationRating+"</b>점";
-		}
-		html += "</span>";
-		html += "</p>";
+		html += "</div>";
+		html += "<div align='left'>";
+		html += rate(rating);
+		html += "<br></div>";
+		html += "<div align='left'><br>";
 		html += "<p align='left'>";
 		if(pageLevel == 2){
 			html += item.companyEvaluationContent;

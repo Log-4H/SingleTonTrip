@@ -32,7 +32,7 @@
 					<div class="col-lg-10">
 						<span class="star-input">
 						  <span class="input">
-						  	<c:forEach begin="1" end="10" step="1" var="i">
+						  	<c:forEach begin="1" end="5" step="1" var="i">
 						    <input type="radio" class="evaluationAddRating" name="evaluationAddRating" id="p${i}" value="${i}"><label for="p${i}">${i}</label>
 						  </c:forEach>
 						  </span>

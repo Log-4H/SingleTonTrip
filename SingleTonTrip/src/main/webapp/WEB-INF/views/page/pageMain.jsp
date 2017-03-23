@@ -45,8 +45,6 @@
 	                            </div>
 	                        </div>
 	                        <div class="name" id="profileContent">
-	                            <h3 class="title"></h3>
-								<h6></h6>
 	                        </div>
 	                    </div>
 	                </div>

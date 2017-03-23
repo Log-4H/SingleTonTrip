@@ -70,5 +70,21 @@ public class EvaluationController {
 		}
 		return mv;	
 	}
+	/*
+	//토탈 평가점수
+	@RequestMapping(value="evaluationRating")
+	public ModelAndView evaluationRating(@ModelAttribute("pageId") String pageId,
+			@ModelAttribute("pageId") String pageLevel){
+		ModelAndView mv = new ModelAndView("jsonView");
+		if(pageLevel == 2){
+			List<CompanyEvaluationVo> evaluationList = evaluationService.companyEvaluationList(pageId, lastEvaluationRow);
+			mv.addObject("evaluationList", evaluationList);
+		}else if(pageLevel ==3){
+			List<PersonEvaluationVo> evaluationList = evaluationService.personEvaluationList(pageId, lastEvaluationRow);
+			mv.addObject("evaluationList", evaluationList);
+		}
+		return mv;	
+	}
+	*/
 
 }
