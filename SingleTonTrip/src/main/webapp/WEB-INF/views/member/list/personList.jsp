@@ -13,7 +13,7 @@
 		<div class="main main-raised">
 			<div class="profile-content">
 				<div class="container-fluid">
-					<div class="row" style="height: 1400px; margin-top: 80px">
+					<div class="row" style="height: 800px; margin-top: 80px">
 						<div class="col-md-6 col-md-offset-3">
 							<div class="card card-signup">
 								<div class="header header-primary text-center" style="height: 80px;">
