@@ -32,10 +32,16 @@ public class AdDaoImpl implements AdDao{
 		return sqlSession.insert(AD_NS+"adApply",adVo);
 	}
 	
+	// 광고 신청 리스트 카운트 가져오기
+	@Override
+	public int adApplyListCount(){
+		return sqlSession.selectOne(AD_NS+"adApplyListCount");
+	}
+	
 	// 광고 신청 리스트 가져오기
 	@Override
-	public List<AdVo> selectAdApplyList(LoginVo loginVo){
-		return sqlSession.selectList(AD_NS+"selectAdApplyList",loginVo);
+	public List<AdVo> selectAdApplyList(Map<String,Object>map){
+		return sqlSession.selectList(AD_NS+"selectAdApplyList",map);
 	}
 	
 	// 광고 신청 승인
@@ -116,10 +122,16 @@ public class AdDaoImpl implements AdDao{
 		return sqlSession.selectOne(AD_NS+"selectAdImg",adVo);
 	}
 	
+	// 광고 리스트 카운트 가져오기
+	@Override
+	public int adListCount(){
+		return sqlSession.selectOne(AD_NS+"adListCount");
+	}
+	
 	// 광고 리스트
 	@Override
-	public List<AdVo> selectAdList(){
-		return sqlSession.selectList(AD_NS+"selectAdList");
+	public List<AdVo> selectAdList(Map<String,Object>map){
+		return sqlSession.selectList(AD_NS+"selectAdList",map);
 	}
 	
 	// 등록이 성공적으로 이루어지면 결제테이블에도 등록

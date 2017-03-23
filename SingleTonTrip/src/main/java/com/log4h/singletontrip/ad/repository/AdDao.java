@@ -12,7 +12,7 @@ public interface AdDao {
 
 	public List<AdPriceVo> selectAdPrice();
 	public int adApply(AdVo adVo);
-	public List<AdVo> selectAdApplyList(LoginVo loginVo);
+	public List<AdVo> selectAdApplyList(Map<String,Object>map);
 	public int adApplyPayment(int adNo);
 	public List<AdVo> paymentList(String companyId);
 	public int totalPrice(String companyId);
@@ -23,7 +23,7 @@ public interface AdDao {
 	public int adRefuse(Map<String,Object>map);
 	public int paybackApply(int adNo);
 	public int paybackCancel(int paymentTargetNo);
-	public List<AdVo> selectAdList();
+	public List<AdVo> selectAdList(Map<String,Object>map);
 	public int adImgUpload(AdVo adVo);
 	public String selectAdImg(AdVo adVo);
 	public String selectSameAd(Map<String,Object>map);
@@ -38,4 +38,6 @@ public interface AdDao {
 	public List<AdVo> selectUseAdHome();
 	public List<AdVo> selectUseAdSearch();
 	public List<AdVo> mainAdCount();
+	public int adApplyListCount();
+	public int adListCount();
 }

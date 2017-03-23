@@ -11,10 +11,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.log4h.singletontrip.ad.domain.AdPriceVo;
 import com.log4h.singletontrip.ad.domain.AdVo;
-import com.log4h.singletontrip.reserve.domain.PaymentVo;
 import com.log4h.singletontrip.ad.repository.AdDao;
 import com.log4h.singletontrip.member.domain.LoginVo;
+import com.log4h.singletontrip.reserve.domain.PaymentVo;
 import com.log4h.singletontrip.util.ImageUpload;
+import com.log4h.singletontrip.util.Paging;
 
 @Service
 public class AdServiceImpl implements AdService{
@@ -47,8 +48,27 @@ public class AdServiceImpl implements AdService{
 	
 	// 광고 신청 리스트 가져오기
 	@Override
-	public List<AdVo> selectAdApplyList(LoginVo loginVo){
-		return adDao.selectAdApplyList(loginVo);
+	public Map<String,Object> selectAdApplyList(LoginVo loginVo,int currentPage){
+		Paging paging = new Paging();
+		int totalCount = adDao.adApplyListCount();
+		Map<String,Object> map = paging.pagingMethod(currentPage, totalCount);
+		map.put("loginVo", loginVo);
+		List<AdVo> adApplyList = adDao.selectAdApplyList(map);
+		map.put("adApplyList", adApplyList);
+		
+		return map;
+	}
+	
+	// 광고 리스트
+	@Override
+	public Map<String,Object> selectAdList(int currentPage){
+		Paging paging = new Paging();
+		int totalCount = adDao.adListCount();
+		Map<String,Object> map = paging.pagingMethod(currentPage, totalCount);
+		List<AdVo> adList = adDao.selectAdList(map);
+		map.put("adList", adList);
+		
+		return map;
 	}
 	
 	// 광고 신청 승인
@@ -108,12 +128,6 @@ public class AdServiceImpl implements AdService{
 			adVo.setAdImg(adImg);
 		}
 		return adDao.adImgUpload(adVo);
-	}
-	
-	// 광고 리스트
-	@Override
-	public List<AdVo> selectAdList(){
-		return adDao.selectAdList();
 	}
 	
 	// 결제 할 목록, 목록의 합계 가져오기

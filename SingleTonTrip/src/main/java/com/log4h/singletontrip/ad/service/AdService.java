@@ -14,7 +14,7 @@ import com.log4h.singletontrip.member.domain.LoginVo;
 public interface AdService {
 	public List<AdPriceVo> selectAdPrice();
 	public int adApply(AdVo adVo,MultipartFile imgFile);
-	public List<AdVo> selectAdApplyList(LoginVo loginVo);
+	public Map<String,Object> selectAdApplyList(LoginVo loginVo,int currentPage);
 	public Map<String,Object> paymentList(String companyId);
 	public int paymentAd(Map<String,Object>map);
 	public int deleteAdApplyList(int adNo);
@@ -22,7 +22,7 @@ public interface AdService {
 	public int adRefuse(Map<String,Object>map);
 	public int paybackApply(int adNo);
 	public int paybackCancel(int paymentTargetNo);
-	public List<AdVo> selectAdList();
+	public Map<String,Object> selectAdList(int currentPage);
 	public int adImgUpload(AdVo adVo, MultipartFile imgFile);
 	public List<PaymentVo> paybackList(LoginVo loginVo);
 	public int payback(Map<String,Object>map);

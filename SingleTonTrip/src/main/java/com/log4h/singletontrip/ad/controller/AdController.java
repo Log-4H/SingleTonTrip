@@ -1,10 +1,8 @@
 package com.log4h.singletontrip.ad.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -138,10 +136,16 @@ public class AdController {
 	
 	// 광고 리스트
 	@RequestMapping(value="adList")
-	public ModelAndView adList(){
+	public ModelAndView adList(
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage){
 		ModelAndView mv = new ModelAndView();
-		List<AdVo> adList = adService.selectAdList();
-		mv.addObject("adList", adList);
+		Map<String,Object>map = adService.selectAdList(currentPage);
+		mv.addObject("currentPage",currentPage);
+		mv.addObject("adList",map.get("adList"));
+		mv.addObject("startPage",map.get("startPage"));
+		mv.addObject("pageSize",map.get("pageSize"));
+		mv.addObject("endPage",map.get("endPage"));
+		mv.addObject("lastPage",map.get("lastPage"));		
 		mv.setViewName("advertisement/adList");
 		
 		return mv;
@@ -215,16 +219,20 @@ public class AdController {
 	@RequestMapping(value="adApplyList")
 	public ModelAndView adAppllyList(
 			@ModelAttribute("sessionId") String sessionId,
-			@ModelAttribute("sessionLevel") int sessionLevel){
+			@ModelAttribute("sessionLevel") int sessionLevel,
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage){
 		LoginVo loginVo = new LoginVo();
 		loginVo.setMemberId(sessionId);
 		loginVo.setMemberLevel(sessionLevel);
 		
 		ModelAndView mv = new ModelAndView();
-		List<AdVo> homeAdList = adService.selectUseAdHome();
-		mv.addObject("homeAdList",homeAdList);
-		List<AdVo> adApplyList = adService.selectAdApplyList(loginVo);
-		mv.addObject("adApplyList",adApplyList);
+		Map<String,Object>map = adService.selectAdApplyList(loginVo, currentPage);
+		mv.addObject("currentPage",currentPage);
+		mv.addObject("adApplyList",map.get("adApplyList"));
+		mv.addObject("startPage",map.get("startPage"));
+		mv.addObject("pageSize",map.get("pageSize"));
+		mv.addObject("endPage",map.get("endPage"));
+		mv.addObject("lastPage",map.get("lastPage"));
 		mv.setViewName("advertisement/adApplyList");
 		
 		return mv;

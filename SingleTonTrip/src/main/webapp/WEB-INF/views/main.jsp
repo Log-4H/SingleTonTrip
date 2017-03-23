@@ -52,32 +52,30 @@ $(document).ready(function() {
                 </div>
             </div>
         </div>
-
 		<div class="main main-raised">
-
 			<div class="container">
 		    	<div class="section text-center section-landing">
-		    	<div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
-            		<!-- 슬라이드 광고 -->
-					<div class="carousel-inner" role="listbox" id="adList">
-					
+			    	<div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+	            		<!-- 슬라이드 광고 -->
+						<div class="carousel-inner" role="listbox" id="adList">
+						
+						</div>
+						<!-- 좌,우 컨트롤 -->
+						<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> 
+							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+							<span class="sr-only">Previous</span>
+						</a> 
+						<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> 
+							<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+							<span class="sr-only">Next</span>
+						</a>
+						<!-- Indicators -->
+						<ol class="carousel-indicators">
+							<c:forEach var="m" items="${mainAdCount}">
+								<li data-target="#myCarousel" data-slide-to="${m.adNo}" class="active"></li>
+							</c:forEach>
+						</ol>
 					</div>
-					<!-- 좌,우 컨트롤 -->
-					<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> 
-						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-						<span class="sr-only">Previous</span>
-					</a> 
-					<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> 
-						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-						<span class="sr-only">Next</span>
-					</a>
-					<!-- Indicators -->
-					<ol class="carousel-indicators">
-						<c:forEach var="m" items="${mainAdCount}">
-							<li data-target="#myCarousel" data-slide-to="${m.adNo}" class="active"></li>
-						</c:forEach>
-					</ol>
-				</div>
 
 					<div class="features">
 						<div class="row">
