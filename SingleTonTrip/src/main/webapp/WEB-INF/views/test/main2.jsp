@@ -2,9 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<c:import url="/WEB-INF/views/test/top.jsp"></c:import>
+<c:import url="/WEB-INF/views/module/top.jsp"></c:import>
 <body class="landing-page">
-<c:import url="/WEB-INF/views/test/nav.jsp"></c:import>
+<c:import url="/WEB-INF/views/module/nav.jsp"></c:import>
     <div class="wrapper">
         <div class="header header-filter" style="background-image: url('https://images.unsplash.com/photo-1423655156442-ccc11daa4e99?crop=entropy&dpr=2&fit=crop&fm=jpg&h=750&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1450');">
             <div class="container">
@@ -151,6 +151,6 @@
 	        </div>
 
 		</div>
-<c:import url="/WEB-INF/views/test/footer.jsp"></c:import>
+<c:import url="/WEB-INF/views/module/footer.jsp"></c:import>
 </body>
 </html>
