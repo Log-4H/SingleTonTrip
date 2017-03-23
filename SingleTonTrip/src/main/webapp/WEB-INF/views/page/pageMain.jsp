@@ -15,13 +15,13 @@
 <c:import url="./trip/planModify.jsp"></c:import>
 <c:import url="./trip/planDelete.jsp"></c:import>
 </c:if>
+<c:import url="./evaluation/evaluationAdd.jsp"></c:import>
 <c:import url="./room/roomReserveList.jsp"></c:import>
 <c:import url="./trip/tripJoin.jsp"></c:import>
 <script>
 	//프로필 요청 
 	$(document).ready(
 			function() {
-				console.log($("#pageLevel").val());
 				if ($("#pageLevel").val() == 2) {
 					companyDetail();
 				} else if ($("#pageLevel").val() == 3) {

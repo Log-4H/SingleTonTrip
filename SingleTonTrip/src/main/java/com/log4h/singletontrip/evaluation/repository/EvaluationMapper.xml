@@ -3,5 +3,60 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="evaluationMapper">
-
+<select id="companyEvaluationCheck" parameterType="map" resultType="com.log4h.singletontrip.evaluation.domain.EvaluationCheckVo">
+	SELECT
+		r.room_nm,
+	    rs.reserve_no,
+	    rs.reserve_checkin_date,
+	    (
+			SELECT
+				count(*)
+			FROM
+				tb_company_evaluation c
+			WHERE
+				c.member_id = #{memberId}
+			AND
+				c.company_id = #{pageId}
+			AND
+				c.reserve_no = rs.reserve_no
+	    ) as evaluationCheck
+	FROM
+		tb_reserve rs
+	JOIN
+		tb_room r
+	ON
+		rs.room_no = r.room_no
+	WHERE
+		rs.person_id = #{memberId}
+	AND
+		r.company_id = #{pageId}
+</select>
+<select id="personEvaluationCheck" parameterType="map" resultType="com.log4h.singletontrip.evaluation.domain.EvaluationCheckVo">
+	SELECT
+		t.trip_no,
+        t.trip_title,
+        t.trip_start_date,
+	    (
+			SELECT
+				count(*)
+			FROM
+				tb_person_evaluation pe
+			WHERE
+				pe.member_id = #{memberId}
+			AND
+				pe.person_id = #{pageId}
+			AND
+				pe.trip_no = t.trip_no
+	    ) as evaluationCheck
+	FROM
+		tb_trip t
+	JOIN
+		tb_group g
+	ON
+		t.trip_no = g.trip_no
+	WHERE
+		g.person_id = #{memberId}
+	AND
+		t.person_id = #{pageId}
+</select>
 </mapper>
