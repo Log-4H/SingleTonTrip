@@ -317,7 +317,8 @@ function postCommentAppend(postNo, postCommentList) {
 	html += "<table class='table'>";
 	html += "<thead>";
 	html += "<tr>";
-	html += "<th>ID</th>";
+	html += "<th>#</th>"
+	html += "<th>Name</th>";
 	html += "<th>Content</th>";
 	html += "<th>regDate</th>";
 	html += "<th>Delete</th>";
@@ -325,11 +326,17 @@ function postCommentAppend(postNo, postCommentList) {
 	html += "</thead>";
 	html += "<tbody id='tbody" + postNo + "'>";
 	$.each(postCommentList,function(key, item) {
-		console.log($("#pageId").val());
-		console.log($("#sessionId").val());
-		console.log(item.memberId);
 		html += "<tr>";
-		html += "<td>" + item.memberId + "</td>";
+		html += "<td>";
+		html += "<img src='";
+		if(item.memberImg != null){
+			html += "./images/"+ item.memberImg+"'";
+		}else{
+			html += "./images/Male.png'";
+		}
+		html += " style='max-width: 50px; max-height: 50px;' class='img-rounded img-responsive'>";
+		html += "</td>";
+		html+="<td><a href='pageMain?pageId="+item.memberId+"'>"+item.memberNm+"</a></td>";
 		html += "<td>" + item.postCommentContent + "</td>";
 		html += "<td>" + item.postCommentRegDate + "</td>";
 		html += "<td>";

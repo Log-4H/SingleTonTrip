@@ -6,6 +6,8 @@ public class PostCommentVo {
 	private String postId;
 	private int postNo;
 	private String memberId;
+	private String memberNm;
+	private String memberImg;
 	private String postCommentContent;
 	private String postCommentRegDate;
 	public int getPostCommentNo() {
@@ -43,6 +45,18 @@ public class PostCommentVo {
 	}
 	public void setPostCommentRegDate(String postCommentRegDate) {
 		this.postCommentRegDate = postCommentRegDate;
+	}
+	public String getMemberImg() {
+		return memberImg;
+	}
+	public void setMemberImg(String memberImg) {
+		this.memberImg = memberImg;
+	}
+	public String getMemberNm() {
+		return memberNm;
+	}
+	public void setMemberNm(String memberNm) {
+		this.memberNm = memberNm;
 	}
 	@Override
 	public String toString() {

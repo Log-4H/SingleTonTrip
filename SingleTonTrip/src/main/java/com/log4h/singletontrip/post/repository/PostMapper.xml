@@ -116,6 +116,8 @@
 		c.post_comment_no,
 		c.post_no,
 	    c.member_id,
+	    m.member_nm,
+	    m.member_img,
 	    c.post_comment_content,
 	    c.post_comment_reg_date
 	FROM
@@ -124,6 +126,10 @@
 		tb_post_comment c
 	ON 
 		p.post_no = c.post_no
+	JOIN
+		tb_member m
+	ON 
+		c.member_id = m.member_id
     WHERE p.member_id = #{memberId}
    	AND p.post_no = #{postNo}
    	AND 
