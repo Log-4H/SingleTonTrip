@@ -30,15 +30,15 @@
 
 										<div class="input-group">
 											<span class="input-group-addon"></span>
-											<input type="text" class="form-control" name="boardTitle" placeholder="title">
+											<input type="text" class="form-control" name="reportTitle" placeholder="title">
 										</div>
 										<div class="input-group">
 											<span class="input-group-addon"></span>
-											<textarea class="form-control" rows="10" name="boardContent" style="resize: none;" placeholder="content" ></textarea>
+											<textarea class="form-control" rows="10" name="reportContent" style="resize: none;" placeholder="content" ></textarea>
 										</div>
 									</div>
 									<div class="footer text-center">
-										<button type="submit" class="btn btn-simple btn-primary btn-lg">등록</button>
+										<button type="submit" class="btn btn-simple btn-primary btn-lg">신고하기</button>
 									</div>
 								</form>
 							</div>
