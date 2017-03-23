@@ -4,6 +4,38 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:import url="/WEB-INF/views/module/top.jsp"></c:import>
 <body class="landing-page">
+<script>
+// 광고 불러온다
+$(document).ready(function() {
+	$.ajax({
+		url : "serviceAdList",
+		type : "GET",
+		dataType : "json",
+		success : function(data) {
+			var mainAdList = data.mainAdList;
+			var html="";
+			$.each(mainAdList,function(key, item) {
+				if(key==0){
+					html+="<div class='item active slider-size'>";
+				}
+				else {
+					html+="<div class='item slider-size'>";
+				}
+				// 광고신청할 때 URL 입력했으면 그 주소로 가고 입력 안했으면 광고 신청한 사람의 페이지로 이동
+				if(item.adPageAddress == null || item.adPageAddress == ""){
+					html+="<a href='pageMain?pageId="+item.companyId+"'>";
+				} else {
+					html+="<a href='"+item.adPageAddress+"'>";
+				}
+				html+="<img class='img-responsive center-block' src='./images/"+item.adImg+"' style='width:100%; max-height:333px;'></a>";
+				html+="</div>";
+			});
+			$("#adList").html(html);
+			
+		}
+	})
+});
+</script>
 <c:import url="/WEB-INF/views/module/nav.jsp"></c:import>
     <div class="wrapper">
         <div class="header header-filter" style="background-image: url('https://images.unsplash.com/photo-1423655156442-ccc11daa4e99?crop=entropy&dpr=2&fit=crop&fm=jpg&h=750&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1450');">
@@ -22,14 +54,30 @@
         </div>
 
 		<div class="main main-raised">
+
 			<div class="container">
 		    	<div class="section text-center section-landing">
-	                <div class="row">
-	                    <div class="col-md-8 col-md-offset-2">
-	                        <h2 class="title">Let's talk product</h2>
-	                        <h5 class="description">This is the paragraph where you can write more details about your product. Keep you user engaged by providing meaningful information. Remember that by this time, the user is curious, otherwise he wouldn't scroll to get here. Add a button if you want the user to see more.</h5>
-	                    </div>
-	                </div>
+		    	<div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+            		<!-- 슬라이드 광고 -->
+					<div class="carousel-inner" role="listbox" id="adList">
+					
+					</div>
+					<!-- 좌,우 컨트롤 -->
+					<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> 
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a> 
+					<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> 
+						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+						<c:forEach var="m" items="${mainAdCount}">
+							<li data-target="#myCarousel" data-slide-to="${m.adNo}" class="active"></li>
+						</c:forEach>
+					</ol>
+				</div>
 
 					<div class="features">
 						<div class="row">

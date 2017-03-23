@@ -21,9 +21,9 @@ $(document).ready(function() {
 				}
 				// 광고신청할 때 URL 입력했으면 그 주소로 가고 입력 안했으면 광고 신청한 사람의 페이지로 이동
 				if(item.adPageAddress == null || item.adPageAddress == ""){
-					html+="<a href='pageMain?pageId="+item.companyId+"' target='_blank'>";
+					html+="<a href='pageMain?pageId="+item.companyId+"'>";
 				} else {
-					html+="<a href='"+item.adPageAddress+"' target='_blank'>";
+					html+="<a href='"+item.adPageAddress+"'>";
 				}
 				html+="<img class='img-responsive center-block' src='./images/"+item.adImg+"' style='width:100%; max-height:333px;'></a>";
 				html+="</div>";
