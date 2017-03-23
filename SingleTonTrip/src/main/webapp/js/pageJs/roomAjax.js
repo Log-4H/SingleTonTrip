@@ -18,46 +18,43 @@ function roomListAppend(roomList) {
 	var html = "";
 	$.each(roomList,function(key, item) {
 		var roomFacilityList = item.roomFacilityList
-		html += "<div class='w3-container w3-card-2 w3-white w3-round w3-margin'><br>";
+		html += "<div class='card'>";
+		html += "<div align='right'>";
 		if($("#sessionLevel").val() == 2){
 			if($("#pageId").val() == $("#sessionId").val()){
-				html += "<span class='w3-right w3-opacity'>";
-				html += "<button type='button' class='btn btn-primary'>수정</button>";
-				html += "<button type='button' class='btn btn-primary'>삭제</button>";
-				html += "</span>";
+				html += "<button type='button' class='btn btn-info' value='"+item.roomNo+"'><i class='fa fa-edit'></i></button>";
+				html += "<button type='button' class='btn btn-danger' value='"+item.roomNo+"'><i class='fa fa-times'></i></button>";
 			}
 		}else if($("#sessionLevel").val() == 3){
-			html += "<span class='w3-right w3-opacity'>";
-			html += "<button type='button' class='btn btn-primary roomReserveListModal' ddayOption='default' value='"+item.roomNo+"'>실시간예약</button>";
-			html += "</span>";
-		}else if($("#sessionId").val()==""){
-			html += "<span class='w3-right w3-opacity'>";
-			html += "</span>";
+			html += "<button type='button' class='btn btn-success roomReserveListModal' ddayOption='default' value='"+item.roomNo+"'><i class='fa fa-check-circle-o'></i> 실시간예약</button>";
 		}
-		html += "<h4>" + item.roomNm + "</h4><br>";
-		html += "<hr class='w3-clear'>";
-		html += "<div class='w3-row-padding' style='margin:0 -16px'>";
-		html += "<div class='w3-half'>";
+		html+="</div>";
+		html+="<div class='card-header'><br><br>";
+		html += "<h3><strong>" + item.roomNm + "</strong></h3>";
+		html+="</div>";
+		html+="<div class='card-block'>";
 		if (item.postImg != null) {
-			html += "<img src='./images/"+item.postImg+ "' style='width: 100%' class='w3-margin-bottom'>";
+			html += "<img src='./images/"+item.postImg+ "' style='width: 50%; height:50%'>";
 		}else{
-			html += "<img src='./images/RoomSample.jpg' style='width: 100%' class='w3-margin-bottom'>";
+			html += "<img src='./images/RoomSample.jpg' style='width: 50%; height:50%'>";
 		}
 		html += "</div>";
-		html += "</div>";
+		html+="<div class='card-block'>";
 		html += "<p>" + item.roomDetail + "</p>";
-		html += "<hr class='w3-clear'>";
+		html += "<hr>";
 		html += "<p>기본인원 : "+ item.roomBaseCount + "</p>";
 		html += "<p>최대인원 : "+ item.roomMaxCount + "</p>";
 		html += "<p>평일가격 : "+ item.roomNormalPrice + "</p>";
 		html += "<p>주말/공휴일가격 : "+ item.roomHolidayPrice + "</p>";
 		html += "<p>1인추가가격 : "+ item.roomExtraPrice + "</p>";
-		html += "<hr class='w3-clear'>";
+		html += "<hr>";
 		html += "<h4>객실시설</h4><br>";
 		$.each(roomFacilityList, function(key, value) {
 			html += "<p>"+value.facilityNm+"</p>";
 		});
 		html += "</div>";
+		html += "</div>";
+		html += "<br><br>";
 	})
 	return html;
 }
@@ -131,7 +128,7 @@ function calenderAppend(calendarList){
 		html+= "<div class='fc-day-content'>";
 		if(item.day <=(key+1) && (key-item.day)<27){
 			if(item.reserveVo != null){
-				html+="<h5 style='color:#FF0000;'>예약중</h5>";
+				html+="<button type='button' class='btn btn-danger disabled'>예약중</button>";
 			}else{
 				html+="<form action='reserveAdd' method='post'>";
 				html+="<input type='hidden' name='roomNo' value='"+roomNo+"'>";

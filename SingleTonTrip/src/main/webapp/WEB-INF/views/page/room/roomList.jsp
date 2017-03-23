@@ -6,7 +6,7 @@
 <div class="row">
 		<br>
 		<c:if test="${sessionId eq pageId}">
-			<button type="button" class="w3-btn w3-theme-d2 w3-margin-bottom">
+			<button type="button" class="btn btn-primary">
 				<i class="fa fa-pencil"></i>  객실 등록
 			</button>
 		</c:if>

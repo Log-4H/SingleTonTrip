@@ -132,14 +132,14 @@
 									<ul class="nav nav-pills" role="tablist">
 										<li class="active" id="postTab">
 				                            <a href="#post" role="tab" data-toggle="tab">
-												<i class="material-icons">palette</i>
+												<i class="fa fa-list" aria-hidden="true"></i>
 												Post
 				                            </a>
 				                        </li>
 										<c:if test="${pageLevel == 2}">
 										<li id="roomTab">
 											<a href="#room" role="tab" data-toggle="tab">
-												<i class="material-icons">camera</i>
+												<i class="fa fa-bed" aria-hidden="true"></i>
 												Room
 											</a>
 										</li>
@@ -147,14 +147,14 @@
 										<c:if test="${pageLevel == 3}">
 										<li id="tripTab">
 											<a href="#trip" role="tab" data-toggle="tab">
-												<i class="material-icons">camera</i>
+												<i class="fa fa-plane" aria-hidden="true"></i>
 												Trip
 											</a>
 										</li>
 										</c:if>
 				                        <li id="evaluationTab">
 				                            <a href="#evaluation" role="tab" data-toggle="tab">
-												<i class="material-icons">favorite</i>
+												<i class="fa fa-address-card" aria-hidden="true"></i>
 				                                Evaluation
 				                            </a>
 				                        </li>
@@ -167,6 +167,7 @@
 										<c:if test="${pageLevel == 3}">
 										<c:import url="./trip/tripList.jsp"></c:import>
 										</c:if>
+										<c:import url="./evaluation/evaluationList.jsp"></c:import>
 				                    </div>
 								</div>
 							</div>

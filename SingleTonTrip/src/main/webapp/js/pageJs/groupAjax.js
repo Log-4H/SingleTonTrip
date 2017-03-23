@@ -45,21 +45,24 @@ function groupListAppend(groupList) {
 	
 	$.each(groupList,function(key, item) {
 		console.log(item.recruitStateCd);
-		html += "<div class='w3-container w3-card-2 w3-white w3-round w3-margin'><br>";
-		html += "<span class='w3-right w3-opacity'>"+ item.groupApplyDate + "</span><br>";
-		html += "<span class='w3-right w3-opacity'>";
+		html += "<div>";
+		html += "<blockquote>";
+		html += "<div align='right'>";
+		html += "<small>"+ item.groupApplyDate + "</small>";
 		if(item.groupMemberLevel=="member"){
 			if (item.approveStateCd == 1) {
-				html += "<button type='button' class='btn btn-info applyCancelBtn' value='"+item.tripNo+"'>취소</button>";
+				html += "<button type='button' class='btn btn-sm btn-warning applyCancelBtn' value='"+item.tripNo+"'><i class='fa fa-undo'></i></button>";
 			}else if (item.approveStateCd == 2) {
-				html += "<button type='button' class='btn btn-info groupDropBtn' value='"+item.tripNo+"'>탈퇴</button>";
+				html += "<button type='button' class='btn btn-sm btn-danger groupDropBtn' value='"+item.tripNo+"'><i class='fa fa-times'></i></button>";
 			}
 		}else if(item.groupMemberLevel=="leader"){
 			if (item.tripPresentMember < item.tripMaxMember && item.recruitStateCd == 1) {
-				html += "<button type='button' class='btn btn-info tripEndModalBtn' value='"+item.tripNo+"' data-dismiss='modal'>마감</button>";
+				html += "<button type='button' class='btn btn-sm btn-success tripEndModalBtn' value='"+item.tripNo+"' data-dismiss='modal'><i class='material-icons'>check</i></button>";
 			}	
 		}
-		html +="</span>";			
+		html += "</div>";
+		html += "<div>";
+		html += "<p>";
 		if (item.approveStateCd == 1) {
 			html += "<span class='label label-warning'>";
 		}else if (item.approveStateCd == 2) {
@@ -67,12 +70,13 @@ function groupListAppend(groupList) {
 		}else if (item.approveStateCd == 3) {
 			html += "<span class='label label-danger'>";
 		}
-		html += item.approveStateNm+"</span>";
-		html += "<h4>";
+		html += item.approveStateNm+"</span></p>";
+		html += "<p>";
 		html += "<a href='javascript:void(0)' class='groupView' value='"+item.tripNo+"'>";
 		html += item.tripTitle;
-		html += "</a>";
-		html += "</h4><br>";
+		html += "</a></p>";
+		html += "</div>";
+		html += "</blockquote>";
 		html += "</div>";
 	})
 	return html;
@@ -80,7 +84,7 @@ function groupListAppend(groupList) {
 //페이징 html추가
 function groupPaging(startPage, pageSize, endPage, lastPage){
 	var html ="";
-	html +="<ul class='pagination pagination-sm'>";
+	html +="<ul class='pagination pagination-primary'>";
 	if(startPage>1){
 		html+= "<li><a href='javascript:void(0)' class='pagingBtn' value='"+Number(startPage-pageSize)+"'>&laquo;</a></li>";
 	}
@@ -122,9 +126,9 @@ $(document).on('click', '.groupView', function() {
 //그룹상세보기 html추가
 function groupViewAppend(trip) {
 	var html = "";
-	html += "<div class='w3-container w3-card-2 w3-white w3-round w3-margin'><br>";
-	html += "<span class='w3-right w3-opacity'>모집기간 : " ;
-	html += trip.tripRecruitStartDate + " ~ "+ trip.tripRecruitEndDate + "</span><br>";
+	html += "<div><br>";
+	html += "<div align='right'>모집기간 : " ;
+	html += trip.tripRecruitStartDate + " ~ "+ trip.tripRecruitEndDate + "</div><br><br>";
 	if (trip.recruitStateCd == 1) {
 		html += "<span class='label label-success'>";
 	} else if (trip.recruitStateCd == 2) {
@@ -134,27 +138,27 @@ function groupViewAppend(trip) {
 	}
 	html += trip.recruitStateNm;
 	html += "</span>";
+	
 	html += "<h4>" + trip.tripTitle + "</h4><br>";
-	html += "<hr class='w3-clear'>";
+	html += "<hr>";
 	if(trip.regionDo!=trip.regionSi){
 		html += "<p>" + trip.regionDo + " " + trip.regionSi + "</p>";
 	}else{
 		html += "<p>" + trip.regionDo + "</p>";
 	}
 	html += "<p>" + trip.tripContent + "</p>";
-	html += "<hr class='w3-clear'>";
+	html += "<hr>";
 	html += "<p>참여인원(현재인원/총인원) : " + trip.tripPresentMember + " / "
 	+ trip.tripMaxMember + "</p>";
 	html += "<p>여행기간 : " + trip.tripStartDate + " ~ " + trip.tripEndDate + "</p>";
 	html += "<p>예상경비(1인경비/총경비) : " + trip.tripPerPrice + " / "+ trip.tripTotalPrice + "</p>";
-	html += "<hr class='w3-clear'>";
-	html += "<h4>그룹원</h4><br>";
+	html += "<hr>";
+	html += "<h4>그룹원</h4>";
 	if(trip.personId==$("#sessionId").val()){
-	html += "<span class='w3-right w3-opacity'>";
-	html += "<button type='button' class='btn btn-primary' id='applyMemberListBtn' tripNo='"+trip.tripNo+"' value='1'>참가신청자보기</button>"
-	html += "</span>";
+		html +="<div align='right'>";
+		html += "<button type='button' class='btn btn-primary' id='applyMemberListBtn' tripNo='"+trip.tripNo+"' value='1'>참가신청자보기</button>"
+		html +="</div>";
 	}
-	html += "<hr class='w3-clear'>";
 	html +="<table class='table table-striped table-hover'>";
 	html +="<thead>";
 	html +="<tr>";
