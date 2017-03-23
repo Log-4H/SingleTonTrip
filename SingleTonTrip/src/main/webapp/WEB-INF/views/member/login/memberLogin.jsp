@@ -32,14 +32,14 @@
 										<span class="input-group-addon">
 											<i class="material-icons">done</i>
 										</span>
-										<input type="text" class="form-control" id="loginId" name="loginId" placeholder="아이디" value="admin1">
+										<input type="text" class="form-control" id="loginId" name="loginId" placeholder="아이디" value="person1">
 									</div>
 
 									<div class="input-group">
 										<span class="input-group-addon">
 											<i class="material-icons">lock_outline</i>
 										</span>
-										<input type="password" class="form-control" id="loginPw" name="loginPw" placeholder="비밀번호" value="admin"/>
+										<input type="password" class="form-control" id="loginPw" name="loginPw" placeholder="비밀번호" value="person1"/>
 									</div>
 									<div class="checkbox">
 										<label>
