@@ -23,16 +23,16 @@ a.panelFocus a, a:hover, a:focus {
 									<h4>결제 내역</h4>
 								</div>
 								<div class="content">
+																		
 									</br>
 									<div>
-										<c:if test="${sessionLevel == 1}">
-											<li class="nav">
+										<c:if test="${sessionLevel eq 1}">
+											<div style="margin:10px;" align="right">
 												<form action="<c:url value='payList'/>" method="get">
-													<input type="text" name="selectValue" /> <input
-														type="submit" class="w3-btn w3-theme-d1 w3-margin-bottom"
-														value="검색" />
+													<input type="text" name="selectValue" style=" width: 230x; height: 27.6px; margin-top: 10px; padding-bottom: 4px;" /> 
+													<input type="submit" class="btn btn-info btn-sm" value="검색"/>
 												</form>
-											</li>
+											</div>
 										</c:if>
 									</div>
 
@@ -40,6 +40,9 @@ a.panelFocus a, a:hover, a:focus {
 										<thead>
 											<tr>
 												<th class="text-center">구분</th>
+												<c:if test="${sessionLevel eq 1}">
+													<th>회원 ID</th>
+												</c:if>
 												<th>결제 내용</th>
 												<th>가격</th>
 												<th>날짜</th>
@@ -51,6 +54,9 @@ a.panelFocus a, a:hover, a:focus {
 											<c:forEach var="payList" items="${adPayList}">
 												<tr>
 													<td class="text-center">${payList.paymentCate.paymentCateNm}</td>
+													<c:if test="${sessionLevel eq 1}">
+														<td>${payList.memberId}</td>
+													</c:if>
 													<td>${payList.ad.adContent}</td>
 													<td>${payList.paymentPrice}</td>
 													<td>${payList.paymentFinishDate}</td>

@@ -94,6 +94,18 @@ public class ReserveController {
 		ModelAndView mv = new ModelAndView();
 		logger.debug(" >>>>>>> reserveAdd <<<<<<< ");
 		
+		
+	
+		mv.setViewName("/reserve/reserveAdd");
+		
+		return mv;
+		
+	}
+	@RequestMapping(value="reserveAdd",method=RequestMethod.GET)
+	public ModelAndView reserveAdd(){
+		ModelAndView mv = new ModelAndView();
+		logger.debug(" >>>>>>> reserveAdd <<<<<<< ");
+		
 		mv.setViewName("/reserve/reserveAdd");
 		
 		return mv;
