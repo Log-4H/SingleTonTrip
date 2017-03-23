@@ -16,5 +16,8 @@
 		<div id="evaluationList">
 			
 		</div>
+		<div align="center">
+			<button type="button" class="btn btn-primary" id="addEvaluationList">더보기</button>
+		</div>
 	</div>
 </div>

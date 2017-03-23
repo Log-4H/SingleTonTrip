@@ -69,10 +69,29 @@ $(document).on('click', '#evaluationTab', function() {
 		},
 		dataType : "json",
 		success : function(data) {
-			console.log(data);
 			var evaluationList = data.evaluationList;
 			html = evaluationListHtml(evaluationList, pageLevel);
-			console.log(html);
+			$("#evaluationList").html(html);
+		}
+	})
+});
+//평가리스트 더보기
+$(document).on('click', '#addEvaluationList', function() {
+	var lastEvaluationRow = $('.lastEvaluationRow').attr('value');
+	lastEvaluationRow = Number(lastEvaluationRow);
+	lastEvaluationRow += 5;
+	var pageLevel = $("#pageLevel").val();
+	var html = "";
+	$.ajax({
+		url : "evaluationList",
+		type : "POST",
+		data : {
+			pageLevel:pageLevel, lastEvaluationRow : lastEvaluationRow
+		},
+		dataType : "json",
+		success : function(data) {
+			var evaluationList = data.evaluationList;
+			html = evaluationListHtml(evaluationList, pageLevel);
 			$("#evaluationList").html(html);
 		}
 	})
