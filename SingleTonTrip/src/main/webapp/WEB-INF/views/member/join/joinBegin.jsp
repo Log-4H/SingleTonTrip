@@ -39,7 +39,7 @@
 												개인회원
 											</a>
 										</li>
-										<li>
+										<li class="active">
 				                            <a href="<c:url value='joinTerms?memberLevel=2'/>" >
 												<i class="material-icons">business</i>
 												업체회원

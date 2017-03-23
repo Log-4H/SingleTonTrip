@@ -35,13 +35,13 @@
 									<div align="center" class="checkbox">
 										<label>
 											약관 동의 하시겠습니까?
-											<input type="checkbox" name="optionsCheckboxes">
+											<input type="checkbox" id="checkbox" name="optionsCheckboxes">
 										</label>
 									</div>
 								
 				               <br>
 				               	<div align="center">
-				               		<a href="personJoin?memberLevel=${memberLevel}"><button class="btn btn-primary">다음</button></a>
+				               		<a href="personJoin?memberLevel=${memberLevel}"><button class="btn btn-primary" id="joinNextBtn" disabled="disabled">다음</button></a>
 								</div>
 									<!-- If you want to add a checkbox to this form, uncomment this code
 
@@ -60,5 +60,16 @@
 				</div>
 			</div>
 <c:import url="/WEB-INF/views/module/footer.jsp"></c:import>
+<script>
+$(document).ready(function(){
+    $("#checkbox").change(function(){
+        if($("#checkbox").is(":checked")){
+        	$('#joinNextBtn').attr('disabled',false);
+        }else{
+        	$('#joinNextBtn').attr('disabled',true);
+        }
+    });
+});
+</script>
 </body>
 </html>
