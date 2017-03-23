@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:import url="./module/top.jsp"></c:import>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<c:import url="/WEB-INF/views/module/top.jsp"></c:import>
+<body class="landing-page">
 <script>
 // 광고 불러온다
 $(document).ready(function() {
@@ -27,7 +29,6 @@ $(document).ready(function() {
 				}
 				html+="<img class='img-responsive center-block' src='./images/"+item.adImg+"' style='width:100%; max-height:333px;'></a>";
 				html+="</div>";
-				html+="</div>";
 			});
 			$("#adList").html(html);
 			
@@ -35,343 +36,169 @@ $(document).ready(function() {
 	})
 });
 </script>
-<!-- Page content -->
-<div class="w3-content w3-padding" style="max-width: 1564px">
-	<div class="w3-container w3-padding-32" id="projects">
-		<h3 class="w3-border-bottom w3-border-light-grey w3-padding-12">What our customers say</h3>
-	</div>
-	<div class="w3-row-padding">
-		<div class="w3-col l8 m6 w3-margin-bottom">
-
-			<div id="myCarousel" class="carousel slide text-center"
-				data-ride="carousel">
-				<!-- Wrapper for slides -->
-				<div class="carousel-inner" role="listbox" id="adList">
-				
-				</div>
-
-				<!-- Left and right controls -->
-				<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> 
-					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-					<span class="sr-only">Previous</span>
-				</a> 
-				<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> 
-					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-					<span class="sr-only">Next</span>
-				</a>
-				<!-- Indicators -->
-				<ol class="carousel-indicators">
-					<c:forEach var="m" items="${mainAdCount}">
-						<li data-target="#myCarousel" data-slide-to="${m.adNo}" class="active"></li>
-					</c:forEach>
-				</ol>
-			</div>
-			<div class="w3-col l3 m6 w3-margin-bottom"></div>
-		</div>
-		<div class="w3-col l3 m6 w3-margin-bottom">
-			<div class="w3-display-container">
-				<div class="w3-display-topleft w3-black w3-padding">Summer
-					House</div>
-				<img src="http://www.w3schools.com/w3images/house5.jpg" alt="House"
-					style="width: 100%">
-			</div>
-		</div>
-	</div>
-
-
-
-	<!-- Project Section -->
-	<div class="w3-container w3-padding-32" id="projects">
-		<h3 class="w3-border-bottom w3-border-light-grey w3-padding-12">Projects</h3>
-	</div>
-
-	<div class="w3-row-padding">
-		<div class="w3-col l3 m6 w3-margin-bottom">
-			<div class="w3-display-container">
-				<div class="w3-display-topleft w3-black w3-padding">Summer
-					House</div>
-				<img src="http://www.w3schools.com/w3images/house5.jpg" alt="House"
-					style="width: 100%">
-			</div>
-		</div>
-		<div class="w3-col l3 m6 w3-margin-bottom">
-			<div class="w3-display-container">
-				<div class="w3-display-topleft w3-black w3-padding">Brick
-					House</div>
-				<img src="http://www.w3schools.com/w3images/house2.jpg" alt="House"
-					style="width: 100%">
-			</div>
-		</div>
-		<div class="w3-col l3 m6 w3-margin-bottom">
-			<div class="w3-display-container">
-				<div class="w3-display-topleft w3-black w3-padding">Renovated</div>
-				<img src="http://www.w3schools.com/w3images/house3.jpg" alt="House"
-					style="width: 100%">
-			</div>
-		</div>
-		<div class="w3-col l3 m6 w3-margin-bottom">
-			<div class="w3-display-container">
-				<div class="w3-display-topleft w3-black w3-padding">Barn House</div>
-				<img src="http://www.w3schools.com/w3images/house4.jpg" alt="House"
-					style="width: 100%">
-			</div>
-		</div>
-	</div>
-
-	<div class="w3-row-padding">
-		<div class="w3-col l3 m6 w3-margin-bottom">
-			<div class="w3-display-container">
-				<div class="w3-display-topleft w3-black w3-padding">Summer
-					House</div>
-				<img src="http://www.w3schools.com/w3images/house2.jpg" alt="House"
-					style="width: 99%">
-			</div>
-		</div>
-		<div class="w3-col l3 m6 w3-margin-bottom">
-			<div class="w3-display-container">
-				<div class="w3-display-topleft w3-black w3-padding">Brick
-					House</div>
-				<img src="http://www.w3schools.com/w3images/house5.jpg" alt="House"
-					style="width: 99%">
-			</div>
-		</div>
-		<div class="w3-col l3 m6 w3-margin-bottom">
-			<div class="w3-display-container">
-				<div class="w3-display-topleft w3-black w3-padding">Renovated</div>
-				<img src="http://www.w3schools.com/w3images/house4.jpg" alt="House"
-					style="width: 99%">
-			</div>
-		</div>
-		<div class="w3-col l3 m6 w3-margin-bottom">
-			<div class="w3-display-container">
-				<div class="w3-display-topleft w3-black w3-padding">Barn House</div>
-				<img src="http://www.w3schools.com/w3images/house3.jpg" alt="House"
-					style="width: 99%">
-			</div>
-		</div>
-	</div>
-
-	<!-- About Section -->
-	<div class="w3-container w3-padding-32" id="about">
-		<h3 class="w3-border-bottom w3-border-light-grey w3-padding-12">About</h3>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-			eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-			ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-			aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat
-			non proident, sunt in culpa qui officia deserunt mollit anim id est
-			laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt
-			ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-			nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat.</p>
-	</div>
-
-	<div class="w3-row-padding w3-grayscale">
-		<div class="w3-col l3 m6 w3-margin-bottom">
-			<img src="http://www.w3schools.com/w3images/team2.jpg" alt="John"
-				style="width: 100%">
-			<h3>John Doe</h3>
-			<p class="w3-opacity">CEO & Founder</p>
-			<p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse
-				sodales pellentesque elementum.</p>
-			<p>
-				<button class="w3-btn-block">Contact</button>
-			</p>
-		</div>
-		<div class="w3-col l3 m6 w3-margin-bottom">
-			<img src="http://www.w3schools.com/w3images/team1.jpg" alt="Jane"
-				style="width: 100%">
-			<h3>Jane Doe</h3>
-			<p class="w3-opacity">Architect</p>
-			<p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse
-				sodales pellentesque elementum.</p>
-			<p>
-				<button class="w3-btn-block">Contact</button>
-			</p>
-		</div>
-		<div class="w3-col l3 m6 w3-margin-bottom">
-			<img src="http://www.w3schools.com/w3images/team3.jpg" alt="Mike"
-				style="width: 100%">
-			<h3>Mike Ross</h3>
-			<p class="w3-opacity">Architect</p>
-			<p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse
-				sodales pellentesque elementum.</p>
-			<p>
-				<button class="w3-btn-block">Contact</button>
-			</p>
-		</div>
-		<div class="w3-col l3 m6 w3-margin-bottom">
-			<img src="http://www.w3schools.com/w3images/team4.jpg" alt="Dan"
-				style="width: 100%">
-			<h3>Dan Star</h3>
-			<p class="w3-opacity">Architect</p>
-			<p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse
-				sodales pellentesque elementum.</p>
-			<p>
-				<button class="w3-btn-block">Contact</button>
-			</p>
-		</div>
-	</div>
-	<!-- !PAGE CONTENT START! -->
-
-	<!-- !PAGE CONTENT! -->
-
-	<div class="w3-main w3-content w3-padding"
-		style="max-width: 1200px; margin-top: 50px">
-
-		<!-- First Photo Grid-->
-		<div class="w3-row-padding w3-padding-16 w3-center" id="food">
-			<h3 class="text-left">숙소</h3>
-			<div class="w3-row-padding w3-padding-16">
-
-				<div class="w3-third w3-margin-bottom">
-					<img src="http://www.w3schools.com/w3images/house4.jpg"
-						alt="Norway" style="width: 100%">
-					<div class="w3-container w3-white">
-						<h3>Single Room</h3>
-						<h6 class="w3-opacity">From $99</h6>
-						<p>Single bed</p>
-						<p>
-							15m<sup>2</sup>
-						</p>
-						<p class="w3-large">
-							<i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i
-								class="fa fa-wifi"></i>
-						</p>
-						<button class="w3-btn-block w3-margin-bottom">Choose Room</button>
+<c:import url="/WEB-INF/views/module/nav.jsp"></c:import>
+    <div class="wrapper">
+        <div class="header header-filter" style="background-image: url('https://images.unsplash.com/photo-1423655156442-ccc11daa4e99?crop=entropy&dpr=2&fit=crop&fm=jpg&h=750&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1450');">
+            <div class="container">
+                <div class="row">
+					<div class="col-md-6">
+						<h1 class="title">Write the best title for your page.</h1>
+	                    <h4>Every landing page needs a small description after the big bold title, that's why we added this text here. Add here all the information that can make you or your product create the first impression.</h4>
+	                    <br />
+	                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-danger btn-raised btn-lg">
+							<i class="fa fa-play"></i> Watch video
+						</a>
 					</div>
-				</div>
+                </div>
+            </div>
+        </div>
 
-				<div class="w3-third w3-margin-bottom">
-					<img src="http://www.w3schools.com/w3images/house4.jpg"
-						alt="Norway" style="width: 100%">
-					<div class="w3-container w3-white">
-						<h3>Double Room</h3>
-						<h6 class="w3-opacity">From $149</h6>
-						<p>Queen-size bed</p>
-						<p>
-							25m<sup>2</sup>
-						</p>
-						<p class="w3-large">
-							<i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i
-								class="fa fa-wifi"></i> <i class="fa fa-tv"></i>
-						</p>
-						<button class="w3-btn-block w3-margin-bottom">Choose Room</button>
+		<div class="main main-raised">
+
+			<div class="container">
+		    	<div class="section text-center section-landing">
+		    	<div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+            		<!-- 슬라이드 광고 -->
+					<div class="carousel-inner" role="listbox" id="adList">
+					
 					</div>
+					<!-- 좌,우 컨트롤 -->
+					<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> 
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a> 
+					<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> 
+						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+						<c:forEach var="m" items="${mainAdCount}">
+							<li data-target="#myCarousel" data-slide-to="${m.adNo}" class="active"></li>
+						</c:forEach>
+					</ol>
 				</div>
 
-				<div class="w3-third w3-margin-bottom">
-					<img src="http://www.w3schools.com/w3images/house4.jpg"
-						alt="Norway" style="width: 100%">
-					<div class="w3-container w3-white">
-						<h3>Deluxe Room</h3>
-						<h6 class="w3-opacity">From $199</h6>
-						<p>King-size bed</p>
-						<p>
-							40m<sup>2</sup>
-						</p>
-						<p class="w3-large">
-							<i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i
-								class="fa fa-wifi"></i> <i class="fa fa-tv"></i> <i
-								class="fa fa-glass"></i> <i class="fa fa-cutlery"></i>
-						</p>
-						<button class="w3-btn-block w3-margin-bottom">Choose Room</button>
+					<div class="features">
+						<div class="row">
+		                    <div class="col-md-4">
+								<div class="info">
+									<div class="icon icon-primary">
+										<i class="material-icons">chat</i>
+									</div>
+									<h4 class="info-title">First Feature</h4>
+									<p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
+								</div>
+		                    </div>
+		                    <div class="col-md-4">
+								<div class="info">
+									<div class="icon icon-success">
+										<i class="material-icons">verified_user</i>
+									</div>
+									<h4 class="info-title">Second Feature</h4>
+									<p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
+								</div>
+		                    </div>
+		                    <div class="col-md-4">
+								<div class="info">
+									<div class="icon icon-danger">
+										<i class="material-icons">fingerprint</i>
+									</div>
+									<h4 class="info-title">Third Feature</h4>
+									<p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
+								</div>
+		                    </div>
+		                </div>
 					</div>
-				</div>
-			</div>
+	            </div>
+
+	        	<div class="section text-center">
+	                <h2 class="title">Here is our team</h2>
+
+					<div class="team">
+						<div class="row">
+							<div class="col-md-4">
+			                    <div class="team-player">
+			                        <img src="../assets/img/avatar.jpg" alt="Thumbnail Image" class="img-raised img-circle">
+			                        <h4 class="title">Gigi Hadid <br />
+										<small class="text-muted">Model</small>
+									</h4>
+			                        <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some <a href="#">links</a> for people to be able to follow them outside the site.</p>
+									<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-twitter"></i></a>
+									<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-instagram"></i></a>
+									<a href="#pablo" class="btn btn-simple btn-just-icon btn-default"><i class="fa fa-facebook-square"></i></a>
+			                    </div>
+			                </div>
+			                <div class="col-md-4">
+			                    <div class="team-player">
+			                        <img src="../assets/img/christian.jpg" alt="Thumbnail Image" class="img-raised img-circle">
+			                        <h4 class="title">Christian Louboutin<br />
+										<small class="text-muted">Designer</small>
+									</h4>
+			                        <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some <a href="#">links</a> for people to be able to follow them outside the site.</p>
+									<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-twitter"></i></a>
+									<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-linkedin"></i></a>
+			                    </div>
+			                </div>
+			                <div class="col-md-4">
+			                    <div class="team-player">
+			                        <img src="../assets/img/kendall.jpg" alt="Thumbnail Image" class="img-raised img-circle">
+			                        <h4 class="title">Kendall Jenner<br />
+										<small class="text-muted">Model</small>
+									</h4>
+			                        <p>You can write here details about one of your team members. You can give more details about what they do. Feel free to add some <a href="#">links</a> for people to be able to follow them outside the site.</p>
+									<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-google-plus"></i></a>
+									<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-youtube-play"></i></a>
+									<a href="#pablo" class="btn btn-simple btn-just-icon btn-default"><i class="fa fa-twitter"></i></a>
+			                    </div>
+			                </div>
+						</div>
+					</div>
+
+	            </div>
+
+
+	        	<div class="section landing-section">
+	                <div class="row">
+	                    <div class="col-md-8 col-md-offset-2">
+	                        <h2 class="text-center title">Work with us</h2>
+							<h4 class="text-center description">Divide details about your product or agency work into parts. Write a few lines about each one and contact us about any further collaboration. We will responde get back to you in a couple of hours.</h4>
+	                        <form class="contact-form">
+	                            <div class="row">
+	                                <div class="col-md-6">
+										<div class="form-group label-floating">
+											<label class="control-label">Your Name</label>
+											<input type="email" class="form-control">
+										</div>
+	                                </div>
+	                                <div class="col-md-6">
+										<div class="form-group label-floating">
+											<label class="control-label">Your Email</label>
+											<input type="email" class="form-control">
+										</div>
+	                                </div>
+	                            </div>
+
+								<div class="form-group label-floating">
+									<label class="control-label">Your Messge</label>
+									<textarea class="form-control" rows="4"></textarea>
+								</div>
+
+	                            <div class="row">
+	                                <div class="col-md-4 col-md-offset-4 text-center">
+	                                    <button class="btn btn-primary btn-raised">
+											Send Message
+										</button>
+	                                </div>
+	                            </div>
+	                        </form>
+	                    </div>
+	                </div>
+
+	            </div>
+	        </div>
+
 		</div>
-	</div>
-
-	<!-- !PAGE CONTENT! -->
-	<div class="w3-main w3-content w3-padding"
-		style="max-width: 1200px; margin-top: 10px">
-
-		<!-- First Photo Grid-->
-		<div class="w3-row-padding w3-padding-16 w3-center" id="food">
-			<h3 class="text-left">인기트립</h3>
-			<div class="w3-quarter">
-				<a href=""><img
-					src="http://www.w3schools.com/w3images/house4.jpg" alt="Sandwich"
-					style="width: 100%"></a>
-				<h3>Sandwich</h3>
-			</div>
-			<div class="w3-quarter">
-				<a href=""><img
-					src="http://www.w3schools.com/w3images/house4.jpg" alt="Steak"
-					style="width: 100%"></a>
-				<h3>Steak</h3>
-			</div>
-			<div class="w3-quarter">
-				<a href=""><img
-					src="http://www.w3schools.com/w3images/house4.jpg" alt="Cherries"
-					style="width: 100%"></a>
-				<h3>Cherries</h3>
-			</div>
-			<div class="w3-quarter">
-				<a href=""><img
-					src="http://www.w3schools.com/w3images/house4.jpg"
-					alt="Pasta and Wine" style="width: 100%"></a>
-				<h3>Pasta and Wine</h3>
-			</div>
-		</div>
-
-		<!-- Second Photo Grid-->
-		<div class="w3-row-padding w3-padding-16 w3-center">
-			<h3 class="text-left">트립</h3>
-			<div class="w3-quarter">
-				<a href=""><img
-					src="http://www.w3schools.com/w3images/house4.jpg" alt="Popsicle"
-					style="width: 100%"></a>
-				<h3>Popsicle</h3>
-			</div>
-			<div class="w3-quarter">
-				<a href=""><img
-					src="http://www.w3schools.com/w3images/house4.jpg" alt="Salmon"
-					style="width: 100%"></a>
-				<h3>Salmon</h3>
-			</div>
-			<div class="w3-quarter">
-				<a href=""><img
-					src="http://www.w3schools.com/w3images/house4.jpg" alt="Sandwich"
-					style="width: 100%"></a>
-				<h3>Sandwich</h3>
-			</div>
-			<div class="w3-quarter">
-				<a href=""><img
-					src="http://www.w3schools.com/w3images/house4.jpg" alt="Croissant"
-					style="width: 100%"></a>
-				<h3>Croissant</h3>
-			</div>
-		</div>
-
-		<hr id="about">
-
-		<!-- About Section -->
-		<div class="w3-container w3-padding-32 w3-center">
-			<h3>About Me, The Food Man</h3>
-			<br> <a href=""><img
-				src="http://www.w3schools.com/w3images/house4.jpg" alt="Me"
-				class="w3-image" style="display: block; margin: auto" width="800"
-				height="533"></a>
-			<div class="w3-padding-32">
-				<h3>
-					<b>I am Who I Am!</b>
-				</h3>
-				<h6>
-					<i>With Passion For Real, Good Food</i>
-				</h6>
-				<p>Just me, myself and I, exploring the universe of unknownment.
-					I have a heart of love and an interest of lorem ipsum and mauris
-					neque quam blog. I want to share my world with you. Praesent
-					tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta
-					lectus vitae, ultricies congue gravida diam non fringilla. Praesent
-					tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta
-					lectus vitae, ultricies congue gravida diam non fringilla.</p>
-			</div>
-		</div>
-
-		<hr>
-
-		<!-- !PAGE CONTENT END! -->
-	</div>
-</div>
-	<c:import url="./module/footer.jsp"></c:import>
+<c:import url="/WEB-INF/views/module/footer.jsp"></c:import>
+</body>
+</html>

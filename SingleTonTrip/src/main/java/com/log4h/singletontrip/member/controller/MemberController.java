@@ -47,7 +47,7 @@ public class MemberController {
 	@RequestMapping(value="login", method=RequestMethod.POST)
 	public ModelAndView login(@RequestParam(value="loginId") String loginId, 
 			@RequestParam(value="loginPw") String loginPw){
-		ModelAndView mv = new ModelAndView("index");
+		ModelAndView mv = new ModelAndView("main");
 		LoginVo loginVo = memberService.login(loginId, loginPw);
 		mv.addObject("sessionId", loginVo.getMemberId());
 		mv.addObject("sessionNm", loginVo.getMemberNm());
@@ -58,7 +58,7 @@ public class MemberController {
 	//로그아웃 처리
 	@RequestMapping(value="logout", method=RequestMethod.GET)
 	public ModelAndView logout(SessionStatus status){
-		ModelAndView mv = new ModelAndView("redirect:index");
+		ModelAndView mv = new ModelAndView("redirect:main");
 		status.setComplete();
 		return mv;	
 	}
@@ -104,7 +104,7 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		int result = memberService.personMemberJoin(personVo, imgFile);
 		if(result>0){
-			mv.setViewName("index");
+			mv.setViewName("main");
 		}else{
 			mv.setViewName("error/error");
 		}
@@ -117,7 +117,7 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		int result = memberService.companyMemberJoin(companyVo, imgFile);
 		if(result>0){
-			mv.setViewName("index");
+			mv.setViewName("main");
 		}else{
 			mv.setViewName("error/error");
 		}
@@ -226,7 +226,7 @@ public class MemberController {
 			@RequestParam(value="memberId") String memberId,
 			@RequestParam(value="memberPw") String memberPw){
 		memberService.memberDrop(memberId, memberPw);
-		ModelAndView mv = new ModelAndView("redirect:index");
+		ModelAndView mv = new ModelAndView("redirect:main");
 		return mv;
 	}
 	 
@@ -257,7 +257,7 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		int result = memberService.personModify(personVo, imgFile);
 		if(result>0){
-			mv.setViewName("test/main2");
+			mv.setViewName("main");
 		}else{
 			mv.setViewName("redirect:error");
 		}
@@ -271,7 +271,7 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		int result = memberService.companyModify(companyVo, imgFile);
 		if(result>0){
-			mv.setViewName("test/main2");
+			mv.setViewName("main");
 		}else{
 			mv.setViewName("redirect:error");
 		}
@@ -294,7 +294,7 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		int result = mailService.SendId(memberNm, memberEmail);
 		if(result>0){
-			mv.setViewName("redirect:index");
+			mv.setViewName("redirect:main");
 		}else{
 			mv.setViewName("redirect:error");
 		}
@@ -320,7 +320,7 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		int result = mailService.SendPw(memberNm, memberEmail, memberId);
 		if(result>0){
-			mv.setViewName("redirect:index");
+			mv.setViewName("redirect:main");
 		}else{
 			mv.setViewName("redirect:error");
 		}
