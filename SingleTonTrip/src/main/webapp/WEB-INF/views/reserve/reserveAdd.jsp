@@ -1,24 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:import url="/WEB-INF/views/module/top.jsp" />
 <body class="profile-page">
 	<c:import url="/WEB-INF/views/module/nav.jsp" />
 	<div class="wrapper">
-		<div class="header header-filter"
-			style="background-image: url('./assets/img/examples/city.jpg');"></div>
+		<div class="header header-filter" style="background-image: url('./assets/img/examples/city.jpg');"></div>
 		<div class="main main-raised">
 			<div class="profile-content">
 				<div class="container-fluid">
 					<!-- row와 row-fluid 차이가 뭘까 -->
-					<div class="row"
-						style="height: 100%; margin-top: 80px; margin-bottom: 80px;">
+					<div class="row" style="height: 100%; margin-top: 80px; margin-bottom: 80px;">
 						<div class="col-md-8 col-md-offset-2">
 							<div class="card card-signup">
 								<!-- 상단 보라색 타이틀 -->
-								<div class="header header-primary text-center"
-									style="height: 80px;">
+								<div class="header header-primary text-center" style="height: 80px;">
 									<h4>방이름</h4>
 								</div>
 								<form method="post" action="reserveInsert">
@@ -26,8 +22,10 @@
 
 										<div class="row-fluid slideanim">
 											<div class="col-sm-12 col-xs-12">
-												체크인<input type="date" value="${reserveCheckinDate }" readonly="readonly" />
-												체크아웃<input type="date" value="${reserveCheckinDate }" />
+												체크인
+												<input name="reserveCheckinDate" type="date" value="${reserveCheckinDate }" readonly="readonly" /> 
+												체크아웃
+												<input name="reserveCheckoutDate"type="date" value="${reserveCheckinDate }" />
 											</div>
 											<div class="col-sm-6 col-xs-12">
 												<div class="panel panel-default text-center">
@@ -40,23 +38,27 @@
 
 														</br>
 														<div class="input-group">
-															<span class="input-group-addon">판매금액</span> <input
-																type="text" class="form-control" name="boardTitle"
-																placeholder="${room.roomNormalPrice }" readonly="readonly"> <span
-																class="input-group-addon"></span>
+															<span class="input-group-addon">판매금액</span> 
+															<input
+																type="text" class="form-control" name=""
+																placeholder="${room.roomNormalPrice }"
+																readonly="readonly"> 
+															<span class="input-group-addon"></span>
 														</div>
 
 														<div class="input-group">
-															<span class="input-group-addon">예약자명</span> <input
+															<span class="input-group-addon">예약자명</span> 
+															<input
 																type="text" class="form-control" name="boardTitle"
-																placeholder="${person.memberNm}" readonly="readonly"><span
-																class="input-group-addon"></span>
+																placeholder="${person.memberNm}" readonly="readonly">
+															<span class="input-group-addon"></span>
 														</div>
 														<div class="input-group">
-															<span class="input-group-addon">휴대전화</span> <input
+															<span class="input-group-addon">휴대전화</span> 
+															<input
 																type="text" class="form-control" name="boardTitle"
-																placeholder="${person.memberPhone }" readonly="readonly"> <span
-																class="input-group-addon"></span>
+																placeholder="${person.memberPhone }" readonly="readonly">
+															<span class="input-group-addon"></span>
 														</div>
 													</div>
 												</div>
@@ -68,27 +70,32 @@
 													</div>
 													<div class="panel-body">
 														<div class="input-group">
-															<span class="input-group-addon">보유 마일리지</span> <input
+															<span class="input-group-addon">보유 마일리지</span> 
+															<input
 																type="text" class="form-control" name="boardTitle"
-																placeholder="${person.personTotalMileage }" readonly="readonly"> <span
-																class="input-group-addon"></span>
+																placeholder="${person.personTotalMileage }"
+																readonly="readonly"> 
+															<span class="input-group-addon"></span>
 														</div>
 														<div class="input-group">
-															<span class="input-group-addon">마일리지 사용</span> <input
-																type="text" class="form-control" name="boardTitle"> <span class="input-group-addon"></span>
+															<span class="input-group-addon">마일리지 사용</span> 
+															<input type="text" class="form-control" name="boardTitle">
+															<span class="input-group-addon"></span>
 														</div>
 														<div class="input-group">
-															<span class="input-group-addon">결제 금액</span> <input
-																type="text" class="form-control" name="boardTitle" readonly="readonly"> <span
-																class="input-group-addon"></span>
+															<span class="input-group-addon">결제 금액</span> 
+															<input
+																type="text" class="form-control" name="boardTitle"
+																readonly="readonly"> 
+															<span class="input-group-addon"></span>
 														</div>
 														<div class="checkbox">
-															<label> <input type="checkbox"
-																name="optionsCheckboxes" checked="checked"> 이용
-																약관 동의
+															<label> 
+																<input type="checkbox" name="optionsCheckboxes" checked="checked"> 
+																이용 약관 동의
 															</label>
 														</div>
-<%-- 
+														<%-- 
 														<div class="input-group">
 															<p>
 																<span class="input-group">Paragraph</span> 노쇼(No-Show :
@@ -127,19 +134,14 @@
  --%>
 
 
-
-
 														</br>
 														<!-- <p>
 															<strong>Endless</strong> Amet
 														</p> -->
 														<button type="submit" class="btn btn-info">결제</button>
 													</div>
-
-
 												</div>
 											</div>
-
 										</div>
 									</div>
 								</form>
