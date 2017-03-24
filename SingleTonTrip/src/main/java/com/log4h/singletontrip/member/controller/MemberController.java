@@ -183,7 +183,8 @@ public class MemberController {
 
 	// 관리자업체회원리스트
 	@RequestMapping(value = "adminCompanyList", method = RequestMethod.GET)
-	public ModelAndView adminCompanyList(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
+	public ModelAndView adminCompanyList(@ModelAttribute("sessionId") String sessionId,
+			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
 			@RequestParam(value = "selectOption", required = false) String selectOption,
 			@RequestParam(value = "selectValue", required = false) String selectValue) {
 		Map<String, Object> map = memberService.companyList(currentPage, selectOption, selectValue);
