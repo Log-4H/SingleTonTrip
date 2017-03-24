@@ -43,8 +43,10 @@
 	JOIN
 		tb_member m
 	ON m.member_id = r.member_id
+	<if test="sessionLevel != 1">
 	WHERE
 		r.member_id = #{sessionId}
+	</if>
 </select>
 
 <!-- 신고리스트 -->
@@ -60,8 +62,10 @@
 		tb_approve_state a
 	ON
 		r.approve_state_cd = a.approve_state_cd
+	<if test="sessionLevel != 1">
 	WHERE
 		r.member_id = #{sessionId}
+	</if>
 	ORDER BY r.report_date
 	ASC LIMIT #{beginRow}, #{pagePerRow}
 </select>
@@ -93,4 +97,6 @@
 	WHERE
 		r.report_no = #{reportNo}
 </select>
+
+
 </mapper>

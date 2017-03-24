@@ -12,7 +12,8 @@ public interface ReportService {
 	//신고유형리스트
 	public List<ReportTypeVo> reportTypeList();
 	//신고리스트
-	public Map<String, Object> reportList(int currentPage, String sessionId);
+	public Map<String, Object> reportList(int currentPage, String sessionId,int sessionLevel);
 	//신고리스트상세보기
 	public ReportVo reportDetail(int reportNo);
+
 }

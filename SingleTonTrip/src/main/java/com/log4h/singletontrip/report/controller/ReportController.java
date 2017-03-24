@@ -57,24 +57,42 @@ public class ReportController {
 	
 	//신고리스트
 	@RequestMapping(value="reportList", method=RequestMethod.GET)
-	public ModelAndView reprotList(@ModelAttribute("sessionId") String sessionId,
+	public ModelAndView reprotList(
+			@ModelAttribute("sessionId") String sessionId,
+			@ModelAttribute("sessionLevel") int sessionLevel,
 			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage){
-		Map<String, Object> map = reportService.reportList(currentPage, sessionId);
-		ModelAndView mv = new ModelAndView("report/reportList");
+		Map<String, Object> map = reportService.reportList(currentPage, sessionId, sessionLevel);
+		ModelAndView mv = new ModelAndView();
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("reportList", map.get("reportList"));
 		mv.addObject("startPage", map.get("startPage"));
 		mv.addObject("pageSize", map.get("pageSize"));
 		mv.addObject("endPage", map.get("endPage"));
 		mv.addObject("lastPage", map.get("lastPage"));
+		if (sessionLevel == 1) {
+			mv.setViewName("report/adminReportList");
+		}else{
+			mv.setViewName("report/reportList");
+		}
+			
 		return mv;
 	}
 		
 	//신고리스트상세보기
 	@RequestMapping(value = "reportDetail", method = RequestMethod.GET)
-	public ModelAndView reportDetail(@RequestParam(value = "reportNo") int reportNo) {
-		ModelAndView mv = new ModelAndView("report/reportDetail");
+	public ModelAndView reportDetail(
+			@ModelAttribute("sessionLevel") int sessionLevel,
+			@RequestParam(value = "reportNo") int reportNo) {
+		ModelAndView mv = new ModelAndView();
 		mv.addObject("reportVo", reportService.reportDetail(reportNo));
+		if(sessionLevel == 1){
+			mv.setViewName("report/adminReportDetail");
+		}else{
+			mv.setViewName("report/reportDetail");
+		}
 		return mv;
 	}
+
+	//신고내용수락&거절
+
 }

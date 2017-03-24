@@ -32,12 +32,15 @@ public class ReportServiceImpl implements ReportService{
 	
 	//신고리스트
 	@Override
-	public Map<String, Object> reportList(int currentPage,String sessionId) {
+	public Map<String, Object> reportList(int currentPage,String sessionId,int sessionLevel) {
 		Map<String, Object> totalCountMap = new HashMap<String, Object>();
+		totalCountMap.put("sessionId", sessionId);
+		totalCountMap.put("sessionLevel", sessionLevel);
         int reportTotalCount = reportDao.reportTotalCount(totalCountMap);
         Paging paging = new Paging();
         Map<String, Object> map = paging.pagingMethod(currentPage, reportTotalCount);
         map.put("sessionId", sessionId);
+        map.put("sessionLevel", sessionLevel);
         List<ReportVo> reportList = reportDao.reportList(map);
         map.put("reportList", reportList);
 		return map;
@@ -48,7 +51,5 @@ public class ReportServiceImpl implements ReportService{
 	public ReportVo reportDetail(int reportNo) {
 		return reportDao.reportDetail(reportNo);
 	}
-
-
 
 }
