@@ -10,6 +10,8 @@ import com.log4h.singletontrip.trip.domain.TripThemeVo;
 import com.log4h.singletontrip.trip.domain.TripVo;
 
 public interface TripDao {
+	//여행토탈카운트
+	public int tripTotalCount(Map<String, Object> map);
 	//여행리스트
 	public List<TripVo> tripList(Map<String, Object> map);
 	//여행상세보기

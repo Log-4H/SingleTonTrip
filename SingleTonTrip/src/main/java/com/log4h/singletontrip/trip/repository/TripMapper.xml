@@ -3,9 +3,37 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="tripMapper">
+<!-- 여행리스트 총 카운트 -->
+<select id="tripTotalCount" parameterType="Map" resultType="int">
+	SELECT
+		COUNT(*)
+	FROM
+		tb_trip t
+	JOIN
+		tb_trip_theme tn
+	ON 
+		t.trip_theme_cd = tn.trip_theme_cd
+	JOIN
+		tb_member m
+	ON 
+		t.person_id = m.member_id
+	JOIN
+		tb_region r
+	ON 
+		t.region_cd = r.region_cd
+	JOIN
+		tb_recruit_state rn
+	ON 
+		t.recruit_state_cd = rn.recruit_state_cd
+	<if test="selectValue != null and selectValue !=''">
+	WHERE
+		${selectOption} LIKE '%${selectValue}%'
+	</if>
+</select>
 <!-- 여행 리스트 -->
 <select id="tripList" parameterType="map" resultType="com.log4h.singletontrip.trip.domain.TripVo">
 	SELECT
+		m.member_img,
 		t.trip_no,
 		t.person_id,
 		t.trip_theme_cd,
@@ -36,6 +64,10 @@
 	ON 
 		t.trip_theme_cd = tn.trip_theme_cd
 	JOIN
+		tb_member m
+	ON 
+		t.person_id = m.member_id
+	JOIN
 		tb_region r
 	ON 
 		t.region_cd = r.region_cd
@@ -45,6 +77,10 @@
 		t.recruit_state_cd = rn.recruit_state_cd
 	WHERE
 		t.trip_delete_date is null
+	<if test="recruitStateCd != null and recruitStateCd !=''">
+	AND		
+		t.recruit_state_cd = 1
+	</if>	
 	<if test="memberId != null and memberId !=''">
 	AND		
 		t.person_id = #{memberId}
@@ -57,9 +93,17 @@
 	AND		
 		t.trip_no = #{tripNo}
 	</if>
+	<if test="selectValue != null and selectValue !=''">
+	AND
+		${selectOption} LIKE '%${selectValue}%'
+	</if>
 	<if test="lastTripRow != null and lastTripRow !=''">
-	ORDER BY trip_reg_date DESC
+	ORDER BY t.trip_reg_date DESC
 	LIMIT 0, #{lastTripRow}
+	</if>
+	<if test="beginRow != null and beginRow !=''">
+	ORDER BY t.trip_reg_date
+	DESC LIMIT #{beginRow}, #{pagePerRow}
 	</if>
 </select>
 <!-- 여행플랜리스트 -->

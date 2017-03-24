@@ -19,7 +19,11 @@ public class TripDaoImpl implements TripDao{
 	private SqlSessionTemplate sqlSession;
 
 	private final String TRIP_NS = "tripMapper.";
-	
+	//여행토탈카운트
+	@Override
+	public int tripTotalCount(Map<String, Object> map){
+		return sqlSession.selectOne(TRIP_NS+"tripTotalCount", map);
+	}
 	//여행리스트
 	@Override
 	public List<TripVo> tripList(Map<String, Object> map) {

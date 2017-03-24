@@ -50,7 +50,7 @@ function roomListAppend(roomList) {
 		html += "<hr>";
 		html += "<h4>객실시설</h4><br>";
 		$.each(roomFacilityList, function(key, value) {
-			html += "<p>"+value.facilityNm+"</p>";
+			html += "<p>"+ value.facilityIcon+" "+value.facilityNm+"</p>";
 		});
 		html += "</div>";
 		html += "</div>";

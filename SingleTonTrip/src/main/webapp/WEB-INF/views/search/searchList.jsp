@@ -179,7 +179,7 @@
 												<c:forEach items="${tripMap.searchTripList}" var="t">
 													<tr>
 														<td>${t.tripThemeNm}</td>
-														<td><a href="pageMain?pageId=${t.personId }">${t.tripTitle}</a></td>
+														<td><a href="tripDetail?tripNo=${t.tripNo}">${t.tripTitle}</a></td>
 														<td><c:if test="${t.regionDo eq t.regionSi }">
 										${t.regionDo}
 										</c:if> <c:if test="${t.regionDo ne t.regionSi }">
