@@ -21,7 +21,7 @@ public interface AdService {
 	public int adRefuse(Map<String,Object>map);
 	public int paybackApply(int adNo);
 	public int paybackCancel(int paymentTargetNo);
-	public Map<String,Object> selectAdList(int currentPage);
+	public Map<String,Object> selectAdList(LoginVo loginVo,int currentPage);
 	public int adImgUpload(AdVo adVo, MultipartFile imgFile);
 	public Map<String,Object> paybackList(LoginVo loginVo,int currentpage);
 	public int payback(Map<String,Object>map);

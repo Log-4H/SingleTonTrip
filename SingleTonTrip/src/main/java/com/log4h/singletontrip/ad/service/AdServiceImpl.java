@@ -52,7 +52,10 @@ public class AdServiceImpl implements AdService{
 		Paging paging = new Paging();
 		int totalCount = adDao.adApplyListCount();
 		Map<String,Object> map = paging.pagingMethod(currentPage, totalCount);
-		map.put("loginVo", loginVo);
+		map.put("beginRow", map.get("beginRow"));
+		map.put("pagePerRow", map.get("pagePerRow"));
+		map.put("memberId", loginVo.getMemberId());
+		map.put("memberLevel", loginVo.getMemberLevel());
 		List<AdVo> adApplyList = adDao.selectAdApplyList(map);
 		map.put("adApplyList", adApplyList);
 		
@@ -61,10 +64,14 @@ public class AdServiceImpl implements AdService{
 	
 	// 광고 리스트
 	@Override
-	public Map<String,Object> selectAdList(int currentPage){
+	public Map<String,Object> selectAdList(LoginVo loginVo,int currentPage){
 		Paging paging = new Paging();
-		int totalCount = adDao.adListCount();
+		int totalCount = adDao.adListCount(loginVo);
 		Map<String,Object> map = paging.pagingMethod(currentPage, totalCount);
+		map.put("beginRow", map.get("beginRow"));
+		map.put("pagePerRow", map.get("pagePerRow"));
+		map.put("memberId", loginVo.getMemberId());
+		map.put("memberLevel", loginVo.getMemberLevel());
 		List<AdVo> adList = adDao.selectAdList(map);
 		map.put("adList", adList);
 		
@@ -103,6 +110,10 @@ public class AdServiceImpl implements AdService{
 		Paging paging = new Paging();
 		int totalCount = adDao.paybackListCount(loginVo);
 		Map<String,Object> map = paging.pagingMethod(currentPage, totalCount);
+		map.put("beginRow", map.get("beginRow"));
+		map.put("pagePerRow", map.get("pagePerRow"));
+		map.put("memberId", loginVo.getMemberId());
+		map.put("memberLevel", loginVo.getMemberLevel());
 		List<PaymentVo> paybackList = adDao.paybackList(map);
 		map.put("paybackList", paybackList);
 		

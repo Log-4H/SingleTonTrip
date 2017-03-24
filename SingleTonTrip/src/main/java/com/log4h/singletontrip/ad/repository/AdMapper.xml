@@ -276,6 +276,9 @@
 		tb_ad
 	WHERE
 		ad_approve_state_cd = 2
+	<if test="memberLevel == 2">
+		AND company_id = #{memberId}
+	</if>
 </select>
 <!-- 광고 리스트 가져오기 -->
 <select id="selectAdList" parameterType="map"
@@ -292,6 +295,9 @@
 		tb_ad
 	WHERE
 		ad_approve_state_cd=2
+	<if test="memberLevel == 2">
+		AND company_id = #{memberId}
+	</if>
 	ORDER BY ad_no
 	DESC LIMIT #{beginRow}, #{pagePerRow}
 </select>

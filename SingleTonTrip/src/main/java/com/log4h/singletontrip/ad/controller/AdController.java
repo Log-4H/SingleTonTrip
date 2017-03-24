@@ -144,9 +144,14 @@ public class AdController {
 	// 광고 리스트
 	@RequestMapping(value="adList")
 	public ModelAndView adList(
-			@RequestParam(value="currentPage", defaultValue="1") int currentPage){
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage,
+			@ModelAttribute("sessionId") String sessionId,
+			@ModelAttribute("sessionLevel") int sessionLevel){
+		LoginVo loginVo = new LoginVo();
+		loginVo.setMemberId(sessionId);
+		loginVo.setMemberLevel(sessionLevel);
 		ModelAndView mv = new ModelAndView();
-		Map<String,Object>map = adService.selectAdList(currentPage);
+		Map<String,Object>map = adService.selectAdList(loginVo,currentPage);
 		mv.addObject("currentPage",currentPage);
 		mv.addObject("adList",map.get("adList"));
 		mv.addObject("startPage",map.get("startPage"));
@@ -195,7 +200,8 @@ public class AdController {
 	
 	// 결제 폼
 	@RequestMapping(value="payAdd", method=RequestMethod.GET)
-	public ModelAndView payAdd(@ModelAttribute("sessionId") String companyId,AdVo adVo){
+	public ModelAndView payAdd(
+			@ModelAttribute("sessionId") String companyId,AdVo adVo){
 		ModelAndView mv = new ModelAndView();
 		Map<String,Object>map = adService.paymentList(companyId);
 		int total = (int) map.get("total");

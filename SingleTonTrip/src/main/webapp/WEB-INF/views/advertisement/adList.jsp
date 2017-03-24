@@ -9,12 +9,8 @@ a.panelFocus a, a:hover, a:focus {
 }
 </style>
 <body class="profile-page">
-	<c:if
-		test="${sessionLevel eq null || sessionLevel ne '1'}">
-		<script type="text/javascript">
-			alert('관리자 전용 페이지 입니다');
-		</script>
-		<c:redirect url="index" />
+	<c:if test="${sessionLevel eq null || sessionLevel ne '1' && sessionLevel ne '2'}">
+		<c:redirect url="main" />
 	</c:if>
 	<c:import url="/WEB-INF/views/module/nav.jsp" />
 	<div class="wrapper">
@@ -23,7 +19,7 @@ a.panelFocus a, a:hover, a:focus {
 		<div class="main main-raised">
 			<div class="profile-content">
 				<div class="container-fluid">
-					<div class="row" style="height: 1400px; margin-top: 80px">
+					<div class="row" style="height: 100%; margin-top: 80px; margin-bottom: 50px;">
 						<div class="col-md-8 col-md-offset-2">
 							<div class="card card-signup">
 								<div class="header header-primary text-center"
@@ -41,7 +37,9 @@ a.panelFocus a, a:hover, a:focus {
 												<th>이미지파일</th>
 												<th>유지기간</th>
 												<th>승인자</th>
-												<th></th>
+												<c:if test="${sessionLevel == 1}">
+													<th></th>
+												</c:if>
 											</tr>
 										</thead>
 										<c:forEach var="a" items="${adList}">
@@ -52,13 +50,15 @@ a.panelFocus a, a:hover, a:focus {
 													<td><a href="<%=request.getContextPath() %>/images/${a.adImg}" target="_blank">${a.adImg}</a></td>
 													<td>${a.adRegDate}~${a.adEndDate}</td>
 													<td>${a.adminId}</td>
-													<td>
-														<form action="imgUpload" method="post" enctype="multipart/form-data">
-															<input type="file" name="imgFile">
-															<input type="hidden" name="adNo" value="${a.adNo}">
-															<input type="submit" value="등록">
-														</form>
-													</td>
+													<c:if test="${sessionLevel == 1}">
+														<td>
+															<form action="imgUpload" method="post" enctype="multipart/form-data">
+																<input type="file" name="imgFile">
+																<input type="hidden" name="adNo" value="${a.adNo}">
+																<input type="submit" value="등록">
+															</form>
+														</td>
+													</c:if>
 												</tr>
 											</tbody>
 										</c:forEach>

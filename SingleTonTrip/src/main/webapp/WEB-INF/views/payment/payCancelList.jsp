@@ -12,16 +12,14 @@ a.panelFocus a, a:hover, a:focus {
 <body class="profile-page">
 	<c:import url="/WEB-INF/views/module/nav.jsp" />
 	<div class="wrapper">
-		<div class="header header-filter"
-			style="background-image: url('./assets/img/examples/city.jpg');"></div>
+		<div class="header header-filter" style="background-image: url('./assets/img/examples/city.jpg');"></div>
 		<div class="main main-raised">
 			<div class="profile-content">
 				<div class="container-fluid">
-					<div class="row" style="height: 1400px; margin-top: 80px">
+					<div class="row" style="height: 100%; margin-top: 80px; margin-bottom: 50px;">
 						<div class="col-md-8 col-md-offset-2">
 							<div class="card card-signup">
-								<div class="header header-primary text-center"
-									style="height: 70px;">
+								<div class="header header-primary text-center" style="height: 70px;">
 									<h4>환불 리스트</h4>
 								</div>
 								<div class="content">

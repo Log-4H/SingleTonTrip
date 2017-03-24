@@ -68,6 +68,8 @@ public class AdDaoImpl implements AdDao{
 		return sqlSession.update(AD_NS+"paybackApply",adNo);
 	}
 	
+	// 환불리스트 카운트
+	@Override
 	public int paybackListCount(LoginVo loginVo){
 		return sqlSession.selectOne(AD_NS+"paybackListCount",loginVo);
 	}
@@ -128,8 +130,8 @@ public class AdDaoImpl implements AdDao{
 	
 	// 광고 리스트 카운트 가져오기
 	@Override
-	public int adListCount(){
-		return sqlSession.selectOne(AD_NS+"adListCount");
+	public int adListCount(LoginVo loginVo){
+		return sqlSession.selectOne(AD_NS+"adListCount",loginVo);
 	}
 	
 	// 광고 리스트

@@ -8,7 +8,7 @@ function payback_click(){
 		return false;
 	}
 }
-// 취소 버튼 클립
+// 취소 버튼 클릭
 function paybackCancel_click(){
 	var check = confirm('취소 하시겠습니까?');
 	if(check == true){

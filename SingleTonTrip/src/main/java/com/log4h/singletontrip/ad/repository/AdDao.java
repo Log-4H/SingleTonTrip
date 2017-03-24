@@ -39,6 +39,6 @@ public interface AdDao {
 	public List<AdVo> selectUseAdSearch();
 	public List<AdVo> mainAdCount();
 	public int adApplyListCount();
-	public int adListCount();
+	public int adListCount(LoginVo loginVo);
 	public int paybackListCount(LoginVo loginVo);
 }
