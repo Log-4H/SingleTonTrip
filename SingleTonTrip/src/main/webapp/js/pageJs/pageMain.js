@@ -28,7 +28,7 @@ $(document).ready(function() {
 				$("#profileImg").attr("src", profileImg);
 				$("#profileImg").attr("src", profileImg);
 				html += "<h3 class='title'>"+ person.memberNm + "</h3>";
-				html += rate(60);
+				html += rate(person.memberEvaluationRating * 10)+" <strong>"+person.memberEvaluationRating+"</strong>";
 				html += "<h6>" + person.personBirth + "</h6>";
 				html += "<h6>" + person.personGender + "</h6>";
 				html += "<h6>" + person.memberEmail + "</h6>";
@@ -58,7 +58,7 @@ $(document).ready(function() {
 				$("#profileImg").attr("src", profileImg);
 				$("#profileImg").attr("src", profileImg);
 				html += "<h3 class='title'>" + company.companyNm +"</h3>";
-				html += rate(60);
+				html += rate(company.memberEvaluationRating * 10) +" <strong>"+company.memberEvaluationRating+"</strong>";
 				html += "<h6>" + company.memberNm + "</h6>";
 				html += "<h6>" + company.companyTypeNm + "</h6>";
 				html += "<h6>" + company.memberPhone + "</h6>";

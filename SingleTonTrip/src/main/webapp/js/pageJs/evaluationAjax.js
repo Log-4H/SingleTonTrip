@@ -125,15 +125,16 @@ function evaluationListHtml(evaluationList, pageLevel){
 		html += "<div class='col-sm-8'>";
 		html += "<div>";
 		html += "<p align='right' style='font-size : 70%;'>";
-		if(pageLevel == 2){
-			html += item.companyEvaluationRegDate;
-		}else if(pageLevel ==3){
-			html += item.personEvaluationRegDate;
-		}
+		
 		html += "</p>";
 		html += "</div>";
 		html += "<div align='left'>";
 		html += rate(rating);
+		if(pageLevel == 2){
+			html += " <strong>"+item.companyEvaluationRating+"</strong>";
+		}else if(pageLevel ==3){
+			html += " <strong>"+item.personEvaluationRating+"</strong>";
+		}
 		html += "<br></div>";
 		html += "<div align='left'><br>";
 		html += "<p align='left'>";

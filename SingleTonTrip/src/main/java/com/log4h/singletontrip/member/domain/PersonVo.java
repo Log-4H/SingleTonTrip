@@ -21,6 +21,7 @@ public class PersonVo {
 	private int personTotalMileage;//개인회원총마일리지
 	private int friendState;//친구상태
 	private String memberImg;//멤버이미지
+	private double memberEvaluationRating;
 	
 	public String getMemberImg() {
 		return memberImg;
@@ -141,6 +142,13 @@ public class PersonVo {
 	}
 	public void setNewPw(String newPw) {
 		this.newPw = newPw;
+	}
+	
+	public double getMemberEvaluationRating() {
+		return memberEvaluationRating;
+	}
+	public void setMemberEvaluationRating(double memberEvaluationRating) {
+		this.memberEvaluationRating = memberEvaluationRating;
 	}
 	@Override
 	public String toString() {

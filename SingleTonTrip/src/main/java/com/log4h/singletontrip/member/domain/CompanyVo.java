@@ -22,7 +22,7 @@ public class CompanyVo {
 	private String memberDropDate;//탈퇴날짜
 	private String memberDropReason;//탈퇴이유
 	private String memberImg;//이미지
-
+	private double memberEvaluationRating;
 	
 	public String getCompanyNm() {
 		return companyNm;
@@ -150,6 +150,13 @@ public class CompanyVo {
 	}
 	public void setNewPw(String newPw) {
 		this.newPw = newPw;
+	}
+	
+	public double getMemberEvaluationRating() {
+		return memberEvaluationRating;
+	}
+	public void setMemberEvaluationRating(double memberEvaluationRating) {
+		this.memberEvaluationRating = memberEvaluationRating;
 	}
 	@Override
 	public String toString() {
