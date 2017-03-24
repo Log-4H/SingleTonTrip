@@ -82,6 +82,7 @@
 																type="button">취소</button></a></td>
 												</tr>
 											</tbody>
+											<input type="hidden" name="adNo" value="${list.adNo}">
 										</c:forEach>
 									</table>
 									<hr class="w3-clear">

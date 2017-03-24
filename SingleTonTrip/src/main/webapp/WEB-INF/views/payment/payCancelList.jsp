@@ -8,6 +8,27 @@ a.panelFocus a, a:hover, a:focus {
 	color: black;
 }
 </style>
+<script>
+	function payback_click(){
+		var check = confirm('환불 하시겠습니까?');
+		if(check == true){
+			document.form.submit();
+			alert('환불 되었습니다');
+		} else {
+			return false;
+		}
+	}
+	
+	function paybackCancel_click(){
+		var check = confirm('취소 하시겠습니까?');
+		if(check == true){
+			document.form.submit();
+			alert('취소 되었습니다');
+		} else {
+			return false;
+		}
+	}
+</script>
 <body class="profile-page">
 	<c:import url="/WEB-INF/views/module/nav.jsp" />
 	<div class="wrapper">
@@ -50,9 +71,11 @@ a.panelFocus a, a:hover, a:focus {
 													<td>${p.paymentStateNm}</td>
 													<td>
 														<c:if test="${p.paymentPrice > 0}">
-															<a href="payback?memberId=${p.memberId}&paymentTotalPrice=${p.paymentTotalPrice}&paymentTargetNo=${p.paymentTargetNo}">환불</a>/
+															<a href="payback?memberId=${p.memberId}&paymentTotalPrice=${p.paymentTotalPrice}&paymentTargetNo=${p.paymentTargetNo}" onclick="payback_click();return false;">환불</a>/
 														</c:if>
-														<a href="paybackCancel?paymentTargetNo=${p.paymentTargetNo}">취소</a>
+														<c:if test="${p.paymentStateNm != '환불완료'}">
+															<a href="paybackCancel?paymentTargetNo=${p.paymentTargetNo}" onclick="paybackCancel_click();return false;">취소</a>
+														</c:if>
 													</td>
 												</tr>
 											</tbody>

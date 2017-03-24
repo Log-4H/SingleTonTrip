@@ -38,7 +38,7 @@
 		ad_content,
 		ad_img,
 		ad_apply_date,
-		approve_state_nm as approveStateNm,
+		approve_state_nm,
 		payment_finish_date
 	FROM
 		tb_ad
@@ -50,6 +50,8 @@
 		payment_target_no = ad_no
 	WHERE
 		ad_approve_state_cd = 1
+	AND
+		ad_approve_state_cd = approve_state_cd
 	<if test="memberLevel == 2">
 		AND member_id = #{memberId}
 	</if>
@@ -418,10 +420,12 @@
 		tb_payment
 	SET
 		payment_state_cd=2,
-		payment_price=#{total},
+		payment_price = #{total},
 		payment_finish_date=now()
 	WHERE
-		member_id=#{companyId}
+		member_id = #{companyId}
+	AND
+		payment_target_no = #{adNo}
 </update>
 <!-- 스케줄러 -->
 <!-- 기간 지난 광고 내리기 -->
