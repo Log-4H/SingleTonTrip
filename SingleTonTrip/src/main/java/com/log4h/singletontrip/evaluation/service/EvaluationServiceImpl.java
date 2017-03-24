@@ -68,12 +68,13 @@ public class EvaluationServiceImpl implements EvaluationService {
 			personEvaluationVo.setPersonEvaluationRating(evaluationAddRating);
 			addResult = evaluationDao.personEvaluationAdd(personEvaluationVo);
 			if(addResult>0){
-				totalCount = evaluationDao.companyEvaluationCount(pageId);
+				totalCount = evaluationDao.personEvaluationCount(pageId);
 				evaluationRating = evaluationDao.selectEvaluationRating(pageId);
 				updateRating = (evaluationRating * (totalCount-1) + evaluationAddRating)/totalCount;
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("pageId", pageId);
 				map.put("updateRating", updateRating);
+				result = evaluationDao.updateEvaluationRating(map);
 			}
 		}
 		return result;

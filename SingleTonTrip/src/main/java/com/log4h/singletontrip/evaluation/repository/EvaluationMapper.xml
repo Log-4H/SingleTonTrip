@@ -113,9 +113,9 @@
 	ON
 		t.trip_no = g.trip_no
 	WHERE
-		g.person_id = #{memberId}
+		g.person_id = #{pageId}
 	AND
-		t.person_id = #{pageId}
+		t.person_id = (#{pageId} or #{memberId})
 </select>
 <!-- 업체 평가 등록 -->
 <insert id="companyEvaluationAdd" parameterType="com.log4h.singletontrip.evaluation.domain.CompanyEvaluationVo">
@@ -136,6 +136,25 @@
 		now()
 	)
 </insert>
+<!-- 개인 평가 등록 -->
+<insert id="personEvaluationAdd" parameterType="com.log4h.singletontrip.evaluation.domain.PersonEvaluationVo">		 
+	INSERT INTO tb_person_evaluation(
+		trip_no,		
+		member_id,		
+		person_id,		
+		person_evaluation_rating,		
+		person_evaluation_content,		
+		person_evaluation_reg_date		
+	)		
+	VALUES(		
+		#{tripNo},		
+		#{memberId},		
+		#{personId},		
+		#{personEvaluationRating},		
+		#{personEvaluationContent},		
+		now()		
+	)		
+ </insert>
 <!-- 업체 평가 횟수 조회 -->
 <select id="companyEvaluationCount" parameterType="String" resultType="int">
 	SELECT
