@@ -11,6 +11,8 @@ import com.log4h.singletontrip.trip.domain.TripVo;
 public interface TripService {
 	//여행리스트
 	public List<TripVo> tripList(String memberId, int lastTripRow);
+	//navbar 여행리스트
+	public Map<String,Object> tripList(String selectOption, String selectValue, int currentPage);
 	//여행상세보기
 	public Map<String, Object> tripView(String memberId, int tripNo);
 	//여행등록 폼 요청

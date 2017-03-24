@@ -30,6 +30,22 @@ public class TripServiceImpl implements TripService{
 		List<TripVo> tripList = tripDao.tripList(map);
 		return tripList;
 	}
+	//여행리스트
+	@Override
+	public Map<String,Object> tripList(String selectOption, String selectValue, int currentPage) {
+		Map<String, Object> totalCountMap = new HashMap<String, Object>();
+		totalCountMap.put("selectOption", selectOption);
+		totalCountMap.put("selectValue", selectValue);
+        int tripTotalCount = tripDao.tripTotalCount(totalCountMap);
+        Paging paging = new Paging();
+        Map<String, Object> map = paging.pagingMethod(currentPage, tripTotalCount);
+        map.put("selectOption", selectOption);
+        map.put("selectValue", selectValue);
+        map.put("recruitStateCd", 1);
+        List<TripVo> tripList = tripDao.tripList(map);
+        map.put("tripList", tripList);
+		return map;
+	}
 	//여행상세보기
 	@Override	
 	public Map<String, Object> tripView(String memberId, int tripNo) {

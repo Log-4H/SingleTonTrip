@@ -3,6 +3,7 @@ package com.log4h.singletontrip.trip.domain;
 public class TripVo {
 	private int tripNo;
 	private String personId;
+	private String memberImg;
 	private int tripThemeCd; 
 	private String tripThemeNm; 
 	private int regionCd;
@@ -35,6 +36,12 @@ public class TripVo {
 	}
 	public void setPersonId(String personId) {
 		this.personId = personId;
+	}
+	public String getMemberImg() {
+		return memberImg;
+	}
+	public void setMemberImg(String memberImg) {
+		this.memberImg = memberImg;
 	}
 	public int getTripThemeCd() {
 		return tripThemeCd;
@@ -164,14 +171,16 @@ public class TripVo {
 	}
 	@Override
 	public String toString() {
-		return "TripVo [tripNo=" + tripNo + ", personId=" + personId + ", tripThemeCd=" + tripThemeCd + ", tripThemeNm="
-				+ tripThemeNm + ", regionCd=" + regionCd + ", regionDo=" + regionDo + ", regionSi=" + regionSi
-				+ ", recruitStateCd=" + recruitStateCd + ", recruitStateNm=" + recruitStateNm + ", tripTitle="
-				+ tripTitle + ", tripContent=" + tripContent + ", tripPresentMember=" + tripPresentMember
-				+ ", tripMaxMember=" + tripMaxMember + ", tripTag=" + tripTag + ", tripStartDate=" + tripStartDate + ", tripEndDate=" + tripEndDate + ", tripPerPrice=" + tripPerPrice
+		return "TripVo [tripNo=" + tripNo + ", personId=" + personId + ", memberImg=" + memberImg + ", tripThemeCd="
+				+ tripThemeCd + ", tripThemeNm=" + tripThemeNm + ", regionCd=" + regionCd + ", regionDo=" + regionDo
+				+ ", regionSi=" + regionSi + ", recruitStateCd=" + recruitStateCd + ", recruitStateNm=" + recruitStateNm
+				+ ", tripTitle=" + tripTitle + ", tripContent=" + tripContent + ", tripPresentMember="
+				+ tripPresentMember + ", tripMaxMember=" + tripMaxMember + ", tripTag=" + tripTag + ", tripStartDate="
+				+ tripStartDate + ", tripEndDate=" + tripEndDate + ", tripPerPrice=" + tripPerPrice
 				+ ", tripTotalPrice=" + tripTotalPrice + ", tripRecruitStartDate=" + tripRecruitStartDate
 				+ ", tripRecruitEndDate=" + tripRecruitEndDate + ", tripRegDate=" + tripRegDate + ", tripModifyDate="
 				+ tripModifyDate + ", tripDeleteDate=" + tripDeleteDate + "]";
 	}
 
+	
 }

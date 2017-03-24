@@ -32,6 +32,23 @@ public class TripController {
 		mv.addObject("tripList", tripList);
 		return mv;	
 	}
+	//여행 리스트
+	@RequestMapping(value="mainTripList")
+	public ModelAndView mainTripList(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
+			@RequestParam(value = "selectOption", required = false) String selectOption,
+			@RequestParam(value = "selectValue", required = false) String selectValue){
+		Map<String, Object> map = tripService.tripList(selectOption, selectValue, currentPage);
+		ModelAndView mv = new ModelAndView("trip/tripList");
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("selectOption", selectOption);
+		mv.addObject("selectValue", selectValue);
+		mv.addObject("tripList", map.get("tripList"));
+		mv.addObject("startPage", map.get("startPage"));
+		mv.addObject("pageSize", map.get("pageSize"));
+		mv.addObject("endPage", map.get("endPage"));
+		mv.addObject("lastPage", map.get("lastPage"));
+		return mv;	
+	}
 	//여행 상세보기
 	@RequestMapping(value="tripView")
 	public ModelAndView tripView(@ModelAttribute("pageId") String pageId,

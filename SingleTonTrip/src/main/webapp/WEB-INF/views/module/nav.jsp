@@ -22,12 +22,8 @@
 		                   Singleton Trip
 						</div>
 		            </div>
-		             </a>
-		            
-
-					
+		             </a>	
  	  	</div>
-		
        	<div class="collapse navbar-collapse" id="navigation-index">
        		<ul class="nav navbar-nav navbar-right">
        		<li>
@@ -41,7 +37,7 @@
 			<c:if test="${sessionId eq null }">	
 				<li><a href="intro"><i class="material-icons">bookmark_border</i>소개</a></li>
 				<li><a href="companyList"><i class="material-icons">business</i>숙소</a></li>
-				<li><a href="#tour"><i class="material-icons">flight_takeoff</i>여행</a></li>
+				<li><a href="mainTripList"><i class="material-icons">flight_takeoff</i>여행</a></li>
 			    <li><a href="login"> <!-- id="myBtn" --> <i class="material-icons">input</i>로그인</a></li>
         		<li><a href="joinBegin"><i class="material-icons">assignment_ind</i>회원가입</a></li>
 				<li><a href="#"><i class="material-icons">headset_mic</i>고객센터</a></li>
@@ -97,7 +93,7 @@
 						</ul>
 				</li>
 				<li><a href="companyList"><i class="material-icons">business</i>숙소</a></li>
-				<li><a href="#tour"><i class="material-icons">flight_takeoff</i>여행</a></li>
+				<li><a href="mainTripList"><i class="material-icons">flight_takeoff</i>여행</a></li>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="material-icons">person_add</i>친구</a>
 						<ul class="dropdown-menu">
@@ -128,7 +124,7 @@
 						</ul>
 				</li>
 				<li><a href="companyList"><i class="material-icons">business</i>숙소</a></li>
-				<li><a href="#tour"><i class="material-icons">flight_takeoff</i>여행</a></li>
+				<li><a href="mainTripList"><i class="material-icons">flight_takeoff</i>여행</a></li>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="material-icons">person_add</i>친구</a>
 						<ul class="dropdown-menu">
