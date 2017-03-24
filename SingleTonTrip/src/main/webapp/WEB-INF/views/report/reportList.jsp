@@ -32,27 +32,25 @@
 											</thead>
 											
 											<tbody>
-												<c:forEach items="${reportList}" var="r">
+												<c:forEach items="${reportList}" var="r" varStatus="i">
 													<tr>
-														<td></td>
-														<td></td>
-														<td></td>
-															<c:if test="${sessionId ne p.memberId and p.friendState eq 0}">
-																<td></td>
-															</c:if>
+														<td>${i.index}</td>
+														<td><a href="<c:url value='reportDetail?reportNo=${r.reportNo}'/>">${r.reportTitle}</a></td>
+														<td>${r.reportDate}</td>
+														<td>${r.approveStateNm}</td>
 													</tr>
 												</c:forEach>
 											</tbody>
 										</table>
 										<div align="center">
 											<c:if test="${startPage>1}">
-												<a href="<c:url value='reportList?currentPage=${startPage-pageSize}&selectOption=${selectOption}&selectValue=${selectValue}'/>">prev</a>
+												<a href="<c:url value='reportList?currentPage=${startPage-pageSize}'/>">prev</a>
 											</c:if>
 											<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
-												<a href="<c:url value='reportList?currentPage=${i}&selectOption=${selectOption}&selectValue=${selectValue}'/>">${i}</a>
+												<a href="<c:url value='reportList?currentPage=${i}'/>">${i}</a>
 											</c:forEach>
 											<c:if test="${endPage ne lastPage}">
-												<a href="<c:url value='reportList?currentPage=${startPage+pageSize}&selectOption=${selectOption}&selectValue=${selectValue}'/>">next</a>
+												<a href="<c:url value='reportList?currentPage=${startPage+pageSize}'/>">next</a>
 											</c:if>
 										</div>
 									</div>

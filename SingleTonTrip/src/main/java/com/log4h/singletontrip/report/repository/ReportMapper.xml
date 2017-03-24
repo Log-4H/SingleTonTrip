@@ -5,4 +5,92 @@
 <mapper namespace="reportMapper">
 
 <!-- 신고하기 -->
+<insert id="reportAdd" parameterType="com.log4h.singletontrip.report.domain.ReportVo">
+	INSERT INTO tb_report(
+		report_id,
+		member_id,
+		report_type_cd,
+		report_title,
+		report_content,
+		report_date
+		)
+	VALUES
+		(
+		#{reportId},
+		#{memberId},
+		#{reportTypeCd},
+		#{reportTitle},
+		#{reportContent},
+		NOW()
+		)
+</insert>
+
+<!-- 신고유형리스트 가져오기 -->
+<select id="reportTypeList" resultType="com.log4h.singletontrip.report.domain.ReportTypeVo">
+	SELECT
+		report_type_cd,
+		report_type_nm
+	FROM
+		tb_report_type
+</select>
+
+<!-- 신고리스트 총 카운트 -->
+<select id="reportTotalCount" parameterType="Map" resultType="int">
+	SELECT
+		COUNT(*)
+	FROM
+		tb_report r
+	JOIN
+		tb_member m
+	ON m.member_id = r.member_id
+	WHERE
+		r.member_id = #{sessionId}
+</select>
+
+<!-- 신고리스트 -->
+<select id="reportList" parameterType="Map" resultType="com.log4h.singletontrip.report.domain.ReportVo">
+	SELECT
+		r.report_no,
+		r.report_title,
+		r.report_date,
+		a.approve_state_nm
+	FROM
+		tb_report r
+	JOIN
+		tb_approve_state a
+	ON
+		r.approve_state_cd = a.approve_state_cd
+	WHERE
+		r.member_id = #{sessionId}
+	ORDER BY r.report_date
+	ASC LIMIT #{beginRow}, #{pagePerRow}
+</select>
+
+<!-- 신고리스트상세보기 -->
+<select id="reportDetail" parameterType="int" resultType="com.log4h.singletontrip.report.domain.ReportVo">
+	SELECT
+		r.report_no,
+		r.report_id,
+		r.member_id,
+		t.report_type_nm,
+		r.report_title,
+		r.report_content,
+		r.report_date,
+		a.approve_state_nm,
+		r.report_approve_date,
+		r.report_approve_reason,
+		r.admin_id
+	FROM
+		tb_report r
+	JOIN
+		tb_approve_state a
+	ON
+		r.approve_state_cd = a.approve_state_cd
+	JOIN
+		tb_report_type t
+	ON
+		r.report_type_cd = t.report_type_cd 
+	WHERE
+		r.report_no = #{reportNo}
+</select>
 </mapper>

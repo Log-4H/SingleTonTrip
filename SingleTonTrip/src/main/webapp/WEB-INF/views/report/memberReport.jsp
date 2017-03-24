@@ -5,7 +5,7 @@
 <body class="profile-page">
 	<c:import url="/WEB-INF/views/module/nav.jsp" />
 	<div class="wrapper">
-		<div class="header header-filter"></div>
+		<div class="header header-filter" style="background-image: url('./assets/img/examples/city.jpg');"></div>
 		<div class="main main-raised">
 			<div class="profile-content">
 				<div class="container-fluid">
@@ -20,21 +20,33 @@
 										</br>
 										<div class="input-group">
 											<span class="input-group-addon"></span>
-											<select name="boardCate.boardCateCd">
+											<select name="reportTypeList.reportTypeCd">
 												<option value="#">::선택::</option>
-												<c:forEach items="${faqCate}" var="f" begin="2" end="3">
-													<option value="${f.boardCateCd}">${f.boardCateNm}</option>
+												<c:forEach items="${reportTypeList}" var="r">
+													<option value="${r.reportTypeCd}">${r.reportTypeNm}</option>
 												</c:forEach>
 											</select>
 										</div>
 
 										<div class="input-group">
 											<span class="input-group-addon"></span>
-											<input type="text" class="form-control" name="boardTitle" placeholder="title">
+											<c:choose>
+											<c:when test="${reportId ne null}">
+											<input type="text" class="form-control" name="reportId" value="${reportId }" readonly>
+											</c:when>
+											<c:otherwise>
+											<input type="text" class="form-control" name="reportId" placeholder="신고대상">
+											</c:otherwise>
+											</c:choose>
+										</div>
+
+										<div class="input-group">
+											<span class="input-group-addon"></span>
+											<input type="text" class="form-control" name="reportTitle" placeholder="title">
 										</div>
 										<div class="input-group">
 											<span class="input-group-addon"></span>
-											<textarea class="form-control" rows="10" name="boardContent" style="resize: none;" placeholder="content" ></textarea>
+											<textarea class="form-control" rows="10" name="reportContent" style="resize: none;" placeholder="content" ></textarea>
 										</div>
 									</div>
 									<div class="footer text-center">
