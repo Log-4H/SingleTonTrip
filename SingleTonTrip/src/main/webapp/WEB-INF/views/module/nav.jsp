@@ -35,7 +35,6 @@
 					</form>
        		</li>
 			<c:if test="${sessionId eq null }">	
-				<li><a href="intro"><i class="material-icons">bookmark_border</i>소개</a></li>
 				<li><a href="companyList"><i class="material-icons">business</i>숙소</a></li>
 				<li><a href="mainTripList"><i class="material-icons">flight_takeoff</i>여행</a></li>
 			    <li><a href="login"> <!-- id="myBtn" --> <i class="material-icons">input</i>로그인</a></li>

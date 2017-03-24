@@ -45,7 +45,7 @@ $(document).ready(function() {
 						<h1 class="title">SingleTon Trip</h1>
 	                    <h4>테스트중</h4>
 	                    <br />
-	                    <a href="" class="btn btn-danger btn-raised btn-lg">
+	                    <a href="intro" class="btn btn-danger btn-raised btn-lg">
 							<i class="fa fa-play"></i> 소개로
 						</a>
 					</div>
