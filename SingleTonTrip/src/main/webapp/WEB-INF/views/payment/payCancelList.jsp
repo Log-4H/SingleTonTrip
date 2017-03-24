@@ -3,32 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:import url="/WEB-INF/views/module/top.jsp" />
+<script src="<c:url value='/js/payCancel.js'/>"></script>
 <style>
 a.panelFocus a, a:hover, a:focus {
 	color: black;
 }
 </style>
-<script>
-	function payback_click(){
-		var check = confirm('환불 하시겠습니까?');
-		if(check == true){
-			document.form.submit();
-			alert('환불 되었습니다');
-		} else {
-			return false;
-		}
-	}
-	
-	function paybackCancel_click(){
-		var check = confirm('취소 하시겠습니까?');
-		if(check == true){
-			document.form.submit();
-			alert('취소 되었습니다');
-		} else {
-			return false;
-		}
-	}
-</script>
 <body class="profile-page">
 	<c:import url="/WEB-INF/views/module/nav.jsp" />
 	<div class="wrapper">
