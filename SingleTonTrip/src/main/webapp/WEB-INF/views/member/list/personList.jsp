@@ -49,10 +49,10 @@
 															<img src="./images/${p.memberImg}" class="img-rounded" width="100" height="100">
 														</c:when>
 														<c:when test="${p.personGender == 'M'}">
-															<img src="./images/Male.png" class="img-rounded" width="100" height="100">
+															<img src="./assets/img/Male.png" class="img-rounded" width="100" height="100">
 														</c:when>
 														<c:when test="${p.personGender == 'F'}">
-															<img src="./images/Female.png" class="img-rounded" width="100" height="100">
+															<img src="./assets/img/Female.png" class="img-rounded" width="100" height="100">
 														</c:when>
 														</c:choose>
 														</td>

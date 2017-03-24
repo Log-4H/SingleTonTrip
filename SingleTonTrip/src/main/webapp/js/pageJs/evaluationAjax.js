@@ -115,9 +115,9 @@ function evaluationListHtml(evaluationList, pageLevel){
 		if(item.memberImg != null){
 			html += "./images/"+ item.memberImg+"'";
 		}else if(item.personGender == 'M'){
-			html += "./images/Male.png'";
+			html += "./assets/img/Male.png'";
 		}else if(item.personGender == 'F'){
-			html += "./images/Female.png'";
+			html += "./assets/img/Female.png'";
 		}
 		html += " style='max-width: 150px; max-height: 150px;' class='img-rounded img-responsive'>";
 		html += "</a>"

@@ -51,7 +51,7 @@
 														<td><img src="./images/${c.memberImg}" class="img-rounded" width="100" height="100"></td>
 														</c:when>
 														<c:otherwise>
-														<td><img src="./images/Company.jpg" class="img-rounded" width="100" height="100"></td>
+														<td><img src="./assets/img/Company.jpg" class="img-rounded" width="100" height="100"></td>
 														</c:otherwise>
 														</c:choose>
 														<td><a href="pageMain?pageId=${c.memberId}">${c.memberId}</a></td>

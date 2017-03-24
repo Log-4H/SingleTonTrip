@@ -28,7 +28,8 @@
 		rf.room_facility_no,
 		rf.room_no,
 		rf.facility_cd,
-		f.facility_nm
+		f.facility_nm,
+		f.facility_icon
 	FROM
 		tb_room_facility rf
 	JOIN

@@ -38,7 +38,7 @@
 																	class="img-rounded" width="100" height="100"></td>
 															</c:when>
 															<c:otherwise>
-																<td><img src="./images/Male.png"
+																<td><img src="./assets/img/Male.png"
 																	class="img-rounded" width="100" height="100"></td>
 															</c:otherwise>
 														</c:choose>

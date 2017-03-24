@@ -5,6 +5,7 @@ public class RoomFacilityVo {
 	private int roomNo;
 	private int facilityCd;
 	private String facilityNm;
+	private String facilityIcon;
 	public int getRoomFacilityNo() {
 		return roomFacilityNo;
 	}
@@ -28,6 +29,13 @@ public class RoomFacilityVo {
 	}
 	public void setFacilityNm(String facilityNm) {
 		this.facilityNm = facilityNm;
+	}
+	
+	public String getFacilityIcon() {
+		return facilityIcon;
+	}
+	public void setFacilityIcon(String facilityIcon) {
+		this.facilityIcon = facilityIcon;
 	}
 	@Override
 	public String toString() {

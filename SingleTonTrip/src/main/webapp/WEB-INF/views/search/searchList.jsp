@@ -41,11 +41,11 @@
 																	class="img-rounded" width="100" height="100"></td>
 															</c:when>
 															<c:when test="${p.personGender == 'M'}">
-																<td><img src="./images/Male.png"
+																<td><img src="./assets/img/Male.png"
 																	class="img-rounded" width="100" height="100"></td>
 															</c:when>
 															<c:when test="${p.personGender == 'F'}">
-																<td><img src="./images/Female.png"
+																<td><img src="./assets/img/Female.png"
 																	class="img-rounded" width="100" height="100"></td>
 															</c:when>
 														</c:choose>
@@ -116,7 +116,7 @@
 																	class="img-rounded" width="100" height="100"></td>
 															</c:when>
 															<c:otherwise>
-																<td><img src="./images/Company.jpg"
+																<td><img src="./assets/img/Company.jpg"
 																	class="img-rounded" width="100" height="100"></td>
 															</c:otherwise>
 														</c:choose>

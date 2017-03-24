@@ -332,7 +332,7 @@ function postCommentAppend(postNo, postCommentList) {
 		if(item.memberImg != null){
 			html += "./images/"+ item.memberImg+"'";
 		}else{
-			html += "./images/Male.png'";
+			html += "./assets/img/Male.png'";
 		}
 		html += " style='max-width: 50px; max-height: 50px;' class='img-rounded img-responsive'>";
 		html += "</td>";

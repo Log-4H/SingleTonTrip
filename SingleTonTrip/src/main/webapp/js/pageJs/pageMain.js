@@ -21,9 +21,9 @@ $(document).ready(function() {
 				if (person.memberImg != null) {
 					profileImg = "./images/" + person.memberImg;
 				} else if (person.personGender == "F") {
-					profileImg = "./images/Female.png";
+					profileImg = "./assets/img/Female.png";
 				} else {
-					profileImg = "./images/Male.png";
+					profileImg = "./assets/img/Male.png";
 				}
 				$("#profileImg").attr("src", profileImg);
 				$("#profileImg").attr("src", profileImg);
@@ -53,7 +53,7 @@ $(document).ready(function() {
 				if (company.memberImg != null) {
 					profileImg = "./images/" + company.memberImg;
 				} else {
-					profileImg = "./images/Company.jpg";
+					profileImg = "./assets/img/Company.jpg";
 				}
 				$("#profileImg").attr("src", profileImg);
 				$("#profileImg").attr("src", profileImg);
