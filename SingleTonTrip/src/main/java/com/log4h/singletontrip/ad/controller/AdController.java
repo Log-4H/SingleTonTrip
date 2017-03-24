@@ -209,11 +209,13 @@ public class AdController {
 	// 결제
 	@RequestMapping(value="paymentAd", method=RequestMethod.POST)
 	public ModelAndView payment(@ModelAttribute("sessionId") String companyId,
-			@RequestParam(value="total") int total){
+			@RequestParam(value="total") int total,
+			@RequestParam(value="adNo") int adNo){
 		ModelAndView mv = new ModelAndView();
 		Map<String,Object>map = new HashMap<String,Object>();
 		map.put("companyId", companyId);
 		map.put("total", total);
+		map.put("adNo", adNo);
 		adService.paymentAd(map);
 		mv.setViewName("redirect:adApplyList");
 		

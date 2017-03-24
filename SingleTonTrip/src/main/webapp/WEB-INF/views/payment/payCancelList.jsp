@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:import url="/WEB-INF/views/module/top.jsp" />
+<script src="<c:url value='/js/payCancel.js'/>"></script>
 <style>
 a.panelFocus a, a:hover, a:focus {
 	color: black;
@@ -50,9 +51,11 @@ a.panelFocus a, a:hover, a:focus {
 													<td>${p.paymentStateNm}</td>
 													<td>
 														<c:if test="${p.paymentPrice > 0}">
-															<a href="payback?memberId=${p.memberId}&paymentTotalPrice=${p.paymentTotalPrice}&paymentTargetNo=${p.paymentTargetNo}">환불</a>/
+															<a href="payback?memberId=${p.memberId}&paymentTotalPrice=${p.paymentTotalPrice}&paymentTargetNo=${p.paymentTargetNo}" onclick="payback_click();return false;">환불</a>/
 														</c:if>
-														<a href="paybackCancel?paymentTargetNo=${p.paymentTargetNo}">취소</a>
+														<c:if test="${p.paymentStateNm != '환불완료'}">
+															<a href="paybackCancel?paymentTargetNo=${p.paymentTargetNo}" onclick="paybackCancel_click();return false;">취소</a>
+														</c:if>
 													</td>
 												</tr>
 											</tbody>
