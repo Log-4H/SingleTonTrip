@@ -257,5 +257,34 @@
 		
 	</select>
 	 -->
-
+	 
+	<!-- 방정보 가져오기 -->
+	<select id="getRoom" parameterType="int" resultType="com.log4h.singletontrip.room.domain.RoomVo">
+		SELECT 
+			room_nm, 
+			room_img, 
+			room_normal_price
+		FROM 
+			tb_room
+		WHERE
+			room_no = #{roomNo}
+		
+	</select>
+	<!-- 예약자 정보 가져오기 -->
+	<select id="getPerson" parameterType="String" resultType="com.log4h.singletontrip.member.domain.PersonVo">
+		SELECT 
+			m.member_nm,
+			m.member_phone,
+			
+			p.person_total_mileage
+		FROM 
+			tb_member m
+		JOIN
+			tb_person p
+		ON
+			m.member_id = p.person_id
+		WHERE
+			m.member_id = #{sessionId}
+	
+	</select>
 </mapper>

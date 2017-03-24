@@ -93,14 +93,34 @@ public class ReserveController {
 			){
 		ModelAndView mv = new ModelAndView();
 		logger.debug(" >>>>>>> reserveAdd <<<<<<< ");
-		
-		
-	
+		Map<String, Object> map = reserveService.reserveInfo(sessionId, roomNo);		
+		logger.debug(" >>>>>>> reserveCheckinDate {} ",reserveCheckinDate);
+		mv.addObject("room", map.get("room"));
+		mv.addObject("person", map.get("person"));
+		mv.addObject("reserveCheckinDate", reserveCheckinDate);
 		mv.setViewName("/reserve/reserveAdd");
 		
 		return mv;
 		
 	}
+	// 결제 및 예약
+	@RequestMapping(value="reserveInsert",method=RequestMethod.POST)
+	public ModelAndView reserveInsert(
+			@ModelAttribute("sessionId") String sessionId,
+			@ModelAttribute("sessionLevel") int sessionLevel,
+			@RequestParam(value="roomNo") int roomNo,
+			@RequestParam(value="reserveCheckinDate") String reserveCheckinDate
+			){
+		ModelAndView mv = new ModelAndView();
+		logger.debug(" >>>>>>> reserveInsert <<<<<<< ");
+		
+		mv.setViewName("/reserve/reserveList");
+		
+		return mv;
+		
+	}
+	
+	// 임시 예약 화면 보기	
 	@RequestMapping(value="reserveAdd",method=RequestMethod.GET)
 	public ModelAndView reserveAdd(){
 		ModelAndView mv = new ModelAndView();

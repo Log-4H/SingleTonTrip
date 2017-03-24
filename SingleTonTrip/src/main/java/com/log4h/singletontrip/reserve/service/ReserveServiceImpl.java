@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.log4h.singletontrip.ad.domain.AdVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
+import com.log4h.singletontrip.member.domain.PersonVo;
 import com.log4h.singletontrip.reserve.domain.PaymentCateVo;
 import com.log4h.singletontrip.reserve.domain.PaymentVo;
 import com.log4h.singletontrip.reserve.repository.ReserveDao;
@@ -91,6 +92,22 @@ public class ReserveServiceImpl implements ReserveService{
 	    logger.debug(" >>>>>>> adReturn value : {}", returnList);
 		
 	    return map;
+	}
+	// 예약 정보 가져오기
+	@Override
+	public Map<String, Object> reserveInfo(String sessionId, int roomNo) {
+		logger.debug(" >>>>>>> reserveInfo <<<<<<< ");
+		Map<String, Object> map = new HashMap<String, Object>(); 
+		
+		PersonVo person = reserveDao.getPerson(sessionId);
+		logger.debug("return받은 person {}", person);
+		RoomVo room = reserveDao.getRoom(roomNo);
+		logger.debug("return받은 room {}", room);
+		
+		map.put("person", person);
+		map.put("room", room);
+		
+		return map;
 	}
 
 }
