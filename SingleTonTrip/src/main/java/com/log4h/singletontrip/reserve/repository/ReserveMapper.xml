@@ -290,7 +290,7 @@
 	</select>
 	
 	<!-- 방 예약 완료 -->
-	<insert id="addRoomReserve" parameterType="">
+	<insert id="addRoomReserve" parameterType="int">
 		INSERT INTO tb_reserve (
 			room_no, 
 			person_id, 
@@ -306,7 +306,7 @@
 		)
 	</insert>
 	<!-- 방 결제 완료 -->
-	<insert id="addRoomPayment" parameterType="">
+	<insert id="addRoomPayment" parameterType="int">
 		INSERT INTO tb_payment (
 			member_id, 
 			payment_cate_cd, 
