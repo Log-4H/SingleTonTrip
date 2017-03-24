@@ -2,6 +2,7 @@
 $(document).on('click', '#evaluationAddModalBtn', function() {
 	var pageLevel = $(this).attr('pageLevel');
 	var html = "";
+	$("#selectEvaluationList").empty();
 	$("#evaluationAddBtn").hide();
 	$("#evaluationCantAddBody").hide();
 	$("#evaluationAddBody").hide();
@@ -101,9 +102,9 @@ function evaluationListHtml(evaluationList, pageLevel){
 	var html="";
 	$.each(evaluationList,function(key, item) {
 		if(pageLevel == 2){
-			var rating = item.companyEvaluationRating * 20;
+			var rating = item.companyEvaluationRating * 10;
 		}else if(pageLevel ==3){
-			var rating = item.personEvaluationRating * 20;
+			var rating = item.personEvaluationRating * 10;
 		}
 		html += "<blockquote>";
 		

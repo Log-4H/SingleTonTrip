@@ -3,6 +3,63 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="evaluationMapper">
+<!-- 업체평가리스트 -->
+<select id="companyEvaluationList" parameterType="map" resultType="com.log4h.singletontrip.evaluation.domain.CompanyEvaluationVo">
+	SELECT
+		ce.company_evaluation_no,	
+		ce.member_id,
+		m.member_nm,
+		m.member_img,
+		p.person_gender,
+		ce.company_evaluation_rating,
+		ce.company_evaluation_content,
+		ce.company_evaluation_reg_date
+	FROM
+		tb_company_evaluation ce
+	JOIN
+		tb_member m
+	ON
+		ce.member_id = m.member_id
+	JOIN
+		tb_person p
+	ON
+		ce.member_id = p.person_id
+	WHERE
+		ce.company_id = #{pageId}
+	<if test="lastEvaluationRow != null and lastEvaluationRow !=null">
+	ORDER BY ce.company_evaluation_reg_date DESC
+	LIMIT 0, #{lastEvaluationRow}
+	</if>
+</select>
+<!-- 개인평가리스트 -->
+<select id="personEvaluationList" parameterType="map" resultType="com.log4h.singletontrip.evaluation.domain.PersonEvaluationVo">
+	SELECT
+		pe.person_evaluation_no,	
+		pe.member_id,
+		m.member_nm,
+		m.member_img,
+		p.person_gender,
+		pe.person_evaluation_rating,
+		pe.person_evaluation_content,
+		pe.person_evaluation_reg_date
+	FROM
+		tb_person_evaluation pe
+	JOIN
+		tb_member m
+	ON
+		pe.member_id = m.member_id
+	JOIN
+		tb_person p
+	ON
+		pe.member_id = p.person_id
+	WHERE
+		pe.person_id = #{pageId}
+	<if test="lastEvaluationRow != null and lastEvaluationRow !=null">
+	ORDER BY pe.person_evaluation_reg_date DESC
+	LIMIT 0, #{lastEvaluationRow}
+	</if>
+</select>
+<!-- 업체평가체크 -->
 <select id="companyEvaluationCheck" parameterType="map" resultType="com.log4h.singletontrip.evaluation.domain.EvaluationCheckVo">
 	SELECT
 		r.room_nm,
@@ -31,6 +88,7 @@
 	AND
 		r.company_id = #{pageId}
 </select>
+<!-- 개인 평가 체크 -->
 <select id="personEvaluationCheck" parameterType="map" resultType="com.log4h.singletontrip.evaluation.domain.EvaluationCheckVo">
 	SELECT
 		t.trip_no,
@@ -59,6 +117,7 @@
 	AND
 		t.person_id = #{pageId}
 </select>
+<!-- 업체 평가 등록 -->
 <insert id="companyEvaluationAdd" parameterType="com.log4h.singletontrip.evaluation.domain.CompanyEvaluationVo">
 	INSERT INTO tb_company_evaluation(
 		reserve_no,
@@ -77,134 +136,39 @@
 		now()
 	)
 </insert>
-<insert id="personEvaluationAdd" parameterType="com.log4h.singletontrip.evaluation.domain.PersonEvaluationVo">
-	INSERT INTO tb_person_evaluation(
-		trip_no,
-		member_id,
-		person_id,
-		person_evaluation_rating,
-		person_evaluation_content,
-		person_evaluation_reg_date
-	)
-	VALUES(
-		#{tripNo},
-		#{memberId},
-		#{personId},
-		#{personEvaluationRating},
-		#{personEvaluationContent},
-		now()
-	)
-</insert>
-<select id="companyEvaluationList" parameterType="map" resultType="com.log4h.singletontrip.evaluation.domain.CompanyEvaluationVo">
+<!-- 업체 평가 횟수 조회 -->
+<select id="companyEvaluationCount" parameterType="String" resultType="int">
 	SELECT
-		ce.company_evaluation_no,	
-		ce.member_id,
-		m.member_nm,
-		m.member_img,
-		p.person_gender,
-		ce.company_evaluation_rating,
-		ce.company_evaluation_content,
-		ce.company_evaluation_reg_date
+		count(*)
 	FROM
-		tb_company_evaluation ce
-	JOIN
-		tb_member m
-	ON
-		ce.member_id = m.member_id
-	JOIN
-		tb_person p
-	ON
-		ce.member_id = p.person_id
+		tb_company_evaluation
 	WHERE
-		ce.company_id = #{pageId}
-	<if test="lastEvaluationRow != null and lastEvaluationRow !=null">
-	ORDER BY ce.company_evaluation_reg_date DESC
-	LIMIT 0, #{lastEvaluationRow}
-	</if>
+		company_id = #{pageId}
 </select>
-<select id="personEvaluationList" parameterType="map" resultType="com.log4h.singletontrip.evaluation.domain.PersonEvaluationVo">
+<!-- 개인 평가 횟수 조회 -->
+<select id="personEvaluationCount" parameterType="String" resultType="int">
 	SELECT
-		pe.person_evaluation_no,	
-		pe.member_id,
-		m.member_nm,
-		m.member_img,
-		p.person_gender,
-		pe.person_evaluation_rating,
-		pe.person_evaluation_content,
-		pe.person_evaluation_reg_date
+		count(*)
 	FROM
-		tb_person_evaluation pe
-	JOIN
-		tb_member m
-	ON
-		pe.member_id = m.member_id
-	JOIN
-		tb_person p
-	ON
-		pe.member_id = p.person_id
+		tb_person_evaluation
 	WHERE
-		pe.person_id = #{pageId}
-	<if test="lastEvaluationRow != null and lastEvaluationRow !=null">
-	ORDER BY pe.person_evaluation_reg_date DESC
-	LIMIT 0, #{lastEvaluationRow}
-	</if>
+		person_id = #{personId}
 </select>
-
-
-
-
-
-
-
-
-<select id="companyEvaluationRating" parameterType="map" resultType="com.log4h.singletontrip.evaluation.domain.CompanyEvaluationVo">
+<!-- 회원 평가점수조회 -->
+<select id="selectEvaluationRating" parameterType="String" resultType="double">
 	SELECT
-		ce.company_evaluation_no,	
-		ce.member_id,
-		m.member_nm,
-		m.member_img,
-		p.person_gender,
-		ce.company_evaluation_rating,
-		ce.company_evaluation_content,
-		ce.company_evaluation_reg_date
+		member_evaluation_rating
 	FROM
-		tb_company_evaluation ce
-	JOIN
-		tb_member m
-	ON
-		ce.member_id = m.member_id
-	JOIN
-		tb_person p
-	ON
-		ce.member_id = p.person_id
+		tb_member
 	WHERE
-		ce.company_id = #{pageId}
-	ORDER BY ce.company_evaluation_reg_date DESC
-	LIMIT 0, #{lastEvaluationRow}
+		member_id = #{pageId}
 </select>
-<select id="personEvaluationRating" parameterType="map" resultType="com.log4h.singletontrip.evaluation.domain.PersonEvaluationVo">
-	SELECT
-		pe.person_evaluation_no,	
-		pe.member_id,
-		m.member_nm,
-		m.member_img,
-		p.person_gender,
-		pe.person_evaluation_rating,
-		pe.person_evaluation_content,
-		pe.person_evaluation_reg_date
-	FROM
-		tb_person_evaluation pe
-	JOIN
-		tb_member m
-	ON
-		pe.member_id = m.member_id
-	JOIN
-		tb_person p
-	ON
-		pe.member_id = p.person_id
+<!-- 회원 평가점수 업데이트 -->
+<update id="updateEvaluationRating" parameterType="map">
+	UPDATE tb_member
+	SET
+		member_evaluation_rating = #{updateRating}
 	WHERE
-		pe.person_id = #{pageId}
-	ORDER BY pe.person_evaluation_reg_date DESC
-	LIMIT 0, #{lastEvaluationRow}
-</select>
+		member_id = #{pageId}
+</update>
 </mapper>
