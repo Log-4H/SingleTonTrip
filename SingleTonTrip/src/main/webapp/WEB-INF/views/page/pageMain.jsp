@@ -39,7 +39,7 @@
 									<i class='fa fa-user-plus' aria-hidden='true'></i></button>
 									<c:if test="${sessionId ne null && sessionId ne pageId }">
 									<a href='reportAdd?reportId=${pageId}'>
-									<button type='button' class='btn btn-danger btn-simple btn-xs pageFriendAddBtn'>
+									<button type='button' class='btn btn-danger btn-simple btn-xs'>
 									<i class='fa fa-bell' aria-hidden='true'></i></button></a>
 									</c:if>
 	                            </div>
