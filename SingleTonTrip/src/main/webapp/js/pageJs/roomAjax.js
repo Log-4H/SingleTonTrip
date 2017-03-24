@@ -130,6 +130,7 @@ function calenderAppend(calendarList){
 			if(item.reserveVo != null){
 				html+="<button type='button' class='btn btn-danger disabled'>예약중</button>";
 			}else{
+				console.log(item.date);
 				html+="<form action='reserveAdd' method='post'>";
 				html+="<input type='hidden' name='roomNo' value='"+roomNo+"'>";
 				html+="<input type='hidden' name='reserveCheckinDate' value='"+item.date+"'>";

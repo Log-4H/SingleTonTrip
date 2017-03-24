@@ -62,7 +62,18 @@ public class CalendarService {
 				calendar.setYear(dday.get(Calendar.YEAR));
 				calendar.setMonth(dday.get(Calendar.MONTH) + 1);
 				calendar.setDay((i + 1) - (firstWeek - 1));
-				String date = calendar.getYear()+"-"+calendar.getMonth()+"-"+calendar.getDay();
+				int month = calendar.getMonth();
+				int day = calendar.getDay();
+				String monthText = Integer.toString(month);
+				String dayText = Integer.toString(day);
+				String zero = "0";
+				if(month < 10){
+					 monthText = zero + monthText;
+				}
+				if(day < 10){
+					 dayText = zero + dayText;
+				}
+				String date = calendar.getYear()+"-"+monthText+"-"+dayText;
 				calendar.setDate(date);
 				Map<String, Object> paramMap = new HashMap<String,Object>();
 				paramMap.put("roomNo", roomNo);

@@ -57,15 +57,8 @@
 							<li><a href="adminPersonList">회원</a></li>
 						</ul>
 				</li>
-				<li><a href="#tour"><i class="material-icons">flight_takeoff</i>여행</a></li>
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="material-icons">person_add</i>친구</a>
-						<ul class="dropdown-menu">
-							<li><a href="friendAddList">친구요청리스트</a></li>
-							<li><a href="friendCheckList">친구신청확인</a></li>
-							<li><a href="friendTotalList">친구리스트</a></li>
-						</ul>
-				</li>
+				<li><a href="companyList"><i class="material-icons">business</i>숙소</a></li>
+				<li><a href="mainTripList"><i class="material-icons">flight_takeoff</i>여행</a></li>
 				<li><a href="#"><i class="material-icons">headset_mic</i>고객센터</a></li>
 				
 				<li class="dropdown">
@@ -81,6 +74,7 @@
 			</c:if>
 			
 			<c:if test="${sessionLevel eq 2}">
+			<li><a href="pageMain?pageId=${sessionId}"><i class="material-icons">bookmark_border</i>마이 페이지</a></li>
 			<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="material-icons">video_label</i>광고</a>
 						<ul class="dropdown-menu">
@@ -106,7 +100,6 @@
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="material-icons">face</i>${sessionNm}</a>
 						<ul class="dropdown-menu">
 							<li><a href="logout" > 로그아웃</a></li>
-							<li class="dropdown"><a href="pageMain?pageId=${sessionId}">페이지</a></li>
 							<li><a href="companyDetail?memberId=${sessionId}">업체정보</a></li>
 							<li><a href="reserveList">예약정보</a></li>
 							<li><a href="payList">결제정보</a></li>
@@ -115,8 +108,9 @@
 			
 			</c:if>
 			<c:if test="${sessionLevel eq 3}">
+			<li><a href="pageMain?pageId=${sessionId}"><i class="material-icons">bookmark_border</i>마이 페이지</a></li>
 			<li>
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="material-icons">group</i>그룹</a>
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="material-icons">group</i>내 그룹</a>
 						<ul class="dropdown-menu">
 							<li><a href="javascript:void(0)" class="groupListModalShow" value="leader">생성한그룹</a></li>
 							<li><a href="javascript:void(0)" class="groupListModalShow" value="member">가입한그룹</a></li>
@@ -138,7 +132,6 @@
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="material-icons">face</i>${sessionNm}</a> 		                
 			        	<ul class="dropdown-menu">
 							<li><a href="logout"> 로그아웃</a></li>
-							<li><a href="pageMain?pageId=${sessionId}">페이지</a></li>
 							<li><a href="personDetail?memberId=${sessionId}">회원정보</a></li>
 							<li><a href="mileageList">마일리지</a></li>
 							<li><a href="reserveList">예약정보</a></li>
