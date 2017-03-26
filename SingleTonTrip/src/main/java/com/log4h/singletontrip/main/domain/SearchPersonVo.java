@@ -1,4 +1,4 @@
-package com.log4h.singletontrip.admin.domain;
+package com.log4h.singletontrip.main.domain;
 
 public class SearchPersonVo {
 	private String memberId; //멤버아이디

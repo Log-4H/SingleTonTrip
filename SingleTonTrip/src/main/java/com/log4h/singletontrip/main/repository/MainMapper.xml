@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="adminMapper">
+<mapper namespace="mainMapper">
 <select id="searchPersonCount" parameterType="string" resultType="int">
 	SELECT
 		COUNT(*)
@@ -19,7 +19,7 @@
 	AND
 		concat(m.member_nm, m.member_id, m.member_email, m.member_phone) regexp #{value}
 </select>
-<select id="searchPersonList" parameterType="map" resultType="com.log4h.singletontrip.admin.domain.SearchPersonVo">
+<select id="searchPersonList" parameterType="map" resultType="com.log4h.singletontrip.main.domain.SearchPersonVo">
 	SELECT
 		m.member_id,
 		m.member_nm,
@@ -62,7 +62,7 @@
 	AND
 		concat(m.member_nm, c.company_nm, ct.company_type_nm, c.company_address, m.member_id, m.member_email, m.member_phone) regexp #{value}
 </select>
-<select id="searchCompanyList" parameterType="map" resultType="com.log4h.singletontrip.admin.domain.SearchCompanyVo" >
+<select id="searchCompanyList" parameterType="map" resultType="com.log4h.singletontrip.main.domain.SearchCompanyVo" >
 	SELECT
 		m.member_id,
 		c.company_nm,
@@ -111,7 +111,7 @@
 	AND
 		concat(t.trip_theme_cd, r.region_do, r.region_si, t.trip_title, t.trip_content, t.trip_tag) regexp #{value}
 </select>
-<select id="searchTripList" parameterType="map" resultType="com.log4h.singletontrip.admin.domain.SearchTripVo">
+<select id="searchTripList" parameterType="map" resultType="com.log4h.singletontrip.main.domain.SearchTripVo">
 	SELECT
 		t.trip_no,
 		t.person_id,

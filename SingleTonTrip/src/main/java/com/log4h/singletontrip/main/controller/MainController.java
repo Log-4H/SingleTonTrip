@@ -1,4 +1,4 @@
-package com.log4h.singletontrip.admin.controller;
+package com.log4h.singletontrip.main.controller;
 
 import java.util.Map;
 
@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.log4h.singletontrip.admin.service.AdminService;
+import com.log4h.singletontrip.main.service.MainService;
 
 @Controller
-public class AdminController {
+public class MainController {
 
 	@Autowired
-	private AdminService adminService;
+	private MainService mainService;
 	
 	//포스트 리스트 추가
 	@RequestMapping(value="searchList", method=RequestMethod.POST)
@@ -25,9 +25,9 @@ public class AdminController {
 			@RequestParam(value="tripCurrentPage", defaultValue="1") int tripCurrentPage
 			){
 		ModelAndView mv = new ModelAndView("search/searchList");
-		Map<String,Object> personMap = adminService.searchPersonList(value, personCurrentPage);
-		Map<String,Object> companyMap = adminService.searchCompanyList(value, companyCurrentPage);
-		Map<String,Object> tripMap = adminService.searchTripList(value, tripCurrentPage);
+		Map<String,Object> personMap = mainService.searchPersonList(value, personCurrentPage);
+		Map<String,Object> companyMap = mainService.searchCompanyList(value, companyCurrentPage);
+		Map<String,Object> tripMap = mainService.searchTripList(value, tripCurrentPage);
 		mv.addObject("personMap", personMap);
 		mv.addObject("companyMap", companyMap);
 		mv.addObject("tripMap", tripMap);
@@ -40,7 +40,7 @@ public class AdminController {
 			@RequestParam(value="personCurrentPage", defaultValue="1") int personCurrentPage
 			){
 		ModelAndView mv = new ModelAndView("jsonView");
-		Map<String,Object> personMap = adminService.searchPersonList(value, personCurrentPage);
+		Map<String,Object> personMap = mainService.searchPersonList(value, personCurrentPage);
 		mv.addObject("personMap", personMap);
 		return mv;	
 	}
@@ -50,7 +50,7 @@ public class AdminController {
 			@RequestParam(value="companyCurrentPage", defaultValue="1") int companyCurrentPage
 			){
 		ModelAndView mv = new ModelAndView("jsonView");
-		Map<String,Object> companyMap = adminService.searchCompanyList(value, companyCurrentPage);
+		Map<String,Object> companyMap = mainService.searchCompanyList(value, companyCurrentPage);
 		mv.addObject("companyMap", companyMap);
 		return mv;	
 	}
@@ -60,7 +60,7 @@ public class AdminController {
 			@RequestParam(value="tripCurrentPage", defaultValue="1") int tripCurrentPage
 			){
 		ModelAndView mv = new ModelAndView("jsonView");
-		Map<String,Object> tripMap = adminService.searchTripList(value, tripCurrentPage);
+		Map<String,Object> tripMap = mainService.searchTripList(value, tripCurrentPage);
 		mv.addObject("tripMap", tripMap);
 		return mv;	
 	}

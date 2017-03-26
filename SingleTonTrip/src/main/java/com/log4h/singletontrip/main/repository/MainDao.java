@@ -1,13 +1,13 @@
-package com.log4h.singletontrip.admin.repository;
+package com.log4h.singletontrip.main.repository;
 
 import java.util.List;
 import java.util.Map;
 
-import com.log4h.singletontrip.admin.domain.SearchCompanyVo;
-import com.log4h.singletontrip.admin.domain.SearchPersonVo;
-import com.log4h.singletontrip.admin.domain.SearchTripVo;
+import com.log4h.singletontrip.main.domain.SearchCompanyVo;
+import com.log4h.singletontrip.main.domain.SearchPersonVo;
+import com.log4h.singletontrip.main.domain.SearchTripVo;
 
-public interface AdminDao {
+public interface MainDao {
 	public int searchPersonCount(String value);
 	public List<SearchPersonVo> searchPersonList(Map<String, Object> map);
 	public int searchCompanyCount(String value);

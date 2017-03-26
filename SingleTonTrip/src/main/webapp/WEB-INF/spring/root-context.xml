@@ -25,7 +25,7 @@
 			<list>
 				<value>classpath:com/log4h/singletontrip/a/example/ExampleMapper.xml</value>
 				<value>classpath:com/log4h/singletontrip/ad/repository/AdMapper.xml</value>
-				<value>classpath:com/log4h/singletontrip/admin/repository/AdminMapper.xml</value>
+				<value>classpath:com/log4h/singletontrip/main/repository/MainMapper.xml</value>
 				<value>classpath:com/log4h/singletontrip/board/repository/BoardMapper.xml</value>
 				<value>classpath:com/log4h/singletontrip/evaluation/repository/EvaluationMapper.xml</value>
 				<value>classpath:com/log4h/singletontrip/member/repository/MemberMapper.xml</value>
