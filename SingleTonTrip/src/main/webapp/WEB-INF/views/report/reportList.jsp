@@ -8,7 +8,7 @@
 	<c:import url="/WEB-INF/views/module/nav.jsp" />
 	<div class="wrapper">
 		<div class="header header-filter"
-			style="background-image: url('./assets/img/examples/city.jpg');"></div>
+			style="background-image: url('./assets/img/base/BackImage.jpg');"></div>
 
 		<div class="main main-raised">
 			<div class="profile-content">

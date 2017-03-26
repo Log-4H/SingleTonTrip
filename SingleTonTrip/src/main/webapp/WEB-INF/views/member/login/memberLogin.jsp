@@ -6,7 +6,7 @@
 <body class="signup-page">
 <c:import url="/WEB-INF/views/module/nav.jsp"></c:import>
       <div class="wrapper">
-		<div class="header header-filter" style="background-image: url('./assets/img/city.jpg'); background-size: cover; background-position: top center;">
+		<div class="header header-filter" style="background-image: url('./assets/img/base/BackImage.jpg'); background-size: cover; background-position: top center;">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">

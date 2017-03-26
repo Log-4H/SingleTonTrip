@@ -8,7 +8,7 @@
 	<c:import url="/WEB-INF/views/module/nav.jsp" />
 	<div class="wrapper">
 		<div class="header header-filter"
-			style="background-image: url('./assets/img/examples/city.jpg');"></div>
+			style="background-image: url('./assets/img/base/BackImage.jpg');"></div>
 
 		<div class="main main-raised">
 			<div class="profile-content">
@@ -49,10 +49,10 @@
 															<img src="./images/${p.memberImg}" class="img-rounded" width="100" height="100">
 														</c:when>
 														<c:when test="${p.personGender == 'M'}">
-															<img src="./assets/img/Male.png" class="img-rounded" width="100" height="100">
+															<img src="./assets/img/base/Male.png" class="img-rounded" width="100" height="100">
 														</c:when>
 														<c:when test="${p.personGender == 'F'}">
-															<img src="./assets/img/Female.png" class="img-rounded" width="100" height="100">
+															<img src="./assets/img/base/Female.png" class="img-rounded" width="100" height="100">
 														</c:when>
 														</c:choose>
 														</td>

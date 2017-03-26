@@ -24,7 +24,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 <!-- Icon Bar (Sidenav - hidden on small screens) -->
 <nav class="w3-sidenav w3-center w3-small w3-hide-small">
   <!-- Avatar image in top left corner -->
-  <img src="<c:url value='/images/main.jpg'/>" style="width:100%">
+  <img src="<c:url value='assets/img/base/intro.jpg'/>" style="width:100%">
   <a class="w3-padding-large w3-black" href="#">
     <i class="fa fa-home w3-xxlarge"></i>
     <p>HOME</p>
@@ -115,7 +115,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 
   <!-- Portfolio Section -->
   <div class="w3-padding-64 w3-content" id="team">
-    <h2>팀소개 및 역활분담</h2>
+    <h2>팀소개 및 역할분담</h2>
     <hr style="width:250px" class="w3-opacity">
 
     <!-- Grid for photos -->
@@ -163,19 +163,6 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
       <img src="https://raw.githubusercontent.com/Log-4H/imgRepo/master/erd.png" style="width:100%">
     </div><br>
   </div>
-
-    <!-- Footer -->
-  <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
-    <i class="fa fa-facebook-official w3-hover-text-indigo"></i>
-    <i class="fa fa-instagram w3-hover-text-purple"></i>
-    <i class="fa fa-snapchat w3-hover-text-yellow"></i>
-    <i class="fa fa-pinterest-p w3-hover-text-red"></i>
-    <i class="fa fa-twitter w3-hover-text-light-blue"></i>
-    <i class="fa fa-linkedin w3-hover-text-indigo"></i>
-    <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
-  <!-- End footer -->
-  </footer>
-
 <!-- END PAGE CONTENT -->
 </div>
 

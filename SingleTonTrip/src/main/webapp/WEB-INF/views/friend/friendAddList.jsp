@@ -8,7 +8,7 @@
 	<c:import url="/WEB-INF/views/module/nav.jsp" />
 	<div class="wrapper">
 		<div class="header header-filter"
-			style="background-image: url('./assets/img/examples/city.jpg');"></div>
+			style="background-image: url('./assets/img/base/BackImage.jpg');"></div>
 
 		<div class="main main-raised">
 			<div class="profile-content">
@@ -39,7 +39,7 @@
 																class="img-rounded" width="100" height="100"></td>
 														</c:when>
 														<c:otherwise>
-																<td><img src="./assets/img/Male.png"
+																<td><img src="./assets/img/base/Male.png"
 																	class="img-rounded" width="100" height="100"></td>
 															</c:otherwise>
 													</c:choose>

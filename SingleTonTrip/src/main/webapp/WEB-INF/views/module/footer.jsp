@@ -6,29 +6,24 @@
          <nav class="pull-left">
 	<ul>
 		<li>
-			<a href="http://www.creative-tim.com">
-				Creative Tim
-			</a>
-		</li>
-		<li>
-			<a href="http://presentation.creative-tim.com">
+			<a href="intro">
 			   About Us
 			</a>
 		</li>
 		<li>
-			<a href="http://blog.creative-tim.com">
+			<a href="http://blog.naver.com/ymw0608">
 			   Blog
 			</a>
 		</li>
 		<li>
-			<a href="http://www.creative-tim.com/license">
-				Licenses
+			<a href="https://github.com/Log-4H/SingleTonTrip">
+				Github
 			</a>
 		</li>
 	</ul>
          </nav>
          <div class="copyright pull-right">
-             &copy; 2016, made with <i class="fa fa-heart heart"></i> by Creative Tim
+             &copy; 2017, made by Log4H
          </div>
      </div>
  </footer>
