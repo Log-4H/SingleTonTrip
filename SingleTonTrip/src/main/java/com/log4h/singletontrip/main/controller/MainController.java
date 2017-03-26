@@ -17,6 +17,14 @@ public class MainController {
 	@Autowired
 	private MainService mainService;
 	
+	//메인페이지
+	@RequestMapping(value="main", method=RequestMethod.GET)
+	public ModelAndView main(){
+		ModelAndView mv = new ModelAndView("main");
+		return mv;
+	}
+	
+	//*************검색바*****************
 	//포스트 리스트 추가
 	@RequestMapping(value="searchList", method=RequestMethod.POST)
 	public ModelAndView searchList(@RequestParam(value="value") String value,

@@ -422,6 +422,37 @@ $(document).on('click', '.tripJoinModalShow', function() {
 		}
 	})
 });
+//navbar 여행그룹 참가modal
+$(document).on('click', '#tripApplyModalShow', function() {
+	$("#tripApplyBtn").hide();
+	var tripNo = $(this).attr('value');
+	$.ajax({
+		url : "tripJoinCheck",
+		type : "POST",
+		data : {tripNo:tripNo},
+		dataType : "json",
+		success : function(data) {
+			var html = "";
+			var group = data.group;
+			if(group!=null){
+				if(group.approveStateCd=="1"){
+					html += "그룹장의 승인 대기중입니다.";
+				}else if(group.approveStateCd=="2"){
+					html += "이미 그룹에 참가하셨습니다.";
+				}else if(group.approveStateCd=="3"){
+					html += "참여가 거부되었습니다.";
+				}
+			}else{
+				$("#tripApplyBtn").show();
+				html += "그룹장의 승인을 기다려야합니다.<br>";
+				html +=	"그룹에 참가하시겠습니까?";
+			}
+			$("#tripApplyNo").val(tripNo);
+			$("#tripApplyBody").html(html);
+			$("#tripApplyModal").modal('show');
+		}
+	})
+});
 //여행그룹 참가신청
 $(document).on('click', '#tripJoinBtn', function() {
 	var tripNo = $("#tripJoinNo").val();
@@ -440,6 +471,10 @@ $(document).on('click', '#tripJoinBtn', function() {
 			$("#tripList").append(html);
 		}
 	})
+});
+//navbar 여행그룹 참가신청
+$(document).on('click', '#tripApplyBtn', function() {
+	$("#tripApplyForm").submit();
 });
 //여행수정
 $(document).on('click', '.tripModifyModalBtn', function() {

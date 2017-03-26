@@ -45,6 +45,7 @@
 	<c:import url="/WEB-INF/views/page/group/groupList.jsp"></c:import>
 	
 	<script src="<c:url value='/js/pageJs/tripAjax.js'/>"></script>
+	<c:import url="/WEB-INF/views/trip/tripApply.jsp"></c:import>
 	<c:import url="/WEB-INF/views/page/trip/tripEnd.jsp"></c:import>
 </head>
 

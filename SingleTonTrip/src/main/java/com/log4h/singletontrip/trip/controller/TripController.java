@@ -32,7 +32,7 @@ public class TripController {
 		mv.addObject("tripList", tripList);
 		return mv;	
 	}
-	//여행 리스트
+	//상단바여행 리스트
 	@RequestMapping(value="mainTripList")
 	public ModelAndView mainTripList(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
 			@RequestParam(value = "selectOption", required = false) String selectOption,
@@ -55,6 +55,15 @@ public class TripController {
 			@RequestParam(value="tripNo") int tripNo){
 		ModelAndView mv = new ModelAndView("jsonView");
 		Map<String, Object> map = tripService.tripView(pageId, tripNo);
+		mv.addObject("trip", map.get("trip"));
+		mv.addObject("planList", map.get("planList"));
+		return mv;	
+	}
+	//상단바여행 상세보기
+	@RequestMapping(value="tripDetail")
+	public ModelAndView tripView(@RequestParam(value="tripNo") int tripNo){
+		ModelAndView mv = new ModelAndView("trip/tripDetail");
+		Map<String, Object> map = tripService.tripDetail(tripNo);
 		mv.addObject("trip", map.get("trip"));
 		mv.addObject("planList", map.get("planList"));
 		return mv;	
@@ -182,6 +191,19 @@ public class TripController {
 		if(result>0){
 			List<TripVo> tripList= tripService.tripList(pageId, lastTripRow);
 			mv.addObject("tripList", tripList);
+		}
+		return mv;	
+	}
+	//navbar 여행그룹참가신청
+	@RequestMapping(value="tripApply")
+	public ModelAndView tripApply(@RequestParam(value="tripNo") int tripNo,
+			@ModelAttribute("sessionId") String sessionId){
+		ModelAndView mv = new ModelAndView();
+		int result = tripService.groupApply(sessionId, tripNo);
+		if(result>0){
+			mv.setViewName("redirect:mainTripList");
+		}else{
+			mv.setViewName("redirect:error");
 		}
 		return mv;	
 	}

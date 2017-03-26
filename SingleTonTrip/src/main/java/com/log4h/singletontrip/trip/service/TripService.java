@@ -15,6 +15,8 @@ public interface TripService {
 	public Map<String,Object> tripList(String selectOption, String selectValue, int currentPage);
 	//여행상세보기
 	public Map<String, Object> tripView(String memberId, int tripNo);
+	//navbar 여행상세보기
+	public Map<String, Object> tripDetail(int tripNo);
 	//여행등록 폼 요청
 	public Map<String, Object> tripAddForm();
 	//여행지역(시) 리스트

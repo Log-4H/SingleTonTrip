@@ -30,7 +30,7 @@ public class TripServiceImpl implements TripService{
 		List<TripVo> tripList = tripDao.tripList(map);
 		return tripList;
 	}
-	//여행리스트
+	//navbar 여행리스트
 	@Override
 	public Map<String,Object> tripList(String selectOption, String selectValue, int currentPage) {
 		Map<String, Object> totalCountMap = new HashMap<String, Object>();
@@ -58,6 +58,17 @@ public class TripServiceImpl implements TripService{
 		map.put("planList", planList);
 		return map;
 	}
+	//navbar 여행상세보기
+	@Override
+	public Map<String, Object> tripDetail(int tripNo) {
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("tripNo", tripNo);
+		TripVo trip = tripDao.tripView(map);
+		List<PlanVo> planList = tripDao.planList(tripNo);
+		map.put("trip", trip);
+		map.put("planList", planList);
+		return map;
+	};
 	//여행 등록 폼 요청
 	@Override
 	public Map<String, Object> tripAddForm() {
@@ -313,7 +324,5 @@ public class TripServiceImpl implements TripService{
 			tripDao.tripRecruitUpdate(map);
 		}
 		return 0;
-	};
-	
-	
+	}
 }
