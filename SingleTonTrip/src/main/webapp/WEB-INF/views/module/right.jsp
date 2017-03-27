@@ -26,8 +26,7 @@ $(document).ready(function() {
 				}
 				html+="<img src='./images/"+item.adImg+"' style='width:100%;height:150px;margin-top:0px;'></a>";
 			});
-			$("#adList").html(html);
-			
+			$('#adList').html(html);
 		}
 	})
 });
@@ -35,7 +34,7 @@ $(document).ready(function() {
 </head>
 <body>
 <!-- Right Column -->
-<div id="adList" style="width:150%;layout:fixed; position:fixed">
+<div id="adList" style="width:150%;margin-top:50;layout:fixed; position:fixed;">
 
 </div>
 <br>

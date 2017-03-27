@@ -3,7 +3,34 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:import url="/WEB-INF/views/module/top.jsp" />
-
+<script>
+// 광고 불러온다
+$(document).ready(function() {
+	console.log("-----");
+	$.ajax({
+		url : "serviceAdList",
+		type : "GET",
+		dataType : "json",
+		success : function(data) {
+			console.log("sss?");
+			console.log(data);
+			var searchAdList = data.searchAdList;
+			var html="";
+			html += "<h4 align='center'>여기 어떠세요?</h4>";
+			$.each(searchAdList,function(key, item) {
+				// 광고신청할 때 URL 입력했으면 그 주소로 가고 입력 안했으면 광고 신청한 사람의 페이지로 이동
+				if(item.adPageAddress == null || item.adPageAddress == ""){
+					html+="<a href='pageMain?pageId="+item.companyId+"'>";
+				} else {
+					html+="<a href='"+item.adPageAddress+"'>";
+				}
+				html+="<img src='./images/"+item.adImg+"' style='width:100%;height:250px;margin-top:3px;'></a>";
+			});
+			$('#adList').html(html);
+		}
+	})
+});
+</script>
 <body class="profile-page">
 	<c:import url="/WEB-INF/views/module/nav.jsp" />
 	<div class="wrapper">
@@ -13,15 +40,18 @@
 		<div class="main main-raised">
 			<div class="profile-content">
 				<div class="container-fluid">
-					<div class="row" style="height: 800px; margin-top: 80px">
+					<div class="row" style="height: 100%; margin-top:80px; margin-bottom:50px;">
 						<div class="col-md-6 col-md-offset-3">
 							<div class="card card-signup">
 								<div class="header header-primary text-center" style="height: 80px;">
 									<h4>숙박업체검색</h4>
 								</div>
+									<div id="adList" class="content">
+										
+									</div>
 									<div class="content">
 										<form action="<c:url value='companyList'/>" method="get">
-											<div align="right">
+											<div align="right" style="margin-top:5px;">
 												<select name="selectOption">
 													<option value="m.member_id">ID</option>
 													<option value="c.company_nm">업체명</option>

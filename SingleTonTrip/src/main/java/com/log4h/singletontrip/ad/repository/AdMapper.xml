@@ -194,7 +194,6 @@
 		ad_group_cd = 3
 	AND
 		ad_reg_date <![CDATA[<]]> curdate()
-	ORDER BY rand() limit 1
 </select>
 <!-- 환불 리스트 카운트 -->
 <select id="paybackListCount" parameterType="com.log4h.singletontrip.member.domain.LoginVo"
