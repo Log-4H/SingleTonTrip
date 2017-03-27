@@ -21,6 +21,12 @@ public class MainController {
 	@RequestMapping(value="main", method=RequestMethod.GET)
 	public ModelAndView main(){
 		ModelAndView mv = new ModelAndView("main");
+		Map<String,Object> map = mainService.mainList();
+		mv.addObject("bestPerson", map.get("bestPerson"));
+		mv.addObject("bestCompany", map.get("bestCompany"));
+		mv.addObject("newTrip", map.get("newTrip"));
+		mv.addObject("newPerson", map.get("newPerson"));
+		mv.addObject("newCompany", map.get("newCompany"));
 		return mv;
 	}
 	

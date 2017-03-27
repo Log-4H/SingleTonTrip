@@ -7,11 +7,18 @@ public class SearchCompanyVo {
 	private String companyNm;//업체명
 	private String companyAddress;//검색한 업체주소와 상세주소를 합해서 담아준다.
 	private String memberImg;//이미지
+	private double memberEvaluationRating;
 	public String getMemberId() {
 		return memberId;
 	}
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
+	}
+	public double getMemberEvaluationRating() {
+		return memberEvaluationRating;
+	}
+	public void setMemberEvaluationRating(double memberEvaluationRating) {
+		this.memberEvaluationRating = memberEvaluationRating;
 	}
 	public String getMemberPhone() {
 		return memberPhone;

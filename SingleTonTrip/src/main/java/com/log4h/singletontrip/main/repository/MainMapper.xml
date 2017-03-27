@@ -24,6 +24,7 @@
 		m.member_id,
 		m.member_nm,
 		m.member_img,
+		m.member_evaluation_rating,
 		p.person_birth,
 		p.person_gender
 	FROM
@@ -36,10 +37,18 @@
 		m.member_level = 3
 	AND
 		m.act_state_cd = 1
+	<if test="value != null and value != ''">
 	AND
 		concat(m.member_nm, m.member_id, m.member_email, m.member_phone) regexp #{value}
-	ORDER BY m.member_reg_date
-	DESC LIMIT #{beginRow}, #{pagePerRow}
+	ORDER BY m.member_reg_date DESC
+	</if>
+	<if test="orderBy eq bestList">
+	ORDER BY m.member_evaluation_rating DESC
+	</if>
+	<if test="orderBy eq newList">
+	ORDER BY m.member_reg_date DESC
+	</if>
+	LIMIT #{beginRow}, #{pagePerRow}
 </select>
 
 <select id="searchCompanyCount" parameterType="string" resultType="int">
@@ -67,6 +76,7 @@
 		m.member_id,
 		c.company_nm,
 		m.member_img,
+		m.member_evaluation_rating,
 		m.member_phone,
 		c.company_address,
 		ct.company_type_nm
@@ -84,10 +94,18 @@
 		m.member_level = 2
 	AND
 		m.act_state_cd = 1
+	<if test="value != null and value != ''">
 	AND
 		concat(m.member_nm, c.company_nm, ct.company_type_nm, c.company_address, m.member_id, m.member_email, m.member_phone) regexp #{value}
-	ORDER BY m.member_reg_date
-	DESC LIMIT #{beginRow}, #{pagePerRow}
+	ORDER BY m.member_reg_date DESC 
+	</if>
+	<if test="orderBy eq bestList">
+	ORDER BY m.member_evaluation_rating DESC
+	</if>
+	<if test="orderBy eq newList">
+	ORDER BY m.member_reg_date DESC
+	</if>
+	LIMIT #{beginRow}, #{pagePerRow}
 </select>
 <select id="searchTripCount" parameterType="string" resultType="int">
 	SELECT
@@ -133,9 +151,14 @@
 		t.region_cd = r.region_cd
 	WHERE
 		t.recruit_state_cd = 1
+	<if test="value != null and value != ''">
 	AND
 		concat(t.trip_theme_cd, r.region_do, r.region_si, t.trip_title, t.trip_content, t.trip_tag) regexp #{value}
-	ORDER BY t.trip_start_date
-	DESC LIMIT #{beginRow}, #{pagePerRow}
+	ORDER BY t.trip_start_date DESC 
+	</if>
+	<if test="orderBy eq newList">
+	ORDER BY t.trip_reg_date DESC 
+	</if>
+	LIMIT #{beginRow}, #{pagePerRow}
 </select>
 </mapper>

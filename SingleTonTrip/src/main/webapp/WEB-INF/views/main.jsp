@@ -55,8 +55,26 @@ $(document).ready(function() {
 		<div class="main main-raised">
 			<div class="container">
 		    	<div class="section text-center section-landing">
+		    	<!-- 공지사항 -->
+			        <div class="alert">
+			            <div class="container-fluid">
+							<div class="alert-icon">
+								<i class="material-icons">info_outline</i>
+							</div>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close" style="color:#000000">
+								<span aria-hidden="true"><i class="material-icons">clear</i></span>
+							</button>
+		
+			            	<p align="left" id="notice" style="color:#000000">
+			            	<span class='label label-danger' style="color:#FFFFFF">공지사항</span>
+			            	공지사항입니다</p>
+			            </div>
+			        </div>
+			        
+			        
+			        <!-- 슬라이드 광고 -->
 			    	<div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
-	            		<!-- 슬라이드 광고 -->
+	            		
 						<div class="carousel-inner" role="listbox" id="adList">
 						
 						</div>
@@ -76,83 +94,72 @@ $(document).ready(function() {
 							</c:forEach>
 						</ol>
 					</div>
-
-					<div class="features">
-						<div class="row">
-		                    <div class="col-md-4">
-								<div class="info">
-									<div class="icon icon-primary">
-										<i class="material-icons">chat</i>
-									</div>
-									<h4 class="info-title">First Feature</h4>
-									<p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
-								</div>
-		                    </div>
-		                    <div class="col-md-4">
-								<div class="info">
-									<div class="icon icon-success">
-										<i class="material-icons">verified_user</i>
-									</div>
-									<h4 class="info-title">Second Feature</h4>
-									<p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
-								</div>
-		                    </div>
-		                    <div class="col-md-4">
-								<div class="info">
-									<div class="icon icon-danger">
-										<i class="material-icons">fingerprint</i>
-									</div>
-									<h4 class="info-title">Third Feature</h4>
-									<p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
-								</div>
-		                    </div>
-		                </div>
-					</div>
 	            </div>
-
+				<!-- 우수회원 -->
 	        	<div class="section text-center">
-	                <h2 class="title">Here is our team</h2>
-
+	                <h2 class="title">우수회원</h2>
 					<div class="team">
 						<div class="row">
+							<c:forEach items="${bestPerson }" var="bp">
 							<div class="col-md-4">
 			                    <div class="team-player">
-			                        <img src="./assets/img/avatar.jpg" alt="Thumbnail Image" class="img-raised img-circle">
-			                        <h4 class="title">Gigi Hadid <br />
-										<small class="text-muted">Model</small>
+			                    <a href="pageMain?pageId=${bp.memberId }">
+			                    	<c:choose>
+										<c:when test="${bp.memberImg ne null}">
+											<img src="./images/${bp.memberImg}" class="img-raised img-circle">
+										</c:when>
+										<c:when test="${bp.personGender == 'M'}">
+											<img src="./assets/img/base/Male.png" class="img-raised img-circle">
+										</c:when>
+										<c:when test="${bp.personGender == 'F'}">
+											<img src="./assets/img/base/Female.png" class="img-raised img-circle">
+										</c:when>
+									</c:choose>
+									</a>
+			                       <h4 class="title"><a href="pageMain?pageId=${bp.memberId }">${bp.memberNm }</a><br />
+										<small class="text-muted" align="left"><script>writeRate(${bp.memberEvaluationRating *10})</script><strong>${bp.memberEvaluationRating}</strong></small>
 									</h4>
-			                        <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some <a href="#">links</a> for people to be able to follow them outside the site.</p>
+			                        <p class="description">test</p>
 									<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-twitter"></i></a>
 									<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-instagram"></i></a>
 									<a href="#pablo" class="btn btn-simple btn-just-icon btn-default"><i class="fa fa-facebook-square"></i></a>
 			                    </div>
 			                </div>
-			                <div class="col-md-4">
-			                    <div class="team-player">
-			                        <img src="./assets/img/christian.jpg" alt="Thumbnail Image" class="img-raised img-circle">
-			                        <h4 class="title">Christian Louboutin<br />
-										<small class="text-muted">Designer</small>
-									</h4>
-			                        <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some <a href="#">links</a> for people to be able to follow them outside the site.</p>
-									<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-twitter"></i></a>
-									<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-linkedin"></i></a>
-			                    </div>
-			                </div>
-			                <div class="col-md-4">
-			                    <div class="team-player">
-			                        <img src="./assets/img/kendall.jpg" alt="Thumbnail Image" class="img-raised img-circle">
-			                        <h4 class="title">Kendall Jenner<br />
-										<small class="text-muted">Model</small>
-									</h4>
-			                        <p>You can write here details about one of your team members. You can give more details about what they do. Feel free to add some <a href="#">links</a> for people to be able to follow them outside the site.</p>
-									<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-google-plus"></i></a>
-									<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-youtube-play"></i></a>
-									<a href="#pablo" class="btn btn-simple btn-just-icon btn-default"><i class="fa fa-twitter"></i></a>
-			                    </div>
-			                </div>
+			                </c:forEach>
 						</div>
 					</div>
-
+	            </div>
+	            
+	            <!-- 우수업체 -->
+	           <div class="section text-center">
+	                <h2 class="title">우수업체</h2>
+					<div class="team">
+						<div class="row">
+							<c:forEach items="${bestCompany }" var="bc">
+							<div class="col-md-4">
+			                    <div class="team-player">
+			                    <a href="pageMain?pageId=${bc.memberId }">
+			                    	<c:choose>
+										<c:when test="${bc.memberImg ne null}">
+											<img src="./images/${bc.memberImg}" class="img-raised img-circle">
+										</c:when>
+										<c:otherwise>
+											<img src="./assets/img/base/Company.jpg" class="img-raised img-circle">
+										</c:otherwise>
+									</c:choose>
+									</a>
+			                       <h4 class="title"><a href="pageMain?pageId=${bc.memberId }">${bc.companyNm }</a><br />
+										<small class="text-muted" align="left"><script>writeRate(${bc.memberEvaluationRating *10})</script><strong>${bc.memberEvaluationRating}</strong></small>
+									</h4>
+			                        <p class="description">test</p>
+									<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-twitter"></i></a>
+									<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-instagram"></i></a>
+									<a href="#pablo" class="btn btn-simple btn-just-icon btn-default"><i class="fa fa-facebook-square"></i></a>
+			                    </div>
+			                </div>
+			                </c:forEach>
+						</div>
+					</div>
 	            </div>
 
 

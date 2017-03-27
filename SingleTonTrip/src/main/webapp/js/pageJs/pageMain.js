@@ -21,9 +21,9 @@ $(document).ready(function() {
 				if (person.memberImg != null) {
 					profileImg = "./images/" + person.memberImg;
 				} else if (person.personGender == "F") {
-					profileImg = "./assets/img/Female.png";
+					profileImg = "./assets/img/base/Female.png";
 				} else {
-					profileImg = "./assets/img/Male.png";
+					profileImg = "./assets/img/base/Male.png";
 				}
 				$("#profileImg").attr("src", profileImg);
 				$("#profileImg").attr("src", profileImg);

@@ -6,6 +6,13 @@ public class SearchPersonVo {
 	private String personBirth;//개인회원생일
 	private String personGender;//개인회원성별
 	private String memberImg;//멤버이미지
+	private double memberEvaluationRating;
+	public double getMemberEvaluationRating() {
+		return memberEvaluationRating;
+	}
+	public void setMemberEvaluationRating(double memberEvaluationRating) {
+		this.memberEvaluationRating = memberEvaluationRating;
+	}
 	public String getMemberId() {
 		return memberId;
 	}

@@ -88,6 +88,6 @@
 			</div>
 		</div>
 	</div>
-	<c:import url="/WEB-INF/views//module/footer.jsp" />
+	<c:import url="/WEB-INF/views/module/footer.jsp" />
 </body>
 </html>

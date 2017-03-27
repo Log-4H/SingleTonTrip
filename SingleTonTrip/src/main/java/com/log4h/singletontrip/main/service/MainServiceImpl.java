@@ -1,5 +1,6 @@
 package com.log4h.singletontrip.main.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -47,6 +48,27 @@ public class MainServiceImpl implements MainService{
         map.put("value", value);
         List<SearchTripVo> searchTripList = mainDao.searchTripList(map);
         map.put("searchTripList", searchTripList);
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> mainList() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("beginRow", 0);
+		map.put("pagePerRow", 3);
+		map.put("orderBy", "bestList");
+		List<SearchPersonVo> bestPerson = mainDao.searchPersonList(map);
+		List<SearchCompanyVo> bestCompany = mainDao.searchCompanyList(map);
+		map.remove("orderBy");
+		map.put("orderBy", "newList");
+		List<SearchTripVo> newTrip = mainDao.searchTripList(map);
+		List<SearchPersonVo> newPerson = mainDao.searchPersonList(map);
+		List<SearchCompanyVo> newCompany = mainDao.searchCompanyList(map);
+		map.put("bestPerson", bestPerson);
+		map.put("bestCompany", bestCompany);
+		map.put("newTrip", newTrip);
+		map.put("newPerson", newPerson);
+		map.put("newCompany", newCompany);
 		return map;
 	}
 

@@ -61,7 +61,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     <p>당신의 즐거운 여행을 위하여.</p>
     <a href="main">프로젝트로 이동</a>
     <p>2017-2-14~2017-3-29</p>
-    <img src="<c:url value='/images/main.jpg'/>" alt="main" class="w3-image" width="992" height="1108">
+    <img src="<c:url value='assets/img/base/intro.jpg'/>" alt="main" class="w3-image" width="992" height="1108">
   </header>
 
   <!-- About Section -->
