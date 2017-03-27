@@ -6,25 +6,14 @@
 <body class="signup-page">
 <c:import url="/WEB-INF/views/module/nav.jsp"></c:import>
       <div class="wrapper">
-		<div class="header header-filter" style="background-image: url('./assets/img/BackImage.jpg'); background-size: cover; background-position: top center;">
+		<div class="header header-filter" style="background-image: url('./assets/img/base/BackImage.jpg'); background-size: cover; background-position: top center;">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
 						<div class="card card-signup">
-							<form class="form" action="personModify" method="post" enctype="multipart/form-data" id="form1">		
+							<form class="form" action="personModify" method="post" enctype="multipart/form-data" id="form1" onsubmit="return modifyCheck()">		
 								<div class="header header-primary text-center">
 									<h4>회원정보수정(개인)</h4>
-									<div class="social-line">
-										<a href="#pablo" class="btn btn-simple btn-just-icon">
-											<i class="fa fa-facebook-square"></i>
-										</a>
-										<a href="#pablo" class="btn btn-simple btn-just-icon">
-											<i class="fa fa-twitter"></i>
-										</a>
-										<a href="#pablo" class="btn btn-simple btn-just-icon">
-											<i class="fa fa-google-plus"></i>
-										</a>
-									</div>
 								</div>
 								<div class="content" align="center">
 									<div class="input-group">
@@ -92,8 +81,14 @@
 									</div>
 									
 									<div class="input-group">
-										<input type="radio" name="personGender" value="M"><span>남</span>
-										<input type="radio" name="personGender" value="F"><span>여</span>
+									<c:if test="${personVo.personGender eq 'M' }">
+										<input type="radio" class="personGender" name="personGender" value="M" checked="checked"><span>남</span>
+										<input type="radio" class="personGender" name="personGender" value="F"><span>여</span>
+									</c:if>
+									<c:if test="${personVo.personGender eq 'F' }">
+										<input type="radio" class="personGender" name="personGender" value="M" ><span>남</span>
+										<input type="radio" class="personGender" name="personGender" value="F" checked="checked"><span>여</span>
+									</c:if>
 									</div>
 								
 									<!-- If you want to add a checkbox to this form, uncomment this code
@@ -114,20 +109,46 @@
 				</div>
 			</div>
 <c:import url="/WEB-INF/views/module/footer.jsp"></c:import>
-<script>
-$(document).ready(function(){
-	$("#form1").submit(function(){
-		var newPw = $("#newPw").val();
-		var newPwCheck =$("#newPwCheck").val();
-		if(newPw!=newPwCheck){
-			alert("비밀번호 틀렸어요");
-			return false;
-		}
-	});
-});
+<script type="text/javascript">
+function modifyCheck() {
+	if ($("#memberId").val() == "") {
+		alert("아이디를 입력해 주세요.");
+		$("#memberId").focus();
+		return false;
+	} else if ($("#memberPw").val() == "") {
+		alert("비밀번호를 입력해 주세요.");
+		$("#memberPw").focus();
+		return false;
+	}	else if ($("#memberNm").val() == "") {
+		alert("이름을 입력해 주세요.");
+		$("#memberNm").focus();
+		return false;
+	} else if ($("#memberPhone").val() == "") {
+		alert("전화번호를 입력해 주세요.");
+		$("#memberPhone").focus();
+		return false;
+	} else if ($("#memberEmail").val() == "") {
+		alert("이메일을 입력해 주세요.");
+		$("#memberEmail").focus();
+		return false;
+	} else if ($("#personBirth").val() == "") {
+		alert("생년월일을 입력해 주세요.");
+		$("#personBirth").focus();
+		return false;
+	} else if ($(".personGender:checked").length < 1) {
+		alert("성별을 입력해 주세요.");
+		$(".personGender").focus();
+		return false;
+	} else if ($("#newPw").val() != $("#newPwCheck").val()) {
+		alert("비밀번호를 확인해주세요.");
+		$("#newPw").focus();
+		return false;
+	}
+	else
+		return true;
+}
 </script>
 <!-- 이미지사진미리보기 -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script type="text/javascript">
     $(function() {
         $("#imgInp").on('change', function(){

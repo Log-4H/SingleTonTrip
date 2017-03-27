@@ -45,7 +45,7 @@ public class MemberController {
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public ModelAndView login(@RequestParam(value = "loginId") String loginId,
 			@RequestParam(value = "loginPw") String loginPw) {
-		ModelAndView mv = new ModelAndView("main");
+		ModelAndView mv = new ModelAndView("redirect:main");
 		LoginVo loginVo = memberService.login(loginId, loginPw);
 		mv.addObject("sessionId", loginVo.getMemberId());
 		mv.addObject("sessionNm", loginVo.getMemberNm());

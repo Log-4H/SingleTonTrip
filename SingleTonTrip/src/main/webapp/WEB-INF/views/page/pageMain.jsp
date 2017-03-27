@@ -23,8 +23,6 @@
 <input type="hidden" id="pageLevel" value="${pageLevel}">
 
 <c:import url="/WEB-INF/views/module/nav.jsp"></c:import>
-
-
    <div class="wrapper">
 		<div class="header header-filter" style="background-image: url('./assets/img/base/pageMain.jpg');"></div>
 		<div class="main main-raised">
