@@ -22,6 +22,7 @@
     <link href="./assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="./assets/css/material-kit.css" rel="stylesheet"/>
     <link href="./assets/css/demo.css" rel="stylesheet" />
+    <link href="./css/hideimg.css" rel="stylesheet" />
     
     <!--   Core JS Files   -->
 	<script src="./assets/js/jquery.min.js" type="text/javascript"></script>

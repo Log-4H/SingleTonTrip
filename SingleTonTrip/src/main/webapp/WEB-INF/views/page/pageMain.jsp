@@ -23,9 +23,10 @@
 <input type="hidden" id="pageLevel" value="${pageLevel}">
 
 <c:import url="/WEB-INF/views/module/nav.jsp"></c:import>
+
+
    <div class="wrapper">
 		<div class="header header-filter" style="background-image: url('./assets/img/base/pageMain.jpg');"></div>
-
 		<div class="main main-raised">
 			<div class="profile-content">
 	            <div class="container">
@@ -34,6 +35,7 @@
 	                        <div class="avatar">
 	                            <img src="" alt="Circle Image" id="profileImg" class="img-circle img-responsive img-raised">
 	                            <div>
+	                        		<c:import url="/WEB-INF/views/module/right.jsp"></c:import>
 		                            <button type='button' id='friendApproveBtn' class='btn btn-info btn-simple btn-xs pageFriendAddBtn' style='display:none;'>
 									<i class='fa fa-user-plus' aria-hidden='true'></i></button>
 									<c:if test="${sessionId ne null && sessionId ne pageId }">
@@ -94,9 +96,10 @@
 								</div>
 							</div>
 							<!-- End Profile Tabs -->
+							<div>
+							</div>
 						</div>
 	                </div>
-
 	            </div>
 	        </div>
 		</div>
