@@ -51,5 +51,4 @@ public class ReportServiceImpl implements ReportService{
 	public ReportVo reportDetail(int reportNo) {
 		return reportDao.reportDetail(reportNo);
 	}
-
 }

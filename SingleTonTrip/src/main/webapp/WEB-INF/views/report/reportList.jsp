@@ -16,6 +16,7 @@
 					<div class="row" style="height: 800px; margin-top: 80px">
 						<div class="col-md-6 col-md-offset-3">
 							<div class="card card-signup">
+								<a href="reportAdd"><button class="btn btn-simple btn-primary btn-lg">신고하기</button></a>
 								<div class="header header-primary text-center" style="height: 80px;">
 									<h4>신고리스트</h4>
 								</div>
@@ -56,7 +57,7 @@
 									</div>
 							</div>
 						</div>
-						<a href="reportAdd"><button class="btn btn-simple btn-primary btn-lg">신고하기</button></a>
+
 					</div>
 				</div>
 			</div>

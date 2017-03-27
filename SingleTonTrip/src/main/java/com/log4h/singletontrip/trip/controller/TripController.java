@@ -267,15 +267,15 @@ public class TripController {
 	//여행 마감
 	@RequestMapping(value="tripEnd", method=RequestMethod.POST)
 	public ModelAndView tripEnd(@RequestParam(value="tripNo") int tripNo,
-			@ModelAttribute("pageId") String pageId,
+			@RequestParam(value="pageId", required=false) String pageId,
 			@RequestParam(value="lastTripRow", defaultValue="5") int lastTripRow){
 		ModelAndView mv = new ModelAndView("jsonView");
 		int result = tripService.tripEnd(tripNo);
-		if(result>0){
+		if(pageId != null && result>0){
 			List<TripVo> tripList= tripService.tripList(pageId, lastTripRow);
 			mv.addObject("tripList", tripList);
 		}
-		return mv;	
+		return mv;
 	}
 	//여행 삭제
 	@RequestMapping(value="tripDelete", method=RequestMethod.POST)

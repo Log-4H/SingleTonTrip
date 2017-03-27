@@ -10,11 +10,11 @@
 					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 				</button>
 				<h4 class="modal-title">
-				<input type="text" class="form-control" id="postTitle" name="postTitle" placeholder="Title">
+				<input type="text" class="form-control" id="postTitle" name="postTitle" placeholder="Title" required>
 				</h4>
 			</div>
 			<div class="modal-body">
-			<textarea class="form-control" rows="5" id="postContent" name="postContent" style="resize: none;" placeholder="Content"></textarea>
+			<textarea class="form-control" rows="5" id="postContent" name="postContent" style="resize: none;" placeholder="Content" required></textarea>
 			이미지 등록<input type="file" id="postImgFile" name="imgFile" accept="image/gif, image/jpg, image/png, image/jpeg" onchange="fileInfo(this)"><br>
 			<div id="postInputImg">
 			</div>

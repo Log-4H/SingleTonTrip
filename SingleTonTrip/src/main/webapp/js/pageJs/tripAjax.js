@@ -120,7 +120,6 @@ $(document).on('click', '.tripDetailBtn', function() {
 //일정 상세보기
 $(document).on('click', '#planDetailBtn', function() {
 	var tripNo = $(this).attr('value');
-	console.log(tripNo);
 	var planFlag = $("#planFlag").attr('value');
 	var html = "";
 	if (planFlag == 'close') {
@@ -542,7 +541,6 @@ $(document).on('click', '.tripModifyModalBtn', function() {
 		},
 		dataType : "json",
 		success : function(data) {
-			console.log(data);
 			var trip = data.trip;
 			var tripThemeList = data.tripThemeList;
 			var regionDoList = data.regionDoList;

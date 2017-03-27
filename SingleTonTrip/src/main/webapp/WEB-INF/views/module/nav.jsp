@@ -68,6 +68,7 @@
 							<li><a href="mileageList">마일리지</a></li>
 							<li><a href="reserveList">예약정보</a></li>
 							<li><a href="payList">결제정보</a></li>
+							<li><a href="reportList">신고리스트</a></li>
 						</ul>
 				</li>      			
 			
@@ -103,6 +104,7 @@
 							<li><a href="companyDetail?memberId=${sessionId}">업체정보</a></li>
 							<li><a href="reserveList">예약정보</a></li>
 							<li><a href="payList">결제정보</a></li>
+							<li><a href="reportList">신고리스트</a></li>
 						</ul>
 				</li>
 			
@@ -135,6 +137,7 @@
 							<li><a href="personDetail?memberId=${sessionId}">회원정보</a></li>
 							<li><a href="mileageList">마일리지</a></li>
 							<li><a href="reserveList">예약정보</a></li>
+							<li><a href="reportList">신고리스트</a></li>
 						</ul>
 				</li> 
 			

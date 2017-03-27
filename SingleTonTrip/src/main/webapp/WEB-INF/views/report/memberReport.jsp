@@ -20,8 +20,8 @@
 										</br>
 										<div class="input-group">
 											<span class="input-group-addon"></span>
-											<select name="reportTypeList.reportTypeCd">
-												<option value="#">::선택::</option>
+											<select name="reportTypeCd">
+												<option>::선택::</option>
 												<c:forEach items="${reportTypeList}" var="r">
 													<option value="${r.reportTypeCd}">${r.reportTypeNm}</option>
 												</c:forEach>
