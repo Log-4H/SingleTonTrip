@@ -3,13 +3,44 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:import url="/WEB-INF/views/module/top.jsp" />
+<script>
+// 광고 불러온다
+$(document).ready(function() {
+	console.log("-----");
+	$.ajax({
+		url : "serviceAdList",
+		type : "GET",
+		dataType : "json",
+		success : function(data) {
+			console.log("sss?");
+			console.log(data);
+			var homeAdList = data.homeAdList;
+			var html="";
+			$.each(homeAdList,function(key, item) {
+				html += "<p align='center'>여기 어떠세요?</p>";
+				// 광고신청할 때 URL 입력했으면 그 주소로 가고 입력 안했으면 광고 신청한 사람의 페이지로 이동
+				if(item.adPageAddress == null || item.adPageAddress == ""){
+					html+="<a href='pageMain?pageId="+item.companyId+"'>";
+				} else {
+					html+="<a href='"+item.adPageAddress+"'>";
+				}
+				html+="<img src='./images/"+item.adImg+"' style='width:250px;height:150px;margin-top:0px;'></a>";
+			});
+			$('#adList').html(html);
+		}
+	})
+});
+</script>
 <body class="profile-page">
 	<c:import url="/WEB-INF/views/module/nav.jsp" />
 	<div class="wrapper">
 		<div class="header header-filter"
 			style="background-image: url('./assets/img/base/BackImage.jpg');"></div>
+
 		<div class="main main-raised">
 			<div class="profile-content">
+				<div id="adList" style="margin-left:75%;margin-top:50;layout:fixed; position:fixed;">
+				</div>
 				<div class="container-fluid">
 					<div class="row" style="height: 800px; margin-top: 80px">
 						<div class="col-md-6 col-md-offset-3">
@@ -17,6 +48,7 @@
 								<div class="header header-primary text-center" style="height: 80px;">
 									<h4>여행검색</h4>
 								</div>
+								<br>
 									<div class="content">
 										<form action="<c:url value='mainTripList'/>" method="get">
 											<div align="right">
