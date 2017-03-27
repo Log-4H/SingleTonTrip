@@ -125,6 +125,7 @@ public class ReserveServiceImpl implements ReserveService{
 		map.put("payment", payment);
 		map.put("sessionId", sessionId);
 		map.put("stayDay", stayDay);
+		
 		int result; 
 		result = reserveDao.addRoomReserve(map);
 		if(result != 0){
@@ -132,7 +133,10 @@ public class ReserveServiceImpl implements ReserveService{
 			logger.debug(" >>>>>>> targetNo : {} ",targetNo );
 			
 			if(targetNo != 0){
+				final int paymentStateCd  = 2;
+				
 				map.put("targetNo", targetNo);
+				map.put("paymentStateCd ", paymentStateCd);
 				result = reserveDao.addRoomPayment(map);
 			}
 		}

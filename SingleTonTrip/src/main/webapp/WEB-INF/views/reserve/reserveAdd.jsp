@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:import url="/WEB-INF/views/module/top.jsp" />
 <script type="text/javascript">
+// 날짜 차이
 $(function() {
     $('#endDate').change(function(e) {
         var startDate = document.getElementById("startDate").value;
@@ -49,6 +50,8 @@ $(function() {
 								<form method="post" action="reserveInsert">
 									<div id="pricing" class="container-fluid">
 									<input name="reserve.room.roomNo" type="hidden" value="${room.roomNo} ">
+									<!-- paymentCateCd 1 : reserve, 2 : ad  -->
+									<input name="paymentCateCd" type="hidden" value="1">
 
 										<div class="row-fluid slideanim">
 											<div class="col-sm-12 col-xs-12">
@@ -73,7 +76,7 @@ $(function() {
 														<div class="input-group">
 															<span class="input-group-addon">판매금액</span> 
 															<input
-																type="text" class="form-control" name="payment.paymentTotalPrice"
+																type="text" class="form-control" name="paymentTotalPrice"
 																value="${room.roomNormalPrice }"
 																readonly="readonly"> 
 															<span class="input-group-addon"></span>
@@ -114,7 +117,7 @@ $(function() {
 														</div>
 														<div class="input-group">
 															<span class="input-group-addon">마일리지 사용</span> 
-															<input type="text" class="form-control" name="payment.paymentUseMileage">
+															<input type="text" class="form-control" name="paymentUseMileage">
 															<span class="input-group-addon"></span>
 														</div>
 														<div class="input-group">

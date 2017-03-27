@@ -297,7 +297,6 @@
 			 	#{reserve.reserveCheckoutDate}, 
 			 	#{reserve.reserveCheckinDate}
 			 )
-			 
 	</select>
 	
 	<!-- 방 예약 완료 -->
@@ -311,7 +310,7 @@
 		) VALUES (
 			#{payment.reserve.room.roomNo},
 			#{sessionId},
-			#{stayDay},
+			#{stayDay}+1,
 			#{payment.reserve.reserveCheckinDate},
 			#{payment.reserve.reserveCheckoutDate}
 		)
@@ -338,19 +337,19 @@
 			payment_price, 
 			payment_total_price, 
 			payment_apply_date
-			<if test="payment.paymentStateCd ==2 ">
+			<if test="paymentStateCd ==2 ">
 				,payment_finish_date
 				,payment_approve_date
 			</if>
 		) VALUES (
-			#{sessinoId},
+			#{sessionId},
 			#{payment.paymentCateCd},
 			#{targetNo},
 			#{payment.paymentUseMileage},
 			#{payment.paymentPrice},
 			#{payment.paymentTotalPrice},
 			NOW()
-			<if test="payment.paymentStateCd == 2">
+			<if test="paymentStateCd == 2">
 				,NOW()
 				,NOW()
 			</if>

@@ -116,12 +116,12 @@ public class ReserveController {
 		logger.debug(" >>>>>>> payment 받은 값 : {}", payment);
 		
 		int result = reserveService.reserveInsert(payment, sessionId);
-		
-		if(result != 1 ){
+		logger.debug(" >>>>>>> reserveInsert result 값 : {}", result);
+		/*if(result != 1 ){
 			mv.setViewName("redirect:error");
 		}else{
 			mv.setViewName("redirect:reserveList");
-		}
+		}*/
 		
 		
 		
