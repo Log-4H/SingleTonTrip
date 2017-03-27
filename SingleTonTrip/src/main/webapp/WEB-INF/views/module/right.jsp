@@ -24,7 +24,7 @@ $(document).ready(function() {
 				} else {
 					html+="<a href='"+item.adPageAddress+"'>";
 				}
-				html+="<img src='./images/"+item.adImg+"' style='width:100%;height:150px;margin-top:0px;'></a>";
+				html+="<img src='./images/"+item.adImg+"' style='width:250px;height:150px;margin-top:0px;'></a>";
 			});
 			$('#adList').html(html);
 		}
