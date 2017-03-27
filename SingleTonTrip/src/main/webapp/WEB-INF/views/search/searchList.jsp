@@ -220,11 +220,12 @@
 
 					</div>
 				</div>
+				<br><br><br><br>
 			</div>
 
 		</div>
 
 	</div>
-	<c:import url="/WEB-INF/views//module/footer.jsp" />
+	<c:import url="/WEB-INF/views/module/footer.jsp" />
 </body>
 </html>

@@ -1,8 +1,6 @@
 $(document).on('click', '.searchPersonPaging', function() {
 	var personCurrentPage = $(this).attr('value');
 	var value = $("#searchValue").val();
-	var pos=$("#personResult").position().top;
-	$("html, body").animate({scrollTop:pos},'speed');
 	$.ajax({
 		url : "searchPersonList",
 		type : "POST",
@@ -25,8 +23,6 @@ $(document).on('click', '.searchPersonPaging', function() {
 $(document).on('click', '.searchCompanyPaging', function() {
 	var companyCurrentPage = $(this).attr('value');
 	var value = $("#searchValue").val();
-	var pos=$("#companyResult").position().top;
-	$("html, body").animate({scrollTop:pos},'speed');
 	$.ajax({
 		url : "searchCompanyList",
 		type : "POST",
@@ -48,8 +44,6 @@ $(document).on('click', '.searchCompanyPaging', function() {
 $(document).on('click', '.searchTripPaging', function() {
 	var tripCurrentPage = $(this).attr('value');
 	var value = $("#searchValue").val();
-	var pos=$("#tripResult").position().top;
-	$("html, body").animate({scrollTop:pos},'speed');
 	$.ajax({
 		url : "searchTripList",
 		type : "POST",
