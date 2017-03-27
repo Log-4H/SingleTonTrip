@@ -59,6 +59,14 @@ public class TripController {
 		mv.addObject("planList", map.get("planList"));
 		return mv;	
 	}
+	//여행 상세보기
+	@RequestMapping(value="planList")
+	public ModelAndView planDetail(@RequestParam(value="tripNo") int tripNo){
+		ModelAndView mv = new ModelAndView("jsonView");
+		List<PlanVo> planList = tripService.planList(tripNo);
+		mv.addObject("planList", planList);
+		return mv;	
+	}
 	//상단바여행 상세보기
 	@RequestMapping(value="tripDetail")
 	public ModelAndView tripView(@RequestParam(value="tripNo") int tripNo){

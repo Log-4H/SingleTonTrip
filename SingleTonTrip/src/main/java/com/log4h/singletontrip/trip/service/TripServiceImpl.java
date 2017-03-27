@@ -58,6 +58,10 @@ public class TripServiceImpl implements TripService{
 		map.put("planList", planList);
 		return map;
 	}
+	//일정상세보기
+	public List<PlanVo> planList(int tripNo){
+		return tripDao.planList(tripNo);
+	}
 	//navbar 여행상세보기
 	@Override
 	public Map<String, Object> tripDetail(int tripNo) {

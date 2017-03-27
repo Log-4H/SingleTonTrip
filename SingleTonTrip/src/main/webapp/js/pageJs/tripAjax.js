@@ -117,6 +117,42 @@ $(document).on('click', '.tripDetailBtn', function() {
 		$("#tripFlag" + tripNo).val("close");
 	}
 });
+//일정 상세보기
+$(document).on('click', '#planDetailBtn', function() {
+	var tripNo = $(this).attr('value');
+	console.log(tripNo);
+	var planFlag = $("#planFlag").attr('value');
+	var html = "";
+	if (planFlag == 'close') {
+		$.ajax({
+			url : "planList",
+			type : "POST",
+			data : {
+				tripNo : tripNo
+			},
+			dataType : "json",
+			success : function(data) {
+				var planList = data.planList;
+				html = planDetailAppend(tripNo,planList);
+				$("#planDetail").empty();
+				$("#planDetail").append(html);
+				if(planList.length!=0){
+					var planSite = new Array;
+					var planContent = new Array;
+					$.each(planList, function(key, item) {
+						planSite.push(item.planSite);
+						planContent.push(item.planContent);
+					});
+					googleMap(tripNo, planSite, planContent);
+				}
+				$("#planFlag").val("open");
+			}
+		})
+	} else {
+		$("#planDetail").empty();
+		$("#planFlag").val("close");
+	}
+});
 //여행지역(시) 리스트
 function regionSiListShow(value){
 	$.ajax({
@@ -387,6 +423,23 @@ function tripDetailAppend(trip, planList) {
 			html += "<hr>";
 		});
 		html += "<div class='googleMap' id='google_map"+trip.tripNo+"' style='max-width:700px; height:350px;'></div>";
+	}
+	return html;
+}
+//일정상세보기 html추가
+function planDetailAppend(tripNo, planList) {
+	var html = "";
+	if(planList.length!=0){
+		$.each(planList, function(key, item) {
+			html += "<p>일정No : " + key + "</p>";
+			html += "<p>지역 : " + item.planSite + "</p>";
+			html += "<p>내용 : " + item.planContent + "</p>";
+			html += "<p>시간 : " + item.planStartTime + " ~ " + item.planEndTime
+					+ "</p>";
+			html += "<p>예상비용: " + item.planPrice + "</p>";
+			html += "<hr>";
+		});
+		html += "<div class='googleMap' id='google_map"+tripNo+"' style='max-width:700px; height:350px;'></div>";
 	}
 	return html;
 }

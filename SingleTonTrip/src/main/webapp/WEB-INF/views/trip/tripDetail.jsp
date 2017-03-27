@@ -12,7 +12,7 @@
 		<div class="main main-raised">
 			<div class="profile-content">
 				<div class="container-fluid">
-					<div class="row" style="height: 800px; margin-top: 80px">
+					<div class="row" style="margin-top: 80px; height: responsive;">
 						<div class="col-md-6 col-md-offset-3">
 							<div class="card card-signup">
 								<div class="header header-primary text-center" style="height: 80px;">
@@ -35,7 +35,7 @@
 											<span class='label label-danger'>${trip.recruitStateNm}</span>
 										</c:when>
 									</c:choose>
-									
+									<h6>${trip.tripRegDate}</h6>
 									<h3><strong>${trip.tripTitle}</strong></h3>
 									<p>${trip.tripThemeNm}</p>
 									<c:choose>
@@ -49,15 +49,28 @@
 									<hr>
 									<h4> ${trip.tripContent}</h4>
 									<hr>
-									<h6>${trip.tripRegDate}</h6>
+									<p>참여인원(현재인원/총인원) : ${trip.tripPresentMember}  / ${trip.tripMaxMember}</p>
+									<p>여행기간 : ${trip.tripStartDate} ~ ${trip.tripEndDate}</p>
+									<p>예상경비(1인경비/총경비) : ${trip.tripPerPrice} / ${trip.tripTotalPrice}</p>
+									<p>모집기간 : ${trip.tripRecruitStartDate} ~ ${trip.tripRecruitEndDate}</p>
+									<p>태그 : #${trip.tripTag}</p>
+									<hr>
+									<div id='planDetail'></div>
+									<div>
+									<button type='button' class='btn btn-primary' id="planDetailBtn" value='${trip.tripNo}'>
+									일정보기</button>
+									<input type='hidden' id='planFlag' value='close'>
+									</div>
+									
 								</div>
 							</div>
+							<br><br><br><br>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<c:import url="/WEB-INF/views//module/footer.jsp" />
+	<c:import url="/WEB-INF/views/module/footer.jsp" />
 </body>
 </html>

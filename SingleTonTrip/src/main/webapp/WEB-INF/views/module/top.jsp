@@ -47,6 +47,8 @@
 	<script src="<c:url value='/js/pageJs/tripAjax.js'/>"></script>
 	<c:import url="/WEB-INF/views/trip/tripApply.jsp"></c:import>
 	<c:import url="/WEB-INF/views/page/trip/tripEnd.jsp"></c:import>
+	
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDI3-OfEdnYv_YcK0ZnIG-nGAk3WvnMAk4&&sensor=false"></script>
 </head>
 
 	
