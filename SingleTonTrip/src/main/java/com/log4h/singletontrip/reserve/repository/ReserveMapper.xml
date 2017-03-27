@@ -261,6 +261,7 @@
 	<!-- 방정보 가져오기 -->
 	<select id="getRoom" parameterType="int" resultType="com.log4h.singletontrip.room.domain.RoomVo">
 		SELECT 
+			room_no,
 			room_nm, 
 			room_img, 
 			room_normal_price
@@ -289,8 +290,18 @@
 	
 	</select>
 	
+	<!-- 체크인과 체크아웃 날 계산 일수로 변경 -->
+	<select id="reserveStayDay" parameterType="com.log4h.singletontrip.reserve.domain.PaymentVo" resultType="int">
+		SELECT
+			 DATEDIFF(
+			 	#{reserve.reserveCheckoutDate}, 
+			 	#{reserve.reserveCheckinDate}
+			 )
+			 
+	</select>
+	
 	<!-- 방 예약 완료 -->
-	<insert id="addRoomReserve" parameterType="int">
+	<insert id="addRoomReserve" parameterType="Map" >
 		INSERT INTO tb_reserve (
 			room_no, 
 			person_id, 
@@ -298,15 +309,27 @@
 			reserve_checkin_date, 
 			reserve_checkout_date
 		) VALUES (
-			#{roomNo},
+			#{payment.reserve.room.roomNo},
 			#{sessionId},
-			#{reaserveStayDay},
-			#{reserveCheckinDate},
-			#{reserveCheckoutDate}
+			#{stayDay},
+			#{payment.reserve.reserveCheckinDate},
+			#{payment.reserve.reserveCheckoutDate}
 		)
 	</insert>
+	
+	<!-- 예약 번호 가져오기 -->
+	<select id="getTarget" parameterType="Map"  resultType="int"> 
+		SELECT reserve_no
+			FROM tb_reserve
+		WHERE
+			person_id = #{sessionId}
+			AND room_no = #{payment.reserve.room.roomNo}
+			AND reserve_checkin_date = #{payment.reserve.reserveCheckinDate}
+			AND reserve_checkout_date = #{payment.reserve.reserveCheckoutDate}
+	</select>		
+		
 	<!-- 방 결제 완료 -->
-	<insert id="addRoomPayment" parameterType="int">
+	<insert id="addRoomPayment" parameterType="Map">
 		INSERT INTO tb_payment (
 			member_id, 
 			payment_cate_cd, 
@@ -314,18 +337,24 @@
 			payment_use_mileage, 
 			payment_price, 
 			payment_total_price, 
-			payment_apply_date, 
-			payment_finish_date, 
-			payment_approve_date
+			payment_apply_date
+			<if test="payment.paymentStateCd ==2 ">
+				,payment_finish_date
+				,payment_approve_date
+			</if>
 		) VALUES (
 			#{sessinoId},
-			#{paymentCateCd},
-			#{reserveNo},
-			#{sessinoId},
-			#{sessinoId},
-			#{sessinoId},
-			NOW(), 
+			#{payment.paymentCateCd},
+			#{targetNo},
+			#{payment.paymentUseMileage},
+			#{payment.paymentPrice},
+			#{payment.paymentTotalPrice},
 			NOW()
+			<if test="payment.paymentStateCd == 2">
+				,NOW()
+				,NOW()
+			</if>
+			
 		)
 	</insert>
 </mapper>

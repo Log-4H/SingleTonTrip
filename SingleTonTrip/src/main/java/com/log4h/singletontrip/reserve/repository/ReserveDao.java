@@ -27,4 +27,12 @@ public interface ReserveDao {
 
 	RoomVo getRoom(int roomNo);
 
+	int addRoomReserve(Map<String, Object> map);
+
+	int addRoomPayment(Map<String, Object> map);
+
+	int reserveStayDay(PaymentVo payment);
+
+	int getTarget(Map<String, Object> map);
+
 }

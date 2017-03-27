@@ -55,4 +55,26 @@ public class ReserveDaoImpl implements ReserveDao{
 	public RoomVo getRoom(int roomNo) {
 		return sqlSession.selectOne(RESERVE_NS+"getRoom", roomNo);
 	}
+	// 예약 등록
+	@Override
+	public int addRoomReserve(Map<String, Object> map) {
+		return sqlSession.insert(RESERVE_NS+"addRoomReserve", map);
+	}
+	// 결제 등록
+	@Override
+	public int addRoomPayment(Map<String, Object> map) {
+		return sqlSession.insert(RESERVE_NS+"addRoomPayment", map);
+	}
+	
+	// 숙박일 계산
+	@Override
+	public int reserveStayDay(PaymentVo payment) {
+		return sqlSession.selectOne(RESERVE_NS+"reserveStayDay", payment);
+	}
+	
+	// 타겟 넘버 가져오기
+	@Override
+	public int getTarget(Map<String, Object> map) {
+		return sqlSession.selectOne(RESERVE_NS+"getTarget", map);
+	}
 }

@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.log4h.singletontrip.ad.domain.AdVo;
 import com.log4h.singletontrip.member.domain.LoginVo;
@@ -100,14 +101,45 @@ public class ReserveServiceImpl implements ReserveService{
 		Map<String, Object> map = new HashMap<String, Object>(); 
 		
 		PersonVo person = reserveDao.getPerson(sessionId);
-		logger.debug("return받은 person {}", person);
+		logger.debug(" >>>>>>> reserveInfo return받은 person {}", person);
 		RoomVo room = reserveDao.getRoom(roomNo);
-		logger.debug("return받은 room {}", room);
+		logger.debug(" >>>>>>> reserveInfo return받은 room {}", room);
 		
 		map.put("person", person);
 		map.put("room", room);
 		
 		return map;
+	}
+	// 예약 등록 및 결제 등록
+	@Override
+	@Transactional
+	public int reserveInsert(PaymentVo payment, String sessionId) {
+		logger.debug("\n >>>>>> reserveInsert <<<<<<< ");
+		logger.debug(" >>>>>> reserveInsert payment 받은 값 : {} ",payment);
+		logger.debug(" >>>>>> reserveInsert sessionId 받은 값 : {} ",sessionId);
+		
+		int stayDay = reserveDao.reserveStayDay(payment);
+		logger.debug(" >>>>>> reserveInsert stayDay 값 : {} ",stayDay);
+		
+		Map<String, Object> map = new HashMap<String, Object>(); 
+		map.put("payment", payment);
+		map.put("sessionId", sessionId);
+		map.put("stayDay", stayDay);
+		int result; 
+		result = reserveDao.addRoomReserve(map);
+		if(result != 0){
+			int targetNo = reserveDao.getTarget(map);
+			logger.debug(" >>>>>>> targetNo : {} ",targetNo );
+			
+			if(targetNo != 0){
+				map.put("targetNo", targetNo);
+				result = reserveDao.addRoomPayment(map);
+			}
+		}
+		logger.debug(" >>>>>>> reserveInsert <<<<<<< \n");
+		
+		return result;
+		
 	}
 
 }

@@ -2,6 +2,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:import url="/WEB-INF/views/module/top.jsp" />
+<script type="text/javascript">
+$(function() {
+    $('#endDate').change(function(e) {
+        var startDate = document.getElementById("startDate").value;
+        var endDate = document.getElementById("endDate").value;
+        var startDateArr = startDate.split('-');
+        var endDateArr = endDate.split('-');
+        var checkinDate = new Date(startDateArr[0], startDateArr[1], startDateArr[2]);
+        var checkoutDate = new Date(endDateArr[0], endDateArr[1], endDateArr[2]);
+         
+        // 날짜 차이 알아 내기
+        var diff = checkoutDate - checkinDate;
+        var currDay = 24 * 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
+        var currMonth = currDay * 30;// 월 만듬
+        var currYear = currMonth * 12; // 년 만듬
+        
+        var diff = parseInt(diff/currDay);
+       /*  document.write("* 날짜 두개 : " + strDate1 + ", " + strDate2 + "<br/>");
+        document.write("* 일수 차이 : " + parseInt(diff/currDay) + " 일<br/>");
+        document.write("* 월수 차이 : " + parseInt(diff/currMonth) + " 월<br/>");
+        document.write("* 년수 차이 : " + parseInt(diff/currYear) + " 년<br/><br/>"); */
+        $("#stayDay").html(diff+'박');
+    });
+});
+
+</script>
+
 <body class="profile-page">
 	<c:import url="/WEB-INF/views/module/nav.jsp" />
 	<div class="wrapper">
@@ -9,24 +36,30 @@
 		<div class="main main-raised">
 			<div class="profile-content">
 				<div class="container-fluid">
-					<!-- row와 row-fluid 차이가 뭘까 -->
 					<div class="row" style="height: 100%; margin-top: 80px; margin-bottom: 80px;">
 						<div class="col-md-8 col-md-offset-2">
 							<div class="card card-signup">
+								
 								<!-- 상단 보라색 타이틀 -->
 								<div class="header header-primary text-center" style="height: 80px;">
 									<h4>방이름</h4>
 								</div>
+								
+								<!-- 전송 -->
 								<form method="post" action="reserveInsert">
 									<div id="pricing" class="container-fluid">
+									<input name="reserve.room.roomNo" type="hidden" value="${room.roomNo} ">
 
 										<div class="row-fluid slideanim">
 											<div class="col-sm-12 col-xs-12">
 												체크인
-												<input name="reserveCheckinDate" type="date" value="${reserveCheckinDate }" readonly="readonly" /> 
+												<input name="reserve.reserveCheckinDate" id="startDate" type="date" value="${reserveCheckinDate }" readonly="readonly" /> 
 												체크아웃
-												<input name="reserveCheckoutDate"type="date" value="${reserveCheckinDate }" />
+												<input name="reserve.reserveCheckoutDate" id="endDate" type="date" value="${reserveCheckinDate }" />
+												<p id="stayDay" ></p>
 											</div>
+											
+											<!-- 예약정보 -->
 											<div class="col-sm-6 col-xs-12">
 												<div class="panel panel-default text-center">
 													<div class="panel-body">
@@ -40,8 +73,8 @@
 														<div class="input-group">
 															<span class="input-group-addon">판매금액</span> 
 															<input
-																type="text" class="form-control" name=""
-																placeholder="${room.roomNormalPrice }"
+																type="text" class="form-control" name="payment.paymentTotalPrice"
+																value="${room.roomNormalPrice }"
 																readonly="readonly"> 
 															<span class="input-group-addon"></span>
 														</div>
@@ -49,20 +82,22 @@
 														<div class="input-group">
 															<span class="input-group-addon">예약자명</span> 
 															<input
-																type="text" class="form-control" name="boardTitle"
+																type="text" class="form-control"
 																placeholder="${person.memberNm}" readonly="readonly">
 															<span class="input-group-addon"></span>
 														</div>
 														<div class="input-group">
 															<span class="input-group-addon">휴대전화</span> 
 															<input
-																type="text" class="form-control" name="boardTitle"
+																type="text" class="form-control"
 																placeholder="${person.memberPhone }" readonly="readonly">
 															<span class="input-group-addon"></span>
 														</div>
 													</div>
 												</div>
 											</div>
+											
+											<!-- 결제 정보 -->
 											<div class="col-sm-6 col-xs-12">
 												<div class="panel panel-default text-center">
 													<div class="panel-heading">
@@ -72,26 +107,26 @@
 														<div class="input-group">
 															<span class="input-group-addon">보유 마일리지</span> 
 															<input
-																type="text" class="form-control" name="boardTitle"
+																type="text" class="form-control"
 																placeholder="${person.personTotalMileage }"
 																readonly="readonly"> 
 															<span class="input-group-addon"></span>
 														</div>
 														<div class="input-group">
 															<span class="input-group-addon">마일리지 사용</span> 
-															<input type="text" class="form-control" name="boardTitle">
+															<input type="text" class="form-control" name="payment.paymentUseMileage">
 															<span class="input-group-addon"></span>
 														</div>
 														<div class="input-group">
 															<span class="input-group-addon">결제 금액</span> 
 															<input
-																type="text" class="form-control" name="boardTitle"
+																type="text" class="form-control" name="payment.paymentPrice"
 																readonly="readonly"> 
 															<span class="input-group-addon"></span>
 														</div>
 														<div class="checkbox">
 															<label> 
-																<input type="checkbox" name="optionsCheckboxes" checked="checked"> 
+																<input type="checkbox" name="" checked="checked"> 
 																이용 약관 동의
 															</label>
 														</div>

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.log4h.singletontrip.member.domain.LoginVo;
+import com.log4h.singletontrip.reserve.domain.PaymentVo;
+import com.log4h.singletontrip.reserve.domain.ReserveVo;
 import com.log4h.singletontrip.reserve.service.ReserveService;
 
 @Controller
@@ -105,17 +107,25 @@ public class ReserveController {
 	}
 	// 결제 및 예약
 	@RequestMapping(value="reserveInsert",method=RequestMethod.POST)
-	public ModelAndView reserveInsert(
+	public ModelAndView reserveInsert(PaymentVo payment, 
 			@ModelAttribute("sessionId") String sessionId,
-			@ModelAttribute("sessionLevel") int sessionLevel,
-			@RequestParam(value="roomNo") int roomNo,
-			@RequestParam(value="reserveCheckinDate") String reserveCheckinDate
+			@ModelAttribute("sessionLevel") int sessionLevel
 			){
 		ModelAndView mv = new ModelAndView();
-		logger.debug(" >>>>>>> reserveInsert <<<<<<< ");
+		logger.debug("\n\n\n >>>>>>> reserveInsert <<<<<<< ");
+		logger.debug(" >>>>>>> payment 받은 값 : {}", payment);
 		
-		mv.setViewName("/reserve/reserveList");
+		int result = reserveService.reserveInsert(payment, sessionId);
 		
+		if(result != 1 ){
+			mv.setViewName("redirect:error");
+		}else{
+			mv.setViewName("redirect:reserveList");
+		}
+		
+		
+		
+		logger.debug(" >>>>>>> payment end <<<<<<< \n\n\n");
 		return mv;
 		
 	}
