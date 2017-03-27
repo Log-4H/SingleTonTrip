@@ -105,7 +105,7 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		int result = memberService.personMemberJoin(personVo, imgFile);
 		if (result > 0) {
-			mv.setViewName("main");
+			mv.setViewName("redirect:main");
 		} else {
 			mv.setViewName("error/error");
 		}
@@ -118,7 +118,7 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		int result = memberService.companyMemberJoin(companyVo, imgFile);
 		if (result > 0) {
-			mv.setViewName("main");
+			mv.setViewName("redirect:main");
 		} else {
 			mv.setViewName("error/error");
 		}
@@ -273,7 +273,7 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		int result = memberService.personModify(personVo, imgFile);
 		if (result > 0) {
-			mv.setViewName("main");
+			mv.setViewName("redirect:main");
 		} else {
 			mv.setViewName("redirect:error");
 		}
@@ -286,7 +286,7 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		int result = memberService.companyModify(companyVo, imgFile);
 		if (result > 0) {
-			mv.setViewName("main");
+			mv.setViewName("redirect:main");
 		} else {
 			mv.setViewName("redirect:error");
 		}

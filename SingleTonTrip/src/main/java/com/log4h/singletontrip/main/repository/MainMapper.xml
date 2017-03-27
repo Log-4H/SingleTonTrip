@@ -42,11 +42,13 @@
 		concat(m.member_nm, m.member_id, m.member_email, m.member_phone) regexp #{value}
 	ORDER BY m.member_reg_date DESC
 	</if>
-	<if test="orderBy eq bestList">
-	ORDER BY m.member_evaluation_rating DESC
-	</if>
-	<if test="orderBy eq newList">
-	ORDER BY m.member_reg_date DESC
+	<if test="orderBy != null and orderBy != ''">
+		<if test="orderBy eq 'bestList'">
+		ORDER BY m.member_evaluation_rating DESC
+		</if>
+		<if test="orderBy eq 'newList'">
+		ORDER BY m.member_reg_date DESC
+		</if>
 	</if>
 	LIMIT #{beginRow}, #{pagePerRow}
 </select>
@@ -99,11 +101,13 @@
 		concat(m.member_nm, c.company_nm, ct.company_type_nm, c.company_address, m.member_id, m.member_email, m.member_phone) regexp #{value}
 	ORDER BY m.member_reg_date DESC 
 	</if>
-	<if test="orderBy eq bestList">
-	ORDER BY m.member_evaluation_rating DESC
-	</if>
-	<if test="orderBy eq newList">
-	ORDER BY m.member_reg_date DESC
+	<if test="orderBy != null and orderBy != ''">
+		<if test="orderBy eq 'bestList'">
+		ORDER BY m.member_evaluation_rating DESC
+		</if>
+		<if test="orderBy eq 'newList'">
+		ORDER BY m.member_reg_date DESC
+		</if>
 	</if>
 	LIMIT #{beginRow}, #{pagePerRow}
 </select>
@@ -133,10 +137,13 @@
 	SELECT
 		t.trip_no,
 		t.person_id,
+		m.member_img,
+		p.person_gender,
 		tn.trip_theme_nm,
 		r.region_do,
 		r.region_si,
 		t.trip_title,
+		t.trip_content,
 		t.trip_start_date,
 		t.trip_end_date
 	FROM
@@ -145,6 +152,14 @@
 		tb_trip_theme tn
 	ON 
 		t.trip_theme_cd = tn.trip_theme_cd
+	JOIN
+		tb_member m
+	ON 
+		t.person_id = m.member_id
+	JOIN
+		tb_person p
+	ON 
+		t.person_id = p.person_id
 	JOIN
 		tb_region r
 	ON 
@@ -156,8 +171,10 @@
 		concat(t.trip_theme_cd, r.region_do, r.region_si, t.trip_title, t.trip_content, t.trip_tag) regexp #{value}
 	ORDER BY t.trip_start_date DESC 
 	</if>
-	<if test="orderBy eq newList">
+	<if test="orderBy != null and orderBy != ''">
+	<if test="orderBy eq 'newList'">
 	ORDER BY t.trip_reg_date DESC 
+	</if>
 	</if>
 	LIMIT #{beginRow}, #{pagePerRow}
 </select>

@@ -95,6 +95,39 @@ $(document).ready(function() {
 						</ol>
 					</div>
 	            </div>
+	            <!-- 새로운 여행 -->
+	        	<div class="section text-center">
+	                <h2 class="title">새로운 여행</h2>
+					<div class="team">
+						<div class="row">
+							<c:forEach items="${newTrip }" var="nt">
+							<div class="col-md-4">
+			                    <div class="team-player">
+			                    <a href="tripDetail?tripNo=${nt.tripNo }">
+			                    	<c:choose>
+										<c:when test="${nt.memberImg ne null}">
+											<img src="./images/${nt.memberImg}" class="img-raised img-circle">
+										</c:when>
+										<c:when test="${nt.personGender == 'M'}">
+											<img src="./assets/img/base/Male.png" class="img-raised img-circle">
+										</c:when>
+										<c:when test="${nt.personGender == 'F'}">
+											<img src="./assets/img/base/Female.png" class="img-raised img-circle">
+										</c:when>
+									</c:choose>
+									</a>
+			                       <h4 class="title"><a href="tripDetail?tripNo=${nt.tripNo }">${nt.tripTitle }</a><br />
+										<small class="text-muted" align="left">${nt.tripThemeNm }</small>
+									</h4>
+			                        <p class="description">${nt.tripContent}</p>
+			                    </div>
+			                </div>
+			                </c:forEach>
+						</div>
+					</div>
+	            </div>
+	            
+	            
 				<!-- 우수회원 -->
 	        	<div class="section text-center">
 	                <h2 class="title">우수회원</h2>
@@ -119,10 +152,7 @@ $(document).ready(function() {
 			                       <h4 class="title"><a href="pageMain?pageId=${bp.memberId }">${bp.memberNm }</a><br />
 										<small class="text-muted" align="left"><script>writeRate(${bp.memberEvaluationRating *10})</script><strong>${bp.memberEvaluationRating}</strong></small>
 									</h4>
-			                        <p class="description">test</p>
-									<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-twitter"></i></a>
-									<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-instagram"></i></a>
-									<a href="#pablo" class="btn btn-simple btn-just-icon btn-default"><i class="fa fa-facebook-square"></i></a>
+			                        <p class="description">${bp.personGender } / ${bp.personBirth }</p>
 			                    </div>
 			                </div>
 			                </c:forEach>
@@ -151,55 +181,70 @@ $(document).ready(function() {
 			                       <h4 class="title"><a href="pageMain?pageId=${bc.memberId }">${bc.companyNm }</a><br />
 										<small class="text-muted" align="left"><script>writeRate(${bc.memberEvaluationRating *10})</script><strong>${bc.memberEvaluationRating}</strong></small>
 									</h4>
-			                        <p class="description">test</p>
-									<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-twitter"></i></a>
-									<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-instagram"></i></a>
-									<a href="#pablo" class="btn btn-simple btn-just-icon btn-default"><i class="fa fa-facebook-square"></i></a>
+			                       <p class="description">${bc.companyTypeNm }</p>
 			                    </div>
 			                </div>
 			                </c:forEach>
 						</div>
 					</div>
 	            </div>
-
-
-	        	<div class="section landing-section">
-	                <div class="row">
-	                    <div class="col-md-8 col-md-offset-2">
-	                        <h2 class="text-center title">Work with us</h2>
-							<h4 class="text-center description">Divide details about your product or agency work into parts. Write a few lines about each one and contact us about any further collaboration. We will responde get back to you in a couple of hours.</h4>
-	                        <form class="contact-form">
-	                            <div class="row">
-	                                <div class="col-md-6">
-										<div class="form-group label-floating">
-											<label class="control-label">Your Name</label>
-											<input type="email" class="form-control">
-										</div>
-	                                </div>
-	                                <div class="col-md-6">
-										<div class="form-group label-floating">
-											<label class="control-label">Your Email</label>
-											<input type="email" class="form-control">
-										</div>
-	                                </div>
-	                            </div>
-
-								<div class="form-group label-floating">
-									<label class="control-label">Your Messge</label>
-									<textarea class="form-control" rows="4"></textarea>
-								</div>
-
-	                            <div class="row">
-	                                <div class="col-md-4 col-md-offset-4 text-center">
-	                                    <button class="btn btn-primary btn-raised">
-											Send Message
-										</button>
-	                                </div>
-	                            </div>
-	                        </form>
-	                    </div>
-	                </div>
-
+				
+				<!-- 신규회원 -->
+	        	<div class="section text-center">
+	                <h2 class="title">신규회원</h2>
+					<div class="team">
+						<div class="row">
+							<c:forEach items="${newPerson }" var="np">
+							<div class="col-md-4">
+			                    <div class="team-player">
+			                    <a href="pageMain?pageId=${np.memberId }">
+			                    	<c:choose>
+										<c:when test="${np.memberImg ne null}">
+											<img src="./images/${np.memberImg}" class="img-raised img-circle">
+										</c:when>
+										<c:when test="${np.personGender == 'M'}">
+											<img src="./assets/img/base/Male.png" class="img-raised img-circle">
+										</c:when>
+										<c:when test="${np.personGender == 'F'}">
+											<img src="./assets/img/base/Female.png" class="img-raised img-circle">
+										</c:when>
+									</c:choose>
+									</a>
+			                       <h4 class="title"><a href="pageMain?pageId=${np.memberId }">${np.memberNm }</a><br />
+									</h4>
+									<p class="description">${np.personGender } / ${np.personBirth }</p>
+			                    </div>
+			                </div>
+			                </c:forEach>
+						</div>
+					</div>
+	            </div>
+				<!-- 신규업체 -->
+	           <div class="section text-center">
+	                <h2 class="title">신규업체</h2>
+					<div class="team">
+						<div class="row">
+							<c:forEach items="${newCompany }" var="nc">
+							<div class="col-md-4">
+			                    <div class="team-player">
+			                    <a href="pageMain?pageId=${nc.memberId }">
+			                    	<c:choose>
+										<c:when test="${nc.memberImg ne null}">
+											<img src="./images/${nc.memberImg}" class="img-raised img-circle">
+										</c:when>
+										<c:otherwise>
+											<img src="./assets/img/base/Company.jpg" class="img-raised img-circle">
+										</c:otherwise>
+									</c:choose>
+									</a>
+			                       <h4 class="title"><a href="pageMain?pageId=${nc.memberId }">${nc.companyNm }</a><br />
+									</h4>
+			                        <p class="description">${nc.companyTypeNm }</p>
+			                    </div>
+			                </div>
+			                </c:forEach>
+						</div>
+					</div>
 	            </div>
 	        </div>
 

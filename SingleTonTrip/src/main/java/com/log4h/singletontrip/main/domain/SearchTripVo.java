@@ -3,7 +3,10 @@ package com.log4h.singletontrip.main.domain;
 public class SearchTripVo {
 	private int tripNo;
 	private String personId;
+	private String memberImg;
 	private String tripThemeNm; 
+	private String tripContent; 
+	private String personGender; 
 	private String regionDo;
 	private String regionSi;
 	private String tripTitle;
@@ -57,5 +60,25 @@ public class SearchTripVo {
 	public void setTripEndDate(String tripEndDate) {
 		this.tripEndDate = tripEndDate;
 	}
+	public String getPersonGender() {
+		return personGender;
+	}
+	public void setPersonGender(String personGender) {
+		this.personGender = personGender;
+	}
+	public String getTripContent() {
+		return tripContent;
+	}
+	public void setTripContent(String tripContent) {
+		this.tripContent = tripContent;
+	}
+	public String getMemberImg() {
+		return memberImg;
+	}
+	public void setMemberImg(String memberImg) {
+		this.memberImg = memberImg;
+	}
+	
+	
 
 }
