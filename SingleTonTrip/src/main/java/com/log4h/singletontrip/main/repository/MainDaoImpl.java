@@ -45,4 +45,8 @@ public class MainDaoImpl implements MainDao{
 	public List<SearchTripVo> searchTripList(Map<String, Object> map) {
 		return sqlSession.selectList(MAIN_NS+"searchTripList", map);
 	}
+	@Override
+	public String mainNotice() {
+		return sqlSession.selectOne(MAIN_NS+"mainNotice");
+	}
 }

@@ -27,6 +27,7 @@ public class MainController {
 		mv.addObject("newTrip", map.get("newTrip"));
 		mv.addObject("newPerson", map.get("newPerson"));
 		mv.addObject("newCompany", map.get("newCompany"));
+		mv.addObject("mainNotice", map.get("mainNotice"));
 		return mv;
 	}
 	

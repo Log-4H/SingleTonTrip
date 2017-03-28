@@ -44,7 +44,7 @@ function boardDetailHtml(board){
 	}else{
 		html += "<td colspan='3'>";
 	}
-	html += "<textarea class='form-control' rows='5' style='resize: none'>";
+	html += "<textarea class='form-control' rows='5' style='resize: none' readonly>";
 	html += board.boardContent;
 	html +="</textarea>";
 	html += "</td>";

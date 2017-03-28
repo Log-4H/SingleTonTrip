@@ -64,11 +64,13 @@ public class MainServiceImpl implements MainService{
 		List<SearchTripVo> newTrip = mainDao.searchTripList(map);
 		List<SearchPersonVo> newPerson = mainDao.searchPersonList(map);
 		List<SearchCompanyVo> newCompany = mainDao.searchCompanyList(map);
+		String mainNotice = mainDao.mainNotice();
 		map.put("bestPerson", bestPerson);
 		map.put("bestCompany", bestCompany);
 		map.put("newTrip", newTrip);
 		map.put("newPerson", newPerson);
 		map.put("newCompany", newCompany);
+		map.put("mainNotice", mainNotice);
 		return map;
 	}
 

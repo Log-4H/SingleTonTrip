@@ -178,4 +178,17 @@
 	</if>
 	LIMIT #{beginRow}, #{pagePerRow}
 </select>
+<select id="mainNotice" resultType="String">
+	SELECT
+		board_title
+	FROM
+		tb_board
+	WHERE
+		board_cate_cd = 4
+	AND
+		board_delete_date is null
+	ORDER BY
+		board_reg_date DESC
+	LIMIT 1
+</select>
 </mapper>

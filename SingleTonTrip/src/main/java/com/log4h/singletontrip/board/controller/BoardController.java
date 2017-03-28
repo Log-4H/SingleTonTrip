@@ -37,20 +37,36 @@ public class BoardController {
 		mv.addObject("lastPage", getMap.get("lastPage"));
 		return mv;
 	}
-	//공지사항상세보기
-	@RequestMapping(value="boardDetail")
-	public ModelAndView noticeDetail(@RequestParam(value="boardNo") int boardNo){
-		ModelAndView mv = new ModelAndView("jsonView");
-		BoardVo board =  boardService.boardDetail(boardNo);
-		mv.addObject("board", board);
-		return mv;
-	}
+	
 	//공지사항등록
 	@RequestMapping(value="noticeAdd", method=RequestMethod.POST)
 	public ModelAndView noticeAdd(BoardVo boardVo,
 			@ModelAttribute("sessionId") String sessionId){
 		boardVo.setMemberId(sessionId);
 		ModelAndView mv = new ModelAndView("redirect:notice");
+		int result =  boardService.boardAdd(boardVo);
+		return mv;
+	}
+	//FAQ
+	@RequestMapping(value="faq", method=RequestMethod.GET)
+	public ModelAndView faq(
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage){
+		ModelAndView mv = new ModelAndView("board/faq/faqList");
+		Map<String, Object> getMap =  boardService.boardList(currentPage,3);
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("boardList", getMap.get("boardList"));
+		mv.addObject("startPage", getMap.get("startPage"));
+		mv.addObject("pageSize", getMap.get("pageSize"));
+		mv.addObject("endPage", getMap.get("endPage"));
+		mv.addObject("lastPage", getMap.get("lastPage"));
+		return mv;
+	}
+	//공지사항등록
+	@RequestMapping(value="faqAdd", method=RequestMethod.POST)
+	public ModelAndView faqAdd(BoardVo boardVo,
+			@ModelAttribute("sessionId") String sessionId){
+		boardVo.setMemberId(sessionId);
+		ModelAndView mv = new ModelAndView("redirect:faq");
 		int result =  boardService.boardAdd(boardVo);
 		return mv;
 	}
@@ -82,18 +98,13 @@ public class BoardController {
 		mv.addObject("lastPage", getMap.get("lastPage"));
 		return mv;
 	}
-	//FAQ
-	@RequestMapping(value="faq", method=RequestMethod.GET)
-	public ModelAndView faq(
-			@RequestParam(value="currentPage", defaultValue="1") int currentPage){
-		ModelAndView mv = new ModelAndView("board/faq/faqList");
-		Map<String, Object> getMap =  boardService.boardList(currentPage,3);
-		mv.addObject("currentPage", currentPage);
-		mv.addObject("boardList", getMap.get("boardList"));
-		mv.addObject("startPage", getMap.get("startPage"));
-		mv.addObject("pageSize", getMap.get("pageSize"));
-		mv.addObject("endPage", getMap.get("endPage"));
-		mv.addObject("lastPage", getMap.get("lastPage"));
+
+	//상세보기
+	@RequestMapping(value="boardDetail")
+	public ModelAndView noticeDetail(@RequestParam(value="boardNo") int boardNo){
+		ModelAndView mv = new ModelAndView("jsonView");
+		BoardVo board =  boardService.boardDetail(boardNo);
+		mv.addObject("board", board);
 		return mv;
 	}
 

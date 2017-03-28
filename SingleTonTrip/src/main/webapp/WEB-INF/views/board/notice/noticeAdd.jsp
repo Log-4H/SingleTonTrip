@@ -11,10 +11,11 @@
 					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 				</button>
 				<h4 class="modal-title">
-				<input type="text" class="form-control" name="boardTitle" placeholder="Title" required>
+				공지사항 등록
 				</h4>
 			</div>
 			<div class="modal-body">
+			<input type="text" class="form-control" name="boardTitle" placeholder="Title" required>
 			<textarea class="form-control" rows="5" name="boardContent" style="resize: none;" placeholder="Content" required></textarea>
 			</div>
 			<div class="modal-footer">

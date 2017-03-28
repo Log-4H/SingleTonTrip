@@ -65,9 +65,9 @@ $(document).ready(function() {
 								<span aria-hidden="true"><i class="material-icons">clear</i></span>
 							</button>
 		
-			            	<p align="left" id="notice" style="color:#000000">
+			            	<p align="left" id="notice" style="color:#FFFFFF">
 			            	<span class='label label-danger' style="color:#FFFFFF">공지사항</span>
-			            	공지사항입니다</p>
+			            	<a href="notice">${mainNotice }</a></p>
 			            </div>
 			        </div>
 			        

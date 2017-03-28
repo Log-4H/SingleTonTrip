@@ -14,4 +14,5 @@ public interface MainDao {
 	public List<SearchCompanyVo> searchCompanyList(Map<String, Object> map);
 	public int searchTripCount(String value);
 	public List<SearchTripVo> searchTripList(Map<String, Object> map);
+	public String mainNotice();
 }
