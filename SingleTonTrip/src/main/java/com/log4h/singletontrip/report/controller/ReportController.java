@@ -92,6 +92,21 @@ public class ReportController {
 		return mv;
 	}
 
-	//신고내용수락&거절
-
+	//신고리스트 승인&거절
+	@RequestMapping(value = "reportDetail", method = RequestMethod.POST)
+	public ModelAndView ReportApprove(ReportVo reportVo,ReportVo reportId,
+			@RequestParam(value="approveStateCd") int approveStateCd,
+			@ModelAttribute("sessionLevel") int sessionLevel,
+			@ModelAttribute("sessionId") String sessionId,
+			@RequestParam(value = "reportNo") int reportNo) {
+		ModelAndView mv = new ModelAndView();
+		reportVo.setAdminId(sessionId);
+		int result = reportService.ReportApprove(reportVo,reportId);
+		if(result > 0){
+			mv.setViewName("redirect:reportList");
+		}else{
+			mv.setViewName("redirect:reportDetail");
+		}
+		return mv;
+	}
 }

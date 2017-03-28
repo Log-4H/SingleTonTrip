@@ -12,9 +12,10 @@
 					<div class="row" style="height: 800px; margin-top: 80px">
 						<div class="col-md-6 col-md-offset-3">
 							<div class="card card-signup">
-								
+								<form class="form" action="reportDetail" method="post">
 									<div class="header header-primary text-center" style="height: 80px;">
 										<h4>${reportVo.reportTitle }</h4>
+										<input type="hidden" name="reportNo" value="${reportVo.reportNo}" class="form-control">
 									</div>
 									<div class="content">
 										</br>
@@ -56,7 +57,7 @@
 				                                <div class="col-md-6">
 													<div class="form-group label-floating">
 														<label class="control-label">승인이유</label>
-														<input type="text" name="reportApproveReason" class="form-control" >
+														<input type="text" name="reportApproveReason" value="${reportVo.reportApproveReason}" class="form-control" >
 													</div>
 				                                </div>
 				                                <div class="col-md-6">
@@ -77,13 +78,14 @@
 														<input type="text" name="adminId" value="${reportVo.adminId}" class="form-control" readonly>
 													</div>
 				                                </div>
+				                                <c:if test="${reportVo.approveStateCd == 1}">
 				                                <div align="center">
-				                                	<td><a href="<c:url value='reportModify?reportNo=${r.reportNo}'/>"><button>승인<i class="material-icons">check</i></button></a><a href="<c:url value='reportModify?reportNo=${r.reportNo}'/>"><button>거절<i class="material-icons">close</i></button></a></td>
+				                                	<button type="submit" name="approveStateCd" value="2">승인<i class="material-icons">check</i></button><button type="submit" name="approveStateCd" value="3">거절<i class="material-icons">close</i></button>
 				                                </div>
+				                                </c:if>
 				                            </div>
 									</div>
-
-								
+								</form>								
 							</div>
 
 						</div>
