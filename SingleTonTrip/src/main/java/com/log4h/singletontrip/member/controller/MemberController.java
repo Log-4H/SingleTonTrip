@@ -211,6 +211,8 @@ public class MemberController {
 	// 개인회원상세보기(포스트)
 	@RequestMapping(value = "personDetail", method = RequestMethod.POST)
 	public ModelAndView personDetailPost(@ModelAttribute("pageId") String pageId) {
+		System.out.println("***************************");
+		System.out.println(pageId);
 		ModelAndView mv = new ModelAndView("jsonView");
 		mv.addObject("person", memberService.personDetail(pageId));
 		return mv;
@@ -260,6 +262,7 @@ public class MemberController {
 	// 업체회원정보수정화면요청
 	@RequestMapping(value = "companyModify", method = RequestMethod.GET)
 	public ModelAndView companyModify(CompanyVo companyVo, @RequestParam(value = "memberId") String memberId) {
+		
 		ModelAndView mv = new ModelAndView("member/modify/companyModify");
 		List<CompanyTypeVo> companyTypeList = memberService.companyTypeList();
 		mv.addObject("companyTypeList", companyTypeList);

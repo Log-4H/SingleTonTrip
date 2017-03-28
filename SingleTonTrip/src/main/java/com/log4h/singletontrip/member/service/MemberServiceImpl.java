@@ -116,7 +116,6 @@ public class MemberServiceImpl implements MemberService{
 	//개인회원상세보기
 	@Override
 	public PersonVo personDetail(String memberId) {
-		
 		return memberDao.personDetail(memberId);
 	}
 	//업체회원상세보기

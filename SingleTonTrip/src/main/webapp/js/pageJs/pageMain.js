@@ -15,6 +15,7 @@ $(document).ready(function() {
 			type : "POST",
 			dataType : "json",
 			success : function(data) {
+				console.log(data);
 				var html = "";
 				var person = data.person;
 				var profileImg = "";
