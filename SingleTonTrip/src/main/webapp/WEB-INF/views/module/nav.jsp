@@ -39,7 +39,7 @@
 				<li><a href="mainTripList"><i class="material-icons">flight_takeoff</i>여행</a></li>
 			    <li><a href="login"> <!-- id="myBtn" --> <i class="material-icons">input</i>로그인</a></li>
         		<li><a href="joinBegin"><i class="material-icons">assignment_ind</i>회원가입</a></li>
-				<li><a href="#"><i class="material-icons">headset_mic</i>고객센터</a></li>
+				<li><a href="notice"><i class="material-icons">headset_mic</i>고객센터</a></li>
 			</c:if>
 			<c:if test="${sessionLevel eq 1}">
 			<li class="dropdown">
@@ -59,7 +59,7 @@
 				</li>
 				<li><a href="companyList"><i class="material-icons">business</i>숙소</a></li>
 				<li><a href="mainTripList"><i class="material-icons">flight_takeoff</i>여행</a></li>
-				<li><a href="#"><i class="material-icons">headset_mic</i>고객센터</a></li>
+				<li><a href="notice"><i class="material-icons">headset_mic</i>고객센터</a></li>
 				
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="material-icons">face</i>${sessionNm}</a> 		                
@@ -96,7 +96,7 @@
 							<li><a href="friendTotalList">친구리스트</a></li>
 						</ul>
 				</li>
-				<li><a href="#"><i class="material-icons">headset_mic</i>고객센터</a></li>
+				<li><a href="notice"><i class="material-icons">headset_mic</i>고객센터</a></li>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="material-icons">face</i>${sessionNm}</a>
 						<ul class="dropdown-menu">
@@ -128,7 +128,7 @@
 							<li><a href="friendTotalList">친구리스트</a></li>
 						</ul>
 						</li>
-						<li><a href="#"><i class="material-icons">headset_mic</i>고객센터</a></li>
+						<li><a href="notice"><i class="material-icons">headset_mic</i>고객센터</a></li>
 						
 			<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="material-icons">face</i>${sessionNm}</a> 		                

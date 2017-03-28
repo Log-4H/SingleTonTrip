@@ -1,7 +1,5 @@
 package com.log4h.singletontrip.board.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.log4h.singletontrip.board.domain.BoardCateVo;
 import com.log4h.singletontrip.board.domain.BoardVo;
 import com.log4h.singletontrip.board.service.BoardService;
 
@@ -26,56 +23,78 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	// FAQ등록
-	@RequestMapping(value="faqAdd" , method=RequestMethod.GET)
-	public ModelAndView faqAdd(){
-		ModelAndView mv = new ModelAndView();
-		List<BoardCateVo> list = new ArrayList<BoardCateVo>();
-		list = boardService.findFaqCate();
-		mv.addObject("faqCate", list);
-		mv.setViewName("board/faq/faqAdd");
-	return mv;	
-	}
-	
-	// FAQ등록처리
-	@RequestMapping(value="faqAdd" , method=RequestMethod.POST)
-	public ModelAndView faqAdd(BoardVo board,
-			@ModelAttribute("sessionId") String sessionId){
-		logger.debug(" >>>>>>> faqAdd <<<<<<< ");
-		logger.debug(" >>>>>>> board 값 : {},\n sessionId 값 : {} ",board,sessionId);
-		ModelAndView mv = new ModelAndView();
-		int result = boardService.faqAdd(board, sessionId);
-		if(result>0){
-			mv.setViewName("board/faq/faqList");
-		}else{
-			mv.setViewName("error/error");
-		}
-	return mv;	
-	}
-	
-	// FAQ리스트
-	@RequestMapping(value="faqList" , method=RequestMethod.GET)
-	public ModelAndView faqList(
-			@RequestParam(value="currentPage", defaultValue="1") int currentPage,					
-			@RequestParam(value="boardCateCd", defaultValue="1") int boardCateCd
-			){
-		logger.debug(" >>>>>>> faqList <<<<<<< ");
-		
-		ModelAndView mv = new ModelAndView();
-		
-		logger.debug(" >>>>>>> boardCateCd", boardCateCd);
-		Map<String, Object> getMap =  boardService.faqList(currentPage,boardCateCd);
-		logger.debug(" >>>>>>> faqList 에서 리턴 받는 map : \n {} <<<<<<< ",getMap);
-		
+	//공지사항
+	@RequestMapping(value="notice", method=RequestMethod.GET)
+	public ModelAndView notice(
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage){
+		ModelAndView mv = new ModelAndView("board/notice/noticeList");
+		Map<String, Object> getMap =  boardService.boardList(currentPage,4);
 		mv.addObject("currentPage", currentPage);
-		mv.addObject("faqList", getMap.get("faqList"));
+		mv.addObject("boardList", getMap.get("boardList"));
 		mv.addObject("startPage", getMap.get("startPage"));
 		mv.addObject("pageSize", getMap.get("pageSize"));
 		mv.addObject("endPage", getMap.get("endPage"));
 		mv.addObject("lastPage", getMap.get("lastPage"));
-		
-	    mv.setViewName("board/faq/faqList");
-	return mv;	
+		return mv;
+	}
+	//공지사항상세보기
+	@RequestMapping(value="noticeDetail")
+	public ModelAndView noticeDetail(@RequestParam(value="boardNo") int boardNo){
+		ModelAndView mv = new ModelAndView("jsonView");
+		BoardVo board =  boardService.boardDetail(boardNo, 4);
+		mv.addObject("board", board);
+		return mv;
+	}
+	//공지사항등록
+	@RequestMapping(value="noticeAdd", method=RequestMethod.POST)
+	public ModelAndView noticeAdd(BoardVo boardVo,
+			@ModelAttribute("sessionId") String sessionId){
+		boardVo.setMemberId(sessionId);
+		ModelAndView mv = new ModelAndView("redirect:notice");
+		int result =  boardService.boardAdd(boardVo);
+		return mv;
+	}
+	//1:1문의
+	@RequestMapping(value="qnaOne", method=RequestMethod.GET)
+	public ModelAndView oneQna(
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage){
+		ModelAndView mv = new ModelAndView("board/qnaOne/qnaOneList");
+		Map<String, Object> getMap =  boardService.boardList(currentPage,1);
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("boardList", getMap.get("boardList"));
+		mv.addObject("startPage", getMap.get("startPage"));
+		mv.addObject("pageSize", getMap.get("pageSize"));
+		mv.addObject("endPage", getMap.get("endPage"));
+		mv.addObject("lastPage", getMap.get("lastPage"));
+		return mv;
+	}
+	//광고문의
+	@RequestMapping(value="qnaAd", method=RequestMethod.GET)
+	public ModelAndView adQna(
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage){
+		ModelAndView mv = new ModelAndView("board/qnaAd/qnaAdList");
+		Map<String, Object> getMap =  boardService.boardList(currentPage,2);
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("boardList", getMap.get("boardList"));
+		mv.addObject("startPage", getMap.get("startPage"));
+		mv.addObject("pageSize", getMap.get("pageSize"));
+		mv.addObject("endPage", getMap.get("endPage"));
+		mv.addObject("lastPage", getMap.get("lastPage"));
+		return mv;
+	}
+	//FAQ
+	@RequestMapping(value="faq", method=RequestMethod.GET)
+	public ModelAndView faq(
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage){
+		ModelAndView mv = new ModelAndView("board/faq/faqList");
+		Map<String, Object> getMap =  boardService.boardList(currentPage,3);
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("boardList", getMap.get("boardList"));
+		mv.addObject("startPage", getMap.get("startPage"));
+		mv.addObject("pageSize", getMap.get("pageSize"));
+		mv.addObject("endPage", getMap.get("endPage"));
+		mv.addObject("lastPage", getMap.get("lastPage"));
+		return mv;
 	}
 
 }

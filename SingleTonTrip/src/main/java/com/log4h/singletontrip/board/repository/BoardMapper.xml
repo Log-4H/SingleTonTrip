@@ -1,36 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardMapper">
-	<!-- faq 등록 -->
-	<insert id="faqAdd" parameterType="com.log4h.singletontrip.board.domain.BoardVo">
-		INSERT INTO tb_board
-		(
-		member_id,
-		board_cate_cd,
-		board_title,
-		board_content,
-		board_reg_date
-		)
-		VALUES
-		(
-		#{memberId},
-		#{boardCate.boardCateCd},
-		#{boardTitle},
-		#{boardContent},
-		NOW()
-		)
-	</insert>
-	
-	<!-- faqCate 가져오기 -->
-	<select id="findFaqCate" resultType="com.log4h.singletontrip.board.domain.BoardCateVo">
-		SELECT
-		*
-		FROM
-		tb_board_cate
-	</select>
-	
-	<!-- get count for faq-->
-	<select id="faqCount" parameterType="int" resultType="int">
+	<select id="boardTotalCount" parameterType="Map" resultType="int">
 		SELECT
 			COUNT(*)
 		FROM
@@ -38,13 +9,11 @@
 		WHERE
 			board_cate_cd = #{boardCateCd}
 	</select>
-	
-	<!-- FAQ List-->
-	<select id="faqList" parameterType="Map" resultType="com.log4h.singletontrip.board.domain.BoardVo">
+	<select id="boardList" parameterType="Map" resultType="com.log4h.singletontrip.board.domain.BoardVo">
 		SELECT 
 			board_no, 
-			member_id, 
-			board_cate_cd as 'boardCate.boardCateCd', 
+			member_id,
+			board_cate_cd,
 			board_title, 
 			board_content, 
 			DATE_FORMAT(board_reg_date, "%Y-%m-%d ") as 'boardRegDate' ,
@@ -54,10 +23,28 @@
 		FROM tb_board
 		WHERE
 			board_cate_cd = #{boardCateCd}
+		<if test="boardNo != null and boardNo != ''">
+		AND board_no = #{boardNo}
+		</if>
+		<if test="pagePerRow != null and pagePerRow != ''">
 		ORDER BY
 			board_reg_date
 		DESC LIMIT #{beginRow}, #{pagePerRow}
-			
+		</if>
 	</select>
-
+	<insert id="boardInsert" parameterType="com.log4h.singletontrip.board.domain.BoardVo">
+		INSERT INTO tb_board(
+			member_id,
+			board_cate_cd,
+			board_title,
+			board_content,
+			board_reg_date
+		)VALUES(
+			#{memberId},
+			#{boardCateCd},
+			#{boardTitle},
+			#{boardContent},
+			now()
+		)
+	</insert>
 </mapper>

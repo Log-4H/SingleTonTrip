@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.log4h.singletontrip.board.domain.BoardCateVo;
 import com.log4h.singletontrip.board.domain.BoardVo;
 
 @Repository
@@ -21,27 +20,20 @@ public class BoardDaoImpl implements BoardDao{
 
 	private final String BOARD_NS = "boardMapper.";
 
-	// faqAdd 
 	@Override
-	public int faqAdd(BoardVo board) {
-		return sqlSession.insert(BOARD_NS+"faqAdd",board);
+	public int boardTotalCount(Map<String, Object> map) {
+		return sqlSession.selectOne(BOARD_NS+"boardTotalCount", map);
 	}
-
-	// faqCate 가져오기
 	@Override
-	public List<BoardCateVo> findFaqCate() {
-		return sqlSession.selectList(BOARD_NS+"findFaqCate");
+	public List<BoardVo> boardList(Map<String, Object> map) {
+		return sqlSession.selectList(BOARD_NS+"boardList",map);
 	}
-	
-	// faq 전체행의 수를 가져온다
 	@Override
-	public int faqCount(int boardCateCd) {
-		return sqlSession.selectOne(BOARD_NS+"faqCount", boardCateCd);
+	public BoardVo boardDetail(Map<String, Object> map) {
+		return sqlSession.selectOne(BOARD_NS+"boardList",map);
 	}
-	
-	// faqList를 가져온다
 	@Override
-	public List<BoardVo> faqList(Map<String, Object> map) {
-		return sqlSession.selectList(BOARD_NS+"faqList",map);
+	public int boardInsert(BoardVo boardVo) {
+		return sqlSession.insert(BOARD_NS+"boardInsert", boardVo);
 	}
 }

@@ -17,7 +17,7 @@
 							<div class="card card-signup">
 								<div class="header header-primary text-center"
 									style="height: 80px;">
-									<h4><i class="material-icons">forum</i> FAQ</h4>
+									<h4><i class="material-icons">live_help</i> 광고문의</h4>
 								</div>
 								<div class="content">
 							

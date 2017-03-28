@@ -3,13 +3,14 @@ package com.log4h.singletontrip.board.domain;
 public class BoardVo {
 	private int boardNo;
 	private String memberId;
-	private BoardCateVo boardCate;
+	private int boardCateCd;
 	private String boardTitle;
 	private String boardContent;
 	private String boardRegDate;
 	private String boardModifyDate;
 	private String boardDeleteDate;
 	private String boardViewCount;
+	
 	public int getBoardNo() {
 		return boardNo;
 	}
@@ -22,11 +23,11 @@ public class BoardVo {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	public BoardCateVo getBoardCate() {
-		return boardCate;
+	public int getBoardCateCd() {
+		return boardCateCd;
 	}
-	public void setBoardCate(BoardCateVo boardCate) {
-		this.boardCate = boardCate;
+	public void setBoardCateCd(int boardCateCd) {
+		this.boardCateCd = boardCateCd;
 	}
 	public String getBoardTitle() {
 		return boardTitle;
@@ -64,11 +65,6 @@ public class BoardVo {
 	public void setBoardViewCount(String boardViewCount) {
 		this.boardViewCount = boardViewCount;
 	}
-	@Override
-	public String toString() {
-		return "EmptyVo [boardNo=" + boardNo + ", memberId=" + memberId + ", boardCate=" + boardCate + ", boardTitle="
-				+ boardTitle + ", boardContent=" + boardContent + ", boardRegDate=" + boardRegDate
-				+ ", boardModifyDate=" + boardModifyDate + ", boardDeleteDate=" + boardDeleteDate + ", boardViewCount="
-				+ boardViewCount + "]";
-	}
+	
+	
 }
