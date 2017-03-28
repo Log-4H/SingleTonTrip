@@ -3,33 +3,42 @@ function noticeAddModalShow() {
 	$("#noticeAddForm")[0].reset();
 	$("#noticeAddModal").modal('show');
 };
-//공지사항 상세보기
-$(document).on('click', '.noticeDetail', function() {
+
+//faq 등록 modal
+function faqAddModalShow() {
+	$("#faqAddForm")[0].reset();
+	$("#faqAddModal").modal('show');
+};
+
+//상세보기
+$(document).on('click', '.boardDetail', function() {
 	var boardNo = $(this).attr('value');
-	var noticeFlag = $("#noticeFlag" + boardNo).attr('value');
+	console.log(boardNo);
+	var flag = $("#flag" + boardNo).attr('value');
 	var html = ""
-	if (noticeFlag == 'close') {
+	if (flag == 'close') {
 		$.ajax({
-			url : "noticeDetail",
+			url : "boardDetail",
 			type : "POST",
 			data : {boardNo : boardNo}, 
 			dataType : "json",
 			success : function(data) {
 				var board = data.board;
-				html = noticeDetailHtml(board);
-				$("#noticeTr"+boardNo).after(html);
-				$("#noticeFlag" + boardNo).val("open");
+				console.log(board.boardNo);
+				html = boardDetailHtml(board);
+				$("#tr"+boardNo).after(html);
+				$("#flag" + boardNo).val("open");
 			}
 		})
 	} else {
-		$("#noticeDetail" + boardNo).remove();
-		$("#noticeFlag" + boardNo).val("close");
+		$("#detail" + boardNo).remove();
+		$("#flag" + boardNo).val("close");
 	}
 });
 
-function noticeDetailHtml(board){
+function boardDetailHtml(board){
 	var html = "";
-	html += "<tr id='noticeDetail"+board.boardNo+"'>";
+	html += "<tr id='detail"+board.boardNo+"'>";
 	if($("#sessionLevel").val() == 1){
 		html += "<td colspan='4'>";
 	}else{

@@ -34,10 +34,9 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public BoardVo boardDetail(int boardNo, int boardCateCd) {
+	public BoardVo boardDetail(int boardNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("boardNo", boardNo);
-		map.put("boardCateCd",boardCateCd);
 		return boardDao.boardDetail(map);
 	}
 

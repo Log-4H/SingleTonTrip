@@ -15,76 +15,79 @@
 					<div class="row">
 						<c:import url="/WEB-INF/views/module/left.jsp"></c:import>
 						<div class="col-md-8 col-md-offset-1">
-						<div class="tim-container">
-							<div class="card card-signup">
-								<div class="header header-primary text-center"
-									style="height: 80px;">
-									<h4>
-										<i class="material-icons">info_outline</i> 공지사항
-									</h4>
-								</div>
-								<div class="content">
-								<div align="right">
-								<c:if test="${sessionLevel ne null && sessionLevel == 1}">
-								<button type="button" class="btn btn-primary"
-									onclick="noticeAddModalShow()">
-									<i class="fa fa-pencil"></i>  공지 등록
-								</button>
-								</c:if>
-								</div>
-									<div class="table-responsive">
-										<table class="table">
-											<thead>
-												<tr>
-													<th class="text-center">#</th>
-													<th class="text-center">Title</th>
-													<th class="text-right">RegDate</th>
-													<c:if test="${sessionLevel ne null && sessionLevel == 1}">
-														<th class="text-right">Actions</th>
-													</c:if>
-												</tr>
-											</thead>
-											<tbody>
-												<c:forEach items="${boardList }" var="b">
-													<input type="hidden" id="noticeFlag${b.boardNo}" value="close">
-													<tr id="noticeTr${b.boardNo}">
-														<td class="text-center">${b.boardNo }</td>
-														<td class="text-center"><a
-															href="javscript:void(0)" class="noticeDetail" value="${b.boardNo }">
-															${b.boardTitle }</a></td>
-														<td class="text-right">${b.boardRegDate }</td>
+							<div class="tim-container">
+								<div class="card card-signup">
+									<div class="header header-primary text-center"
+										style="height: 80px;">
+										<h4>
+											<i class="material-icons">info_outline</i> 공지사항
+										</h4>
+									</div>
+									<div class="content">
+										<div align="right">
+											<c:if test="${sessionLevel ne null && sessionLevel == 1}">
+												<button type="button" class="btn btn-primary"
+													onclick="noticeAddModalShow()">
+													<i class="fa fa-pencil"></i>  공지 등록
+												</button>
+											</c:if>
+										</div>
+										<div class="table-responsive">
+											<table class="table">
+												<thead>
+													<tr>
+														<th class="text-center">#</th>
+														<th class="text-center">Title</th>
+														<th class="text-right">RegDate</th>
 														<c:if test="${sessionLevel ne null && sessionLevel == 1}">
-															<td class="text-right">
-																<button type="button" rel="tooltip" title="Edit"
-																	class="btn btn-success btn-simple btn-xs">
-																	<i class="fa fa-edit"></i>
-																</button>
-																<button type="button" rel="tooltip" title="Remove"
-																	class="btn btn-danger btn-simple btn-xs">
-																	<i class="fa fa-times"></i>
-																</button>
-															</td>
+															<th class="text-right">Actions</th>
 														</c:if>
 													</tr>
+												</thead>
+												<tbody>
+													<c:forEach items="${boardList }" var="b">
+														<input type="hidden" id="flag${b.boardNo}" value="close">
+														<tr id="tr${b.boardNo}">
+															<td class="text-center">${b.boardNo }</td>
+															<td class="text-center"><a href="javscript:void(0)"
+																class="boardDetail" value="${b.boardNo }">
+																	${b.boardTitle }</a></td>
+															<td class="text-right">${b.boardRegDate }</td>
+															<c:if test="${sessionLevel ne null && sessionLevel == 1}">
+																<td class="text-right">
+																	<button type="button" rel="tooltip" title="Edit"
+																		class="btn btn-success btn-simple btn-xs">
+																		<i class="fa fa-edit"></i>
+																	</button>
+																	<button type="button" rel="tooltip" title="Remove"
+																		class="btn btn-danger btn-simple btn-xs">
+																		<i class="fa fa-times"></i>
+																	</button>
+																</td>
+															</c:if>
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+											<div align="center">
+												<c:if test="${startPage>1}">
+													<a
+														href="<c:url value='notice?currentPage=${startPage-pageSize}'/>">prev</a>
+												</c:if>
+												<c:forEach var="i" begin="${startPage}" end="${endPage}"
+													step="1">
+													<a href="<c:url value='notice?currentPage=${i}'/>">${i}</a>
 												</c:forEach>
-											</tbody>
-										</table>
-										<div align="center">
-											<c:if test="${startPage>1}">
-												<a href="<c:url value='notice?currentPage=${startPage-pageSize}'/>">prev</a>
-											</c:if>
-											<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
-												<a href="<c:url value='notice?currentPage=${i}'/>">${i}</a>
-											</c:forEach>
-											<c:if test="${endPage ne lastPage}">
-												<a href="<c:url value='notice?currentPage=${startPage+pageSize}'/>">next</a>
-											</c:if>
+												<c:if test="${endPage ne lastPage}">
+													<a
+														href="<c:url value='notice?currentPage=${startPage+pageSize}'/>">next</a>
+												</c:if>
+											</div>
 										</div>
 									</div>
 								</div>
+								<br> <br> <br> <br>
 							</div>
-							<br> <br> <br> <br>
-						</div>
 						</div>
 					</div>
 				</div>

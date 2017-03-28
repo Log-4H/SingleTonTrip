@@ -7,9 +7,9 @@
 	<div class="fixed-section" data-offset-top="340">
 		<ul>
 			<li><a href="notice" class="btn btn-primary"><i class="material-icons">info_outline</i> 공지사항</a></li>
+			<li><a href="faq" class="btn btn-primary"><i class="material-icons">forum</i> FAQ</a></li>
 			<li><a href="qnaOne" class="btn btn-primary"><i class="material-icons">help_outline</i> 1:1문의</a></li>
 			<li><a href="qnaAd" class="btn btn-primary"><i class="material-icons">live_help</i> 광고문의</a></li>
-			<li><a href="faq" class="btn btn-primary"><i class="material-icons">forum</i> FAQ</a></li>
 		</ul>
 	</div>
 </div>

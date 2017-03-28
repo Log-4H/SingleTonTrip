@@ -38,10 +38,10 @@ public class BoardController {
 		return mv;
 	}
 	//공지사항상세보기
-	@RequestMapping(value="noticeDetail")
+	@RequestMapping(value="boardDetail")
 	public ModelAndView noticeDetail(@RequestParam(value="boardNo") int boardNo){
 		ModelAndView mv = new ModelAndView("jsonView");
-		BoardVo board =  boardService.boardDetail(boardNo, 4);
+		BoardVo board =  boardService.boardDetail(boardNo);
 		mv.addObject("board", board);
 		return mv;
 	}

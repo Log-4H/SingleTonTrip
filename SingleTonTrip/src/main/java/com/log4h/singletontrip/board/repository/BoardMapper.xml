@@ -21,10 +21,13 @@
 			board_delete_date, 
 			board_view_count
 		FROM tb_board
+		<if test="boardCateCd != null and boardCateCd != ''">
 		WHERE
 			board_cate_cd = #{boardCateCd}
+		</if>
 		<if test="boardNo != null and boardNo != ''">
-		AND board_no = #{boardNo}
+		WHERE
+			board_no = #{boardNo}
 		</if>
 		<if test="pagePerRow != null and pagePerRow != ''">
 		ORDER BY
