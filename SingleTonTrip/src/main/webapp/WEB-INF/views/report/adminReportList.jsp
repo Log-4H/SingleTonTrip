@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:import url="/WEB-INF/views/module/top.jsp"></c:import>
-<c:import url="./faqAdd.jsp"></c:import>
 <body class="components-page">
 	<c:import url="/WEB-INF/views/module/nav.jsp"></c:import>
 	<div class="wrapper">
@@ -20,18 +19,10 @@
 									<div class="header header-primary text-center"
 										style="height: 80px;">
 										<h4>
-											<i class="material-icons">forum</i> FAQ
+											<i class="material-icons">notifications</i> 신고리스트
 										</h4>
 									</div>
 									<div class="content">
-										<div align="right">
-											<c:if test="${sessionLevel ne null && sessionLevel == 1}">
-											<button type="button" class="btn btn-primary"
-												onclick="faqAddModalShow()">
-												<i class="fa fa-pencil"></i>  FAQ 등록
-											</button>
-										</c:if>
-										</div>
 										<div class="table-responsive">
 											<table class="table">
 												<thead>
@@ -57,15 +48,15 @@
 											<div align="center">
 												<c:if test="${startPage>1}">
 													<a
-														href="<c:url value='faq?currentPage=${startPage-pageSize}'/>">prev</a>
+														href="<c:url value='reportList?currentPage=${startPage-pageSize}'/>">prev</a>
 												</c:if>
 												<c:forEach var="i" begin="${startPage}" end="${endPage}"
 													step="1">
-													<a href="<c:url value='faq?currentPage=${i}'/>">${i}</a>
+													<a href="<c:url value='reportList?currentPage=${i}'/>">${i}</a>
 												</c:forEach>
 												<c:if test="${endPage ne lastPage}">
 													<a
-														href="<c:url value='faq?currentPage=${startPage+pageSize}'/>">next</a>
+														href="<c:url value='reportList?currentPage=${startPage+pageSize}'/>">next</a>
 												</c:if>
 											</div>
 										</div>
