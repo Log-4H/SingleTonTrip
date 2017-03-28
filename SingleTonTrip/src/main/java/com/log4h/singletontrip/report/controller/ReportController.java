@@ -74,7 +74,6 @@ public class ReportController {
 		}else{
 			mv.setViewName("report/reportList");
 		}
-			
 		return mv;
 	}
 		
