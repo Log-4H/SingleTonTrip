@@ -25,9 +25,7 @@
 									<div class="content">
 										<div class="table-responsive">
 												<form method="post" action="reportAdd">
-													<div class="header header-primary text-center" style="height: 80px;">
-														<h4>신고하기</h4>
-													</div>
+		
 													<div class="content">
 														</br>
 														<div class="input-group">

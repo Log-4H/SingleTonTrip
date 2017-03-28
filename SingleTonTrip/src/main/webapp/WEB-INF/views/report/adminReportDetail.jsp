@@ -3,37 +3,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:import url="/WEB-INF/views/module/top.jsp"></c:import>
-<body class="components-page">
+<body class="profile-page">
 	<c:import url="/WEB-INF/views/module/nav.jsp"></c:import>
 	<div class="wrapper">
 		<div class="header header-filter"
 			style="background-image: url('./assets/img/base/pageMain.jpg');"></div>
 		<div class="main main-raised">
-			<div class="section">
+			<div class="profile-content">
 				<div class="container">
-					<div class="row">
+					<div class="row" style="margin-top: 80px; height: responsive;">
 						<c:import url="/WEB-INF/views/module/left.jsp"></c:import>
 						<div class="col-md-8 col-md-offset-1">
-							<div class="tim-container">
-								<div class="card card-signup">
-									<div class="header header-primary text-center"
-										style="height: 80px;">
-										<h4>
-											<i class="material-icons">forum</i> FAQ
-										</h4>
-									</div>
-									<div class="content">
-										<div align="right">
-											<c:if test="${sessionLevel ne null && sessionLevel == 1}">
-											<button type="button" class="btn btn-primary"
-												onclick="faqAddModalShow()">
-												<i class="fa fa-pencil"></i>  FAQ 등록
-											</button>
-										</c:if>
-										</div>
-										<div class="table-responsive">
-											<form class="form" action="reportDetail" method="post">
+							<div class="card card-signup">
+								
+								
 									<div class="header header-primary text-center" style="height: 80px;">
+									<form class="form" action="reportDetail" method="post">
 										<h4>${reportVo.reportTitle }</h4>
 										<input type="hidden" name="reportNo" value="${reportVo.reportNo}" class="form-control">
 									</div>
@@ -106,12 +91,13 @@
 				                            </div>
 									</div>
 								</form>								
-											
-										</div>
-									</div>
-								</div>
-								<br> <br> <br> <br>
+
+								
 							</div>
+							<br>
+							<br>
+							<br>
+							<br>
 						</div>
 					</div>
 				</div>

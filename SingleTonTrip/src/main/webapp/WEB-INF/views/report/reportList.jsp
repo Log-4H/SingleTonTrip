@@ -24,8 +24,8 @@
 									</div>
 									<div class="content">
 										<div align="right">
-											<c:if test="${sessionLevel ne null && sessionLevel == 1}">
-											<a href="memberReport"><button type="button" class="btn btn-primary">
+											<c:if test="${sessionLevel ne null && sessionLevel != 1}">
+											<a href="reportAdd"><button type="button" class="btn btn-primary">
 												<i class="fa fa-pencil"></i> 신고하기
 											</button></a>
 										</c:if>
