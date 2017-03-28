@@ -61,7 +61,7 @@ public class BoardController {
 		mv.addObject("lastPage", getMap.get("lastPage"));
 		return mv;
 	}
-	//공지사항등록
+	//FAQ 등록
 	@RequestMapping(value="faqAdd", method=RequestMethod.POST)
 	public ModelAndView faqAdd(BoardVo boardVo,
 			@ModelAttribute("sessionId") String sessionId){
@@ -70,12 +70,41 @@ public class BoardController {
 		int result =  boardService.boardAdd(boardVo);
 		return mv;
 	}
-	//1:1문의
+	//1:1문의리스트
 	@RequestMapping(value="qnaOne", method=RequestMethod.GET)
 	public ModelAndView oneQna(
+			@ModelAttribute("sessionId") String sessionId,
+			@ModelAttribute("sessionLevel") int sessionLevel,
 			@RequestParam(value="currentPage", defaultValue="1") int currentPage){
-		ModelAndView mv = new ModelAndView("board/qnaOne/qnaOneList");
-		Map<String, Object> getMap =  boardService.boardList(currentPage,1);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/qnaOne/qnaOneList");
+		Map<String, Object> getMap =  boardService.boardList(currentPage,1, sessionId, sessionLevel);
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("boardList", getMap.get("boardList"));
+		mv.addObject("startPage", getMap.get("startPage"));
+		mv.addObject("pageSize", getMap.get("pageSize"));
+		mv.addObject("endPage", getMap.get("endPage"));
+		mv.addObject("lastPage", getMap.get("lastPage"));
+		return mv;
+	}
+	//1:1 문의
+	@RequestMapping(value="qnaOneAdd", method=RequestMethod.POST)
+	public ModelAndView qnaOneAdd(BoardVo boardVo,
+			@ModelAttribute("sessionId") String sessionId){
+		boardVo.setMemberId(sessionId);
+		ModelAndView mv = new ModelAndView("redirect:qnaOne");
+		int result =  boardService.boardAdd(boardVo);
+		return mv;
+	}
+	//광고문의리스트
+	@RequestMapping(value="qnaAd", method=RequestMethod.GET)
+	public ModelAndView adQna(
+			@ModelAttribute("sessionId") String sessionId,
+			@ModelAttribute("sessionLevel") int sessionLevel,
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/qnaAd/qnaAdList");
+		Map<String, Object> getMap =  boardService.boardList(currentPage,2, sessionId, sessionLevel);
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("boardList", getMap.get("boardList"));
 		mv.addObject("startPage", getMap.get("startPage"));
@@ -85,20 +114,14 @@ public class BoardController {
 		return mv;
 	}
 	//광고문의
-	@RequestMapping(value="qnaAd", method=RequestMethod.GET)
-	public ModelAndView adQna(
-			@RequestParam(value="currentPage", defaultValue="1") int currentPage){
-		ModelAndView mv = new ModelAndView("board/qnaAd/qnaAdList");
-		Map<String, Object> getMap =  boardService.boardList(currentPage,2);
-		mv.addObject("currentPage", currentPage);
-		mv.addObject("boardList", getMap.get("boardList"));
-		mv.addObject("startPage", getMap.get("startPage"));
-		mv.addObject("pageSize", getMap.get("pageSize"));
-		mv.addObject("endPage", getMap.get("endPage"));
-		mv.addObject("lastPage", getMap.get("lastPage"));
+	@RequestMapping(value="qnaAdAdd", method=RequestMethod.POST)
+	public ModelAndView qnaAdAdd(BoardVo boardVo,
+			@ModelAttribute("sessionId") String sessionId){
+		boardVo.setMemberId(sessionId);
+		ModelAndView mv = new ModelAndView("redirect:qnaAd");
+		int result =  boardService.boardAdd(boardVo);
 		return mv;
 	}
-
 	//상세보기
 	@RequestMapping(value="boardDetail")
 	public ModelAndView noticeDetail(@RequestParam(value="boardNo") int boardNo){
@@ -107,7 +130,14 @@ public class BoardController {
 		mv.addObject("board", board);
 		return mv;
 	}
-
+	//qna상세보기
+	@RequestMapping(value="qnaDetail")
+	public ModelAndView qnaDetail(@RequestParam(value="boardNo") int boardNo){
+		ModelAndView mv = new ModelAndView("jsonView");
+		BoardVo board =  boardService.qnaDetail(boardNo);
+		mv.addObject("board", board);
+		return mv;
+	}
 }
 
 

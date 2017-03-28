@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.log4h.singletontrip.board.domain.BoardCommentVo;
 import com.log4h.singletontrip.board.domain.BoardVo;
 
 @Repository
@@ -35,5 +36,9 @@ public class BoardDaoImpl implements BoardDao{
 	@Override
 	public int boardInsert(BoardVo boardVo) {
 		return sqlSession.insert(BOARD_NS+"boardInsert", boardVo);
+	}
+	@Override
+	public List<BoardCommentVo> boardCommentList(int boardNo) {
+		return sqlSession.selectList(BOARD_NS+"boardCommentList", boardNo);
 	}
 }

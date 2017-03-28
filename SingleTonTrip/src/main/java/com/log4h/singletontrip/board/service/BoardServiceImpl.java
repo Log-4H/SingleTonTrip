@@ -32,6 +32,22 @@ public class BoardServiceImpl implements BoardService{
 		map.put("boardList", boardList);
 		return map;
 	}
+	@Override
+	public Map<String, Object> boardList(int currentPage, int boardCateCd, String sessionId, int sessionLevel) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardCateCd", boardCateCd);
+		map.put("sessionId", sessionId);
+		map.put("sessionLevel", sessionLevel);
+		int boardTotalCount = boardDao.boardTotalCount(map);
+		Paging paging = new Paging();
+		map = paging.pagingMethod(currentPage, boardTotalCount);
+		map.put("boardCateCd", boardCateCd);
+		map.put("sessionId", sessionId);
+		map.put("sessionLevel", sessionLevel);
+		List<BoardVo> boardList = boardDao.boardList(map);
+		map.put("boardList", boardList);
+		return map;
+	}
 
 	@Override
 	public BoardVo boardDetail(int boardNo) {
@@ -43,6 +59,15 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int boardAdd(BoardVo boardVo) {
 		return boardDao.boardInsert(boardVo);
+	}
+
+	@Override
+	public BoardVo qnaDetail(int boardNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardNo", boardNo);
+		BoardVo board = boardDao.boardDetail(map);
+		board.setBoardCommentList(boardDao.boardCommentList(boardNo));
+		return board;
 	}
 }
 

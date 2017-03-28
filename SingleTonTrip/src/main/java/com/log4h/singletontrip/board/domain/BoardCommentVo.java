@@ -1,6 +1,6 @@
 package com.log4h.singletontrip.board.domain;
 
-public class BoardComment {
+public class BoardCommentVo {
 	private int boardCommentNo;
 	private int boardNo;
 	private String memberId;

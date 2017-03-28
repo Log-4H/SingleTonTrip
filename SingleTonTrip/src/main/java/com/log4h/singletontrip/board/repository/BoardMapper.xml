@@ -8,6 +8,10 @@
 			tb_board
 		WHERE
 			board_cate_cd = #{boardCateCd}
+		<if test="sessionId != null and sessionId !='' and sessionLevel != 1">	
+		AND
+			member_id = #{sessionId}
+		</if>
 	</select>
 	<select id="boardList" parameterType="Map" resultType="com.log4h.singletontrip.board.domain.BoardVo">
 		SELECT 
@@ -24,6 +28,10 @@
 		<if test="boardCateCd != null and boardCateCd != ''">
 		WHERE
 			board_cate_cd = #{boardCateCd}
+		</if>
+		<if test="sessionId != null and sessionId !='' and sessionLevel != 1">
+		AND
+			member_id = #{sessionId}
 		</if>
 		<if test="boardNo != null and boardNo != ''">
 		WHERE
@@ -50,4 +58,16 @@
 			now()
 		)
 	</insert>
+	<select id="boardCommentList" parameterType="int" resultType="com.log4h.singletontrip.board.domain.BoardCommentVo">
+		SELECT 
+			board_comment_no,
+			board_no,
+			member_id,
+			board_comment_content,
+			board_comment_reg_date
+		FROM
+			tb_board_comment
+		WHERE
+			board_no = #{boardNo}
+	</select>
 </mapper>

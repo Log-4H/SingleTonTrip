@@ -1,5 +1,7 @@
 package com.log4h.singletontrip.board.domain;
 
+import java.util.List;
+
 public class BoardVo {
 	private int boardNo;
 	private String memberId;
@@ -10,7 +12,7 @@ public class BoardVo {
 	private String boardModifyDate;
 	private String boardDeleteDate;
 	private String boardViewCount;
-	
+	private List<BoardCommentVo> boardCommentList;
 	public int getBoardNo() {
 		return boardNo;
 	}
@@ -65,6 +67,11 @@ public class BoardVo {
 	public void setBoardViewCount(String boardViewCount) {
 		this.boardViewCount = boardViewCount;
 	}
-	
-	
+	public List<BoardCommentVo> getBoardCommentList() {
+		return boardCommentList;
+	}
+	public void setBoardCommentList(List<BoardCommentVo> boardCommentList) {
+		this.boardCommentList = boardCommentList;
+	}
+
 }
