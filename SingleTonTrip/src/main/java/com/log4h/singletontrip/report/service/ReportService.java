@@ -15,5 +15,7 @@ public interface ReportService {
 	public Map<String, Object> reportList(int currentPage, String sessionId,int sessionLevel);
 	//신고리스트상세보기
 	public ReportVo reportDetail(int reportNo);
+	//신고리스트 승인&거절
+	public int ReportApprove(ReportVo reportVo, ReportVo reportId);
 
 }

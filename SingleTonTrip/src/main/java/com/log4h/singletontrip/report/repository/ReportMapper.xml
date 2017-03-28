@@ -67,7 +67,7 @@
 		r.member_id = #{sessionId}
 	</if>
 	ORDER BY r.report_date
-	ASC LIMIT #{beginRow}, #{pagePerRow}
+	DESC LIMIT #{beginRow}, #{pagePerRow}
 </select>
 
 <!-- 신고리스트상세보기 -->
@@ -80,6 +80,7 @@
 		r.report_title,
 		r.report_content,
 		r.report_date,
+		r.approve_state_cd,
 		a.approve_state_nm,
 		r.report_approve_date,
 		r.report_approve_reason,
@@ -98,5 +99,47 @@
 		r.report_no = #{reportNo}
 </select>
 
+<!-- 신고승인 -->
+<update id="reportApprove" parameterType="com.log4h.singletontrip.report.domain.ReportVo">
+	UPDATE
+		tb_report
+	SET
+		approve_state_cd=#{approveStateCd},
+		report_approve_date=now(),
+		report_approve_reason=#{reportApproveReason},
+		admin_id=#{adminId}
+	WHERE
+		report_no=#{reportNo}
+</update>
+
+<!-- 신고승인시 경고횟수누적-->
+<update id="reportCountAdd" parameterType="String">
+	UPDATE
+		tb_member
+	SET
+		member_report_count = member_report_count+1
+	WHERE
+		member_id=#{reportId}
+</update>
+
+<!-- 누적신고횟수확인 -->
+<select id="reportCountSelect" parameterType="String" resultType="int">
+	SELECT
+		member_report_count
+	FROM
+		tb_member
+	WHERE
+		member_id=#{reportId}
+</select>
+
+<!-- 신고횟수누적시 회원상태변경 -->
+<update id="actStateModify" parameterType="String">
+	UPDATE
+		tb_member
+	SET
+		act_state_cd=act_state_cd+1
+	WHERE
+		member_id=#{reportId}
+</update>
 
 </mapper>

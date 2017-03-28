@@ -46,6 +46,26 @@ public class ReportDaoImpl implements ReportDao{
 	public ReportVo reportDetail(int reportNo) {
 		return sqlSession.selectOne(REPORT_NS+"reportDetail",reportNo);
 	}
+	//신고리스트 승인&거절
+	@Override
+	public int reportApprove(ReportVo reportVo) {
+		return sqlSession.update(REPORT_NS+"reportApprove",reportVo);
+	}
+	//신고승인시 경고횟수누적
+	@Override
+	public int reportCountAdd(ReportVo reportId) {
+		return sqlSession.update(REPORT_NS+"reportCountAdd",reportId);
+	}
+	//누적신고횟수확인
+	@Override
+	public int reportCountSelect(ReportVo reportId) {
+		return sqlSession.selectOne(REPORT_NS+"reportCountSelect",reportId);
+	}
+	//신고횟수누적시 회원상태변경
+	@Override
+	public int actStateModify(ReportVo reportId) {
+		return sqlSession.update(REPORT_NS+"actStateModify",reportId);
+	}
 
 
 }

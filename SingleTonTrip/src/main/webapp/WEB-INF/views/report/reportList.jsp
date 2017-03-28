@@ -16,7 +16,6 @@
 					<div class="row" style="height: 800px; margin-top: 80px">
 						<div class="col-md-6 col-md-offset-3">
 							<div class="card card-signup">
-								<a href="reportAdd"><button class="btn btn-simple btn-primary btn-lg">신고하기</button></a>
 								<div class="header header-primary text-center" style="height: 80px;">
 									<h4>신고리스트</h4>
 								</div>
@@ -43,6 +42,9 @@
 												</c:forEach>
 											</tbody>
 										</table>
+										<div align="right">
+										<a href="reportAdd"><button class="btn btn-simple btn-primary btn-lg">신고하기</button></a>
+										</div>
 										<div align="center">
 											<c:if test="${startPage>1}">
 												<a href="<c:url value='reportList?currentPage=${startPage-pageSize}'/>">prev</a>
