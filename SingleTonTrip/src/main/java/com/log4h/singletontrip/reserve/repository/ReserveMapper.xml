@@ -306,13 +306,17 @@
 			person_id, 
 			reserve_stay_day, 
 			reserve_checkin_date, 
-			reserve_checkout_date
+			reserve_checkout_date,
+		
+			payment_state_cd
 		) VALUES (
 			#{payment.reserve.room.roomNo},
 			#{sessionId},
 			#{stayDay}+1,
 			#{payment.reserve.reserveCheckinDate},
-			#{payment.reserve.reserveCheckoutDate}
+			#{payment.reserve.reserveCheckoutDate},
+		
+			#{payment.paymentStateCd}
 		)
 	</insert>
 	
@@ -337,10 +341,12 @@
 			payment_price, 
 			payment_total_price, 
 			payment_apply_date
-			<if test="paymentStateCd ==2 ">
+			<if test="payment.paymentStateCd == 2 ">
 				,payment_finish_date
 				,payment_approve_date
+				,payment_state_cd
 			</if>
+			
 		) VALUES (
 			#{sessionId},
 			#{payment.paymentCateCd},
@@ -349,11 +355,29 @@
 			#{payment.paymentPrice},
 			#{payment.paymentTotalPrice},
 			NOW()
-			<if test="paymentStateCd == 2">
+			
+			<if test="payment.paymentStateCd == 2">
 				,NOW()
 				,NOW()
+				,#{payment.paymentStateCd}
 			</if>
 			
+			
 		)
+	</insert>
+	
+	<!-- 마일리지 사용시 등록 -->
+	<insert id="addUseMileage" parameterType="Map">
+		INSERT INTO tb_mileage (
+			person_id, 
+			mileage_cate_cd, 
+			mileage_use_price, 
+			mileage_use_date
+		) VALUES (
+			#{sessionId},
+			1,
+			#{mileageUsePrice},
+			 NOW()
+		);
 	</insert>
 </mapper>

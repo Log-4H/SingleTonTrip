@@ -77,4 +77,9 @@ public class ReserveDaoImpl implements ReserveDao{
 	public int getTarget(Map<String, Object> map) {
 		return sqlSession.selectOne(RESERVE_NS+"getTarget", map);
 	}
+	// 마일리지 사용등록
+	@Override
+	public int addUseMileage(Map<String, Object> map) {
+		return sqlSession.insert(RESERVE_NS+"addUseMileage", map);
+	}
 }

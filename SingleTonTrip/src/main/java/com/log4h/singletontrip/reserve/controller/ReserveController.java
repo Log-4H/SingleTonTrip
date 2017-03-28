@@ -109,21 +109,20 @@ public class ReserveController {
 	@RequestMapping(value="reserveInsert",method=RequestMethod.POST)
 	public ModelAndView reserveInsert(PaymentVo payment, 
 			@ModelAttribute("sessionId") String sessionId,
-			@ModelAttribute("sessionLevel") int sessionLevel
+			@ModelAttribute("sessionLevel") int sessionLevel,
+			@RequestParam(value = "mileageUsePrice") int mileageUsePrice
 			){
 		ModelAndView mv = new ModelAndView();
 		logger.debug("\n\n\n >>>>>>> reserveInsert <<<<<<< ");
 		logger.debug(" >>>>>>> payment 받은 값 : {}", payment);
 		
-		int result = reserveService.reserveInsert(payment, sessionId);
+		int result = reserveService.reserveInsert(payment, sessionId, mileageUsePrice);
 		logger.debug(" >>>>>>> reserveInsert result 값 : {}", result);
-		/*if(result != 1 ){
-			mv.setViewName("redirect:error");
+		if(result != 1 ){
+			mv.setViewName("/error/error");
 		}else{
 			mv.setViewName("redirect:reserveList");
-		}*/
-		
-		
+		}
 		
 		logger.debug(" >>>>>>> payment end <<<<<<< \n\n\n");
 		return mv;

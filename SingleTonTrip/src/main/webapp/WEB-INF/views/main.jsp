@@ -67,7 +67,7 @@ $(document).ready(function() {
 		
 			            	<p align="left" id="notice" style="color:#FFFFFF">
 			            	<span class='label label-danger' style="color:#FFFFFF">공지사항</span>
-			            	<a href="notice">${mainNotice }</a></p>
+			            	<a href="notice" style="color:black">${mainNotice }</a></p>
 			            </div>
 			        </div>
 			        

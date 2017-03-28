@@ -35,4 +35,6 @@ public interface ReserveDao {
 
 	int getTarget(Map<String, Object> map);
 
+	int addUseMileage(Map<String, Object> map);
+
 }

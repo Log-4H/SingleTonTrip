@@ -13,5 +13,5 @@ public interface ReserveService {
 
 	Map<String, Object> reserveInfo(String sessionId, int roomNo);
 
-	int reserveInsert(PaymentVo payment, String sessionId);
+	int reserveInsert(PaymentVo payment, String sessionId, int mileageUsePrice);
 }

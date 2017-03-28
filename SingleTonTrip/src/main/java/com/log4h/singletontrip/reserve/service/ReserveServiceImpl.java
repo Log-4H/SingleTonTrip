@@ -102,6 +102,7 @@ public class ReserveServiceImpl implements ReserveService{
 		
 		PersonVo person = reserveDao.getPerson(sessionId);
 		logger.debug(" >>>>>>> reserveInfo return받은 person {}", person);
+		
 		RoomVo room = reserveDao.getRoom(roomNo);
 		logger.debug(" >>>>>>> reserveInfo return받은 room {}", room);
 		
@@ -113,10 +114,11 @@ public class ReserveServiceImpl implements ReserveService{
 	// 예약 등록 및 결제 등록
 	@Override
 	@Transactional
-	public int reserveInsert(PaymentVo payment, String sessionId) {
+	public int reserveInsert(PaymentVo payment, String sessionId, int mileageUsePrice) {
 		logger.debug("\n >>>>>> reserveInsert <<<<<<< ");
 		logger.debug(" >>>>>> reserveInsert payment 받은 값 : {} ",payment);
 		logger.debug(" >>>>>> reserveInsert sessionId 받은 값 : {} ",sessionId);
+		logger.debug(" >>>>>> reserveInsert mileageUsePrice 받은 값 : {} ",mileageUsePrice);
 		
 		int stayDay = reserveDao.reserveStayDay(payment);
 		logger.debug(" >>>>>> reserveInsert stayDay 값 : {} ",stayDay);
@@ -127,17 +129,26 @@ public class ReserveServiceImpl implements ReserveService{
 		map.put("stayDay", stayDay);
 		
 		int result; 
+		
+		logger.debug("asdfasdfadfadsfa{}", map);
 		result = reserveDao.addRoomReserve(map);
+		
+		
+		
 		if(result != 0){
 			int targetNo = reserveDao.getTarget(map);
 			logger.debug(" >>>>>>> targetNo : {} ",targetNo );
 			
 			if(targetNo != 0){
-				final int paymentStateCd  = 2;
 				
 				map.put("targetNo", targetNo);
-				map.put("paymentStateCd ", paymentStateCd);
+				
 				result = reserveDao.addRoomPayment(map);
+				
+				if(result != 0 && mileageUsePrice != 0){
+					map.put("mileageUsePrice", mileageUsePrice);
+					result = reserveDao.addUseMileage(map);
+				}
 			}
 		}
 		logger.debug(" >>>>>>> reserveInsert <<<<<<< \n");

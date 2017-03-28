@@ -27,7 +27,15 @@ $(function() {
         $("#stayDay").html(diff+'박');
     });
 });
-
+//마일리지 사용
+$(document).on('click', '#btnUseMileage', function(){
+	var paymentTotalPrice = $('#paymentTotalPrice').val();
+	var paymentUseMileage = $('#paymentUseMileage').val();
+	var paymentPrice = parseInt(paymentTotalPrice) - parseInt(paymentUseMileage);
+	// document.write("total : " +total + "mileage : " + mileage + "realTotal : "+realTotal );
+	$('#paymentPrice').val(paymentPrice)
+	$('#mileageUsePrice').val(paymentUseMileage)
+});
 </script>
 
 <body class="profile-page">
@@ -43,15 +51,19 @@ $(function() {
 								
 								<!-- 상단 보라색 타이틀 -->
 								<div class="header header-primary text-center" style="height: 80px;">
-									<h4>방이름</h4>
+									<h4>${room.roomNm}</h4>
 								</div>
 								
 								<!-- 전송 -->
 								<form method="post" action="reserveInsert">
 									<div id="pricing" class="container-fluid">
-									<input name="reserve.room.roomNo" type="hidden" value="${room.roomNo} ">
+									<input name = "reserve.room.roomNo" type="hidden" value="${room.roomNo} ">
 									<!-- paymentCateCd 1 : reserve, 2 : ad  -->
-									<input name="paymentCateCd" type="hidden" value="1">
+									<input name = "paymentCateCd" type = "hidden" value= "1">
+									<!-- 마일리지 사용시 -->
+									<input name = "mileageUsePrice" id = "mileageUsePrice" type = "hidden" value = "0">
+									
+									<input name = "paymentStateCd" type = "hidden" value= "2">
 
 										<div class="row-fluid slideanim">
 											<div class="col-sm-12 col-xs-12">
@@ -67,7 +79,7 @@ $(function() {
 												<div class="panel panel-default text-center">
 													<div class="panel-body">
 														<div>
-															<img src="http://blog.joins.com/usr/f/a/fabiano/14/9.JPG"
+															<img src="<c:url value='assets/img/base/Room.jpg'/>"
 																alt="Rounded Image" class="img-rounded img-responsive"
 																style="width: 100%; height: 200px;">
 														</div>
@@ -77,7 +89,7 @@ $(function() {
 															<span class="input-group-addon">판매금액</span> 
 															<input
 																type="text" class="form-control" name="paymentTotalPrice"
-																value="${room.roomNormalPrice }"
+																value="${room.roomNormalPrice }" id="paymentTotalPrice"
 																readonly="readonly"> 
 															<span class="input-group-addon"></span>
 														</div>
@@ -117,14 +129,18 @@ $(function() {
 														</div>
 														<div class="input-group">
 															<span class="input-group-addon">마일리지 사용</span> 
-															<input type="text" class="form-control" name="paymentUseMileage">
+															<input type="text" class="form-control" name="paymentUseMileage" id="paymentUseMileage" value="0">
 															<span class="input-group-addon"></span>
+															
+														</div>
+														<div class="input-group"  align = "right">
+															<button type="button" class="btn btn-primary btn-simple" id="btnUseMileage" style="padding:0px; margin:0px;">사용</button>
 														</div>
 														<div class="input-group">
 															<span class="input-group-addon">결제 금액</span> 
 															<input
-																type="text" class="form-control" name="payment.paymentPrice"
-																readonly="readonly"> 
+																type="text" class="form-control" name="paymentPrice" id="paymentPrice"
+																value="${room.roomNormalPrice }" readonly="readonly"> 
 															<span class="input-group-addon"></span>
 														</div>
 														<div class="checkbox">
