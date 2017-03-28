@@ -150,6 +150,7 @@
 .fixed-section{
     top: 90px;
     max-height: 80vh;
+    overflow: hidden;
 }
 .fixed-section ul li{
     list-style: none;
