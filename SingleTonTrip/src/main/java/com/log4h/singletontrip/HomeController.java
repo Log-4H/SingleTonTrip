@@ -8,6 +8,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
+	@RequestMapping(value="/", method=RequestMethod.GET)
+	public ModelAndView profile(){
+		ModelAndView mv = new ModelAndView("profile");
+		return mv;
+	}
+	
 	@RequestMapping(value="intro", method=RequestMethod.GET)
 	public ModelAndView test(){
 		ModelAndView mv = new ModelAndView("intro");
