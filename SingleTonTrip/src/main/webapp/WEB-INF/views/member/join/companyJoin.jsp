@@ -23,7 +23,7 @@
 									<div class="input-group">
 										<span class="input-group-addon"> <i
 											class="material-icons">photo</i>
-										</span> <img id="blah" src="#" alt="your image"
+										</span> <img id="blah" src="https://github.com/Log-4H/imgRepo/blob/master/base/commons/default.jpg?raw=true" alt="your image"
 											style="max-height: 100px; max-width: 100px" /><br> <input
 											type='file' name="imgFile" id="imgInp" />
 									</div>
