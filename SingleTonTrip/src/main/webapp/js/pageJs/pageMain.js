@@ -64,8 +64,14 @@ $(document).ready(function() {
 				html += "<h6>" + company.companyTypeNm + "</h6>";
 				html += "<h6>" + company.memberPhone + "</h6>";
 				html += "<h6>" + company.memberEmail + "</h6>";
-
 				$("#profileContent").html(html);
+				$("#companyMap").html(
+						"<div class='googleMap' id='google_map"+company.companyNo+"' style='max-width:1000px; height:500px;'></div>");
+				var planSite = new Array;
+				var planContent = new Array;
+				planSite.push(company.companyAddress);
+				planContent.push(company.companyNm);
+				googleMap(company.companyNo, planSite, planContent);
 			}
 		})
 	};

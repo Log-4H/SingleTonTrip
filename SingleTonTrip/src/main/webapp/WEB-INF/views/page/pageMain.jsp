@@ -90,8 +90,11 @@
 										<c:import url="./trip/tripList.jsp"></c:import>
 										</c:if>
 										<c:import url="./evaluation/evaluationList.jsp"></c:import>
-				                    </div>
+				                    </div>	
 								</div>
+							 	<c:if test="${pageLevel == 2}">
+									<c:import url="./companyMap.jsp"></c:import>
+								</c:if>
 							</div>
 							<!-- End Profile Tabs -->
 							<div>
