@@ -54,7 +54,7 @@ $(document).ready(function() {
 				if (company.memberImg != null) {
 					profileImg = "./images/" + company.memberImg;
 				} else {
-					profileImg = "./assets/img/Company.jpg";
+					profileImg = "./assets/img/base/Company.jpg";
 				}
 				$("#profileImg").attr("src", profileImg);
 				$("#profileImg").attr("src", profileImg);

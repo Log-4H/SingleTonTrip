@@ -145,7 +145,7 @@ function evaluationListHtml(evaluationList, pageLevel){
 		}
 		html += "</p>";
 		html += "<small align='left'>";
-		html += item.memberId;
+		html += item.memberNm;
 		html += "</small>";
 		html += "</div>";
 		html += "</div>";

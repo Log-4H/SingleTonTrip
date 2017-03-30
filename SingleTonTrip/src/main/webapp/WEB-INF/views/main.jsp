@@ -45,8 +45,8 @@ $(document).ready(function() {
 						<h1 class="title">SingleTon Trip</h1>
 	                    <h4>당신의 즐거운 여행을 책임집니다.</h4>
 	                    <br />
-	                    <a href="intro" class="btn btn-danger btn-raised btn-lg">
-							<i class="fa fa-play"></i> 소개로
+	                    <a href="manual" class="btn btn-danger btn-raised btn-lg">
+							<i class="fa fa-play"></i> Manual
 						</a>
 					</div>
                 </div>
