@@ -1,5 +1,7 @@
 package com.log4h.singletontrip;
 
+import java.io.File;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,5 +26,10 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("error");
 		return mv;
 	}
-
+	@RequestMapping(value = "fileDownload", method = RequestMethod.GET)
+	public ModelAndView fileDownload(){
+		String path = "D:\\TeamProject\\git\\SingleTonTrip\\SingleTonTrip\\src\\main\\webapp\\file\\1.txt";
+		File file = new File(path);
+		return new ModelAndView("download", "downloadFile", file);
+	}
 }

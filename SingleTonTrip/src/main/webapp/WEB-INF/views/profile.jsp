@@ -84,7 +84,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
           <img src="./assets/profile/singletontrip.png" style="max-height:300px; max-width:500px">
           <p> - 페이스북형태의 SNS기능을 가진 여행모집 및 숙박사이트로 관심있는 지역 및 주제를 통해 여행그룹원 모집 및 회원들간의 소통을 할 수 있다.</p>
           <a href="intro"><button class="w3-btn w3-teal w3-round" type="button">프로젝트로</button></a>
-          <a href="intro"><button class="w3-btn w3-teal w3-round" type="button">완료보고서</button></a>
+          <a href="fileDownload"><button class="w3-btn w3-teal w3-round" type="button">완료보고서</button></a>
           <hr>
         </div>
         <div class="w3-container">
