@@ -28,7 +28,10 @@ public class HomeController {
 	}
 	@RequestMapping(value = "fileDownload", method = RequestMethod.GET)
 	public ModelAndView fileDownload(){
+		//프로젝트 테스트용
 		String path = "D:\\TeamProject\\git\\SingleTonTrip\\SingleTonTrip\\src\\main\\webapp\\file\\1.txt";
+		//cafe24 경로
+		//String path = "/home/hosting_users/ymw0608/tomcat/webapps/ROOT/file/1.txt";
 		File file = new File(path);
 		return new ModelAndView("download", "downloadFile", file);
 	}
