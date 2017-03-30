@@ -56,21 +56,24 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
         <a name="about"></a>
         <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-id-card-o fa-fw w3-margin-right w3-xxlarge" style="color:#009688"></i>About Me</h2>
         <div class="w3-container">
-          <h5 class="w3-opacity"><b>혁신의 아이콘</b></h5>
+          <h5 class="w3-opacity"><b>웹프로그래머</b></h5>
           <p>변화의 물결에 순응하며 새로운 혁신을 시도하는 웹프로그래머입니다.</p>
           <hr>
         </div>
         <div class="w3-container">
           <h5 class="w3-opacity"><b>한국스마트교육원 / <a href="http://ksmart.or.kr" target="_blank">http://ksmart.or.kr</a></b></h5>
           <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right" style="color:#009688"></i>2016.09.27 - 2017.03.31</h6>
-          <p>이것저것배움 ^^</p>
+          <p></p>
           <hr>
         </div>
         <div class="w3-container">
           <h5 class="w3-opacity"><b>전북대학교 / 컴퓨터공학과</b></h5>
           <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right" style="color:#009688"></i>2009.03.01 - 2016.08.27</h6>
-          <p>컴퓨터공학과 졸업</p>
           <p></p>
+          <p></p>
+          <hr>
+          <h5 class="w3-opacity"><b>자기소개서 & 이력서</b></h5>
+          <a href="fileDownload?fileName=01051478323.doc"><button class="w3-btn w3-teal w3-round" type="button">다운로드</button></a>
           <hr>
         </div>
       </div>
@@ -84,16 +87,15 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
           <img src="./assets/profile/singletontrip.png" style="max-height:300px; max-width:500px">
           <p> - 페이스북형태의 SNS기능을 가진 여행모집 및 숙박사이트로 관심있는 지역 및 주제를 통해 여행그룹원 모집 및 회원들간의 소통을 할 수 있다.</p>
           <a href="intro"><button class="w3-btn w3-teal w3-round" type="button">프로젝트로</button></a>
-          <a href="fileDownload"><button class="w3-btn w3-teal w3-round" type="button">완료보고서</button></a>
+          <a href="fileDownload?fileName=finish.hwp"><button class="w3-btn w3-teal w3-round" type="button">완료보고서 다운</button></a>
           <hr>
         </div>
         <div class="w3-container">
           <h5 class="w3-opacity"><b>도서관리</b></h5>
           <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right" style="color:#009688"></i>2017.01.16 - 2017.01.23</h6>
-          <img src="./assets/profile/singletontrip.png" style="max-height:300px; max-width:500px">
+          <img src="./assets/profile/library.png" style="max-height:300px; max-width:500px">
           <p> - 도서관의 회원관리 및 도서 대여 / 반납 프로그램</p>
-          <a href="intro"><button class="w3-btn w3-teal w3-round" type="button">프로젝트로</button></a>
-          <a href="intro"><button class="w3-btn w3-teal w3-round" type="button">완료보고서</button></a>
+          <a href="http://ymw0608.cafe24.com/library/index"><button class="w3-btn w3-teal w3-round" type="button">프로젝트로</button></a>
           <hr>
         </div>
       </div>
