@@ -33,8 +33,8 @@ function roomListAppend(roomList) {
 		html += "<h3><strong>" + item.roomNm + "</strong></h3>";
 		html+="</div>";
 		html+="<div class='card-block'>";
-		if (item.postImg != null) {
-			html += "<img src='./images/"+item.postImg+ "' style='width: 50%; height:50%'>";
+		if (item.roomImg != null) {
+			html += "<img src='./images/"+item.roomImg+ "' style='width: 50%; height:50%'>";
 		}else{
 			html += "<img src='./assets/img/base/Room.jpg' style='width: 50%; height:50%'>";
 		}
